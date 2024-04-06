@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../Layout';
 import Main from '../pages/Main';
+import Detail from '../pages/Detail';
 
 const router = createBrowserRouter([
   {
@@ -10,6 +11,11 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Main />,
+        index: true,
+      },
+      {
+        path: '/words/:wordId',
+        element: <Detail />,
         index: true,
       },
     ],
