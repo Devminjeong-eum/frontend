@@ -13,7 +13,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="bg-brandTop h-[48px] flex items-center p-6 justify-between border-none">
+      <div className="bg-main-gradiant-top h-[48px] flex items-center p-6 justify-between border-none">
         <LogoSvg />
         <CustomButton onClick={onClickMenu}>
           <MenuSvg />
