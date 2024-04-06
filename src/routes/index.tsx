@@ -8,6 +8,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
+    errorElement: <Error />,
     children: [
       {
         path: '/',
@@ -17,10 +18,6 @@ const router = createBrowserRouter([
       {
         path: '/notice',
         element: <SystemCheckNotice />,
-      },
-      {
-        path: '/error',
-        element: <Error />,
       },
     ],
   },
