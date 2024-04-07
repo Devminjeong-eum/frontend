@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 type props = {
   title: string;
-  description: string;
+  description: string | ReactNode;
   svg: ReactNode;
 };
 export const ErrorHandlingMarkup = ({ title, description, svg }: props) => {
