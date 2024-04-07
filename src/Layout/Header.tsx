@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Modal from '@/components/common/Modal';
 import MenuSvg from '@/components/svgComponent/MenuSvg';
 import LogoSvg from '@/components/svgComponent/LogoSvg';
-import SearchBar from '@/layout/SearchBar.tsx';
+import SearchBar from './SearchBar';
 
 export default function Header() {
   const [open, setIsOpen] = useState(false);
@@ -12,7 +12,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="bg-main-gradiant-top h-[48px] flex items-center p-6 justify-between border-none">
+      <div className="bg-main-gradiant-top h-12 flex items-center p-6 justify-between border-none">
         <LogoSvg />
         <button onClick={onClickMenu}>
           <MenuSvg />
