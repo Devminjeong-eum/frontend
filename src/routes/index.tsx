@@ -1,15 +1,18 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Layout from '@/Layout';
+import Layout from '@/layout';
 import Main from '@/pages/Main';
+import SystemCheckNotice from '@/pages/SystemCheckNotice';
+import Error from '@/pages/Error';
+import LayoutWrapper from '@/layout/LayoutWrapper';
+import Login from '@/pages/Login';
 import Detail from '@/pages/Detail';
 import { Suspense } from 'react';
-import Login from '@/pages/Login';
-import LayoutWrapper from '@/Layout/LayoutWrapper.tsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <LayoutWrapper />,
+    errorElement: <Error />,
     children: [
       {
         path: '/',
@@ -22,6 +25,7 @@ const router = createBrowserRouter([
           },
         ],
       },
+
       {
         path: '/words/:wordId',
         element: (
@@ -30,10 +34,11 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-        {
-            path: '/login',
-            element: <Login />,
-        },
+      {
+        path: '/login',
+        element: <Login />,
+      },
+      { path: '/notice', element: <SystemCheckNotice /> },
     ],
   },
 ]);
