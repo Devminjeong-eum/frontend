@@ -1,18 +1,17 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-
-import ExternalSvg from '@/components/svgComponent/ExternalSvg.tsx';
 import CorrectSvg from '@/components/svgComponent/CorrectSvg.tsx';
 import WrongSvg from '@/components/svgComponent/WrongSvg.tsx';
 
 import BackButton from '@/components/common/BackButton.tsx';
+import URLShareButton from '@/pages/Detail/URLShareButton.tsx';
 
 function DetailHeader() {
   return (
     <div className="h-12 flex justify-between items-center border-b border-[#4152C1]">
       <BackButton />
       <h1 className="text-white">개발용어</h1>
-      <ExternalSvg />
+      <URLShareButton />
     </div>
   );
 }
