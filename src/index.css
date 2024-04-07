@@ -188,3 +188,22 @@
   --svg-stroke-color: #0c3fc1; /* 호버 시 색상 변경 */
   --svg-fill-color: #e3ecff;
 }
+
+@keyframes slow-spin {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(360deg);
+  }
+}
+
+.circle-spin {
+  animation: slow-spin 2.5s ease-in-out infinite;
+}
