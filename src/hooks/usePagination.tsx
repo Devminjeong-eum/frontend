@@ -1,10 +1,4 @@
-export type Props = {
-  limit?: number; // 페이지당 보여줄 데이터 개수
-  total?: number; // 전체 데이터 개수
-  viewPaginationNums?: number; // 보여줄 페이지 개수, 기본값 4
-  setCurrent: (value: number | ((prevCurrent: number) => number)) => void;
-  current: number;
-};
+import { PaginationPropType } from '@/types/main';
 
 export default function usePagination({
   limit = 10,
@@ -12,7 +6,7 @@ export default function usePagination({
   viewPaginationNums = 4,
   setCurrent,
   current,
-}: Props) {
+}: PaginationPropType) {
   const totalPages = Math.ceil(total / limit); // 총 페이지 개수
 
   const noPrev = current === 1;

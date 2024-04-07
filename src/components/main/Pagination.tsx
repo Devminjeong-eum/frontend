@@ -36,7 +36,7 @@ export default function Pagination({
       <button
         onClick={goToPrevPage}
         disabled={noPrev}
-        className={`text-[#E5E8F2] ${!noPrev && 'hover:text-main-blue'}`}
+        className={`rotate-180  ${noPrev ? 'text-[#E5E8F2]' : 'text-main-blue'}`}
       >
         <OneButtonSvg />
       </button>
@@ -63,7 +63,7 @@ export default function Pagination({
       <button
         onClick={goToNextPage}
         disabled={noNext}
-        className={`rotate-180 text-[#E5E8F2] ${!noNext && 'hover:text-main-blue'}`}
+        className={` ${noNext ? 'text-[#E5E8F2]' : 'text-main-blue'}`}
       >
         <OneButtonSvg />
       </button>
