@@ -10,9 +10,6 @@ export default {
         'main-black': '#181818',
         'main-charcoal': '#414149',
         'main-gray': '#5E5E5E',
-        'login-navy': '#183ECD',
-        'login-yellow': '#FFE34E',
-        'login-brown': '#442E2E',
       },
       backgroundImage: {
         'main-gradiant-top': 'linear-gradient(to bottom, #194FDC, #4557DA)',
