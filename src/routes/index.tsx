@@ -34,13 +34,13 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+      {
+        path: '/login',
+        element: <Login />,
+      },
+      { path: '/notice', element: <SystemCheckNotice /> },
     ],
   },
-  {
-    path: '/login',
-    element: <Login />,
-  },
-  { path: '/notice', element: <SystemCheckNotice /> },
 ]);
 
 export default router;

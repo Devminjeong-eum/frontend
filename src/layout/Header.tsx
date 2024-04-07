@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Modal from '@/components/common/Modal';
 import MenuSvg from '@/components/svgComponent/MenuSvg';
 import LogoSvg from '@/components/svgComponent/LogoSvg';
-import SearchBar from './SearchBar';
+import SearchBar from '@/layout/SearchBar.tsx';
 
 export default function Header() {
   const [open, setIsOpen] = useState(false);
