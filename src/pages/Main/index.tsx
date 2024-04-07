@@ -1,3 +1,4 @@
+import Pagination from '@/components/main/Pagination';
 import { MainItem } from './MainItem';
 
 export default function Main() {
@@ -6,6 +7,7 @@ export default function Main() {
       {Array.from({ length: 10 }, (_, keyIndex) => (
         <MainItem key={keyIndex} id={keyIndex} />
       ))}
+      <Pagination />
     </main>
   );
 }
