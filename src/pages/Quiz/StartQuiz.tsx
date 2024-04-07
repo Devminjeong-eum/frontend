@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { quizData } from '@/pages/Quiz/quizData';
+import { useNavigate } from 'react-router-dom';
 import OSVG from '@/components/svgComponent/OSVG';
 import XSVG from '@/components/svgComponent/XSVG';
+import BlackBackSpaceSVG from '@/components/svgComponent/BlackBackSpaceSVG';
 
 export default function StartQuiz() {
   const [currentQuiz, setCurrentQuiz] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [selectOption, setSelectOption] = useState<string | null>(null);
-
+  const navigate = useNavigate();
   const progress = ((currentQuiz + 1) / quizData.length) * 100;
 
   const nextQuiz = () => {
@@ -50,8 +52,14 @@ export default function StartQuiz() {
             </button>
           </div>
         ) : (
-          <div className="w-full flex flex-col justify-center items-center bg-[#fbfcfe]">
-            <header className="flex justify-center items-center h-[60px] font-bold">
+          <div className="w-full flex flex-col justify-center items-center bg-[#fbfcfe] relative">
+            <header
+              className="absolute top-7 left-7 cursor-pointer"
+              onClick={() => navigate('/quiz')}
+            >
+              <BlackBackSpaceSVG />
+            </header>
+            <header className="flex justify-center items-center h-[68px] font-bold">
               TEST 중이에요.
             </header>
             <div className="w-full bg-[#ECEFF5] flex">
@@ -60,9 +68,9 @@ export default function StartQuiz() {
                 style={{ width: `${progress}%` }}
               ></div>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center mt-[150px]">
               <p className="text-[#5E5E5E] mb-2">아래 단어의 발음은?</p>
-              <div className=" text-[30px] font-bold mb-8">
+              <div className=" text-[30px] font-bold mb-10">
                 {quizData[currentQuiz].question}
               </div>
             </div>
@@ -70,11 +78,12 @@ export default function StartQuiz() {
               {quizData[currentQuiz].options.map((option) => (
                 <button
                   key={option}
-                  className={`w-[90%] font-bold bg-white ring-1 ring-[#F2F4F9] h-[48px] rounded-[16px] mb-4 ${
-                    selectOption === option &&
-                    (option === quizData[currentQuiz].correctAnswer
-                      ? 'bg-[#0C3FC1] text-white'
-                      : 'bg-[#912828] text-white')
+                  className={`w-[90%] font-bold ring-1 ring-[#F2F4F9] h-[48px] rounded-[16px] mb-4 shadow ${
+                    selectOption === option
+                      ? option === quizData[currentQuiz].correctAnswer
+                        ? 'bg-[#0C3FC1] text-white'
+                        : 'bg-[#912828] text-white'
+                      : 'bg-white'
                   }`}
                   onClick={() => handleAnswerOptionClick(option)}
                 >

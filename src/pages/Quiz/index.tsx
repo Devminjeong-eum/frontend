@@ -9,7 +9,7 @@ export default function Quiz() {
     <div className="flex justify-center min-h-screen">
       <div className="flex flex-col justify-center items-center w-full max-w-[430px] border-1 border-x border-gray-200 shadow-xl bg-main-gradiant-top h-13 relative">
         <header
-          className="absolute top-7 left-5 cursor-pointer"
+          className="absolute top-6 left-5 cursor-pointer"
           onClick={() => navigate('/')}
         >
           <BackSpaceSVG />
