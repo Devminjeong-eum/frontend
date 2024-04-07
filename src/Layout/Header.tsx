@@ -4,10 +4,8 @@ import MenuSvg from '@/components/svgComponent/MenuSvg';
 import CustomButton from '@/components/common/CustomButton';
 import LogoSvg from '@/components/svgComponent/LogoSvg';
 import SearchBar from './SearchBar';
-import { useLocation } from 'react-router-dom';
-// '/words/:wordId' 형태의 경로를 식별하기 위한 정규 표현식
-const depthRoutes = [/^\/words\/\d+$/];
-function DefaultHeader() {
+
+export default function Header() {
   const [open, setIsOpen] = useState(false);
   const onClickMenu = () => {
     setIsOpen(true);
@@ -31,15 +29,4 @@ function DefaultHeader() {
       />
     </>
   );
-}
-
-export default function Header() {
-  const location = useLocation();
-
-  // 현재 경로가 정규 표현식과 매칭되는지 여부 확인
-  const isDepthHeader = depthRoutes.some((routes) =>
-    routes.test(location.pathname),
-  );
-
-  return isDepthHeader ? <div /> : <DefaultHeader />;
 }

@@ -3,16 +3,23 @@ import Layout from '../Layout';
 import Main from '../pages/Main';
 import Detail from '../pages/Detail';
 import { Suspense } from 'react';
+import LayoutWrapper from '@/Layout/LayoutWrapper.tsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    element: <LayoutWrapper />,
     children: [
       {
         path: '/',
-        element: <Main />,
-        index: true,
+        element: <Layout />,
+        children: [
+          {
+            path: '/',
+            element: <Main />,
+            index: true,
+          },
+        ],
       },
       {
         path: '/words/:wordId',
@@ -21,7 +28,6 @@ const router = createBrowserRouter([
             <Detail />
           </Suspense>
         ),
-        index: true,
       },
     ],
   },
