@@ -1,8 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Layout from '../Layout';
-import Main from '../pages/Main';
-import Detail from '../pages/Detail';
+import Layout from '@/Layout';
+import Main from '@/pages/Main';
+import Detail from '@/pages/Detail';
 import { Suspense } from 'react';
+import Login from '@/pages/Login';
 import LayoutWrapper from '@/Layout/LayoutWrapper.tsx';
 
 const router = createBrowserRouter([
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+        {
+            path: '/login',
+            element: <Login />,
+        },
     ],
   },
 ]);
