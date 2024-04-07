@@ -15,9 +15,9 @@ export default function LogoColorSvg() {
           width="246.146"
           height="63.0081"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -51,8 +51,8 @@ export default function LogoColorSvg() {
           y2="55.375"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#194FDC" />
-          <stop offset="1" stop-color="#6E5ED9" />
+          <stop stopColor="#194FDC" />
+          <stop offset="1" stopColor="#6E5ED9" />
         </linearGradient>
       </defs>
     </svg>
