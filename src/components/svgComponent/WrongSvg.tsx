@@ -10,14 +10,14 @@ export default function WrongSvg() {
       <path
         d="M11.0779 2.07053L2.92203 10.9295"
         stroke="#FFB800"
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
       <path
         d="M2.92212 2.07053L11.078 10.9295"
         stroke="#FFB800"
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
     </svg>
   );

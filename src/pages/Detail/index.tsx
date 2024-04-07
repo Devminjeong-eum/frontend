@@ -100,8 +100,8 @@ export default function Detail() {
           </div>
           <div className="p-[18px] rounded-[16px] border border-[#F2F4F9] shadow-base bg-white">
             <h3 className="font-semibold text-main-black pb-1.5">예문</h3>
-            {wordExamples.split('$').map((example) => (
-              <div className="text-main-gray flex items-center gap-2">
+            {wordExamples.split('$').map((example, idx) => (
+              <div className="text-main-gray flex items-center gap-2" key={idx}>
                 <div className="w-1 h-1 rounded-full bg-main-charcoal self-start mt-2.5 flex-shrink-0" />
                 <p className="text-main-gray">{example}</p>
               </div>
