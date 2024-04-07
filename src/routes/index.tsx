@@ -1,7 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Layout from '../layout';
+import Layout from '../Layout';
 import Main from '../pages/Main';
 import Detail from '../pages/Detail';
+import { Suspense } from 'react';
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/words/:wordId',
-        element: <Detail />,
+        element: (
+          <Suspense fallback={<div />}>
+            <Detail />
+          </Suspense>
+        ),
         index: true,
       },
     ],
