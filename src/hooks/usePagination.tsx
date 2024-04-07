@@ -1,8 +1,11 @@
+
 import { PaginationProps } from '@/types/main';
+import { useState } from 'react';
+
 
 export default function usePagination({
-  limit,
-  total,
+  limit = 10,
+  total = 100,
   viewPaginationNums = 4,
   setCurrent,
   current,
