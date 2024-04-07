@@ -1,6 +1,7 @@
 import TwoButtonSvg from '@/components/svgComponent/TwoButtonSvg';
 import OneButtonSvg from '@/components/svgComponent/OneButtonSvg';
-import usePagination, { Props } from '@/hooks/usePagination';
+import usePagination from '@/hooks/usePagination';
+import { PaginationPropType } from '@/types/main.ts';
 
 export default function Pagination({
   limit = 10,
@@ -8,7 +9,7 @@ export default function Pagination({
   viewPaginationNums = 4,
   setCurrent,
   current,
-}: Props) {
+}: PaginationPropType) {
   const {
     onChangePage,
     calculateStartPage,
