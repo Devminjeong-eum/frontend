@@ -1,14 +1,17 @@
 import SpeakerSvg from '@/components/svgComponent/SpeakerSvg';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   id: string | number;
 };
 
 export const MainItem = ({ id }: Props) => {
+  const navigate = useNavigate();
   return (
     <article
       key={id}
       className="p-4 w-full ring-1 bg-white ring-[#F2F4F9] rounded-2xl hover:bg-[#EFF2F9] hover:ring-4 overflow-hidden cursor-pointer"
+      onClick={() => navigate(`/words/${id}`)}
     >
       <div className="flex flex-col">
         <header className="flex flex-wrap gap-2">
