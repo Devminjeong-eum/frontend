@@ -168,23 +168,30 @@
 }
 
 .customButton {
-  --svg-stroke-color: #d7dceb; /* 기본 색상 */
-  --svg-fill-color: #ecf0f9; /* 기본 색상 */
+  --svg-stroke-color: #0c3fc1;
+  --svg-fill-color: #e3ecff;
 }
 
-.customButton:hover {
-  --svg-stroke-color: #0c3fc1; /* 호버 시 색상 */
-  --svg-fill-color: #e3ecff; /* 호버 시 색상 */
-}
-
-/* 기본 상태, 호버 불가능 상태 */
 .customButton.hover-disabled {
-  --svg-stroke-color: #d7dceb; /* 비활성화 상태의 색상 */
+  --svg-stroke-color: #d7dceb;
   --svg-fill-color: #ecf0f9;
 }
 
-/* 호버 가능 상태 */
-.customButton.hover-enabled:hover {
-  --svg-stroke-color: #0c3fc1; /* 호버 시 색상 변경 */
-  --svg-fill-color: #e3ecff;
+@keyframes slow-spin {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(360deg);
+  }
+}
+
+.circle-spin {
+  animation: slow-spin 2.5s ease-in-out infinite;
 }

@@ -7,9 +7,15 @@ export default function OneButtonSvg() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <rect width="26" height="26" rx="13" fill="currentColor" />
+      <rect
+        width="26"
+        height="26"
+        rx="13"
+        transform="matrix(-1 0 0 1 26 0)"
+        fill="currentColor"
+      />
       <path
-        d="M14 9L10 13L14 17"
+        d="M12 9L16 13L12 17"
         stroke="#FBFCFE"
         strokeWidth="1.5"
         strokeLinecap="round"

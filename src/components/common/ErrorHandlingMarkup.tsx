@@ -1,17 +1,17 @@
-import { ReactNode } from 'react';
+import { ErrorHandlingProps } from '@/types/errorHandling';
 import { useNavigate } from 'react-router-dom';
 
-type props = {
-  title: string;
-  description: string;
-  svg: ReactNode;
-};
-export const ErrorHandlingMarkup = ({ title, description, svg }: props) => {
+export const ErrorHandlingMarkup = ({
+  title,
+  description,
+  svg,
+}: ErrorHandlingProps) => {
   const navigate = useNavigate();
 
   const moveToHome = () => {
     navigate('/');
   };
+
   return (
     <div className="flex flex-col items-center min-h-screen justify-center -mt-16">
       {svg}

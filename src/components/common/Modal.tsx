@@ -19,7 +19,7 @@ export default function Modal({
 
   return createPortal(
     <div className="fixed inset-0 bg-black/30 flex justify-center items-center max-w-[430px] mx-auto">
-      <div className="bg-white p-6 rounded-2xl shadow-lg w-full mx-4 flex flex-col items-center justify-center h-[150px]">
+      <div className="bg-blue-500 p-6 rounded-2xl shadow-lg w-full mx-4 flex flex-col items-center justify-center h-[150px]">
         <span>{title}</span>
         <button
           className="mx-auto w-[80px] mt-4 bg-main-gradiant-top hover:bg-main-gradiant-bottom text-white font-bold py-2 px-4 rounded"
@@ -27,6 +27,7 @@ export default function Modal({
         >
           {buttonLabel}
         </button>
+      
       </div>
     </div>,
     document.body,
