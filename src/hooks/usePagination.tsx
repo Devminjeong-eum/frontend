@@ -1,7 +1,4 @@
-
-import { PaginationProps } from '@/types/main';
-import { useState } from 'react';
-
+import { PaginationPropType } from '@/types/main';
 
 export default function usePagination({
   limit = 10,
@@ -9,7 +6,7 @@ export default function usePagination({
   viewPaginationNums = 4,
   setCurrent,
   current,
-}: PaginationProps) {
+}: PaginationPropType) {
   const totalPages = Math.ceil(total / limit); // 총 페이지 개수
 
   const noPrev = current === 1;
@@ -30,10 +27,11 @@ export default function usePagination({
 
   const goToLastPage = () => setCurrent(totalPages);
 
-  const goToPrevPage = () => setCurrent((current) => Math.max(1, current - 1));
+  const goToPrevPage = () =>
+    setCurrent((current: number) => Math.max(1, current - 1));
 
   const goToNextPage = () =>
-    setCurrent((current) => Math.min(totalPages, current + 1));
+    setCurrent((current: number) => Math.min(totalPages, current + 1));
 
   return {
     onChangePage,
