@@ -11,14 +11,14 @@ export default function XSVG() {
         <path
           d="M15.1909 2.17452L5.00041 12.9983"
           stroke="#FFB800"
-          stroke-width="1.7"
-          stroke-linecap="round"
+          strokeWidth="1.7"
+          strokeLinecap="round"
         />
         <path
           d="M5.19391 2.17452L15.3844 12.9983"
           stroke="#FFB800"
-          stroke-width="1.7"
-          stroke-linecap="round"
+          strokeWidth="1.7"
+          strokeLinecap="round"
         />
       </g>
       <defs>
@@ -29,9 +29,9 @@ export default function XSVG() {
           width="24"
           height="24"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"

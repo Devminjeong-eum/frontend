@@ -7,7 +7,7 @@ export default function OSVG() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="8" cy="8" r="6" stroke="#40FF53" stroke-width="1.7" />
+      <circle cx="8" cy="8" r="6" stroke="#40FF53" strokeWidth="1.7" />
     </svg>
   );
 }
