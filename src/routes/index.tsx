@@ -7,6 +7,7 @@ import LayoutWrapper from '@/layout/LayoutWrapper';
 import Login from '@/pages/Login';
 import Detail from '@/pages/Detail';
 import { Suspense } from 'react';
+import DetailLoading from '@/pages/Detail/DetailLoading.tsx';
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
       {
         path: '/words/:wordId',
         element: (
-          <Suspense fallback={<div />}>
+          <Suspense fallback={<DetailLoading />}>
             <Detail />
           </Suspense>
         ),
