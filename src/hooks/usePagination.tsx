@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export type PaginationProps = {
+export type Props = {
   limit: number; // 페이지당 보여줄 데이터 개수
   total: number; // 전체 데이터 개수
   viewPaginationNums?: number; // 보여줄 페이지 개수, 기본값 4
@@ -10,7 +10,7 @@ export default function usePagination({
   limit,
   total,
   viewPaginationNums = 4,
-}: PaginationProps) {
+}: Props) {
   const [current, setCurrent] = useState(1); // 시작, 현재 페이지
   const totalPages = Math.ceil(total / limit); // 총 페이지 개수
 
