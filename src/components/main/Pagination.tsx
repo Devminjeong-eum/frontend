@@ -1,5 +1,5 @@
-import TwoButtonSvg from '../svgComponent/TwoButtonSvg';
-import OneButtonSvg from '../svgComponent/OneButtonSvg';
+import TwoButtonSvg from '@/components/svgComponent/TwoButtonSvg';
+import OneButtonSvg from '@/components/svgComponent/OneButtonSvg';
 import usePagination, { Props } from '@/hooks/usePagination';
 
 export default function Pagination({
