@@ -11,9 +11,9 @@ export default function OneButtonSvg() {
       <path
         d="M14 9L10 13L14 17"
         stroke="#FBFCFE"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
