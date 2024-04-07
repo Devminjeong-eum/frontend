@@ -4,6 +4,7 @@ import Main from '@/pages/Main';
 import SystemCheckNotice from '@/pages/SystemCheckNotice';
 import Error from '@/pages/Error';
 import LayoutWrapper from '@/layout/LayoutWrapper';
+import Login from '@/pages/Login';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       },
       { path: '/notice', element: <SystemCheckNotice /> },
     ],
+  },
+  {
+    path: '/login',
+    element: <Login />,
   },
 ]);
 

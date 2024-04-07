@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Modal from '@/components/common/Modal';
 import MenuSvg from '@/components/svgComponent/MenuSvg';
-import CustomButton from '@/components/common/CustomButton';
 import LogoSvg from '@/components/svgComponent/LogoSvg';
 import SearchBar from './SearchBar';
 
@@ -15,9 +14,9 @@ export default function Header() {
     <>
       <div className="bg-main-gradiant-top h-[48px] flex items-center p-6 justify-between border-none">
         <LogoSvg />
-        <CustomButton onClick={onClickMenu}>
+        <button onClick={onClickMenu}>
           <MenuSvg />
-        </CustomButton>
+        </button>
       </div>
       <SearchBar />
 

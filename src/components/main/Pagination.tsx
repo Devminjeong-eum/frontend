@@ -1,13 +1,12 @@
-import CustomButton from '../common/CustomButton';
 import TwoButtonSvg from '../svgComponent/TwoButtonSvg';
 import OneButtonSvg from '../svgComponent/OneButtonSvg';
-import usePagination, { PaginationProps } from '@/hooks/usePagination';
+import usePagination, { Props } from '@/hooks/usePagination';
 
 export default function Pagination({
   limit = 10,
   total = 100,
   viewPaginationNums = 4,
-}: PaginationProps) {
+}: Props) {
   const {
     onChangePage,
     calculateStartPage,
@@ -25,21 +24,21 @@ export default function Pagination({
 
   return (
     <div className="flex gap-4 mx-auto my-3">
-      <CustomButton
+      <button
         onClick={goToFirstPage}
         disabled={noPrev}
         className={`customButton ${!noPrev ? 'hover-enabled' : 'hover-disabled'}`}
       >
         <TwoButtonSvg />
-      </CustomButton>
+      </button>
 
-      <CustomButton
+      <button
         onClick={goToPrevPage}
         disabled={noPrev}
         className={`text-[#E5E8F2] ${!noPrev && 'hover:text-main-blue'}`}
       >
         <OneButtonSvg />
-      </CustomButton>
+      </button>
 
       {Array.from(
         { length: Math.min(viewPaginationNums, totalPages) },
@@ -60,21 +59,21 @@ export default function Pagination({
         },
       )}
 
-      <CustomButton
+      <button
         onClick={goToNextPage}
         disabled={noNext}
         className={`rotate-180 text-[#E5E8F2] ${!noNext && 'hover:text-main-blue'}`}
       >
         <OneButtonSvg />
-      </CustomButton>
+      </button>
 
-      <CustomButton
+      <button
         onClick={goToLastPage}
         disabled={noNext}
         className={`rotate-180 customButton ${!noNext ? 'hover-enabled' : 'hover-disabled'}`}
       >
         <TwoButtonSvg />
-      </CustomButton>
+      </button>
     </div>
   );
 }
