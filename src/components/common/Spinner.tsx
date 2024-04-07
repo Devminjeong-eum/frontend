@@ -1,6 +1,4 @@
-import React from 'react';
-
-const Spinner: React.FC = () => {
+export default function Spinner() {
   return (
     <div className="max-w-[430px] min-h-screen absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-full flex justify-center items-center bg-white/50 z-30">
       <div className="flex flex-col justify-center items-center">
@@ -30,9 +28,9 @@ const Spinner: React.FC = () => {
               width="26"
               height="26"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix
                 in="SourceAlpha"
                 type="matrix"
@@ -60,10 +58,10 @@ const Spinner: React.FC = () => {
             </filter>
           </defs>
         </svg>
-        <p className="text-main-gray mt-4">잠시만 기다려주세요...</p>
+        <p className="text-[#747474] mt-4 font-semibold">
+          잠시만 기다려주세요...
+        </p>
       </div>
     </div>
   );
-};
-
-export default Spinner;
+}
