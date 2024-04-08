@@ -3,9 +3,14 @@ import LogoSvg from '@/components/svgComponent/LogoSvg';
 import SearchBar from './SearchBar';
 import { useNavigate } from 'react-router-dom';
 import QuizButton from '@/components/main/QuizButton';
+import ToolTip from '@/components/common/ToolTip';
+import { useState } from 'react';
+import useScroll from '@/hooks/useScroll';
 
 export default function Header() {
+  const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
+  const isScrolled = useScroll();
 
   return (
     <>
@@ -13,14 +18,19 @@ export default function Header() {
         <div className="flex-1">
           <a href="/">
             <LogoSvg />
-          </a>{' '}
+          </a>
         </div>
-        <QuizButton />
+        <div onClick={() => navigate('/quiz')}>
+          <QuizButton />
+        </div>
         <button onClick={() => navigate('/notice')}>
           <MenuSvg />
         </button>
       </div>
       <SearchBar />
+      {!isScrolled && (
+        <ToolTip isOpen={isOpen} setIsOpen={() => setIsOpen(false)} />
+      )}
     </>
   );
 }

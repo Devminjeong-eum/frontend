@@ -1,18 +1,7 @@
-import { useState } from 'react';
-import ToolTip from '../common/ToolTip';
-import useScroll from '@/hooks/useScroll';
-
 export default function QuizButton() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const isScrolled = useScroll();
-
   return (
     <>
-      <button
-        onClick={() => setIsOpen(true)}
-        className="relative text-white w-[57px] h-[28px] bg-[#354BD2] ring-1 ring-[#5368EB] flex items-center justify-center rounded-[8px] mr-[14px]"
-      >
+      <button className="relative text-white w-[57px] h-[28px] bg-[#354BD2] ring-1 ring-[#5368EB] flex items-center justify-center rounded-[8px] mr-[14px]">
         <svg
           width="34"
           height="13"
@@ -26,9 +15,6 @@ export default function QuizButton() {
           />
         </svg>
       </button>
-      {!isScrolled && (
-        <ToolTip isOpen={isOpen} setIsOpen={() => setIsOpen(false)} />
-      )}
     </>
   );
 }
