@@ -26,13 +26,12 @@ const router = createBrowserRouter([
             element: <Main />,
             index: true,
           },
+          {
+            path: '/api/word/search/:wordName',
+            element: <Search />,
+            index: true,
+          },
         ],
-      },
-
-      {
-        path: '/api/word/search/:wordName',
-        element: <Search />,
-        index: true,
       },
       {
         path: '/quiz',
