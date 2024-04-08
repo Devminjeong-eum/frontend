@@ -44,7 +44,7 @@ export default function DetailLoading() {
           <div className="p-[18px] rounded-[16px] border border-[#F2F4F9] shadow-base bg-white h-[250]">
             <h3 className="font-semibold text-main-black pb-1.5">의미</h3>
             <p className="text-main-gray">
-              <div />
+              <span />
             </p>
           </div>
           <div className="p-[18px] rounded-[16px] border border-[#F2F4F9] shadow-base bg-white h-[250]">
