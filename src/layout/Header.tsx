@@ -9,7 +9,6 @@ import useScroll from '@/hooks/useScroll';
 import { useEffect } from 'react';
 import { NOTICE_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
 
-
 export default function Header() {
   const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
@@ -31,9 +30,7 @@ export default function Header() {
         <div onClick={() => navigate('/quiz')}>
           <QuizButton />
         </div>
-        <button onClick={() => navigate('/notice')}>
-=======
-        <QuizButton />
+        <button onClick={() => navigate('/notice')} />
         <button onClick={() => navigate(NOTICE_PATH)}>
           <MenuSvg />
         </button>
