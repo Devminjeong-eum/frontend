@@ -1,11 +1,22 @@
 import { createPortal } from 'react-dom';
-
+import { useEffect } from 'react';
 interface Props {
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
 }
 
 export default function ToolTip({ isOpen, setIsOpen }: Props) {
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest('tooltip')) {
+        setIsOpen(false);
+      }
+    };
+    if (isOpen) document.addEventListener('mousedown', handleClick);
+
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [isOpen, setIsOpen]);
   if (!isOpen) {
     return null;
   }
