@@ -14,7 +14,7 @@ export default function Detail() {
       wordDescription,
       wordSpeak,
       wrongSpeak,
-      wordExamples,
+      wordExample,
       wordDiacritic,
     },
   } = useWordDetail(Number(wordId));
@@ -57,15 +57,21 @@ export default function Detail() {
           <h3 className="font-semibold text-main-black pb-1.5">의미</h3>
           <p className="text-main-gray">{wordDescription}</p>
         </div>
-        {wordExamples && (
+        {wordExample && (
           <div className="p-[18px] rounded-[16px] border border-[#F2F4F9] shadow-base bg-white">
             <h3 className="font-semibold text-main-black pb-1.5">예문</h3>
-            {wordExamples.split('$').map((example, idx) => (
-              <div className="text-main-gray flex items-center gap-2" key={idx}>
-                <div className="w-1 h-1 rounded-full bg-main-charcoal self-start mt-2.5 flex-shrink-0" />
-                <p className="text-main-gray">{example}</p>
-              </div>
-            ))}
+            {wordExample
+              .split('$')
+              .filter((example) => example.trim())
+              .map((example, idx) => (
+                <div
+                  className="text-main-gray flex items-center gap-2"
+                  key={idx}
+                >
+                  <div className="w-1 h-1 rounded-full bg-main-charcoal self-start mt-2.5 flex-shrink-0" />
+                  <p className="text-main-gray">{example}</p>
+                </div>
+              ))}
           </div>
         )}
       </main>
