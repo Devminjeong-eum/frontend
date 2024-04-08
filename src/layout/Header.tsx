@@ -1,5 +1,5 @@
 import MenuSvg from '@/components/svgComponent/MenuSvg';
-import LogoSvg from '@/components/svgComponent/LogoSvg';
+import LogoTextSvg from '@/components/svgComponent/LogoTextSvg';
 import SearchBar from './SearchBar';
 import { useNavigate } from 'react-router-dom';
 import QuizButton from '@/components/main/QuizButton';
@@ -24,7 +24,7 @@ export default function Header() {
       <div className="bg-main-gradiant-top h-[48px] flex items-center p-6 justify-between border-none">
         <div className="flex-1">
           <a href={WORD_LIST_PATH}>
-            <LogoSvg />
+            <LogoTextSvg />
           </a>
         </div>
         <div onClick={() => navigate(QUIZ_PATH)}>
