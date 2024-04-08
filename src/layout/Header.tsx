@@ -6,11 +6,17 @@ import QuizButton from '@/components/main/QuizButton';
 import ToolTip from '@/components/common/ToolTip';
 import { useState } from 'react';
 import useScroll from '@/hooks/useScroll';
+import { useEffect } from 'react';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
   const isScrolled = useScroll();
+
+  useEffect(() => {
+    if (sessionStorage.getItem('isOpen')) setIsOpen(false);
+    if (!isOpen) sessionStorage.setItem('isOpen', 'false');
+  }, [isOpen]);
 
   return (
     <>
