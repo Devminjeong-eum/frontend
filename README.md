@@ -65,7 +65,6 @@ AJAX는 아작스? 에이젝스?
 
 |     Design      |     Backend      |     Frontend     |     Frontend     |     Frontend     |     Frontend     |
 | :-------------: | :--------------: | :--------------: | :--------------: | :--------------: | :--------------: |
-|                                      |
 | 여름 | [머가리](https://github.com/tls3254) | [돌맹](https://github.com/nyoung113) | [덕배](https://github.com/dotory0829) | [욱](https://github.com/uk11) | [치치](https://github.com/ono212) | 
 
 <br>
