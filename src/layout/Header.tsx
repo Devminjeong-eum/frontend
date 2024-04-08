@@ -7,6 +7,8 @@ import ToolTip from '@/components/common/ToolTip';
 import { useState } from 'react';
 import useScroll from '@/hooks/useScroll';
 import { useEffect } from 'react';
+import { NOTICE_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
+
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(true);
@@ -22,7 +24,7 @@ export default function Header() {
     <>
       <div className="bg-main-gradiant-top h-[48px] flex items-center p-6 justify-between border-none">
         <div className="flex-1">
-          <a href="/">
+          <a href={WORD_LIST_PATH}>
             <LogoSvg />
           </a>
         </div>
@@ -30,6 +32,9 @@ export default function Header() {
           <QuizButton />
         </div>
         <button onClick={() => navigate('/notice')}>
+=======
+        <QuizButton />
+        <button onClick={() => navigate(NOTICE_PATH)}>
           <MenuSvg />
         </button>
       </div>

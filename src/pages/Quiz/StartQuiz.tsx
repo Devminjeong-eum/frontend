@@ -5,6 +5,7 @@ import OSVG from '@/components/svgComponent/OSVG';
 import XSVG from '@/components/svgComponent/XSVG';
 import BlackBackSpaceSVG from '@/components/svgComponent/BlackBackSpaceSVG';
 import QuizResult from './QuizResult';
+import { QUIZ_PATH } from '@/routes/path.ts';
 
 export default function StartQuiz() {
   const [currentQuiz, setCurrentQuiz] = useState(0);
@@ -36,27 +37,27 @@ export default function StartQuiz() {
   if (showScore) return <QuizResult score={score} />;
 
   return (
-    <div className="flex justify-center min-h-screen">
+    <div className="flex justify-center min-h-screen text-main-black">
       <div className="flex flex-col items-center w-full max-w-[430px] border-1 border-x border-gray-200 shadow-xl">
         <div className="w-full flex flex-col justify-center items-center bg-[#fbfcfe] relative">
           <header
             className="absolute top-7 left-7 cursor-pointer"
-            onClick={() => navigate('/quiz')}
+            onClick={() => navigate(QUIZ_PATH)}
           >
             <BlackBackSpaceSVG />
           </header>
-          <header className="flex justify-center items-center h-[68px] font-bold">
-            TEST 중이에요.
+          <header className="flex justify-center items-center h-[68px] font-medium">
+            <p>TEST중이에요.</p>
           </header>
-          <div className="w-full bg-[#ECEFF5] flex">
+          <div className={`w-full bg-[#ECEFF5] flex`}>
             <div
-              className="bg-[#0C3FC1] h-[3px]"
+              className="bg-[#0C3FC1]  h-[2px] transition-all"
               style={{ width: `${progress}%` }}
             ></div>
           </div>
-          <div className="flex flex-col items-center mt-[150px]">
-            <p className="text-[#5E5E5E] mb-2">아래 단어의 발음은?</p>
-            <div className=" text-[30px] font-bold mb-10">
+          <div className="text-[14px] flex flex-col items-center mt-[73px]">
+            <p className="text-main-gray">아래 단어의 발음은?</p>
+            <div className={`text-[30px] font-semibold mb-10`}>
               {quizData[currentQuiz].question}
             </div>
           </div>
@@ -64,13 +65,17 @@ export default function StartQuiz() {
             {quizData[currentQuiz].options.map((option) => (
               <button
                 key={option}
-                className={`w-[90%] font-bold ring-1 ring-[#F2F4F9] h-[48px] rounded-[16px] mb-4 shadow ${
+                className={`shadow-quiz-button w-[90%] font-medium h-[56px] 
+                rounded-[16px] mb-4 ${
                   selectOption === option
                     ? option === quizData[currentQuiz].correctAnswer
                       ? 'bg-[#0C3FC1] text-white'
                       : 'bg-[#912828] text-white'
                     : 'bg-white'
-                }`}
+                }
+                border-px
+                border-[#F2F4F9]
+                `}
                 onClick={() => handleAnswerOptionClick(option)}
               >
                 <div className="flex justify-center items-center relative">
