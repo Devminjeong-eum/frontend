@@ -1,7 +1,8 @@
 # [4조_뎁민정음] 데브말싸미 _ 테오의 스프린트 17기
 
 <p align="center">
-![로고](https://github.com/Devminjeong-eum/frontend/assets/75849590/f247c957-9f85-4204-a56b-ff7bcb6f570d)
+ ![로고](https://github.com/Devminjeong-eum/frontend/assets/75849590/db77d8bb-c9f0-4215-9612-42fa3a29daf0)
+
 </p>
 
 <br >
