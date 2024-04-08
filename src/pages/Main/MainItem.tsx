@@ -1,6 +1,5 @@
 import SpeakerSvg from '@/components/svgComponent/SpeakerSvg';
-import { MainItemType, TextSlicePrams } from '@/types/main';
-import { useNavigate } from 'react-router-dom';
+import { MainItemType } from '@/types/main';
 
 export const MainItem = ({
   wordId,
@@ -9,49 +8,31 @@ export const MainItem = ({
   wordDiacritic,
   wordSpeak,
 }: MainItemType) => {
-  const formatDescription = ({
-    text,
-    limitLength,
-    sliceLength,
-  }: TextSlicePrams) => {
-    return text?.length > limitLength
-      ? `${text.substring(0, sliceLength)}...`
-      : text;
-  };
-
-    const navigate = useNavigate();
-
-
   return (
     <article
       key={wordId}
-      className="p-4 w-full ring-1 bg-white ring-[#F2F4F9] rounded-2xl hover:bg-[#EFF2F9] hover:ring-4 overflow-hidden cursor-pointer"
-      onClick={() => navigate(`/words/${wordId}`)}
+      className="p-4 w-full ring-1 bg-white ring-[#F2F4F9] rounded-2xl hover:bg-[#EFF2F9] hover:ring-2 cursor-pointer"
     >
-      <div className="flex flex-col">
-        <header className="flex flex-wrap gap-2">
-          <h3 className="text-main-blue font-semibold text-[18px] break-words">
-            {wordName}
-          </h3>
-          <span className="text-[#E1E5ED]">|</span>
-          <div className="flex-1 text-main-charcoal break-words max-w-[100px]">
-            {wordSpeak}
+      <div className="flex flex-col gap-2 relative">
+        <div className="flex justify-between items-center">
+          <div className="flex flex-wrap gap-2">
+            <h3 className="text-main-blue font-semibold text-[18px] break-words flex-auto">
+              {wordName || '-'}
+            </h3>
+            <div className="text-main-charcoal break-words flex-auto">
+              <span className="mr-1 text-[#E1E5ED]">|</span> {wordSpeak || '-'}
+            </div>
           </div>
-          <div className="bg-[#F8F9FD] px-2 w-auto min-w-[70px] h-[30px] rounded-[6px] flex items-center justify-center gap-1 cursor-pointer">
-            <SpeakerSvg />
-            <p className="text-main-charcoal text-[13px] break-words">
-              {wordDiacritic}
+          <div className="bg-[#F8F9FD] px-2 w-auto h-[30px] rounded-[6px] flex items-center justify-center gap-1">
+            <div className=" flex-shrink-0">
+              <SpeakerSvg />
+            </div>
+            <p className="text-main-charcoal text-[13px] whitespace-nowrap">
+              {wordDiacritic.split(',').join(' | ') || '-'}
             </p>
           </div>
-        </header>
-
-        <p className="text-main-gray">
-          {formatDescription({
-            text: wordDescription,
-            limitLength: 40,
-            sliceLength: 60,
-          })}
-        </p>
+        </div>
+        <p className="text-main-gray line-clamp-2">{wordDescription || '-'}</p>
       </div>
     </article>
   );
