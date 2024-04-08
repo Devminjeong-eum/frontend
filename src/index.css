@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+
   @font-face {
     font-family: 'Pretendard';
     font-weight: 100;
