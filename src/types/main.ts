@@ -37,5 +37,5 @@ export type WordDetail = {
   wrongSpeak: string; // 틀린 발음 리스트 (컴마까지 합쳐서 스트링으로)
   wordDiacritic: string; // 한국 -> 영어 발음 기호
   wordDescription: string; // 단어 설명
-  wordExamples: string | null; // 예문 리스트 ($로 구분)
+  wordExample: string | null; // 예문 리스트 ($로 구분)
 };
