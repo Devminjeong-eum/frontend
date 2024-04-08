@@ -19,7 +19,7 @@ export default function Search() {
     queryKey: ['getSearchWord', wordName],
     queryFn: () =>
       axios.get(
-        `http://3.37.179.21:8080/api/word/search?page=1&size=5&wordName=${wordName}`,
+        `http://3.37.179.21:8080/api/word/search?page=1&size=10&wordName=${wordName}`,
       ),
     enabled: !!wordName,
   });
