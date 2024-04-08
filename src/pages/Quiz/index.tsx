@@ -18,7 +18,7 @@ export default function Quiz() {
           <ScoreSVG />
         </div>
         <div className="flex flex-col items-center mb-[100px]">
-          <div className="mb-8 font-test text-white text-[40px] text-center w-[190px]">
+          <div className="mb-8 font-test text-white text-[40px] text-center w-[220px]">
             개발 용어 발음 테스트
           </div>
           <p className="text-white">나의 개발 용어 발음 지식은?</p>
