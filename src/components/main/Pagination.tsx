@@ -1,24 +1,26 @@
-import TwoButtonSvg from '../svgComponent/TwoButtonSvg';
-import OneButtonSvg from '../svgComponent/OneButtonSvg';
-import usePagination, { Props } from '@/hooks/usePagination';
+import TwoButtonSvg from '@/components/svgComponent/TwoButtonSvg';
+import OneButtonSvg from '@/components/svgComponent/OneButtonSvg';
+import usePagination from '@/hooks/usePagination';
+import { PaginationPropType } from '@/types/main.ts';
 
 export default function Pagination({
   limit = 10,
   total = 100,
   viewPaginationNums = 4,
-}: Props) {
+  setCurrent,
+  current,
+}: PaginationPropType) {
   const {
     onChangePage,
     calculateStartPage,
     noPrev,
     noNext,
-    current,
     totalPages,
     goToFirstPage,
     goToLastPage,
     goToPrevPage,
     goToNextPage,
-  } = usePagination({ limit, total, viewPaginationNums });
+  } = usePagination({ limit, total, viewPaginationNums, current, setCurrent });
 
   const startPage = calculateStartPage();
 
@@ -35,7 +37,7 @@ export default function Pagination({
       <button
         onClick={goToPrevPage}
         disabled={noPrev}
-        className={`text-[#E5E8F2] ${!noPrev && 'hover:text-main-blue'}`}
+        className={`rotate-180  ${noPrev ? 'text-[#E5E8F2]' : 'text-main-blue'}`}
       >
         <OneButtonSvg />
       </button>
@@ -62,7 +64,7 @@ export default function Pagination({
       <button
         onClick={goToNextPage}
         disabled={noNext}
-        className={`rotate-180 text-[#E5E8F2] ${!noNext && 'hover:text-main-blue'}`}
+        className={` ${noNext ? 'text-[#E5E8F2]' : 'text-main-blue'}`}
       >
         <OneButtonSvg />
       </button>

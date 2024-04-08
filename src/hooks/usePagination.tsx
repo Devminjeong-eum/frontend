@@ -1,17 +1,12 @@
-import { useState } from 'react';
-
-export type Props = {
-  limit: number; // 페이지당 보여줄 데이터 개수
-  total: number; // 전체 데이터 개수
-  viewPaginationNums?: number; // 보여줄 페이지 개수, 기본값 4
-};
+import { PaginationPropType } from '@/types/main';
 
 export default function usePagination({
-  limit,
-  total,
+  limit = 10,
+  total = 100,
   viewPaginationNums = 4,
-}: Props) {
-  const [current, setCurrent] = useState(1); // 시작, 현재 페이지
+  setCurrent,
+  current,
+}: PaginationPropType) {
   const totalPages = Math.ceil(total / limit); // 총 페이지 개수
 
   const noPrev = current === 1;
@@ -32,10 +27,11 @@ export default function usePagination({
 
   const goToLastPage = () => setCurrent(totalPages);
 
-  const goToPrevPage = () => setCurrent((current) => Math.max(1, current - 1));
+  const goToPrevPage = () =>
+    setCurrent((current: number) => Math.max(1, current - 1));
 
   const goToNextPage = () =>
-    setCurrent((current) => Math.min(totalPages, current + 1));
+    setCurrent((current: number) => Math.min(totalPages, current + 1));
 
   return {
     onChangePage,

@@ -5,6 +5,8 @@ import SystemCheckNotice from '@/pages/SystemCheckNotice';
 import LayoutWrapper from '@/layout/LayoutWrapper';
 import Login from '@/pages/Login';
 import NotFound from '@/pages/NotFound/NotFound';
+import Detail from '@/pages/Detail';
+import { Suspense } from 'react';
 
 const router = createBrowserRouter([
   {
@@ -23,12 +25,21 @@ const router = createBrowserRouter([
           },
         ],
       },
+
+      {
+        path: '/words/:wordId',
+        element: (
+          <Suspense fallback={<div />}>
+            <Detail />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/login',
+        element: <Login />,
+      },
       { path: '/notice', element: <SystemCheckNotice /> },
     ],
-  },
-  {
-    path: '/login',
-    element: <Login />,
   },
 ]);
 
