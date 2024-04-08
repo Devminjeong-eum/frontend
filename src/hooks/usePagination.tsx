@@ -27,10 +27,11 @@ export default function usePagination({
 
   const goToLastPage = () => setCurrent(totalPages);
 
-  const goToPrevPage = () => setCurrent((current) => Math.max(1, current - 1));
+  const goToPrevPage = () =>
+    setCurrent((current: number) => Math.max(1, current - 1));
 
   const goToNextPage = () =>
-    setCurrent((current) => Math.min(totalPages, current + 1));
+    setCurrent((current: number) => Math.min(totalPages, current + 1));
 
   return {
     onChangePage,
