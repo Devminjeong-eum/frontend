@@ -1,15 +1,19 @@
 import { SearchWord } from '.';
 import SpeakerSvg from '@/components/svgComponent/SpeakerSvg';
+import { useNavigate } from 'react-router-dom';
 
 type SearchItemProps = {
   item: SearchWord;
 };
 
 export default function SearchItem({ item }: SearchItemProps) {
+  const navigate = useNavigate();
+
   return (
     <article
       key={item.wordId}
       className="p-4 w-full ring-1 bg-white ring-[#F2F4F9] rounded-2xl hover:bg-[#EFF2F9] hover:ring-4 overflow-hidden cursor-pointer"
+      onClick={() => navigate(`/words/${item.wordId}`)}
     >
       <div className="flex flex-col">
         <header className="flex flex-wrap gap-2">
