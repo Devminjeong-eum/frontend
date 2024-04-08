@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import ToolTip from '../common/ToolTip';
+import useScroll from '@/hooks/useScroll';
 
 export default function QuizButton() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const isScrolled = useScroll();
 
   return (
     <>
@@ -23,7 +26,9 @@ export default function QuizButton() {
           />
         </svg>
       </button>
-      <ToolTip isOpen={isOpen} setIsOpen={() => setIsOpen(false)} />
+      {!isScrolled && (
+        <ToolTip isOpen={isOpen} setIsOpen={() => setIsOpen(false)} />
+      )}
     </>
   );
 }

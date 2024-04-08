@@ -8,7 +8,6 @@ import usePosts from '@/hooks/query/usePosts';
 export default function Main() {
   const [current, setCurrent] = useState(1);
   const { data, isError, isLoading } = usePosts(current);
-
   if (isLoading) return <Spinner />;
   if (isError) return <Error />;
 
