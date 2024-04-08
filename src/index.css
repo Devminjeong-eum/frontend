@@ -5,7 +5,6 @@
 @tailwind utilities;
 
 @layer base {
-
   @font-face {
     font-family: 'Pretendard';
     font-weight: 100;
