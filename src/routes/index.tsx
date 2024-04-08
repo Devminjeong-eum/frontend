@@ -11,6 +11,15 @@ import Search from '@/pages/Search';
 import Quiz from '@/pages/Quiz';
 import StartQuiz from '@/pages/Quiz/StartQuiz';
 import DetailLoading from '@/pages/Detail/DetailLoading.tsx';
+import {
+  LOGIN_PATH,
+  NOTICE_PATH,
+  QUIZ_PATH,
+  SEARCH_PATH,
+  START_QUIZ_PATH,
+  WORD_DETAIL_PATH,
+  WORD_LIST_PATH,
+} from '@/routes/path.ts';
 
 const router = createBrowserRouter([
   {
@@ -23,40 +32,40 @@ const router = createBrowserRouter([
         element: <Layout />,
         children: [
           {
-            path: '/',
+            path: WORD_LIST_PATH,
             element: <Main />,
             index: true,
           },
           {
-            path: '/api/word/search/:wordName',
+            path: SEARCH_PATH,
             element: <Search />,
             index: true,
           },
         ],
       },
       {
-        path: '/quiz',
+        path: LOGIN_PATH,
+        element: <Login />,
+        index: true,
+      },
+      {
+        path: QUIZ_PATH,
         element: <Quiz />,
         index: true,
       },
       {
-        path: '/startQuiz',
+        path: START_QUIZ_PATH,
         element: <StartQuiz />,
-        index: true,
       },
       {
-        path: '/words/:wordId',
+        path: WORD_DETAIL_PATH,
         element: (
           <Suspense fallback={<DetailLoading />}>
             <Detail />
           </Suspense>
         ),
       },
-      {
-        path: '/login',
-        element: <Login />,
-      },
-      { path: '/notice', element: <SystemCheckNotice /> },
+      { path: NOTICE_PATH, element: <SystemCheckNotice /> },
     ],
   },
 ]);

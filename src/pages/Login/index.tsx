@@ -1,12 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import LogoColorSvg from '@/components/svgComponent/LogoColorSvg';
 import KakaotalkSvg from '@/components/svgComponent/KakaotalkSvg';
+import { WORD_LIST_PATH } from '@/routes/path.ts';
 
 export default function Login() {
   const navigate = useNavigate();
 
   const onClickNonMember = () => {
-    navigate('/');
+    navigate(WORD_LIST_PATH);
   };
 
   return (
@@ -24,7 +25,10 @@ export default function Login() {
         </div>
       </div>
       <div className="w-full flex flex-col gap-2 pb-9">
-        <button className="relative flex items-center justify-center bg-[#FFE34E] text-base font-semibold rounded-2xl p-4 w-full">
+        <button
+          className="relative flex items-center justify-center bg-[#FFE34E] text-base font-semibold rounded-2xl p-4 w-full"
+          onClick={onClickNonMember}
+        >
           <div className="absolute left-6">
             <KakaotalkSvg />
           </div>

@@ -47,9 +47,11 @@ export const quizData = [
   {
     question: 'relative',
     options: ['릴레이티브', '렐러티브', '레라티브', '렐라티브'],
+    correctAnswer: '렐러티브',
   },
   {
     question: 'Nginx',
     options: ['느그엑스', '엔지닉스', '엔기닉스', '엔진엑스'],
+    correctAnswer: '엔진엑스',
   },
 ];

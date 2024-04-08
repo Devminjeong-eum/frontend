@@ -1,35 +1,37 @@
 import { useNavigate } from 'react-router-dom';
 import ScoreSVG from '@/components/svgComponent/ScoreSvg';
-import BackSpaceSVG from '@/components/svgComponent/BackSpaceSvg';
+import BackButtonSvg from '@/components/svgComponent/BackButtonSvg.tsx';
+import { START_QUIZ_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
 
 export default function Quiz() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex justify-center min-h-screen">
-      <div className="flex flex-col justify-center items-center w-full max-w-[430px] border-1 border-x border-gray-200 shadow-xl bg-main-gradiant-top h-13 relative">
-        <header
-          className="absolute top-6 left-5 cursor-pointer"
-          onClick={() => navigate('/')}
-        >
-          <BackSpaceSVG />
-        </header>
-        <div className="absolute top-12 right-0">
-          <ScoreSVG />
+    <div className="px-5 h-screen flex flex-col justify-center items-center bg-main-gradiant-full relative">
+      <header className="absolute top-6 left-5 cursor-pointer">
+        <div onClick={() => navigate(WORD_LIST_PATH)}>
+          <BackButtonSvg />
         </div>
-        <div className="flex flex-col items-center mb-[100px]">
-          <div className="mb-8 font-test text-white text-[40px] text-center w-[220px]">
-            개발 용어 발음 테스트
-          </div>
-          <p className="text-white">나의 개발 용어 발음 지식은?</p>
-        </div>
-        <button
-          onClick={() => navigate('/startQuiz')}
-          className="w-[90%] h-[48px] rounded-[16px] absolute bottom-10 bg-white/20 ring-1 ring-white/40 focus:ring-white/60 outline-none text-white"
-        >
-          테스트 시작하기
-        </button>
+      </header>
+      <div className="absolute top-12 right-0">
+        <ScoreSVG />
       </div>
+      <div className="flex flex-col items-center mb-[100px]">
+        <div className="mb-[18px] font-gugi text-white text-[40px] text-center w-[220px]">
+          개발 용어
+          <br />
+          발음 테스트
+        </div>
+        <p className="text-white font-medium">나의 개발 용어 발음 지식은?</p>
+      </div>
+      <button
+        onClick={() => navigate(START_QUIZ_PATH)}
+        className="w-[calc(100%-40px)] absolute bottom-[50px] h-12 rounded-[16px] bg-white/20 ring-1 ring-white/40 focus:ring-white/60 outline-none text-white
+        shadow-quiz
+        hover:cursor-pointer"
+      >
+        테스트 시작하기
+      </button>
     </div>
   );
 }
