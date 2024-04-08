@@ -35,10 +35,10 @@ export default function Search() {
     );
 
   return (
-    <>
+    <div className="p-5 rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[12px]">
       {searchWord?.data?.wordAll.map((item: SearchWord) => (
         <SearchItem key={item.wordId} item={item} />
       ))}
-    </>
+    </div>
   );
 }
