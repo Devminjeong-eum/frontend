@@ -7,7 +7,7 @@ import ToolTip from '@/components/common/ToolTip';
 import { useState } from 'react';
 import useScroll from '@/hooks/useScroll';
 import { useEffect } from 'react';
-import { NOTICE_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
+import { NOTICE_PATH, QUIZ_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(true);
@@ -27,10 +27,9 @@ export default function Header() {
             <LogoSvg />
           </a>
         </div>
-        <div onClick={() => navigate('/quiz')}>
+        <div onClick={() => navigate(QUIZ_PATH)}>
           <QuizButton />
         </div>
-        <button onClick={() => navigate('/notice')} />
         <button onClick={() => navigate(NOTICE_PATH)}>
           <MenuSvg />
         </button>
