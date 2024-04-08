@@ -44,13 +44,11 @@ AJAX는 아작스? 에이젝스?
 
 |  메인 페이지  | 검색 기능 | 상세 페이지 | 
 | :--------: | :----------: | :-----------: |
-| ![메인페이지](https://github.com/Devminjeong-eum/frontend/assets/55550034/347e01a5-f8fd-4add-b427-8cdf81d78534) | <figure class="half">![검색기능](https://github.com/Devminjeong-eum/frontend/assets/75849590/37b3e7a1-acd8-4413-97d9-11dda39f62da)
-| ![상세 페이지](https://github.com/Devminjeong-eum/frontend/assets/55550034/4c95ed76-e909-4bbf-a096-be7382c3c760) </figure> |
+| ![메인](https://github.com/Devminjeong-eum/frontend/assets/55550034/347e01a5-f8fd-4add-b427-8cdf81d78534) | <figure class="half"> ![검색](https://github.com/Devminjeong-eum/frontend/assets/55550034/7fcd511e-2959-4e99-8873-a05e90a992ca) | ![상세 페이지](https://github.com/Devminjeong-eum/frontend/assets/55550034/4c95ed76-e909-4bbf-a096-be7382c3c760) </figure> |
 
 |  테스트 기능 | 로그인 |
 | :--------: | :----------: | 
-| ![테스트 기능](https://github.com/Devminjeong-eum/frontend/assets/75849590/2b7e4088-91fc-4644-85cb-38722a2271d0)
-| ![로그인페이지](https://github.com/Devminjeong-eum/frontend/assets/55550034/257d2553-0143-45b5-921e-ab0e8cb7d487) |
+| ![테스트 기능]() | ![로그인페이지](https://github.com/Devminjeong-eum/frontend/assets/55550034/ad188328-0c3b-43de-a5f9-93f6c5f94f4c) |
 
 
 
