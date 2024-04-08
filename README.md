@@ -1,4 +1,4 @@
-![image](https://github.com/Devminjeong-eum/frontend/assets/75849590/a79abe08-3ec7-409c-98d9-41afe66af7ff)# [4조_뎁민정음] 데브말싸미 _ 테오의 스프린트 17기
+# [4조_뎁민정음] 데브말싸미 _ 테오의 스프린트 17기
 
 <p align="center">
 ![로고](https://github.com/Devminjeong-eum/frontend/assets/75849590/f247c957-9f85-4204-a56b-ff7bcb6f570d)
