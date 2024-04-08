@@ -19,15 +19,6 @@ export default function Detail() {
     },
   } = useWordDetail(Number(wordId));
 
-  console.log(
-    wordName,
-    wordDescription,
-    wordSpeak,
-    wrongSpeak,
-    wordExamples,
-    wordDiacritic,
-  );
-
   return (
     <div>
       <div className="bg-main-gradiant-full px-[16px]">
