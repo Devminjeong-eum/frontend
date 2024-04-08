@@ -1,6 +1,7 @@
 import BlackBackSpaceSVG from '@/components/svgComponent/BlackBackSpaceSVG';
 import { useNavigate } from 'react-router-dom';
 import ScoreResultSvg from '@/components/svgComponent/ScoreResultSvg.tsx';
+import { QUIZ_PATH } from '@/routes/path.ts';
 
 type QuizResultProps = {
   score: number;
@@ -14,7 +15,7 @@ export default function QuizResult({ score }: QuizResultProps) {
     <div className="relative px-4">
       <header
         className="absolute top-7 left-7 cursor-pointer"
-        onClick={() => navigate('/quiz')}
+        onClick={() => navigate(QUIZ_PATH)}
       >
         <BlackBackSpaceSVG />
       </header>
@@ -41,7 +42,7 @@ export default function QuizResult({ score }: QuizResultProps) {
 
       <button
         className="bg-[#4057DB] rounded-[16px] mt-[28px] h-[52px] font-semibold text-white w-full"
-        onClick={() => navigate(`/quiz`)}
+        onClick={() => navigate(QUIZ_PATH)}
       >
         다시 도전하러 가기
       </button>

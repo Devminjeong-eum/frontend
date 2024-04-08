@@ -2,6 +2,7 @@ import MagnifierSvg from '@/components/svgComponent/MagnifierSvg';
 import useScroll from '@/hooks/useScroll';
 import { useNavigate } from 'react-router-dom';
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
+import { getSearchPath } from '@/routes/path.ts';
 
 export default function SearchBar() {
   const isScrolled = useScroll();
@@ -9,7 +10,7 @@ export default function SearchBar() {
   const [searchWord, setSearchWord] = useState('');
 
   const handleSearch = () => {
-    if (searchWord) navigate(`/api/word/search/${searchWord}`);
+    if (searchWord) navigate(getSearchPath(searchWord));
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {

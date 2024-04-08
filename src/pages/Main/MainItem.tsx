@@ -1,6 +1,7 @@
 import SpeakerSvg from '@/components/svgComponent/SpeakerSvg';
 import { MainItemType } from '@/types/main';
 import { useNavigate } from 'react-router-dom';
+import { getWordDetailPath } from '@/routes/path.ts';
 
 export const MainItem = ({
   wordId,
@@ -14,7 +15,7 @@ export const MainItem = ({
     <article
       key={wordId}
       className="p-4 w-full ring-1 bg-white ring-[#F2F4F9] rounded-2xl hover:bg-[#EFF2F9] hover:ring-2 cursor-pointer"
-      onClick={() => navigate(`words/${wordId}`)}
+      onClick={() => navigate(getWordDetailPath(wordId))}
     >
       <div className="flex flex-col gap-2 relative">
         <div className="flex justify-between items-center">

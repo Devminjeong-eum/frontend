@@ -1,5 +1,6 @@
 import { ErrorHandlingProps } from '@/types/errorHandling';
 import { useNavigate } from 'react-router-dom';
+import { WORD_LIST_PATH } from '@/routes/path.ts';
 
 export const ErrorHandlingMarkup = ({
   title,
@@ -8,7 +9,7 @@ export const ErrorHandlingMarkup = ({
 }: ErrorHandlingProps) => {
   const navigate = useNavigate();
   const moveToHome = () => {
-    navigate('/');
+    navigate(WORD_LIST_PATH);
   };
 
   return (

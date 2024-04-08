@@ -5,6 +5,7 @@ import OSVG from '@/components/svgComponent/OSVG';
 import XSVG from '@/components/svgComponent/XSVG';
 import BlackBackSpaceSVG from '@/components/svgComponent/BlackBackSpaceSVG';
 import QuizResult from './QuizResult';
+import { QUIZ_PATH } from '@/routes/path.ts';
 
 export default function StartQuiz() {
   const [currentQuiz, setCurrentQuiz] = useState(0);
@@ -41,7 +42,7 @@ export default function StartQuiz() {
         <div className="w-full flex flex-col justify-center items-center bg-[#fbfcfe] relative">
           <header
             className="absolute top-7 left-7 cursor-pointer"
-            onClick={() => navigate('/quiz')}
+            onClick={() => navigate(QUIZ_PATH)}
           >
             <BlackBackSpaceSVG />
           </header>
