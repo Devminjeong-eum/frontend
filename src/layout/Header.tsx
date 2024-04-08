@@ -11,7 +11,9 @@ export default function Header() {
     <>
       <div className="bg-main-gradiant-top h-[48px] flex items-center p-6 justify-between border-none">
         <div className="flex-1">
-          <LogoSvg />
+          <a href="/">
+            <LogoSvg />
+          </a>{' '}
         </div>
         <QuizButton />
         <button onClick={() => navigate('/notice')}>

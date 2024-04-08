@@ -19,6 +19,9 @@ export default {
       boxShadow: {
         base: '3px 3px 4px 0px rgba(26, 29, 37, 0.01)',
       },
+      fontFamily: {
+        test: ['Gugi'],
+      },
     },
   },
   plugins: [],
