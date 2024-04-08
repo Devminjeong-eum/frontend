@@ -7,7 +7,6 @@ export const ErrorHandlingMarkup = ({
   svg,
 }: ErrorHandlingProps) => {
   const navigate = useNavigate();
-
   const moveToHome = () => {
     navigate('/');
   };
