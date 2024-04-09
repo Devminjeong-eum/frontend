@@ -11,7 +11,7 @@ export const quizData = [
   },
   {
     question: 'Django',
-    options: ['디장고', '디잔고', '장고', '잔고'],
+    options: ['디장고', 'DJ앙고', '장고', '잔고'],
     correctAnswer: '장고',
   },
   {

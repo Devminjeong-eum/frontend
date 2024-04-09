@@ -1,19 +1,32 @@
 import { useState } from 'react';
 import { quizData } from '@/pages/Quiz/quizData';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import OSVG from '@/components/svgComponent/OSVG';
 import XSVG from '@/components/svgComponent/XSVG';
 import BlackBackSpaceSVG from '@/components/svgComponent/BlackBackSpaceSVG';
 import QuizResult from './QuizResult';
 import { QUIZ_PATH } from '@/routes/path.ts';
+import Spinner from '@/components/common/Spinner';
 
 export default function StartQuiz() {
   const [currentQuiz, setCurrentQuiz] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [selectOption, setSelectOption] = useState<string | null>(null);
+  const [showSpinner, setShowSpinner] = useState(false);
   const navigate = useNavigate();
   const progress = (currentQuiz / quizData.length) * 100;
+
+  useEffect(() => {
+    if (showScore) {
+      const timer = setTimeout(() => {
+        setShowSpinner(false);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showScore]);
 
   const nextQuiz = () => {
     setTimeout(() => {
@@ -22,6 +35,7 @@ export default function StartQuiz() {
         setSelectOption(null);
       } else {
         setShowScore(true);
+        setShowSpinner(true);
       }
     }, 1000);
   };
@@ -34,7 +48,12 @@ export default function StartQuiz() {
     nextQuiz();
   };
 
-  if (showScore) return <QuizResult score={score} />;
+  if (showScore) {
+    if (showSpinner) {
+      return <Spinner />;
+    }
+    return <QuizResult score={score} />;
+  }
 
   return (
     <div className="flex justify-center min-h-screen text-main-black">
