@@ -9,7 +9,7 @@ type QuizResultProps = {
 
 export default function QuizResult({ score }: QuizResultProps) {
   const navigate = useNavigate();
-  const resultScore = score ? score * 10 : '';
+  const resultScore = score ? score * 10 : 0;
 
   return (
     <div className="relative px-4">
