@@ -60,19 +60,19 @@ export default function StartQuiz() {
   return (
     <div className="flex justify-center min-h-screen text-main-black">
       <div className="flex flex-col items-center w-full max-w-[430px] border-1 border-x border-gray-200 shadow-xl">
-        <div className="w-full flex flex-col justify-center items-center bg-[#fbfcfe] relative">
-          <header
-            className="absolute top-7 left-7 cursor-pointer"
-            onClick={() => navigate(QUIZ_PATH)}
-          >
-            <BlackBackSpaceSVG />
-          </header>
-          <header className="flex justify-center items-center h-[68px] font-medium">
-            <p>TEST중이에요.</p>
+        <div className="w-full items-center bg-[#fbfcfe] relative">
+          <header className="flex items-center h-[68px]">
+            <div
+              className="ml-6 cursor-pointer"
+              onClick={() => navigate(QUIZ_PATH)}
+            >
+              <BlackBackSpaceSVG />
+            </div>
+            <div className=" m-auto font-blod pr-6">TEST 중이에요.</div>
           </header>
           <div className={`w-full bg-[#ECEFF5] flex`}>
             <div
-              className="bg-[#0C3FC1]  h-[2px] transition-all"
+              className="bg-[#0C3FC1] h-[2px] transition-all"
               style={{ width: `${progress}%` }}
             ></div>
           </div>
