@@ -15,8 +15,8 @@ export default function StartQuiz() {
   const [showScore, setShowScore] = useState(false);
   const [selectOption, setSelectOption] = useState<string | null>(null);
   const [showSpinner, setShowSpinner] = useState(false);
+  const [progress, setProgress] = useState(0);
   const navigate = useNavigate();
-  const progress = (currentQuiz / quizData.length) * 100;
 
   useEffect(() => {
     if (showScore) {
@@ -41,6 +41,8 @@ export default function StartQuiz() {
   };
 
   const handleAnswerOptionClick = (selectedOption: string) => {
+    setProgress(((currentQuiz + 1) / quizData.length) * 100);
+
     if (selectedOption === quizData[currentQuiz].correctAnswer) {
       setScore(score + 1);
     }
