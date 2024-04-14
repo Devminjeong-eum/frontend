@@ -12,30 +12,32 @@ import Spinner from '@/components/common/Spinner';
 export default function StartQuiz() {
   const [currentQuiz, setCurrentQuiz] = useState(0);
   const [score, setScore] = useState(0);
-  const [showScore, setShowScore] = useState(false);
   const [selectOption, setSelectOption] = useState<string | null>(null);
-  const [showSpinner, setShowSpinner] = useState(false);
+  const [isShowScore, setIsShowScore] = useState(false);
+  const [isShowSpinner, setIsShowSpinner] = useState(false);
+  const [isButtonsDisabled, setIsButtonsDisabled] = useState(false);
   const [progress, setProgress] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (showScore) {
+    if (isShowScore) {
       const timer = setTimeout(() => {
-        setShowSpinner(false);
+        setIsShowSpinner(false);
       }, 2000);
 
       return () => clearTimeout(timer);
     }
-  }, [showScore]);
+  }, [isShowScore]);
 
   const nextQuiz = () => {
     setTimeout(() => {
       if (currentQuiz < quizData.length - 1) {
         setCurrentQuiz(currentQuiz + 1);
         setSelectOption(null);
+        setIsButtonsDisabled(false);
       } else {
-        setShowScore(true);
-        setShowSpinner(true);
+        setIsShowScore(true);
+        setIsShowSpinner(true);
       }
     }, 1000);
   };
@@ -47,11 +49,12 @@ export default function StartQuiz() {
       setScore(score + 1);
     }
     setSelectOption(selectedOption);
+    setIsButtonsDisabled(true);
     nextQuiz();
   };
 
-  if (showScore) {
-    if (showSpinner) {
+  if (isShowScore) {
+    if (isShowSpinner) {
       return <Spinner />;
     }
     return <QuizResult score={score} />;
@@ -86,6 +89,8 @@ export default function StartQuiz() {
             {quizData[currentQuiz].options.map((option) => (
               <button
                 key={option}
+                disabled={isButtonsDisabled}
+                onClick={() => handleAnswerOptionClick(option)}
                 className={`shadow-quiz-button w-[90%] font-medium h-[56px] 
                 rounded-[16px] mb-4 ${
                   selectOption === option
@@ -97,7 +102,6 @@ export default function StartQuiz() {
                 border-px
                 border-[#F2F4F9]
                 `}
-                onClick={() => handleAnswerOptionClick(option)}
               >
                 <div className="flex justify-center items-center relative">
                   {selectOption === option &&
