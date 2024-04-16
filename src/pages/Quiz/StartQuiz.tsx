@@ -12,44 +12,49 @@ import Spinner from '@/components/common/Spinner';
 export default function StartQuiz() {
   const [currentQuiz, setCurrentQuiz] = useState(0);
   const [score, setScore] = useState(0);
-  const [showScore, setShowScore] = useState(false);
   const [selectOption, setSelectOption] = useState<string | null>(null);
-  const [showSpinner, setShowSpinner] = useState(false);
+  const [isShowScore, setIsShowScore] = useState(false);
+  const [isShowSpinner, setIsShowSpinner] = useState(false);
+  const [isButtonsDisabled, setIsButtonsDisabled] = useState(false);
+  const [progress, setProgress] = useState(0);
   const navigate = useNavigate();
-  const progress = (currentQuiz / quizData.length) * 100;
 
   useEffect(() => {
-    if (showScore) {
+    if (isShowScore) {
       const timer = setTimeout(() => {
-        setShowSpinner(false);
+        setIsShowSpinner(false);
       }, 2000);
 
       return () => clearTimeout(timer);
     }
-  }, [showScore]);
+  }, [isShowScore]);
 
   const nextQuiz = () => {
     setTimeout(() => {
       if (currentQuiz < quizData.length - 1) {
         setCurrentQuiz(currentQuiz + 1);
         setSelectOption(null);
+        setIsButtonsDisabled(false);
       } else {
-        setShowScore(true);
-        setShowSpinner(true);
+        setIsShowScore(true);
+        setIsShowSpinner(true);
       }
     }, 1000);
   };
 
   const handleAnswerOptionClick = (selectedOption: string) => {
+    setProgress(((currentQuiz + 1) / quizData.length) * 100);
+
     if (selectedOption === quizData[currentQuiz].correctAnswer) {
       setScore(score + 1);
     }
     setSelectOption(selectedOption);
+    setIsButtonsDisabled(true);
     nextQuiz();
   };
 
-  if (showScore) {
-    if (showSpinner) {
+  if (isShowScore) {
+    if (isShowSpinner) {
       return <Spinner />;
     }
     return <QuizResult score={score} />;
@@ -58,19 +63,19 @@ export default function StartQuiz() {
   return (
     <div className="flex justify-center min-h-screen text-main-black">
       <div className="flex flex-col items-center w-full max-w-[430px] border-1 border-x border-gray-200 shadow-xl">
-        <div className="w-full flex flex-col justify-center items-center bg-[#fbfcfe] relative">
-          <header
-            className="absolute top-7 left-7 cursor-pointer"
-            onClick={() => navigate(QUIZ_PATH)}
-          >
-            <BlackBackSpaceSVG />
-          </header>
-          <header className="flex justify-center items-center h-[68px] font-medium">
-            <p>TEST중이에요.</p>
+        <div className="w-full items-center bg-[#fbfcfe] relative">
+          <header className="flex items-center h-[68px]">
+            <div
+              className="ml-6 cursor-pointer"
+              onClick={() => navigate(QUIZ_PATH)}
+            >
+              <BlackBackSpaceSVG />
+            </div>
+            <div className=" m-auto font-blod pr-6">TEST 중이에요.</div>
           </header>
           <div className={`w-full bg-[#ECEFF5] flex`}>
             <div
-              className="bg-[#0C3FC1]  h-[2px] transition-all"
+              className="bg-[#0C3FC1] h-[2px] transition-all"
               style={{ width: `${progress}%` }}
             ></div>
           </div>
@@ -84,6 +89,8 @@ export default function StartQuiz() {
             {quizData[currentQuiz].options.map((option) => (
               <button
                 key={option}
+                disabled={isButtonsDisabled}
+                onClick={() => handleAnswerOptionClick(option)}
                 className={`shadow-quiz-button w-[90%] font-medium h-[56px] 
                 rounded-[16px] mb-4 ${
                   selectOption === option
@@ -95,7 +102,6 @@ export default function StartQuiz() {
                 border-px
                 border-[#F2F4F9]
                 `}
-                onClick={() => handleAnswerOptionClick(option)}
               >
                 <div className="flex justify-center items-center relative">
                   {selectOption === option &&

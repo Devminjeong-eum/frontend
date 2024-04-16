@@ -13,14 +13,14 @@ export default function QuizResult({ score }: QuizResultProps) {
 
   return (
     <div className="relative px-4">
-      <header
-        className="absolute top-7 left-7 cursor-pointer"
-        onClick={() => navigate(QUIZ_PATH)}
-      >
-        <BlackBackSpaceSVG />
-      </header>
-      <header className="flex justify-center items-center h-[68px] font-bold">
-        TEST 결과
+      <header className="flex items-center h-[68px]">
+        <div
+          className="ml-2 cursor-pointer"
+          onClick={() => navigate(QUIZ_PATH)}
+        >
+          <BlackBackSpaceSVG />
+        </div>
+        <div className=" m-auto font-blod pr-3">TEST 결과</div>
       </header>
       <div className="w-full aspect-square relative pt-4 flex justify-center">
         <div className="absolute top-[35%] text-center">
