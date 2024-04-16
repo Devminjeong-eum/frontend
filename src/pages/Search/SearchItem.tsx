@@ -31,7 +31,6 @@ export default function SearchItem({ item }: SearchItemProps) {
             </p>
           </div>
         </header>
-
         <p className="text-main-gray">{item.wordDescription}</p>
       </div>
     </article>

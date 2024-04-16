@@ -27,7 +27,6 @@ export default function Modal({
         >
           {buttonLabel}
         </button>
-      
       </div>
     </div>,
     document.body,

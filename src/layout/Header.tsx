@@ -23,7 +23,7 @@ export default function Header() {
     <>
       <div className="bg-main-gradiant-top h-[48px] flex items-center p-6 justify-between border-none">
         <div className="flex-1">
-          <a href={WORD_LIST_PATH}>
+          <a onClick={() => navigate(WORD_LIST_PATH)}>
             <LogoTextSvg />
           </a>
         </div>
