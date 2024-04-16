@@ -1,22 +1,27 @@
 import { createPortal } from 'react-dom';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+
 interface Props {
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
 }
 
 export default function ToolTip({ isOpen, setIsOpen }: Props) {
+  const tooltipRef = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (!target.closest('tooltip')) {
+      if (tooltipRef.current && !tooltipRef.current.contains(target)) {
         setIsOpen(false);
       }
     };
+
     if (isOpen) document.addEventListener('mousedown', handleClick);
 
     return () => document.removeEventListener('mousedown', handleClick);
   }, [isOpen, setIsOpen]);
+
   if (!isOpen) {
     return null;
   }
@@ -24,7 +29,10 @@ export default function ToolTip({ isOpen, setIsOpen }: Props) {
   return createPortal(
     <div className="fixed inset-0 max-w-[430px] mx-auto">
       <div className="relative">
-        <button className="absolute top-12 right-11 cursor-default">
+        <button
+          className="absolute top-12 right-11 cursor-default"
+          ref={tooltipRef}
+        >
           <svg
             width="194"
             height="60"
