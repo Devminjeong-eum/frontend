@@ -1,10 +1,11 @@
 import BackButtonSvg from '@/components/svgComponent/BackButtonSvg.tsx';
-import { useNavigate } from 'react-router-dom';
+
+import { useRouter } from 'next/navigation';
 
 export default function BackButton() {
-  const navigate = useNavigate();
+  const router = useRouter();
   return (
-    <button onClick={() => navigate(-1)}>
+    <button onClick={() => router.back()}>
       <BackButtonSvg />
     </button>
   );

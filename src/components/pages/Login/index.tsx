@@ -1,13 +1,15 @@
-import { useNavigate } from 'react-router-dom';
+'use client';
+
 import KakaotalkSvg from '@/components/svgComponent/KakaotalkSvg';
 import { WORD_LIST_PATH } from '@/routes/path.ts';
 import LogoSvg from '@/components/svgComponent/LogoSvg';
+import { useRouter } from 'next/navigation';
 
-export default function Login() {
-  const navigate = useNavigate();
+export default function Login_Client() {
+  const router = useRouter();
 
   const onClickNonMember = () => {
-    navigate(WORD_LIST_PATH);
+    router.push(WORD_LIST_PATH);
   };
 
   return (

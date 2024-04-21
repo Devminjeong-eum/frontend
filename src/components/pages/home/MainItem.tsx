@@ -1,7 +1,7 @@
 import SpeakerSvg from '@/components/svgComponent/SpeakerSvg';
 import { MainItemType } from '@/types/main';
-import { useNavigate } from 'react-router-dom';
 import { getWordDetailPath } from '@/routes/path.ts';
+import { useRouter } from 'next/navigation';
 
 export const MainItem = ({
   wordId,
@@ -10,12 +10,12 @@ export const MainItem = ({
   wordDiacritic,
   wordSpeak,
 }: MainItemType) => {
-  const navigate = useNavigate();
+  const router = useRouter();
   return (
     <article
       key={wordId}
       className="p-4 w-full ring-1 bg-white ring-[#F2F4F9] rounded-2xl hover:bg-[#EFF2F9] hover:ring-2 cursor-pointer"
-      onClick={() => navigate(getWordDetailPath(wordId))}
+      onClick={() => router.push(getWordDetailPath(wordId))}
     >
       <div className="flex flex-col gap-2 relative">
         <div className="flex justify-between items-center">
@@ -32,7 +32,7 @@ export const MainItem = ({
               <SpeakerSvg />
             </div>
             <p className="text-main-charcoal text-[13px] whitespace-nowrap">
-              {wordDiacritic.split(',').join(' | ') || '-'}
+              {/* {wordDiacritic.split(',').join(' | ') || '-'} */}
             </p>
           </div>
         </div>

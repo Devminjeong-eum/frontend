@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { quizData } from '@/pages/Quiz/quizData';
+import { quizData } from '@/components/pages/Quiz/quizData';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import OSVG from '@/components/svgComponent/OSVG';

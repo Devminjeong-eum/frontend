@@ -1,17 +1,19 @@
+'use client';
+
 import MenuSvg from '@/components/svgComponent/MenuSvg';
 import LogoTextSvg from '@/components/svgComponent/LogoTextSvg';
 import SearchBar from './SearchBar';
-import { useNavigate } from 'react-router-dom';
-import QuizButton from '@/components/main/QuizButton';
+
+import QuizButton from '@/components/pages/home/QuizButton';
 import ToolTip from '@/components/common/ToolTip';
 import { useState } from 'react';
 import useScroll from '@/hooks/useScroll';
 import { useEffect } from 'react';
 import { NOTICE_PATH, QUIZ_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
+import Link from 'next/link';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(true);
-  const navigate = useNavigate();
   const isScrolled = useScroll();
 
   useEffect(() => {
@@ -23,16 +25,16 @@ export default function Header() {
     <>
       <div className="bg-main-gradiant-top h-[48px] flex items-center p-6 justify-between border-none">
         <div className="flex-1">
-          <a onClick={() => navigate(WORD_LIST_PATH)}>
+          <Link href={WORD_LIST_PATH}>
             <LogoTextSvg />
-          </a>
+          </Link>
         </div>
-        <div onClick={() => navigate(QUIZ_PATH)}>
+        <Link href={QUIZ_PATH}>
           <QuizButton />
-        </div>
-        <button onClick={() => navigate(NOTICE_PATH)}>
+        </Link>
+        <Link href={NOTICE_PATH}>
           <MenuSvg />
-        </button>
+        </Link>
       </div>
       <SearchBar />
       {!isScrolled && (
