@@ -18,7 +18,7 @@ export default function Login_Client() {
         <div className="w-[102px] h-[102px]">
           <LogoSvg />
         </div>
-        <span className="font-[Gugi] text-[#4B4AC5] text-2xl font-normal tracking-wide pt-1.5">
+        <span className="font-gugi text-[#4B4AC5] text-2xl font-normal tracking-wide pt-1.5">
           데브말싸미
         </span>
         <span className="text-main-black text-sm font-normal pt-1">

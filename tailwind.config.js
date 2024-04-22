@@ -24,7 +24,8 @@ export default {
         'quiz-button': '3px 3px 4px rgba(26, 29, 37, 0.01)',
       },
       fontFamily: {
-        gugi: ['Gugi'],
+        gugi: ['var(--font-gugi)'],
+        pretendard: ['var(--font-pretendard)'],
       },
     },
   },

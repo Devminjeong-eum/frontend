@@ -1,25 +1,21 @@
 import BlackBackSpaceSVG from '@/components/svgComponent/BlackBackSpaceSVG';
-import { useNavigate } from 'react-router-dom';
 import ScoreResultSvg from '@/components/svgComponent/ScoreResultSvg.tsx';
 import { QUIZ_PATH } from '@/routes/path.ts';
+import Link from 'next/link';
 
 type QuizResultProps = {
   score: number;
 };
 
 export default function QuizResult({ score }: QuizResultProps) {
-  const navigate = useNavigate();
   const resultScore = score ? score * 10 : 0;
 
   return (
     <div className="relative px-4">
       <header className="flex items-center h-[68px]">
-        <div
-          className="ml-2 cursor-pointer"
-          onClick={() => navigate(QUIZ_PATH)}
-        >
+        <Link className="ml-2 cursor-pointer" href={QUIZ_PATH}>
           <BlackBackSpaceSVG />
-        </div>
+        </Link>
         <div className=" m-auto font-blod pr-3">TEST 결과</div>
       </header>
       <div className="w-full aspect-square relative pt-4 flex justify-center">
@@ -39,13 +35,11 @@ export default function QuizResult({ score }: QuizResultProps) {
         </div>
         <ScoreResultSvg />
       </div>
-
-      <button
-        className="bg-[#4057DB] rounded-[16px] mt-[28px] h-[52px] font-semibold text-white w-full"
-        onClick={() => navigate(QUIZ_PATH)}
-      >
-        다시 도전하러 가기
-      </button>
+      <Link href={QUIZ_PATH}>
+        <button className="bg-[#4057DB] rounded-[16px] mt-[28px] h-[52px] font-semibold text-white w-full">
+          다시 도전하러 가기
+        </button>
+      </Link>
     </div>
   );
 }

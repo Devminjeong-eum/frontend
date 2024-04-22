@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { quizData } from '@/components/pages/Quiz/quizData';
-import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import OSVG from '@/components/svgComponent/OSVG';
 import XSVG from '@/components/svgComponent/XSVG';
@@ -8,6 +7,7 @@ import BlackBackSpaceSVG from '@/components/svgComponent/BlackBackSpaceSVG';
 import QuizResult from './QuizResult';
 import { QUIZ_PATH } from '@/routes/path.ts';
 import Spinner from '@/components/common/Spinner';
+import Link from 'next/link';
 
 export default function StartQuiz() {
   const [currentQuiz, setCurrentQuiz] = useState(0);
@@ -17,7 +17,6 @@ export default function StartQuiz() {
   const [isShowSpinner, setIsShowSpinner] = useState(false);
   const [isButtonsDisabled, setIsButtonsDisabled] = useState(false);
   const [progress, setProgress] = useState(0);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (isShowScore) {
@@ -65,12 +64,9 @@ export default function StartQuiz() {
       <div className="flex flex-col items-center w-full max-w-[430px] border-1 border-x border-gray-200 shadow-xl">
         <div className="w-full items-center bg-[#fbfcfe] relative">
           <header className="flex items-center h-[68px]">
-            <div
-              className="ml-6 cursor-pointer"
-              onClick={() => navigate(QUIZ_PATH)}
-            >
+            <Link href={QUIZ_PATH} className="ml-6 cursor-pointer">
               <BlackBackSpaceSVG />
-            </div>
+            </Link>
             <div className=" m-auto font-blod pr-6">TEST 중이에요.</div>
           </header>
           <div className={`w-full bg-[#ECEFF5] flex`}>
