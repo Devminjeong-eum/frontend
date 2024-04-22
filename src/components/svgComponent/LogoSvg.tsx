@@ -59,8 +59,8 @@ export default function LogoSvg() {
           y2="90"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#7F71EF" />
-          <stop offset="1" stop-color="#4537B9" />
+          <stop stopColor="#7F71EF" />
+          <stop offset="1" stopColor="#4537B9" />
         </linearGradient>
         <linearGradient
           id="b"
@@ -70,8 +70,8 @@ export default function LogoSvg() {
           y2="32"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#5D6DFF" />
-          <stop offset="1" stop-color="#3B2887" />
+          <stop stopColor="#5D6DFF" />
+          <stop offset="1" stopColor="#3B2887" />
         </linearGradient>
         <linearGradient
           id="d"
@@ -81,8 +81,8 @@ export default function LogoSvg() {
           y2="67.5"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#4D71E8" />
-          <stop offset="1" stop-color="#4B4BC6" />
+          <stop stopColor="#4D71E8" />
+          <stop offset="1" stopColor="#4B4BC6" />
         </linearGradient>
       </defs>
     </svg>
