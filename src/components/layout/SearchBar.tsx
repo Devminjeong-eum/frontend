@@ -4,26 +4,26 @@ import MagnifierSvg from '@/components/svgComponent/MagnifierSvg';
 import useScroll from '@/hooks/useScroll';
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
-// import { ChangeEvent, KeyboardEvent, useState } from 'react';
-// import { getSearchPath } from '@/routes/path.ts';
 
 export default function SearchBar() {
   const isScrolled = useScroll();
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
-  // const [searchWord, setSearchWord] = useState('');
 
-  const handleSearch = () => {
-    router.push(`/search?word=${inputRef?.current!.value}`);
+  const navigateToSearch = (): void => {
+    if (!inputRef.current) return;
+    router.push(`/search?word=${inputRef.current.value}`);
   };
 
-  // const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-  //   if (e.key === 'Enter') handleSearch();
-  // };
+  const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      navigateToSearch();
+    }
+  };
 
-  // const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   setSearchWord(e.target.value);
-  // };
+  const handleSearchClick = () => {
+    navigateToSearch();
+  };
 
   return (
     <div
@@ -35,11 +35,9 @@ export default function SearchBar() {
           type="text"
           placeholder="궁금한 IT용어를 검색해 보세요."
           className="w-full h-[48px] rounded-[16px] bg-white/20 ring-1 ring-white/40 focus:ring-white/60 pl-5 py-4 outline-none text-white placeholder:text-[#C8CAEB]"
-          // onChange={handleInputChange}
-          onKeyDown={handleSearch}
+          onKeyDown={handleSearchKeyDown}
         />
-
-        <button>
+        <button onClick={handleSearchClick}>
           <MagnifierSvg className="absolute right-[20px] top-[12px]" />
         </button>
       </div>
