@@ -18,7 +18,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
-    "allowJs": true,
     "incremental": true,
     "esModuleInterop": true,
     "plugins": [
