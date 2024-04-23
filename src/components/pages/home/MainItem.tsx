@@ -1,4 +1,4 @@
-import SpeakerSvg from '@/components/svgComponent/SpeakerSvg';
+import SpeakerSvg from '@/components/svg-component/SpeakerSvg';
 import { MainItemType } from '@/types/main';
 import { getWordDetailPath } from '@/routes/path.ts';
 import { useRouter } from 'next/navigation';

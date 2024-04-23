@@ -1,5 +1,5 @@
 import { ErrorHandlingMarkup } from '@/components/common/ErrorHandlingMarkup';
-import NotFoundSvg from '@/components/svgComponent/NotFoundSvg';
+import NotFoundSvg from '@/components/svg-component/NotFoundSvg';
 export default function NotFound() {
   return (
     <div className="flex justify-center min-h-screen ">

@@ -1,4 +1,4 @@
-import BackButtonSvg from '@/components/svgComponent/BackButtonSvg';
+import BackButtonSvg from '@/components/svg-component/BackButtonSvg';
 
 import { useRouter } from 'next/navigation';
 

@@ -1,7 +1,7 @@
 'use client';
 
-import MenuSvg from '@/components/svgComponent/MenuSvg';
-import LogoTextSvg from '@/components/svgComponent/LogoTextSvg';
+import MenuSvg from '@/components/svg-component/MenuSvg';
+import LogoTextSvg from '@/components/svg-component/LogoTextSvg';
 import SearchBar from './SearchBar';
 
 import QuizButton from '@/components/pages/home/QuizButton';

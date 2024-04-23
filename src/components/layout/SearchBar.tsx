@@ -1,6 +1,6 @@
 'use client';
 
-import MagnifierSvg from '@/components/svgComponent/MagnifierSvg';
+import MagnifierSvg from '@/components/svg-component/MagnifierSvg';
 import useScroll from '@/hooks/useScroll';
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';

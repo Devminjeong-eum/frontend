@@ -1,5 +1,5 @@
 import { ErrorHandlingMarkup } from '@/components/common/ErrorHandlingMarkup';
-import LockSvg from '@/components/svgComponent/LockSvg';
+import LockSvg from '@/components/svg-component/LockSvg';
 
 export default function SystemCheckNotice() {
   return (
