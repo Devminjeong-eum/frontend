@@ -5,10 +5,10 @@ import { WORD_LIST_PATH } from '@/routes/path.ts';
 import LogoSvg from '@/components/svg-component/LogoSvg';
 import { useRouter } from 'next/navigation';
 
-export default function Login_Client() {
+export default function Login() {
   const router = useRouter();
 
-  const onClickNonMember = () => {
+  const handleClickNonMember = () => {
     router.push(WORD_LIST_PATH);
   };
 
@@ -32,14 +32,14 @@ export default function Login_Client() {
           </div>
           <span
             className="text-center text-[#442E2E]"
-            onClick={onClickNonMember}
+            onClick={handleClickNonMember}
           >
             카카오톡으로 시작하기
           </span>
         </button>
         <button
           className="w-full text-base font-semibold text-main-black opacity-60 p-3.5"
-          onClick={onClickNonMember}
+          onClick={handleClickNonMember}
         >
           비로그인으로 이용하기
         </button>
