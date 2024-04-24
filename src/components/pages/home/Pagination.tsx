@@ -50,7 +50,7 @@ export default function Pagination({
             page <= totalPages && (
               <div key={page} className="flex gap-[12px]">
                 <button
-                  className={`text-[18px] ${current === page ? 'text-main-blue font-extrabold' : ''}`}
+                  className={`text-[18px] ${current === page ? 'text-main-blue font-extrabold' : undefined}`}
                   onClick={() => onChangePage(page)}
                 >
                   {page}
