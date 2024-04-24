@@ -24,7 +24,7 @@ export default function Home_Client() {
             wordDiacritic={index.toString()}
             wordDescription={index.toString()}
             key={index.toString()}
-            wordId={index}
+            [wordId]={index}
             wordName={index.toString()}
             wordSpeak={index.toString()}
           />
