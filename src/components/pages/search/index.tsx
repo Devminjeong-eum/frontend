@@ -39,7 +39,7 @@ export default function Search_Client() {
   return (
     <div className="p-5 rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[12px]">
       {/* {searchWord?.data?.wordAll.map((item: SearchWord) => (
-        <SearchItem key={item.wordId} item={item} />
+        <SearchItem key={item.[wordId]} item={item} />
       ))} */}
       {['1', '2', '3', '4'].map((item) => (
         <SearchItem key={item} item={item} />
