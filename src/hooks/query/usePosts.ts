@@ -1,16 +1,18 @@
 import QUERY_KEYS from '@/constants/queryKey';
+import { MainItemType } from '@/types/main';
 import { useQuery } from '@tanstack/react-query';
 
-const dummyData = [] as { [key: string]: string }[];
+const dummyData: MainItemType[] = [];
 
 for (let i = 0; i <= 100; i++) {
   dummyData.push({
-    wordId: `${i}`,
+    wordId: i,
     wordName: `AJAX ${i}`,
-    wordDiacritic: '[ey-jaks]',
     wordDescription:
       '개발용어의 정의가 들어가는 부분입니다. 개발용어의 정의가 들어가는 부분입니다. 개발용어의 정의가 들어가는 부분입니다. 개발용어의 정의임.',
+    wordDiacritic: '[ey-jaks]',
     wordSpeak: '에이잭스',
+    wordLike: i % 2 === 0 ? true : false,
   });
 }
 
@@ -19,7 +21,7 @@ interface MainDataType {
   pageSize: number;
   totalItems: number;
   totalPages: number;
-  data: { [key: string]: string }[];
+  data: MainItemType[];
 }
 
 export const fetchFakeData_Home = (

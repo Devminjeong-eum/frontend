@@ -6,6 +6,7 @@ export type MainItemType = {
   wordSpeak?: string;
   wrongSpeak?: string;
   wordExample?: string;
+  wordLike: boolean
 };
 
 export type MainDataType = {

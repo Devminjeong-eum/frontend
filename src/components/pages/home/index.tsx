@@ -8,7 +8,7 @@ import Spinner from '@/components/common/Spinner';
 import Error from '../error';
 import HomeItem from './HomeItem';
 
-export default function Home() {
+export default function HomeClientPage() {
   const [current, setCurrent] = useState(1);
   const limit = 10; // 한 페이지에 보여줄 아이템 수
 
@@ -28,6 +28,7 @@ export default function Home() {
             wordId={+item.wordId}
             wordName={item.wordName}
             wordSpeak={item.wordSpeak}
+            wordLike={item.wordLike}
           />
         ))}
         {data && (

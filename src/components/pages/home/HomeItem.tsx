@@ -1,13 +1,13 @@
-import SpeakerSvg from '@/components/svg-component/SpeakerSvg';
 import { MainItemType } from '@/types/main';
 import { getWordDetailPath } from '@/routes/path.ts';
 import { useRouter } from 'next/navigation';
+import HeartSvg from '@/components/svg-component/HeartSvg';
 
 export default function HomeItem({
   wordId,
   wordName,
   wordDescription,
-  wordDiacritic,
+  wordLike = true,
   wordSpeak,
 }: MainItemType) {
   const router = useRouter();
@@ -27,14 +27,17 @@ export default function HomeItem({
               <span className="mr-1 text-[#E1E5ED]">|</span> {wordSpeak}
             </div>
           </div>
-          <div className="bg-[#F8F9FD] px-2 w-auto h-[30px] rounded-[6px] flex items-center justify-center gap-1">
+          <button className={wordLike ? 'text-main-blue' : 'text-[#D3DAED]'}>
+            <HeartSvg isLike={wordLike} />
+          </button>
+          {/* <div className="bg-[#F8F9FD] px-2 w-auto h-[30px] rounded-[6px] flex items-center justify-center gap-1">
             <div className=" flex-shrink-0">
               <SpeakerSvg />
             </div>
             <p className="text-main-charcoal text-[13px] whitespace-nowrap">
               {wordDiacritic.split(',').join(' | ')}
             </p>
-          </div>
+          </div> */}
         </div>
         <p className="text-main-gray line-clamp-2">{wordDescription}</p>
       </div>
