@@ -15,11 +15,11 @@ export default function HomeItem({
   return (
     <article
       key={wordId}
-      className="h-[98px] p-4 w-full ring-1 bg-white ring-[#F2F4F9] rounded-2xl hover:bg-[#EFF2F9] hover:ring-2 cursor-pointer"
+      className=" h-[98px] p-4 w-full ring-1 bg-white ring-[#F2F4F9] rounded-2xl hover:bg-[#EFF2F9] hover:ring-2 cursor-pointer"
       onClick={() => router.push(getWordDetailPath(wordId))}
     >
-      <div className="flex flex-col gap-[10px] relative">
-        <div className="flex justify-between items-center">
+      <div className="flex flex-col gap-[10px] relative justify-center">
+        <div className="flex justify-between items-center -mt-1">
           <div className="flex flex-wrap items-center gap-2">
             {/* 영단어 */}
             <h3 className="text-main-blue font-semibold text-[17px] break-words flex-auto">
