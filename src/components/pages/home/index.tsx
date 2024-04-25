@@ -19,7 +19,7 @@ export default function HomeClientPage() {
       {error && <Error />}
       {isLoading && <Spinner />}
       <Header />
-      <main className="p-5 rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[12px]">
+      <main className="p-5 rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[8px]">
         {data?.data.map((item) => (
           <HomeItem
             wordDiacritic={item.wordDiacritic}

@@ -4,14 +4,14 @@ import { useQuery } from '@tanstack/react-query';
 
 const dummyData: MainItemType[] = [];
 
-for (let i = 0; i <= 100; i++) {
+for (let i = 1; i <= 100; i++) {
   dummyData.push({
     wordId: i,
-    wordName: `AJAX ${i}`,
+    wordName: `Django ${i}`,
+    wordSpeak: '장고',
+    wordDiacritic: '[janggo]',
     wordDescription:
       '개발용어의 정의가 들어가는 부분입니다. 개발용어의 정의가 들어가는 부분입니다. 개발용어의 정의가 들어가는 부분입니다. 개발용어의 정의임.',
-    wordDiacritic: '[ey-jaks]',
-    wordSpeak: '에이잭스',
     wordLike: i % 2 === 0 ? true : false,
   });
 }
