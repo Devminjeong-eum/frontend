@@ -7,7 +7,7 @@ export default function NotFound() {
         <ErrorHandlingMarkup
           title="해당 페이지를 찾을 수 없어요."
           description={
-            <div className="text-main-charcoal flex flex-col items-center">
+            <div className="flex flex-col items-center">
               <p>주소가 잘못 입력되거나 변경 혹은 삭제되어</p>
               <p>페이지를 찾을 수 없어요.</p>
             </div>
