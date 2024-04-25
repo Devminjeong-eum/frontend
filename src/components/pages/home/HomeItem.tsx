@@ -15,7 +15,7 @@ export default function HomeItem({
   return (
     <article
       key={wordId}
-      className=" h-[98px] p-4 w-full ring-1 bg-white ring-[#F2F4F9] rounded-2xl hover:bg-[#EFF2F9] hover:ring-2 cursor-pointer"
+      className=" h-[98px] p-4 w-full ring-1 bg-white ring-[#F2F4F9] hover:ring-[#EFF2F7] rounded-2xl hover:bg-[#F1F4FA] hover:ring-2 cursor-pointer"
       onClick={() => router.push(getWordDetailPath(wordId))}
     >
       <div className="flex flex-col gap-[10px] relative justify-center">
