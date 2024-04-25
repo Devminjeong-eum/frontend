@@ -20,7 +20,7 @@ export const ErrorHandlingMarkup = ({
         href={WORD_LIST_PATH}
         className="flex items-center justify-center fixed bottom-12 w-full max-w-[320px] h-[54px] bg-[#E7EBF8] rounded-[16px] "
       >
-        <p className="text-[#383697] ">홈으로 돌아가기</p>
+        <p className="text-[#383697] font-semibold ">홈으로 돌아가기</p>
       </Link>
     </div>
   );
