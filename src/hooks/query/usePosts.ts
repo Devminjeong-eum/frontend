@@ -1,5 +1,5 @@
 import QUERY_KEYS from '@/constants/queryKey';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 const dummyData = [] as { [key: string]: string }[];
 
@@ -47,9 +47,10 @@ export const fetchFakeData_Home = (
 };
 
 const usePosts = (pageNumber: number) => {
-  return useQuery<MainDataType>({
+  return useSuspenseQuery<MainDataType>({
     queryKey: [QUERY_KEYS.HOME_KEY, pageNumber],
     queryFn: () => fetchFakeData_Home(pageNumber),
+
     staleTime: 1000 * 60 * 3600,
   });
 };
