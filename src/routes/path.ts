@@ -8,5 +8,5 @@ export const NOTICE_PATH = '/notice';
 
 export const SEARCH_PATH = '/word/search/:wordName';
 
-export const getWordDetailPath = (wordId: number) => `/words/${wordId}`;
+export const getWordDetailPath = (wordId: string) => `/words/${wordId}`;
 export const getSearchPath = (wordName: string) => `/word/search/${wordName}`;
