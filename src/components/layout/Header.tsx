@@ -3,19 +3,13 @@
 import MenuSvg from '@/components/svg-component/MenuSvg';
 import LogoTextSvg from '@/components/svg-component/LogoTextSvg';
 import SearchBar from './SearchBar';
-
 import QuizButton from '@/components/pages/home/QuizButton';
-
 import { useState } from 'react';
 import useScroll from '@/hooks/useScroll';
 import { useEffect } from 'react';
 import { NOTICE_PATH, QUIZ_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
-
-const DynamicToolTip = dynamic(() => import('@/components/common/ToolTip'), {
-  ssr: false,
-});
+import ToolTip from '../common/ToolTip';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(true);
@@ -42,8 +36,9 @@ export default function Header() {
         </Link>
       </div>
       <SearchBar />
+
       {!isScrolled && (
-        <DynamicToolTip isOpen={isOpen} setIsOpen={() => setIsOpen(false)} />
+        <ToolTip isOpen={isOpen} setIsOpen={() => setIsOpen(false)} />
       )}
     </>
   );
