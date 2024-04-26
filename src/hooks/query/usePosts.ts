@@ -12,7 +12,7 @@ for (let i = 1; i <= 100; i++) {
     wordDiacritic: '[janggo]',
     wordDescription:
       '개발용어의 정의가 들어가는 부분입니다. 개발용어의 정의가 들어가는 부분입니다. 개발용어의 정의가 들어가는 부분입니다. 개발용어의 정의임.',
-    wordLike: i % 2 === 0 ? true : false,
+    wordLike: i % 2 === 0,
   });
 }
 
@@ -51,7 +51,6 @@ const usePosts = (pageNumber: number) => {
   return useSuspenseQuery<MainDataType>({
     queryKey: [QUERY_KEYS.HOME_KEY, pageNumber],
     queryFn: () => fetchFakeData_Home(pageNumber),
-
     staleTime: 1000 * 60 * 3600,
   });
 };
