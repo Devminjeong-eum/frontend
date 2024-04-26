@@ -1,5 +1,5 @@
 export type MainItemType = {
-  wordId: number;
+  wordId: string;
   wordName: string;
   wordDescription: string;
   wordDiacritic: string;

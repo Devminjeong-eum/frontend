@@ -17,7 +17,7 @@ export default function Home() {
             wordDiacritic={item.wordDiacritic}
             wordDescription={item.wordDescription}
             key={item.wordId}
-            wordId={+item.wordId}
+            wordId={item.wordId}
             wordName={item.wordName}
             wordSpeak={item.wordSpeak}
           />
