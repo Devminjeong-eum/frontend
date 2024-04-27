@@ -1,15 +1,15 @@
 'use client';
 
-import MenuSvg from '@/components/svg-component/MenuSvg';
 import LogoTextSvg from '@/components/svg-component/LogoTextSvg';
 import SearchBar from './SearchBar';
 import QuizButton from '@/components/pages/home/QuizButton';
 import { useState } from 'react';
 import useScroll from '@/hooks/useScroll';
 import { useEffect } from 'react';
-import { NOTICE_PATH, QUIZ_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
+import { QUIZ_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import HeartSvg from '../svg-component/HeartSvg';
 
 const DynamicToolTip = dynamic(() => import('@/components/common/ToolTip'), {
   ssr: false,
@@ -35,9 +35,9 @@ export default function Header() {
         <Link href={QUIZ_PATH}>
           <QuizButton />
         </Link>
-        <Link href={NOTICE_PATH}>
-          <MenuSvg />
-        </Link>
+        <div className="text-[#A8B8FF]">
+          <HeartSvg isLike />
+        </div>
       </div>
       <SearchBar />
       {!isScrolled && (

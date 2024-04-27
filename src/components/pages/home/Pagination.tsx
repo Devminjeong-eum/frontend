@@ -25,7 +25,7 @@ export default function Pagination({
   const startPage = calculateStartPage();
 
   return (
-    <div className="flex gap-4 mx-auto my-3">
+    <div className="flex gap-4 mx-auto mt-[37px] -mb-[22px]">
       <button
         onClick={goToFirstPage}
         disabled={noPrev}
@@ -50,7 +50,7 @@ export default function Pagination({
             page <= totalPages && (
               <div key={page} className="flex gap-[12px]">
                 <button
-                  className={`text-[18px] ${current === page && 'text-main-blue font-extrabold'}`}
+                  className={`text-[18px] ${current === page ? 'text-main-blue font-bold' : 'text-main-gray font-normal'}`}
                   onClick={() => onChangePage(page)}
                 >
                   {page}
