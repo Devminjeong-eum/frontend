@@ -5,6 +5,7 @@ import WrongSvg from '@/components/svg-component/WrongSvg.tsx';
 
 import useWordDetail from '@/hooks/query/useWordDetail.ts';
 import DetailHeader from './DetailHeader.tsx';
+import LikeButton from '@/components/pages/detail/LikeButton.tsx';
 
 type Props = {
   wordId: number;
@@ -29,28 +30,37 @@ export default function WordDetailClientPage({ wordId }: Props) {
           <DetailHeader />
         </header>
         <div className="pt-6 pb-[22px]">
-          <div className="flex items-end mb-[8px] gap-2.5">
-            <h1 className="text-[30px] align-bottom font-semibold text-white">
-              {wordName}
-            </h1>
-            <span className="text-white font-medium pb-[6px]">{wordSpeak}</span>
-          </div>
-          <div className="flex flex-col gap-2.5">
-            <div className="h-[25px] bg-[#4068D0] rounded-[8px] flex items-center gap-2.5 pl-2">
-              <CorrectSvg />
-              <span className="text-[13px] font-semibold text-white">
-                올바른 발음
-              </span>
-              <span className="text-[13px] text-[#EAEEF8]">
-                {wordSpeak} {wordDiacritic}
+          <div className="flex justify-between">
+            <div className="flex items-end mb-[8px] gap-2.5">
+              <h1 className="text-[30px] align-bottom font-semibold text-white">
+                {wordName}
+              </h1>
+              <span className="text-[#E1E2F8] font-medium pb-[6px]">
+                {wordSpeak}
               </span>
             </div>
-            <div className="h-[25px] bg-[#6264A8] rounded-[8px] flex items-center gap-2.5 pl-2">
-              <WrongSvg />
-              <span className="text-[13px] font-semibold text-white">
-                잘못된 발음
-              </span>
-              <span className="text-[13px] text-[#EBEBF5]">{wrongSpeak}</span>
+            <LikeButton />
+          </div>
+          <div className="inline-flex flex-col gap-2.5">
+            <div className="flex flex-shrink">
+              <div className="h-[25px] bg-[#4068D0] rounded-[8px] flex items-center gap-2.5 px-2">
+                <CorrectSvg />
+                <span className="text-[13px] font-semibold text-white">
+                  올바른 발음
+                </span>
+                <span className="text-[13px] text-[#EAEEF8]">
+                  {wordSpeak} {wordDiacritic}
+                </span>
+              </div>
+            </div>
+            <div className="flex flex-shrink">
+              <div className="h-[25px] bg-[#6264A8] rounded-[8px] flex items-center gap-2.5 px-2">
+                <WrongSvg />
+                <span className="text-[13px] font-semibold text-white">
+                  잘못된 발음
+                </span>
+                <span className="text-[13px] text-[#EBEBF5]">{wrongSpeak}</span>
+              </div>
             </div>
           </div>
         </div>

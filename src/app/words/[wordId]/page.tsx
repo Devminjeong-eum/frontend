@@ -21,6 +21,7 @@ export default async function WordsPage({
 
   await queryClient.prefetchQuery({
     queryFn: () => fetchFakeWordDetail(wordId),
+    // queryFn: () => getWordDetail(wordId),
     queryKey: ['get_wordDetail', wordId],
   });
 

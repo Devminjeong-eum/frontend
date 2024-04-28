@@ -10,7 +10,7 @@ export default function BackButtonSvg() {
       <g opacity="0.7">
         <path
           d="M15 5L8 12L15 19"
-          stroke="white"
+          stroke="#BBC6EB"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
