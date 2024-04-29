@@ -2,6 +2,7 @@ import { Gugi } from 'next/font/google';
 import './global.css';
 import localFont from 'next/font/local';
 import QueryProvider from '@/providers/QueryProvider.tsx';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const gugi = Gugi({
   weight: '400',
@@ -69,6 +70,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" className={`${gugi.variable} ${pretendard.variable}`}>
+      <GoogleAnalytics gaId="G-JVH2GTHE6P" />
       <body className="font-pretendard">
         <div className="flex justify-center min-h-screen bg-[#FBFCFE]">
           <div className="w-full max-w-[430px] border-1 border-x border-gray-200 shadow-xl">
