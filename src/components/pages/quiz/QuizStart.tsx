@@ -55,6 +55,7 @@ export default function QuizStart() {
       {
         id,
         answer: quizData[currentQuiz].question,
+        wordDiacritic: quizData[currentQuiz].wordDiacritic,
         isLike: false,
         isAnswer,
       },
@@ -90,7 +91,7 @@ export default function QuizStart() {
             <Link href={QUIZ_PATH} className="ml-6 cursor-pointer">
               <BlackBackSpaceSVG />
             </Link>
-            <div className=" m-auto font-blod pr-6">TEST 중이에요.</div>
+            <div className=" m-auto font-medium pr-6">TEST 중이에요.</div>
           </header>
           <div className={`w-full bg-[#ECEFF5] flex`}>
             <div

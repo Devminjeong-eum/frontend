@@ -6,7 +6,7 @@ type QuizScoreProps = {
 
 export default function QuizScore({ resultScore }: QuizScoreProps) {
   return (
-    <div className="w-full aspect-square relative pt-4 flex justify-center">
+    <div className="w-full aspect-square relative flex justify-center">
       <div className="absolute top-[35%] text-center">
         <p>
           <span className="font-semibold text-[#313140] text-[18px]">
