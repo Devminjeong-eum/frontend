@@ -2,7 +2,7 @@ import ArrowDownSvg from '@/components/svg-component/ArrowDownSvg';
 import ArrowUpSvg from '@/components/svg-component/ArrowUpSvg';
 import EmptyHeartSvg from '@/components/svg-component/EmptyHeartSvg';
 import Heart1Svg from '@/components/svg-component/Heart1Svg';
-import { UserAnswer } from '@/types/quiz';
+import type { UserAnswer } from '@/types/quiz';
 import { Dispatch, SetStateAction, useState } from 'react';
 
 type QuizResultDetailProps = {

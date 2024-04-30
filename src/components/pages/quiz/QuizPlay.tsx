@@ -5,11 +5,11 @@ import XSVG from '@/components/svg-component/XSVG';
 import BlackBackSpaceSVG from '@/components/svg-component/BlackBackSpaceSVG';
 import QuizResult from './QuizResult';
 import type { UserAnswer } from '@/types/quiz';
-import Quiz from './Quiz';
+import Quiz from '.';
 // import { useEffect } from 'react';
 // import Spinner from '@/components/common/Spinner';
 
-export default function QuizStart() {
+export default function QuizPlay() {
   const [currentQuiz, setCurrentQuiz] = useState(0);
   const [score, setScore] = useState(0);
   const [selectOption, setSelectOption] = useState<string | null>(null);
@@ -19,7 +19,6 @@ export default function QuizStart() {
   const [userAnswer, setUserAnswer] = useState<UserAnswer[]>([]);
   const [id, setId] = useState(0);
   const [isShow, setIsShow] = useState(false);
-
   // const [isShowSpinner, setIsShowSpinner] = useState(false);
 
   // useEffect(() => {

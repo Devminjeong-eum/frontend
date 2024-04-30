@@ -4,7 +4,7 @@ import type { UserAnswer } from '@/types/quiz';
 import QuizResultDetail from './QuizResultDetail';
 import { Dispatch, SetStateAction, useState } from 'react';
 import ShareButton from '@/components/svg-component/ShareButton';
-import Quiz from './Quiz';
+import Quiz from '.';
 
 type QuizResultProps = {
   score: number;
