@@ -5,15 +5,15 @@ import HeartSvg from '@/components/svg-component/HeartSvg';
 import { UserAnswer } from '@/types/quiz';
 import { Dispatch, SetStateAction, useState } from 'react';
 
-type QuizAnswerProps = {
+type QuizResultDetailProps = {
   userAnswer: UserAnswer[];
   setUserAnswer: Dispatch<SetStateAction<UserAnswer[]>>;
 };
 
-export default function QuizAnswer({
+export default function QuizResultDetail({
   userAnswer,
   setUserAnswer,
-}: QuizAnswerProps) {
+}: QuizResultDetailProps) {
   const [isResultDetail, setIsResultDetail] = useState(true);
 
   const handleLikeClick = (clickedId: number) =>
