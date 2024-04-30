@@ -10,15 +10,15 @@ export default function ShareButton() {
       <path
         d="M14.5 5H20M20 5V10.5M20 5L12 13"
         stroke="#161616"
-        stroke-width="1.4"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M11.5385 7H8C6.89543 7 6 7.89543 6 9V17C6 18.1046 6.89543 19 8 19H16C17.1046 19 18 18.1046 18 17V13.4615"
         stroke="#161616"
-        stroke-width="1.4"
-        stroke-linecap="round"
+        strokeWidth="1.4"
+        strokeLinecap="round"
       />
     </svg>
   );
