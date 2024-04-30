@@ -101,7 +101,7 @@ export default function QuizStart() {
           </div>
           <div className="text-[14px] flex flex-col items-center mt-[73px]">
             <p className="text-main-gray">아래 단어의 발음은?</p>
-            <div className={`text-[30px] font-semibold mb-10`}>
+            <div className={`text-[32px] font-semibold mb-[42px]`}>
               {quizData[currentQuiz].question}
             </div>
           </div>
@@ -111,8 +111,8 @@ export default function QuizStart() {
                 key={option}
                 disabled={isButtonsDisabled}
                 onClick={() => handleAnswerOptionClick(option)}
-                className={`shadow-quiz-button w-[90%] font-medium h-[56px] 
-                rounded-[16px] mb-4 ${
+                className={`shadow-quiz-button w-[90%] font-medium h-[54px] 
+                rounded-[16px] mb-[8px] ${
                   selectOption === option
                     ? option === quizData[currentQuiz].correctAnswer
                       ? 'bg-quiz-blue text-white'
