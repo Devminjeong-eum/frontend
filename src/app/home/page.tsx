@@ -23,7 +23,7 @@ export default async function HomePage() {
     <HydrationBoundary state={dehydrate(queryClient)}>
       <Header />
       <Suspense fallback={<Spinner />}>
-        <HomeClientPage />;
+        <HomeClientPage />
       </Suspense>
     </HydrationBoundary>
   );
