@@ -3,7 +3,7 @@ export default function ScoreResultSvg() {
     <svg
       width="full"
       height="full"
-      viewBox="0 0 321 294"
+      viewBox="0 0 321 301"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
