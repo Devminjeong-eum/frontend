@@ -39,7 +39,7 @@ export default function WordDetailClientPage({ wordId }: Props) {
                 {wordSpeak}
               </span>
             </div>
-            <LikeButton />
+            <LikeButton isLike={false} likeCount={87} />
           </div>
           <div className="inline-flex flex-col gap-2.5">
             <div className="flex flex-shrink">
