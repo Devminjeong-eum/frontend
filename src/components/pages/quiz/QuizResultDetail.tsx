@@ -1,7 +1,7 @@
 import ArrowDownSvg from '@/components/svg-component/ArrowDownSvg';
 import ArrowUpSvg from '@/components/svg-component/ArrowUpSvg';
 import EmptyHeartSvg from '@/components/svg-component/EmptyHeartSvg';
-import HeartSvg from '@/components/svg-component/HeartSvg';
+import Heart1Svg from '@/components/svg-component/Heart1Svg';
 import { UserAnswer } from '@/types/quiz';
 import { Dispatch, SetStateAction, useState } from 'react';
 
@@ -73,7 +73,7 @@ export default function QuizResultDetail({
                     <span className="text-[14px] text-[#5E5E5E] opacity-60">{` [${data.wordDiacritic}]`}</span>
                   </div>
                   <button onClick={() => handleLikeClick(data.id)}>
-                    {data.isLike ? <HeartSvg /> : <EmptyHeartSvg />}
+                    {data.isLike ? <Heart1Svg /> : <EmptyHeartSvg />}
                   </button>
                 </div>
               </div>
