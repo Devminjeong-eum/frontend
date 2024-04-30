@@ -2,7 +2,7 @@ import BlackBackSpaceSVG from '@/components/svg-component/BlackBackSpaceSVG';
 import { QUIZ_PATH } from '@/routes/path.ts';
 import Link from 'next/link';
 import QuizScore from './QuizScore';
-import { UserAnswer } from '@/types/quiz';
+import type { UserAnswer } from '@/types/quiz';
 import QuizResultDetail from './QuizResultDetail';
 import { Dispatch, SetStateAction } from 'react';
 import ShareButton from '@/components/svg-component/ShareButton';
