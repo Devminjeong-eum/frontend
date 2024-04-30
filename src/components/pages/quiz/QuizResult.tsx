@@ -2,16 +2,25 @@ import BlackBackSpaceSVG from '@/components/svg-component/BlackBackSpaceSVG';
 import { QUIZ_PATH } from '@/routes/path.ts';
 import Link from 'next/link';
 import QuizScore from './QuizScore';
+import { UserAnswer } from '@/types/quiz';
+import QuizAnswer from './QuizAnswer';
+import { Dispatch, SetStateAction } from 'react';
 
 type QuizResultProps = {
   score: number;
+  userAnswer: UserAnswer[];
+  setUserAnswer: Dispatch<SetStateAction<UserAnswer[]>>;
 };
 
-export default function QuizResult({ score }: QuizResultProps) {
+export default function QuizResult({
+  score,
+  userAnswer,
+  setUserAnswer,
+}: QuizResultProps) {
   const resultScore = score ? score * 10 : 0;
 
   return (
-    <div className="relative px-4">
+    <div className="relative px-5">
       <header className="flex items-center h-[68px]">
         <Link className="ml-2 cursor-pointer" href={QUIZ_PATH}>
           <BlackBackSpaceSVG />
@@ -19,6 +28,7 @@ export default function QuizResult({ score }: QuizResultProps) {
         <div className=" m-auto font-blod pr-3">TEST 결과</div>
       </header>
       <QuizScore resultScore={resultScore} />
+      <QuizAnswer userAnswer={userAnswer} setUserAnswer={setUserAnswer} />
       <Link href={QUIZ_PATH}>
         <button className="bg-[#4057DB] rounded-[16px] mt-[28px] h-[52px] font-semibold text-white w-full">
           다시 도전하러 가기

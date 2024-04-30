@@ -10,6 +10,7 @@ import QuizResult from './QuizResult';
 import { QUIZ_PATH } from '@/routes/path.ts';
 import Spinner from '@/components/common/Spinner';
 import Link from 'next/link';
+import { UserAnswer } from '@/types/quiz';
 
 export default function QuizStart() {
   const [currentQuiz, setCurrentQuiz] = useState(0);
@@ -19,6 +20,8 @@ export default function QuizStart() {
   const [isShowSpinner, setIsShowSpinner] = useState(false);
   const [isButtonsDisabled, setIsButtonsDisabled] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [userAnswer, setUserAnswer] = useState<UserAnswer[]>([]);
+  const [id, setId] = useState(0);
 
   useEffect(() => {
     if (isShowScore) {
@@ -30,7 +33,7 @@ export default function QuizStart() {
     }
   }, [isShowScore]);
 
-  const nextQuiz = () => {
+  const handleNextQuiz = () => {
     setTimeout(() => {
       if (currentQuiz < quizData.length - 1) {
         setCurrentQuiz(currentQuiz + 1);
@@ -46,19 +49,37 @@ export default function QuizStart() {
   const handleAnswerOptionClick = (selectedOption: string) => {
     setProgress(((currentQuiz + 1) / quizData.length) * 100);
 
-    if (selectedOption === quizData[currentQuiz].correctAnswer) {
+    const isAnswer = selectedOption === quizData[currentQuiz].correctAnswer;
+    setUserAnswer((prevAnswer) => [
+      ...prevAnswer,
+      {
+        id,
+        answer: quizData[currentQuiz].question,
+        isLike: false,
+        isAnswer,
+      },
+    ]);
+
+    if (isAnswer) {
       setScore(score + 1);
     }
     setSelectOption(selectedOption);
     setIsButtonsDisabled(true);
-    nextQuiz();
+    setId((prev) => prev + 1);
+    handleNextQuiz();
   };
 
   if (isShowScore) {
     if (isShowSpinner) {
       return <Spinner />;
     }
-    return <QuizResult score={score} />;
+    return (
+      <QuizResult
+        score={score}
+        userAnswer={userAnswer}
+        setUserAnswer={setUserAnswer}
+      />
+    );
   }
 
   return (
@@ -93,8 +114,8 @@ export default function QuizStart() {
                 rounded-[16px] mb-4 ${
                   selectOption === option
                     ? option === quizData[currentQuiz].correctAnswer
-                      ? 'bg-[#0C3FC1] text-white'
-                      : 'bg-[#912828] text-white'
+                      ? 'bg-quiz-blue text-white'
+                      : 'bg-quiz-red text-white'
                     : 'bg-white'
                 }
                 border-px
