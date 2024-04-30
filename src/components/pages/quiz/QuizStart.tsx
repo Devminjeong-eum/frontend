@@ -1,14 +1,11 @@
-'use client';
-
 import { useState } from 'react';
 import { quizData } from '@/components/pages/quiz/quizData';
 import OSVG from '@/components/svg-component/OSVG';
 import XSVG from '@/components/svg-component/XSVG';
 import BlackBackSpaceSVG from '@/components/svg-component/BlackBackSpaceSVG';
 import QuizResult from './QuizResult';
-import { QUIZ_PATH } from '@/routes/path.ts';
-import Link from 'next/link';
-import { UserAnswer } from '@/types/quiz';
+import type { UserAnswer } from '@/types/quiz';
+import Quiz from './Quiz';
 // import { useEffect } from 'react';
 // import Spinner from '@/components/common/Spinner';
 
@@ -21,6 +18,8 @@ export default function QuizStart() {
   const [progress, setProgress] = useState(0);
   const [userAnswer, setUserAnswer] = useState<UserAnswer[]>([]);
   const [id, setId] = useState(0);
+  const [isShow, setIsShow] = useState(false);
+
   // const [isShowSpinner, setIsShowSpinner] = useState(false);
 
   // useEffect(() => {
@@ -70,6 +69,8 @@ export default function QuizStart() {
     handleNextQuiz();
   };
 
+  if (isShow) return <Quiz />;
+
   if (isShowScore) {
     // if (isShowSpinner) {
     //   return <Spinner />;
@@ -88,9 +89,12 @@ export default function QuizStart() {
       <div className="flex flex-col items-center w-full max-w-[430px] border-1 border-x border-gray-200 shadow-xl">
         <div className="w-full items-center bg-[#fbfcfe] relative">
           <header className="flex items-center h-[68px]">
-            <Link href={QUIZ_PATH} className="ml-6 cursor-pointer">
+            <button
+              onClick={() => setIsShow(!isShow)}
+              className="ml-6 cursor-pointer"
+            >
               <BlackBackSpaceSVG />
-            </Link>
+            </button>
             <div className=" m-auto font-medium pr-6">TEST 중이에요.</div>
           </header>
           <div className={`w-full bg-[#ECEFF5] flex`}>
