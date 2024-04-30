@@ -2,36 +2,36 @@
 
 import { useState } from 'react';
 import { quizData } from '@/components/pages/quiz/quizData';
-import { useEffect } from 'react';
 import OSVG from '@/components/svg-component/OSVG';
 import XSVG from '@/components/svg-component/XSVG';
 import BlackBackSpaceSVG from '@/components/svg-component/BlackBackSpaceSVG';
 import QuizResult from './QuizResult';
 import { QUIZ_PATH } from '@/routes/path.ts';
-import Spinner from '@/components/common/Spinner';
 import Link from 'next/link';
 import { UserAnswer } from '@/types/quiz';
+// import { useEffect } from 'react';
+// import Spinner from '@/components/common/Spinner';
 
 export default function QuizStart() {
   const [currentQuiz, setCurrentQuiz] = useState(0);
   const [score, setScore] = useState(0);
   const [selectOption, setSelectOption] = useState<string | null>(null);
   const [isShowScore, setIsShowScore] = useState(false);
-  const [isShowSpinner, setIsShowSpinner] = useState(false);
   const [isButtonsDisabled, setIsButtonsDisabled] = useState(false);
   const [progress, setProgress] = useState(0);
   const [userAnswer, setUserAnswer] = useState<UserAnswer[]>([]);
   const [id, setId] = useState(0);
+  // const [isShowSpinner, setIsShowSpinner] = useState(false);
 
-  useEffect(() => {
-    if (isShowScore) {
-      const timer = setTimeout(() => {
-        setIsShowSpinner(false);
-      }, 2000);
+  // useEffect(() => {
+  //   if (isShowScore) {
+  //     const timer = setTimeout(() => {
+  //       setIsShowSpinner(false);
+  //     }, 2000);
 
-      return () => clearTimeout(timer);
-    }
-  }, [isShowScore]);
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [isShowScore]);
 
   const handleNextQuiz = () => {
     setTimeout(() => {
@@ -41,7 +41,7 @@ export default function QuizStart() {
         setIsButtonsDisabled(false);
       } else {
         setIsShowScore(true);
-        setIsShowSpinner(true);
+        // setIsShowSpinner(true);
       }
     }, 1000);
   };
@@ -71,9 +71,9 @@ export default function QuizStart() {
   };
 
   if (isShowScore) {
-    if (isShowSpinner) {
-      return <Spinner />;
-    }
+    // if (isShowSpinner) {
+    //   return <Spinner />;
+    // }
     return (
       <QuizResult
         score={score}
