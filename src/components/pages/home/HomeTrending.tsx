@@ -1,8 +1,22 @@
+'use client';
 import CrownLinearSvg from '@/components/svg-component/CrownLinearSvg';
 import FillArrowSvg from '@/components/svg-component/FillArrowSvg';
 import clsx from 'clsx';
+import { useEffect, useState } from 'react';
 
 export default function HomeTrending() {
+  const [isMount, setIsMount] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsMount(true);
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <>
       {/* TEXT_ZONE */}
@@ -21,17 +35,22 @@ export default function HomeTrending() {
       {/* 1,2,3 */}
       <div className="mt-[28px] w-full">
         {/* rank 1,2,3 */}
-        <div className="-mx-[22px] min-h-[219px] ">
+        <div className="-mx-[20px] min-h-[219px] overflow-x-hidden">
           {Array.from({ length: 3 }, (_, index) => (
             <div
               key={index}
               className={clsx(
-                'h-[72px] rounded-r-[100px] flex items-center pl-[34px]',
+                'h-[72px] rounded-r-[100px] flex items-center pl-[34px] transition-transform ',
                 {
                   'mt-[4px]': index !== 0,
-                  'w-[360px] bg-rank-gradiant-one': index === 0,
-                  'w-[304px] bg-rank-gradiant-two': index === 1,
-                  'w-[268px] bg-rank-gradiant-three h-[67px]': index === 2,
+                  'w-[340px] bg-rank-gradiant-one duration-700 ': index === 0,
+                  'w-[304px] bg-rank-gradiant-two duration-1000': index === 1,
+                  'w-[268px] bg-rank-gradiant-three h-[67px] duration-[1300ms]':
+                    index === 2,
+                },
+                {
+                  '-translate-x-full': !isMount,
+                  'translate-x-0': isMount,
                 },
               )}
             >
@@ -48,12 +67,14 @@ export default function HomeTrending() {
                 </p>
               </div>
               {/* 텍스트 */}
-              <div className="ml-[20px] flex-1">
+              <div className="ml-[20px] flex-1 ">
                 <p className="text-white text-[18px] font-semibold">
                   Application
                 </p>
                 <span className="flex items-center gap-[3px] text-[15px] leading-[14px]">
-                  <p className="text-white font-normal">애플리케이션</p>
+                  <p className="text-white font-normal line-clamp-1">
+                    애플리케이션
+                  </p>
                   <p className="text-white/50 font-light">[application]</p>
                 </span>
               </div>
@@ -72,10 +93,7 @@ export default function HomeTrending() {
           {Array.from({ length: 7 }, (_, index) => (
             <div
               key={index}
-              className={clsx(
-                'h-[54px] border-[#ECEEF5] border-b-[1px] w-full flex items-center ',
-                { 'border-none': index === 6 },
-              )}
+              className="h-[54px] border-[#ECEEF5] border-b-[1px] w-full flex items-center "
             >
               {/* 순위 */}
               <p className="font-semibold text-[#AAB2D0] text-[11px] ml-[20px]">

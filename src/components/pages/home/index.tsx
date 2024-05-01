@@ -8,13 +8,15 @@ import Error from '../error';
 import HomeTrending from './HomeTrending';
 import HomeToggleZone from './HomeToggleZone';
 
+export type TrendingType = 'trend' | 'all';
+
 export default function Home() {
-  const [isTrending, setIsTrending] = useState(true);
+  const [isTrending, setIsTrending] = useState<TrendingType>('trend');
   const [current, setCurrent] = useState(1);
   const { data, error } = usePosts(current);
 
-  const handleToggle = () => {
-    setIsTrending(!isTrending);
+  const handleToggle = (prev: TrendingType) => {
+    setIsTrending(prev);
   };
 
   return (
@@ -23,9 +25,9 @@ export default function Home() {
       <main className="p-5 rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[8px]">
         <HomeToggleZone handleToggle={handleToggle} isTrending={isTrending} />
 
-        {isTrending && <HomeTrending />}
+        {isTrending === 'trend' && <HomeTrending />}
 
-        {!isTrending && (
+        {isTrending !== 'trend' && (
           <>
             {data?.data.map((item) => (
               <HomeItem
