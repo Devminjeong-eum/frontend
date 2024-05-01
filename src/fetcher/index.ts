@@ -1,6 +1,6 @@
 import httpClient from '@/fetcher/fetch.ts';
-import { WordDetail } from '@/types/main.ts';
 import { notFound } from 'next/navigation';
+import type { GetWordDetailFunc } from './types.ts';
 
 const BASE_URL = 'https://api.dev-malssami.site';
 
@@ -33,8 +33,6 @@ const backendFetch = httpClient({
     },
   },
 });
-
-type GetWordDetailFunc = (wordId: number) => Promise<WordDetail | undefined>;
 
 export const getWordDetail: GetWordDetailFunc = async (wordId) => {
   try {
