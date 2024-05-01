@@ -25,7 +25,7 @@ export default function Pagination({
   const startPage = calculateStartPage();
 
   return (
-    <div className="flex gap-4 mx-auto mt-[37px] -mb-[22px]">
+    <div className="flex gap-4 mx-auto my-[22px] min-w-[264px]">
       <button
         onClick={goToFirstPage}
         disabled={noPrev}
