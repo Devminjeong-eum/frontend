@@ -10,6 +10,8 @@ export default {
         'main-black': '#181818',
         'main-charcoal': '#414149',
         'main-gray': '#5E5E5E',
+        'quiz-red': '#912828',
+        'quiz-blue': '#0C3FC1',
       },
 
       backgroundImage: {
