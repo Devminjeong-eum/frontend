@@ -99,6 +99,7 @@ export default function httpClient<T = Response>({
     init?: Options,
   ): Promise<Res> {
     let url = applyBaseUrl(input, baseUrl);
+
     if (init && init.params) {
       url = applyQueryParams(url, init.params);
     }
