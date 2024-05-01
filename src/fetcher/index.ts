@@ -1,8 +1,9 @@
 import httpClient from '@/fetcher/fetch.ts';
 import { notFound } from 'next/navigation';
 import type { GetWordDetailFunc } from './types.ts';
+import * as process from 'process';
 
-const BASE_URL = 'https://api.dev-malssami.site';
+const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_BASE_URL;
 
 const backendFetch = httpClient({
   baseUrl: BASE_URL,
