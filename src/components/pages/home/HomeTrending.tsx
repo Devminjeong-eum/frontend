@@ -1,5 +1,6 @@
-import CrownSvg from '@/components/svg-component/CrownSvg';
-import TriangleSvg from '@/components/svg-component/TriangleSvg';
+import CrownLinearSvg from '@/components/svg-component/CrownLinearSvg';
+import FillArrowSvg from '@/components/svg-component/FillArrowSvg';
+import clsx from 'clsx';
 
 /**
  * FIXME: 일단 에셋 가져와서 단순 퍼블리싱만 해두고 픽스되면 수정 예정할 컴포넌트
@@ -10,53 +11,89 @@ import TriangleSvg from '@/components/svg-component/TriangleSvg';
 export default function HomeTrending() {
   return (
     <>
-      <h1 className="text-center text-main-black text-[20px] font-semibold">
-        사용자가 많이 찾아본 개발 용어
-      </h1>
-      <div className="flex gap-[4px] ">
-        {Array.from({ length: 3 }, (_, index) => (
-          <div key={index} className="flex flex-col justify-end items-center">
-            <div className=" relative justify-center flex">
-              <CrownSvg />
-              <p
-                className={` font-extrabold  absolute  ${index === 1 ? 'top-[6px] left-[10px] text-main-blue text-[14px]' : 'top-[8px] left-[10px] text-main-blue/70 text-[12px]'}`}
-              >
-                {index === 0 ? 2 : index === 1 ? 1 : 3}
-              </p>
-            </div>
-            <div
-              className={`flex flex-col items-center w-[127px] ${index === 0 ? 'h-[84px]' : index === 1 ? 'h-[108px]' : 'h-[64px]'} bg-white  ring-1 ring-[#F2F4F9] rounded-t-2xl`}
-            >
-              <p className="mt-[14px] text-[20px] leading-[17px] font-semibold text-main-blue">
-                Asset
-              </p>
-              <p className="text-[14px] flex-1">에셋</p>
-              <div className="flex items-center justify-center mb-[6px] w-[29px] h-[16px] rounded-2xl ring-1 ring-[#EDF1FF]">
-                <TriangleSvg />
-                <p className="text-[10px] font-semibold text">1</p>
-              </div>
-            </div>
-          </div>
-        ))}
+      {/* text zone */}
+      <div className="ml-[26px] mt-[40px]">
+        <p className="text-main-charcoal text-[18px] leading-[16px]">
+          사람들이 이번 주에
+        </p>
+        <p className="text-main-balck text-[22px] leading-[16px] mt-3 font-semibold">
+          이 용어를 가장 많이 찾아봤어요!
+        </p>
+        <p className="text-main-charcoal/50 text-[12px] leading-[16px] mt-[16px]">
+          * 매주 월요일 업데이트 예정
+        </p>
       </div>
 
-      <div className="flex flex-col gap-[6px]">
-        {Array.from({ length: 7 }, (_, index) => (
-          <div key={index} className="flex ">
+      {/* rank zone */}
+      <div className="mt-[28px] w-full">
+        {/* rank 1,2,3 */}
+        <div className="-mx-[22px] min-h-[219px] ">
+          {Array.from({ length: 3 }, (_, index) => (
             <div
-              className={`flex gap-[8px] items-center w-full ring-1 ring-[#EDF1FF] bg-white rounded-2xl h-[49px]`}
+              className={clsx(
+                'h-[72px] rounded-r-[100px] flex items-center pl-[34px]',
+                index !== 0 && 'mt-[4px]',
+                index === 0 && 'w-[360px] bg-rank-gradiant-one',
+                index === 1 && 'w-[304px] bg-rank-gradiant-two',
+                index === 2 && 'w-[268px] bg-rank-gradiant-three h-[67px]',
+              )}
             >
-              <p className="ml-[19px] text-main-blue font-extrabold">
+              {/* 아이콘 */}
+              <div className="relative ">
+                <CrownLinearSvg />
+                <p
+                  className={clsx(
+                    'absolute text-[10px] left-[10px] top-3',
+                    index !== 2 ? 'text-white' : 'text-main-blue',
+                  )}
+                >
+                  {index + 1}
+                </p>
+              </div>
+              {/* 텍스트 */}
+              <div className="ml-[20px] flex-1">
+                <p className="text-white text-[18px] font-semibold">
+                  Application
+                </p>
+                <span className="flex items-center gap-[3px] text-[15px] leading-[14px]">
+                  <p className="text-white font-normal">애플리케이션</p>
+                  <p className="text-white/50 font-light">[application]</p>
+                </span>
+              </div>
+
+              {/* rank */}
+              <div className="mr-[22px] bg-white/20 rounded-xl w-[34px] h-[17px] px-[3px] text-white flex items-center justify-center">
+                <FillArrowSvg />
+                <p className="text-[10px]">1</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* rank 4~ */}
+        <div className="w-full mt-[26px]">
+          {Array.from({ length: 7 }, (_, index) => (
+            <div className="h-[17px] border-[#ECEEF5] border-b-[1px] w-full flex items-center py-[26px]">
+              {/* 순위 */}
+              <p className="font-semibold text-[#AAB2D0] text-[11px] ml-[20px]">
                 {index + 4}
               </p>
-              <p className="ml-[4px] text-main-black text-[14px] font-semibold">
-                Asset
-              </p>
-              <span className="text-[#F2F4F9]">|</span>
-              <p className="text-[13px] text-main-charcoa">에셋</p>
+
+              {/* 용어 정리 */}
+              <span className="flex ml-[29px] gap-[6px] flex-1">
+                <p className="text-[16px] text-main-black">Devword</p>
+                <span className="text-[#F2F4F9]">|</span>
+                <p className="text-[#6F6F80] text-[14px]">개발 용어</p>
+              </span>
+
+              {/* rank */}
+              <div className="mr-[22px] bg-[#F4F6FB] rounded-xl w-[34px] h-[17px] px-[3px] text-main-blue flex items-center justify-center">
+                <FillArrowSvg />
+                <p className="text-[10px]">1</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </>
   );
