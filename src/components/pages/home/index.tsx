@@ -42,17 +42,19 @@ export default function Home() {
 
         {!isTrending && (
           <>
-            {data?.data.map((item) => (
-              <HomeItem
-                wordDiacritic={item.wordDiacritic}
-                wordDescription={item.wordDescription}
-                key={item.wordId}
-                wordId={item.wordId}
-                wordName={item.wordName}
-                wordSpeak={item.wordSpeak}
-                wordLike={item.wordLike}
-              />
-            ))}
+            <div className="mt-[17px]">
+              {data?.data.map((item) => (
+                <HomeItem
+                  wordDiacritic={item.wordDiacritic}
+                  wordDescription={item.wordDescription}
+                  key={item.wordId}
+                  wordId={item.wordId}
+                  wordName={item.wordName}
+                  wordSpeak={item.wordSpeak}
+                  wordLike={item.wordLike}
+                />
+              ))}
+            </div>
             {data && (
               <Pagination
                 viewPaginationNums={4}
