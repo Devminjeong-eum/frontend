@@ -10,16 +10,16 @@ const backendFetch = httpClient({
   cache: 'no-cache',
   interceptors: {
     request: async (url, init) => {
+      // NOTE: 로깅
       console.log('********* before sending request *********');
-      console.log('url: ', url.toString());
-      console.log('requestInit:', init);
+      console.log('request url: ', url.toString());
 
       return init;
     },
     response: async (response) => {
+      // NOTE: 로깅
       console.log('********* after receiving response *********');
-      console.log('response: ', response);
-      console.log('is it ok?: ', response.ok);
+      console.log('is it ok? ', response.ok);
 
       if (!response.ok) {
         if (400 <= response.status && response.status < 500) {
@@ -29,7 +29,6 @@ const backendFetch = httpClient({
         }
         throw Error(response.status + response.statusText);
       }
-
       return response.json();
     },
   },
@@ -39,15 +38,11 @@ type GetWordDetailFunc = (wordId: number) => Promise<WordDetail | undefined>;
 
 export const getWordDetail: GetWordDetailFunc = async (wordId) => {
   try {
-    const response = await backendFetch<ReturnType<GetWordDetailFunc>>(
-      `words`,
-      {
-        params: {
-          wordId,
-        },
+    return await backendFetch<ReturnType<GetWordDetailFunc>>(`words`, {
+      params: {
+        wordId,
       },
-    );
-    return response;
+    });
   } catch (e) {
     // NOTE: 상황에 맞는 페이지 보여줘야 함.
     console.log('error');
