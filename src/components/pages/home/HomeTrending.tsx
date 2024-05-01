@@ -30,6 +30,7 @@ export default function HomeTrending() {
         <div className="-mx-[22px] min-h-[219px] ">
           {Array.from({ length: 3 }, (_, index) => (
             <div
+              key={index}
               className={clsx(
                 'h-[72px] rounded-r-[100px] flex items-center pl-[34px]',
                 index !== 0 && 'mt-[4px]',
@@ -73,7 +74,10 @@ export default function HomeTrending() {
         {/* rank 4~ */}
         <div className="w-full mt-[26px]">
           {Array.from({ length: 7 }, (_, index) => (
-            <div className="h-[17px] border-[#ECEEF5] border-b-[1px] w-full flex items-center py-[26px]">
+            <div
+              key={index}
+              className="h-[17px] border-[#ECEEF5] border-b-[1px] w-full flex items-center py-[26px]"
+            >
               {/* 순위 */}
               <p className="font-semibold text-[#AAB2D0] text-[11px] ml-[20px]">
                 {index + 4}
