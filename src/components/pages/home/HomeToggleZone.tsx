@@ -10,7 +10,7 @@ export default function HomeToggleZone({ handleToggle, isTrending }: Props) {
     <div className="text-main-blue flex gap-20 mx-auto w-full justify-center relative mb-[16px]">
       <div
         className={clsx(
-          'absolute w-[180px] -top-[8px] h-[40px] rounded-full bg-[#ECF0FF] transition-transform duration-300',
+          'absolute w-[182px] -top-[8px] h-[40px] rounded-full bg-[#ECF0FF] transition-transform duration-300',
           {
             '-translate-x-[84px]': isTrending,
             'translate-x-[84px]': !isTrending,
