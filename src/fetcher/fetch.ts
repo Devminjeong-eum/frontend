@@ -60,7 +60,6 @@ const applyQueryParams = (
 
     Object.keys(params).forEach((key) => {
       if (params[key] !== null && params[key] !== undefined) {
-        // NOTE: 이해하지 못함
         url.searchParams.append(key, params[key] as string);
       }
     });
