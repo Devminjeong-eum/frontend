@@ -36,7 +36,7 @@ export default function Header() {
           <QuizButton />
         </Link>
         <div className="text-[#A8B8FF]">
-          <HeartSvg isLike />
+          <HeartSvg />
         </div>
       </div>
       <SearchBar />

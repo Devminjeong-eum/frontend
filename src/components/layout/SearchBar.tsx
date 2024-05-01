@@ -27,7 +27,7 @@ export default function SearchBar() {
 
   return (
     <div
-      className={`z-10 bg-main-gradiant-bottom top-0  ${isScrolled ? 'sticky h-[64px] py-2 px-5' : 'h-[104px] p-5'}`}
+      className={`z-20 bg-main-gradiant-bottom top-0  ${isScrolled ? 'sticky h-[64px] py-2 px-5' : 'h-[104px] p-5'}`}
     >
       <div className="relative">
         <input
