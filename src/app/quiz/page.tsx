@@ -1,5 +1,5 @@
-import Quiz_Client from '@/components/pages/quiz';
+import Quiz from '@/components/pages/quiz';
 
 export default function QuizPage() {
-  return <Quiz_Client />;
+  return <Quiz />;
 }
