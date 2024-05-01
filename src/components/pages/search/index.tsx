@@ -4,7 +4,7 @@
 
 // import { useQuery } from '@tanstack/react-query';
 // import BigMagnifierSvg from '@/components/svgComponent/BigMagnifierSvg';
-import SearchItem from '@/components/pages/search/SearchItem';
+// import SearchItem from '@/components/pages/search/SearchItem';
 
 export type SearchWord = {
   wordId: number;
@@ -41,8 +41,9 @@ export default function Search_Client() {
       {/* {searchWord?.data?.wordAll.map((item: SearchWord) => (
         <SearchItem key={item.[wordId]} item={item} />
       ))} */}
-      {['1', '2', '3', '4'].map((item) => (
-        <SearchItem key={item} item={item} />
+      {['1', '2', '3', '4'].map(() => (
+        // <SearchItem key={item} item={item} />
+        <div />
       ))}
     </div>
   );
