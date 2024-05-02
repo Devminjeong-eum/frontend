@@ -16,7 +16,7 @@ export default function MyWordbook() {
       <div className="bg-wordbook-gradient h-32">
         <MyWordbookHeader />
       </div>
-      <div className="h-[calc(100%-8rem)] flex flex-col justify-between">
+      <div className="h-[calc(100vh-8rem)] flex flex-col justify-between">
         <div className="relative bottom-16 flex flex-col">
           <div className="flex">
             <div className="w-[calc(46%+30px)] h-9 overflow-hidden rounded-tl-xl relative top-px">
