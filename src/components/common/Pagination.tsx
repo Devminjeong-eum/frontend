@@ -9,6 +9,7 @@ export default function Pagination({
   viewPaginationNums = 4,
   setCurrent,
   current,
+  style,
 }: PaginationPropType) {
   const {
     onChangePage,
@@ -25,7 +26,7 @@ export default function Pagination({
   const startPage = calculateStartPage();
 
   return (
-    <div className="flex gap-4 mx-auto mt-[37px] -mb-[22px]">
+    <div className={`flex gap-4 ${style || ''}`}>
       <button
         onClick={goToFirstPage}
         disabled={noPrev}
@@ -42,24 +43,20 @@ export default function Pagination({
         <OneButtonSvg />
       </button>
 
-      {Array.from(
-        { length: Math.min(viewPaginationNums, totalPages) },
-        (_, i) => {
-          const page = startPage + i;
-          return (
-            page <= totalPages && (
-              <div key={page} className="flex gap-[12px]">
-                <button
-                  className={`text-[18px] ${current === page ? 'text-main-blue font-bold' : 'text-main-gray font-normal'}`}
-                  onClick={() => onChangePage(page)}
-                >
-                  {page}
-                </button>
-              </div>
-            )
-          );
-        },
-      )}
+      {Array.from({ length: viewPaginationNums }, (_, i) => {
+        const page = startPage + i;
+        return (
+          <div key={page} className="flex gap-[12px]">
+            <button
+              className={`text-[18px] ${page > totalPages ? 'text-[#D7DCEB]' : current === page ? 'text-main-blue font-bold' : 'text-main-gray font-normal'}`}
+              onClick={() => onChangePage(page)}
+              disabled={page > totalPages}
+            >
+              {page}
+            </button>
+          </div>
+        );
+      })}
 
       <button
         onClick={goToNextPage}
