@@ -4,7 +4,7 @@ import { backendFetch } from '@/fetcher/instance.ts';
 
 export const getWordDetail: GetWordDetailFunc = async (wordId) => {
   try {
-    return await backendFetch<ReturnType<GetWordDetailFunc>>(`words`, {
+    return await backendFetch<ReturnType<GetWordDetailFunc>>(`/words`, {
       params: {
         wordId,
       },
