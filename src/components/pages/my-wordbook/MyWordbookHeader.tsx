@@ -2,7 +2,7 @@ import BackButton from '@/components/common/BackButton';
 
 export default function MyWordbookHeader() {
   return (
-    <header className="h-12 flex justify-between items-center px-[16px]">
+    <header className="h-12 flex items-center px-[16px]">
       <div className="flex-1 flex items-center">
         <BackButton />
       </div>
