@@ -55,36 +55,25 @@ const applyQueryParams = (
     return baseUrl;
   }
 
+  let url = null;
+
   if (typeof baseUrl === 'string') {
-    const url = new URL(baseUrl);
-
-    Object.keys(params).forEach((key) => {
-      if (params[key] !== null && params[key] !== undefined) {
-        url.searchParams.append(key, params[key] as string);
-      }
-    });
-
-    return url;
+    url = new URL(baseUrl);
+  } else if (typeof baseUrl === 'object' && 'url' in baseUrl) {
+    url = new URL(baseUrl.url);
+  } else if (baseUrl instanceof URL) {
+    url = baseUrl;
+  } else {
+    throw new Error('Invalid baseUrl type');
   }
 
-  if (typeof baseUrl === 'object' && 'url' in baseUrl) {
-    const url = new URL(baseUrl.url);
+  Object.keys(params).forEach((key) => {
+    if (params[key] !== null && params[key] !== undefined) {
+      url.searchParams.append(key, String(params[key]));
+    }
+  });
 
-    Object.keys(params).forEach((key) => {
-      url.searchParams.append(key, params[key] as string);
-    });
-
-    return url;
-  }
-
-  if (baseUrl instanceof URL) {
-    Object.keys(params).forEach((key) => {
-      baseUrl.searchParams.append(key, params[key] as string);
-    });
-    return baseUrl;
-  }
-
-  throw new Error('Invalid baseUrl type');
+  return url;
 };
 
 export default function httpClient<T = Response>({
