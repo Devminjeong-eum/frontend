@@ -19,7 +19,7 @@ export default function MyWordbook() {
       <div className="bg-wordbook-gradient h-32">
         <MyWordbookHeader />
       </div>
-      <div className="h-[calc(100vh-8rem)] flex flex-col justify-between">
+      <div className="flex flex-col justify-between">
         <div className="relative bottom-16 flex flex-col">
           <div className="flex">
             <div className="w-[calc(46%+30px)] h-9 overflow-hidden rounded-tl-xl relative top-px">
@@ -55,7 +55,7 @@ export default function MyWordbook() {
             </div>
           )}
         </div>
-        <div className="flex flex-col items-center gap-8 relative top-[-2rem] pb-7">
+        <div className="flex flex-col items-center gap-8 relative top-[-2rem]">
           {totalItems === 0 ? (
             <Link
               href={WORD_LIST_PATH}
