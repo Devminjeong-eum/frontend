@@ -1,45 +1,47 @@
 import BlackBackSpaceSVG from '@/components/svg-component/BlackBackSpaceSVG';
-import ScoreResultSvg from '@/components/svg-component/ScoreResultSvg';
-import { QUIZ_PATH } from '@/routes/path.ts';
-import Link from 'next/link';
+import QuizScore from './QuizScore';
+import type { UserAnswer } from '@/types/quiz';
+import QuizResultDetail from './QuizResultDetail';
+import { Dispatch, SetStateAction, useState } from 'react';
+import ShareButton from '@/components/svg-component/ShareButton';
+import Quiz from '.';
 
 type QuizResultProps = {
   score: number;
+  userAnswer: UserAnswer[];
+  setUserAnswer: Dispatch<SetStateAction<UserAnswer[]>>;
 };
 
-export default function QuizResult({ score }: QuizResultProps) {
+export default function QuizResult({
+  score,
+  userAnswer,
+  setUserAnswer,
+}: QuizResultProps) {
+  const [isShoww, setIsShoww] = useState(false);
   const resultScore = score ? score * 10 : 0;
 
+  if (isShoww) return <Quiz />;
+
   return (
-    <div className="relative px-4">
+    <div className="relative px-5">
       <header className="flex items-center h-[68px]">
-        <Link className="ml-2 cursor-pointer" href={QUIZ_PATH}>
+        <button
+          className="ml-2 cursor-pointer"
+          onClick={() => setIsShoww(!isShoww)}
+        >
           <BlackBackSpaceSVG />
-        </Link>
-        <div className=" m-auto font-blod pr-3">TEST 결과</div>
-      </header>
-      <div className="w-full aspect-square relative pt-4 flex justify-center">
-        <div className="absolute top-[35%] text-center">
-          <p>
-            <span className="font-semibold text-[#313140] text-[18px]">
-              사용자
-            </span>{' '}
-            님의 <br />
-            개발 용어 발음 실력은
-          </p>
-          <div
-            className={`font-gugi text-main-blue ${resultScore.toString().length > 2 ? `text-[64px]` : `text-[70px]`}`}
-          >
-            {resultScore}점
-          </div>
-        </div>
-        <ScoreResultSvg />
-      </div>
-      <Link href={QUIZ_PATH}>
-        <button className="bg-[#4057DB] rounded-[16px] mt-[28px] h-[52px] font-semibold text-white w-full">
-          다시 도전하러 가기
         </button>
-      </Link>
+        <div className=" m-auto font-medium pr-3">TEST 결과</div>
+        <ShareButton />
+      </header>
+      <QuizScore resultScore={resultScore} />
+      <QuizResultDetail userAnswer={userAnswer} setUserAnswer={setUserAnswer} />
+      <button
+        className="bg-[#4057DB] rounded-[16px] mt-[24px] mb-[48px] h-[50px] font-semibold text-white w-full text-[16px]"
+        onClick={() => setIsShoww(!isShoww)}
+      >
+        다시 도전하러 가기
+      </button>
     </div>
   );
 }

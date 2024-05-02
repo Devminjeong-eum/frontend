@@ -59,7 +59,7 @@ jobs:
         with:
           push: true
           # platforms: linux/amd64,linux/arm64
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/devminjeong-eum-backend:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/devminjeong-eum-frontend:latest
 
   deploy:
     needs: docker-image
@@ -72,14 +72,12 @@ jobs:
         username: ${{ secrets.EC2_SSH_USER }}
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         script: |
-          IS_RUNNING = $(sudo docker ps -af "status=running" | grep backend)
-
-          if [ ! -z "$IS_RUNNING" ]; then
-            sudo docker stop backend
-            sudo docker rm backend
+          if [ "$(sudo docker ps | grep frontend)" ]; then
+            sudo docker stop frontend
+            sudo docker rm frontend
           fi
 
-          sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/devminjeong-eum-backend:latest
-          sudo docker run -p 8080:8080 \
-          --name backend \
-          -d ${{ secrets.DOCKER_HUB_USERNAME }}/devminjeong-eum-backend:latest
+          sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/devminjeong-eum-frontend:latest
+          sudo docker run -p 3000:3000 \
+          --name frontend \
+          -d ${{ secrets.DOCKER_HUB_USERNAME }}/devminjeong-eum-frontend:latest
