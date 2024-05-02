@@ -11,8 +11,8 @@ export default function SearchBar() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const navigateToSearch = (): void => {
-    if (!inputRef.current) return;
-    router.push(`/search?word=${inputRef.current.value}`);
+    inputRef.current?.value.trim() &&
+      router.push(`/search/${inputRef.current.value}`);
   };
 
   const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
