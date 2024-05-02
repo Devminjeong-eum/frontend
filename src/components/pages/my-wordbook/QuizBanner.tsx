@@ -1,6 +1,6 @@
 export default function QuizBanner() {
   return (
-    <div className="w-11/12 h-24 rounded-2xl bg-[#242C4B] flex gap-6 items-center justify-center">
+    <div className="w-10/12 h-24 rounded-2xl bg-[#242C4B] flex gap-6 items-center justify-center">
       <div className="flex flex-col gap-2">
         <span className="text-white opacity-70 font-medium text-sm">
           퀴즈 풀고 내 점수 알아보자!
