@@ -1,9 +1,9 @@
 'use client';
 
-import Pagination from '@/components/pages/home/Pagination';
+import Pagination from '@/components/common/Pagination';
 import { useState } from 'react';
 import usePosts from '@/hooks/query/usePosts';
-import HomeItem from './HomeItem';
+import WordItem from '@/components/common/WordItem';
 import Error from '../error';
 import HomeTrending from './HomeTrending';
 
@@ -17,7 +17,7 @@ export default function Home() {
       <main className="p-5 rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[8px]">
         <HomeTrending />
         {data?.data.map((item) => (
-          <HomeItem
+          <WordItem
             wordDiacritic={item.wordDiacritic}
             wordDescription={item.wordDescription}
             key={item.wordId}
@@ -34,6 +34,7 @@ export default function Home() {
             limit={10}
             setCurrent={setCurrent}
             current={current}
+            style="flex gap-4 mx-auto mt-[37px] -mb-[22px]"
           />
         )}
       </main>
