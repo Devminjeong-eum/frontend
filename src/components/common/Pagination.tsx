@@ -3,6 +3,27 @@ import OneButtonSvg from '@/components/svg-component/OneButtonSvg';
 import usePagination from '@/hooks/usePagination';
 import { PaginationPropType } from '@/types/main';
 
+// 총 페이지 개수 < 페이지네이션 단위 인 경우, 페이지네이션 단위까지 disabled한 버튼을 추가적으로 생성하는 함수
+const createFixedButtons = (
+  totalPage: number,
+  viewPaginationNums: number = 4,
+) => {
+  const buttons = [];
+
+  for (let i = 1; i <= viewPaginationNums - totalPage; i++) {
+    const page = totalPage + i;
+
+    buttons.push(
+      <div key={page} className="flex gap-[12px]">
+        <button className="text-[18px] text-[#D7DCEB]" disabled={true}>
+          {page}
+        </button>
+      </div>,
+    );
+  }
+  return buttons;
+};
+
 export default function Pagination({
   limit = 10,
   total = 100,
@@ -43,20 +64,27 @@ export default function Pagination({
         <OneButtonSvg />
       </button>
 
-      {Array.from({ length: viewPaginationNums }, (_, i) => {
-        const page = startPage + i;
-        return (
-          <div key={page} className="flex gap-[12px]">
-            <button
-              className={`text-[18px] ${page > totalPages ? 'text-[#D7DCEB]' : current === page ? 'text-main-blue font-bold' : 'text-main-gray font-normal'}`}
-              onClick={() => onChangePage(page)}
-              disabled={page > totalPages}
-            >
-              {page}
-            </button>
-          </div>
-        );
-      })}
+      {Array.from(
+        { length: Math.min(viewPaginationNums, totalPages) },
+        (_, i) => {
+          const page = startPage + i;
+          return (
+            page <= totalPages && (
+              <div key={page} className="flex gap-[12px]">
+                <button
+                  className={`text-[18px] ${current === page ? 'text-main-blue font-bold' : 'text-main-gray font-normal'}`}
+                  onClick={() => onChangePage(page)}
+                >
+                  {page}
+                </button>
+              </div>
+            )
+          );
+        },
+      )}
+
+      {totalPages < viewPaginationNums &&
+        createFixedButtons(totalPages, viewPaginationNums)}
 
       <button
         onClick={goToNextPage}
