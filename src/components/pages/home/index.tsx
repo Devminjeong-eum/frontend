@@ -34,7 +34,7 @@ export default function Home() {
             limit={10}
             setCurrent={setCurrent}
             current={current}
-            style="flex gap-4 mx-auto mt-[37px] -mb-[22px]"
+            style="mx-auto mt-[37px] -mb-[22px]"
           />
         )}
       </main>
