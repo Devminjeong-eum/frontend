@@ -72,7 +72,7 @@ export default function CrownLinearSvg({ className, rank }: Props) {
           <stop
             offset="1"
             stopColor={crownStyles[rank].base[1]}
-            stopOpacity="0.4"
+            stopOpacity="0.6"
           />
         </linearGradient>
         <linearGradient

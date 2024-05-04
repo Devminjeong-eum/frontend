@@ -10,33 +10,54 @@ export default function HomeToggleZone({ handleToggle, isTrending }: Props) {
   const isTrend = isTrending === 'trend';
 
   return (
-    <div className="text-main-blue flex gap-20 mx-auto w-full justify-center relative mb-[16px]">
+    <div className="text-main-blue flex gap-20 mx-auto w-full justify-center relative">
       <div
         className={clsx(
-          'absolute w-[182px] -top-[8px] h-[40px] rounded-full bg-[#ECF0FF] transition-transform duration-300',
-          {
-            '-translate-x-[84px]': isTrending === 'trend',
-            'translate-x-[84px]': isTrending === 'all',
-          },
+          'absolute w-[182px] -top-[8px] h-[40px] rounded-full bg-[#ECF0FF] transition-transform duration-700',
+          isTrend ? '-translate-x-[84px]' : 'translate-x-[84px]',
         )}
       />
-      <button
-        onClick={() => handleToggle('trend')}
+
+      <p
         className={clsx(
-          'z-10 w-[90px]',
-          isTrend ? 'text-main-blue font-semibold ' : 'text-[#D7DCEB]',
+          'z-10 w-[90px] text-center transition-all duration-700',
+          isTrend
+            ? 'text-main-blue font-semibold '
+            : 'text-[#D7DCEB] translate-x-[180px] opacity-0',
         )}
       >
         트렌딩 단어
-      </button>
+      </p>
+
       <button
-        onClick={() => handleToggle('all')}
+        onClick={() => handleToggle('trend')}
         className={clsx(
-          'z-10',
-          !isTrend ? 'text-main-blue font-semibold ' : 'text-[#D7DCEB] ',
+          'absolute left-[67px] w-[90px] text-[#D7DCEB] transition-opacity duration-1000',
+          isTrend ? 'opacity-0' : 'opacity-100',
+        )}
+      >
+        {!isTrend && '트렌딩 단어'}
+      </button>
+
+      <p
+        className={clsx(
+          'text-center z-10 w-[100px] transition-all duration-700',
+          !isTrend
+            ? 'text-main-blue font-semibold '
+            : 'text-[#D7DCEB] -translate-x-[180px] opacity-0',
         )}
       >
         모든 용어 보기
+      </p>
+
+      <button
+        onClick={() => handleToggle('all')}
+        className={clsx(
+          ' absolute right-[63.5px] text-[#D7DCEB] transition-opacity duration-1000',
+          isTrend ? 'opacity-100' : 'opacity-0',
+        )}
+      >
+        {isTrend && '모든 용어 보기'}
       </button>
     </div>
   );

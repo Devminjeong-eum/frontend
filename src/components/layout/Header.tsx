@@ -26,7 +26,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="bg-main-gradiant-top h-[48px] flex items-center p-6 justify-between border-none">
+      <div className="bg-main-gradient-top h-[48px] flex items-center p-6 justify-between border-none">
         <div className="flex-1">
           <Link href={WORD_LIST_PATH}>
             <LogoTextSvg />

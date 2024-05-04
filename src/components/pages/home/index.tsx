@@ -29,7 +29,7 @@ function TrendingPosts() {
 
 function AllPosts({ data, current, setCurrent }: TAllPostsProps) {
   return (
-    <>
+    <div className="flex flex-col gap-[7px] mt-[17px]">
       {data?.data?.map((item) => <HomeItem key={item.wordId} {...item} />)}
       <Pagination
         viewPaginationNums={4}
@@ -38,7 +38,7 @@ function AllPosts({ data, current, setCurrent }: TAllPostsProps) {
         setCurrent={setCurrent}
         current={current}
       />
-    </>
+    </div>
   );
 }
 
@@ -55,7 +55,7 @@ export default function HomeClientPage() {
     <main className="p-5 rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[8px]">
       <HomeToggleZone handleToggle={handleToggle} isTrending={isTrending} />
 
-      {isTrending === 'trend' ? (
+      {isTrending ? (
         <TrendingPosts />
       ) : (
         <AllPosts data={data} current={current} setCurrent={setCurrent} />
