@@ -7,19 +7,15 @@ fetch Type
 */
 
 type FetchParameters = Parameters<typeof fetch>;
-
 type Promiseable<T> = T | Promise<T>;
 
-type Nullable<T> = T | null;
-
-type Params = Record<
-  'params',
-  Record<string, number | boolean | string | null | undefined>
->;
+type Params = {
+  params?: Record<string, number | boolean | string | null | undefined>;
+};
 
 type ValueOf<T> = T[keyof T];
 
-type Options = NonNullable<FetchParameters[1]> & Nullable<Params>;
+type Options = NonNullable<FetchParameters[1]> & Params;
 
 export type HTTPClient<Res = Response> = ReturnType<typeof httpClient<Res>>;
 
