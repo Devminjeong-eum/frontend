@@ -23,6 +23,7 @@ export type PaginationPropType = {
   viewPaginationNums?: number; // 보여줄 페이지 개수, 기본값 4
   setCurrent: (value: number | ((prevCurrent: number) => number)) => void;
   current: number;
+  style?: string;
 };
 
 export type TextSlicePrams = {

@@ -3,7 +3,7 @@ import { getWordDetailPath } from '@/routes/path.ts';
 import { useRouter } from 'next/navigation';
 import HeartSvg from '@/components/svg-component/HeartSvg';
 
-export default function HomeItem({
+export default function WordItem({
   wordId,
   wordName,
   wordDescription,
