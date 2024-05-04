@@ -12,9 +12,6 @@ export default {
         'main-gray': '#5E5E5E',
         'quiz-red': '#912828',
         'quiz-blue': '#0C3FC1',
-
-        // 'rank-gradiant-one':
-        //   'linear-gradient(to left, rgba(27, 66, 204,0.97), rgba(33, 72, 210, 0.8), rgba(40, 79, 216,0.62), rgba(44, 83, 220, 0.02))',
       },
 
       backgroundImage: {
@@ -23,18 +20,16 @@ export default {
         'main-gradiant-bottom': 'linear-gradient(to bottom, #4557DA, #6E5ED9)',
         'gradiant-quiz': 'linear-gradient(to bottom, #194FDC, #6E5ED9)',
 
-        // 순위 리니어 1,2,3
-        // 1
+        // trending-posts-linear-color
+        // 1 순위
         'rank-gradiant-one':
-          'linear-gradient(to left, rgba(27, 66, 204,0.97), rgba(33, 72, 210, 0.8), rgba(40, 79, 216,0.62), rgba(44, 83, 220, 0.23))',
-
-        // 2
+          'linear-gradient(to right, #9AACED, #4F6EDB, #1B42CC)',
+        // 2 순위
         'rank-gradiant-two':
-          'linear-gradient(to left, rgba(57, 74, 227,0.84), rgba(55, 72, 225, 0.74), rgba(51, 68, 224,0.59), rgba(44, 62, 220, 0.34),rgba(44, 83, 220, 0.1))',
-
-        // 3
+          'linear-gradient(to right, #C6CCF5, #8993ED, #616FE8)',
+        // 3 순위
         'rank-gradiant-three':
-          'linear-gradient(to left, rgba(44, 83, 220,0.76), rgba(44, 83, 220,0.15))',
+          'linear-gradient(to right, #F0F3FC, #E6EBFB, #DDE3F9)',
       },
       boxShadow: {
         base: '3px 3px 4px 0px rgba(26, 29, 37, 0.01)',
