@@ -56,11 +56,11 @@ export default function HomeTrending() {
             >
               {/* 아이콘 */}
               <div className="relative ">
-                <CrownLinearSvg />
+                <CrownLinearSvg rank={String(index + 1)} />
                 <p
                   className={clsx(
                     'absolute text-[10px] left-[10px] top-3',
-                    index !== 2 ? 'text-white' : 'text-main-blue',
+                    index < 2 ? 'text-white' : 'text-main-blue',
                   )}
                 >
                   {index + 1}

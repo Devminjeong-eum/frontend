@@ -1,6 +1,39 @@
-import React from 'react';
+type TCrownStyles = {
+  [key: string]: {
+    base: string[];
+    stop: string[];
+    id: string;
+    fillUrl: string;
+  };
+};
 
-export default function CrownLinearSvg({ className }: { className?: string }) {
+const crownStyles: TCrownStyles = {
+  '1': {
+    base: ['#4F72EA', '#5072E7'],
+    stop: ['#6583EE', '#6583EE'],
+    id: 'paint0_linear_1110_2229',
+    fillUrl: 'url(#paint0_linear_1110_2229)',
+  },
+  '2': {
+    base: ['#878CFF', '#9296FF'],
+    stop: ['#86A1FF', '#86A1FF'],
+    id: 'paint0_linear_1110_2254',
+    fillUrl: 'url(#paint0_linear_1110_2254)',
+  },
+  '3': {
+    base: ['#B1C2FF', '#D2DCFF'],
+    stop: ['#C6D3FF', '#C6D3FF'],
+    id: 'paint0_linear_1319_2235',
+    fillUrl: 'url(#paint0_linear_1319_2235)',
+  },
+};
+
+type Props = {
+  className?: string;
+  rank: string;
+};
+
+export default function CrownLinearSvg({ className, rank }: Props) {
   return (
     <svg
       className={className}
@@ -12,41 +45,50 @@ export default function CrownLinearSvg({ className }: { className?: string }) {
     >
       <g opacity="0.4">
         <ellipse
-          cx="13.501"
-          cy="3.76925"
-          rx="3.76769"
-          ry="3.76925"
-          fill="url(#paint0_linear_1071_2201)"
+          cx="13.5022"
+          cy="3.76919"
+          rx="3.76798"
+          ry="3.76919"
+          fill={crownStyles[rank].fillUrl}
         />
       </g>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M12.706 6.20519C13.0817 5.49638 14.0973 5.49638 14.473 6.20519L18.8912 14.5393C19.1893 15.1016 19.93 15.246 20.4175 14.8369L25.3555 10.6937C26.0853 10.0813 27.1768 10.7395 26.9758 11.6707L23.5087 27.7367C23.4756 27.8902 23.3398 27.9998 23.1827 27.9998H22.2703C22.2703 27.9998 22.2703 27.9999 22.2703 27.9999V27.9999C22.2703 27.9999 22.2703 27.9999 22.2703 27.9999H4.35543C3.88444 27.9999 3.47729 27.6712 3.37793 27.2108L0.024336 11.6707C-0.176613 10.7395 0.914851 10.0814 1.6446 10.6937L6.70639 14.9408C7.19395 15.3499 7.93457 15.2055 8.23268 14.6432L12.706 6.20519Z"
-        fill="url(#paint1_linear_1071_2201)"
+        d="M12.7071 6.20589C13.0829 5.49712 14.0984 5.49712 14.4741 6.20589L18.8927 14.5399C19.1908 15.1022 19.9314 15.2466 20.419 14.8375L25.3578 10.694C26.0875 10.0817 27.1789 10.7399 26.978 11.671L23.6241 27.211C23.5247 27.6714 23.1176 28.0001 22.6466 28.0001H22.2721H4.73027H4.35577C3.88478 28.0001 3.47764 27.6714 3.37827 27.211L0.0244011 11.671C-0.176562 10.7399 0.914858 10.0817 1.64463 10.694L6.70726 14.9414C7.19481 15.3505 7.93538 15.206 8.2335 14.6438L12.7071 6.20589Z"
+        fill={crownStyles[rank].fillUrl}
       />
+
       <defs>
         <linearGradient
-          id="paint0_linear_1071_2201"
-          x1="13.501"
+          id={crownStyles[rank].id}
+          x1="13.5022"
           y1="0"
-          x2="13.501"
-          y2="7.5385"
+          x2="13.5022"
+          y2="9.94073"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#878CFF" />
-          <stop offset="1" stopColor="#86A1FF" stopOpacity="0.08" />
+          <stop stopColor={crownStyles[rank].base[0]} />
+          <stop
+            offset="1"
+            stopColor={crownStyles[rank].base[1]}
+            stopOpacity="0.4"
+          />
         </linearGradient>
         <linearGradient
-          id="paint1_linear_1071_2201"
-          x1="13.5001"
-          y1="5.67358"
-          x2="13.5001"
-          y2="27.9999"
+          id={crownStyles[rank].id}
+          x1="13.5012"
+          y1="5.67432"
+          x2="13.5012"
+          y2="29.0813"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#9296FF" />
-          <stop offset="1" stopColor="#86A1FF" stopOpacity="0.12" />
+          <stop stopColor={crownStyles[rank].stop[0]} />
+          <stop
+            offset="1"
+            stopColor={crownStyles[rank].stop[1]}
+            stopOpacity="0.12"
+          />
         </linearGradient>
       </defs>
     </svg>
