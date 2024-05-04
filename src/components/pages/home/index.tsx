@@ -55,7 +55,7 @@ export default function HomeClientPage() {
     <main className="p-5 rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[8px]">
       <HomeToggleZone handleToggle={handleToggle} isTrending={isTrending} />
 
-      {isTrending ? (
+      {isTrending === 'trend' ? (
         <TrendingPosts />
       ) : (
         <AllPosts data={data} current={current} setCurrent={setCurrent} />
