@@ -30,6 +30,14 @@ export default {
         // 3 순위
         'rank-gradient-three':
           'linear-gradient(to right, #F0F3FC, #E6EBFB, #DDE3F9)',
+
+        // wordbook
+        'wordbook-gradient':
+          'linear-gradient(180deg, #194FDC -16.93%, #1B50DC -16.92%, #4557DA 39.77%, #4657DA 41.55%, #6E5ED9 96.61%)',
+
+        // QuizBanner
+        'quiz-banner-circle-gradient':
+          'linear-gradient(133.25deg, #294cd1 -7.96%, rgba(97, 122, 218, 0.425) 43.43%, rgba(123, 129, 153, 0) 83%)',
       },
       boxShadow: {
         base: '3px 3px 4px 0px rgba(26, 29, 37, 0.01)',

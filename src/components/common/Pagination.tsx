@@ -3,12 +3,34 @@ import OneButtonSvg from '@/components/svg-component/OneButtonSvg';
 import usePagination from '@/hooks/usePagination';
 import { PaginationPropType } from '@/types/main';
 
+// 총 페이지 개수 < 페이지네이션 단위 인 경우, 페이지네이션 단위까지 disabled한 버튼을 추가적으로 생성하는 함수
+const createFixedButtons = (
+  totalPage: number,
+  viewPaginationNums: number = 4,
+) => {
+  const buttons = [];
+
+  for (let i = 1; i <= viewPaginationNums - totalPage; i++) {
+    const page = totalPage + i;
+
+    buttons.push(
+      <div key={page} className="flex gap-[12px]">
+        <button className="text-[18px] text-[#D7DCEB]" disabled={true}>
+          {page}
+        </button>
+      </div>,
+    );
+  }
+  return buttons;
+};
+
 export default function Pagination({
   limit = 10,
   total = 100,
   viewPaginationNums = 4,
   setCurrent,
   current,
+  style,
 }: PaginationPropType) {
   const {
     onChangePage,
@@ -25,7 +47,7 @@ export default function Pagination({
   const startPage = calculateStartPage();
 
   return (
-    <div className="flex gap-4 mx-auto my-[22px] min-w-[264px]">
+    <div className={`flex gap-4 ${style || ''}`}>
       <button
         onClick={goToFirstPage}
         disabled={noPrev}
@@ -60,6 +82,9 @@ export default function Pagination({
           );
         },
       )}
+
+      {totalPages < viewPaginationNums &&
+        createFixedButtons(totalPages, viewPaginationNums)}
 
       <button
         onClick={goToNextPage}

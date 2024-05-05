@@ -1,10 +1,10 @@
 'use client';
 
-import Pagination from '@/components/pages/home/Pagination';
+import Pagination from '@/components/common/Pagination';
 import { useState } from 'react';
 import usePosts from '@/hooks/query/usePosts';
-import HomeItem from './HomeItem';
 import { Dispatch, SetStateAction } from 'react';
+import WordItem from '@/components/common/WordItem';
 import HomeTrending from './HomeTrending';
 import HomeToggleZone from './HomeToggleZone';
 import { MainItemType } from '@/types/main';
@@ -30,8 +30,9 @@ function TrendingPosts() {
 function AllPosts({ data, current, setCurrent }: TAllPostsProps) {
   return (
     <div className="flex flex-col gap-[7px] mt-[17px]">
-      {data?.data?.map((item) => <HomeItem key={item.wordId} {...item} />)}
+      {data?.data?.map((item) => <WordItem key={item.wordId} {...item} />)}
       <Pagination
+      style='mx-auto my-[22px] min-w-[264px]'
         viewPaginationNums={4}
         total={data.totalItems || 0}
         limit={10}
