@@ -25,7 +25,7 @@ export default function WordDetailClientPage({ wordId }: Props) {
 
   return (
     <div>
-      <div className="bg-main-gradiant-full px-[16px]">
+      <div className="bg-main-gradient-full px-[16px]">
         <header className="w-full">
           <DetailHeader />
         </header>
