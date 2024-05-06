@@ -3,8 +3,9 @@ import QuizScore from './QuizScore';
 import type { UserAnswer } from '@/types/quiz';
 import QuizResultDetail from './QuizResultDetail';
 import { Dispatch, SetStateAction, useState } from 'react';
-import ShareButton from '@/components/svg-component/ShareButton';
+import ShareButtonSvg from '@/components/svg-component/ShareButton';
 import Quiz from '.';
+import Link from 'next/link';
 
 type QuizResultProps = {
   score: number;
@@ -32,7 +33,9 @@ export default function QuizResult({
           <BlackBackSpaceSVG />
         </button>
         <div className=" m-auto font-medium pr-3">TEST 결과</div>
-        <ShareButton />
+        <Link href={'/quiz/share'}>
+          <ShareButtonSvg />
+        </Link>
       </header>
       <QuizScore resultScore={resultScore} />
       <QuizResultDetail userAnswer={userAnswer} setUserAnswer={setUserAnswer} />
