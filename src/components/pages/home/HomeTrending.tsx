@@ -1,63 +1,174 @@
-import CrownSvg from '@/components/svg-component/CrownSvg';
-import TriangleSvg from '@/components/svg-component/TriangleSvg';
+'use client';
+import CrownLinearSvg from '@/components/svg-component/CrownLinearSvg';
+import FillArrowSvg from '@/components/svg-component/FillArrowSvg';
+import clsx from 'clsx';
+import { useEffect, useState } from 'react';
 
-/**
- * FIXME: 일단 에셋 가져와서 단순 퍼블리싱만 해두고 픽스되면 수정 예정할 컴포넌트
- * 여름과 논의 한 결과 메인 홈 페이지에서 토글로 전체 사전/트렌딩 단어로 수정할 예정
- * 토글 상태관리도 추후 적용 예정 (부모의 상태에 따라 같은 컴포넌트 내에서 다르게 보여줄 것인지 등)
- */
+function DescriptionZone() {
+  return (
+    <div className="ml-[26px] mt-[44px]">
+      <p className="text-main-charcoal text-[18px] leading-[16px] font-medium">
+        사람들이 이번 주에
+      </p>
+      <p className="text-main-balck text-[22px] leading-[16px] mt-3 font-semibold">
+        이 용어를 가장 많이 찾아봤어요!
+      </p>
+      <p className="text-[#9E9EA3] text-[12px] leading-[16px] mt-[16px] font-medium">
+        * 매주 월요일 업데이트 예정
+      </p>
+    </div>
+  );
+}
+
+// FIXME: 아래의 주석 코드는 나중에 데이터 타입을 받게 되면 넣을 것들아래나중에 데이터 타입 의논 한 후
+// function TopRanking({ items }) {
+function TopRanking() {
+  const [isMount, setIsMount] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsMount(true), 300);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const dummyItems = [1, 2, 3];
+
+  return (
+    <div className="mt-[28px] w-full ">
+      <div className="-mx-[20px] min-h-[219px] overflow-x-hidden">
+        {dummyItems.map((item, index) => (
+          <div
+            key={index}
+            className={clsx(
+              'h-[72px] rounded-r-[100px] flex items-center pl-[34px] transition-transform ',
+              {
+                'mt-[4px]': index !== 0,
+                'w-[340px] bg-rank-gradient-one duration-700 ': index === 0,
+                'w-[316px] bg-rank-gradient-two duration-1000': index === 1,
+                'w-[292px] bg-rank-gradient-three h-[67px] duration-[1300ms]':
+                  index === 2,
+              },
+              {
+                '-translate-x-full': !isMount,
+                'translate-x-0': isMount,
+              },
+            )}
+          >
+            {/* 크라운, 순위 컨테이너 */}
+            <div className="relative">
+              <CrownLinearSvg rank={String(index + 1)} />
+              <p
+                className={clsx(
+                  'absolute text-[10px] top-3 font-bold  left-[10.5px]',
+                  {
+                    'text-[white]': index !== 2,
+                    'text-[#4969D5]': index === 2,
+                    'left-[11.1px]': index === 0,
+                  },
+                )}
+              >
+                {index + 1}
+              </p>
+            </div>
+
+            {/* 영단어, 발음, 발음기호 컨테이너 */}
+            <div className="ml-[20px] flex-1 items-end">
+              {/* 영단어 */}
+              <p
+                className={clsx(
+                  'text-white text-[18px] font-semibold',
+                  item === 2 && 'text-[#334EAF]',
+                )}
+              >
+                {item}
+              </p>
+
+              {/* 발음 및 발음 기호 */}
+              <span className="flex items-center gap-[3px] text-[14px] leading-[14px]">
+                <p
+                  className={clsx(
+                    index !== 2
+                      ? 'text-white/80 font-medium line-clamp-1'
+                      : 'text-[#5C6892]',
+                  )}
+                >
+                  {item}
+                </p>
+                <p
+                  className={clsx('font-light', {
+                    'text-white/50 ': index !== 2,
+                    'text-[#5C6892]/50': index === 2,
+                  })}
+                >
+                  {item}
+                </p>
+              </span>
+            </div>
+            <div
+              className={clsx(
+                'mr-[22px] bg-white/20 rounded-xl w-[34px] h-[17px] px-[3px] text-white flex items-center justify-center',
+                {
+                  'text-[#495685]': index === 2,
+                },
+              )}
+            >
+              <FillArrowSvg />
+              {/* <p className="text-[10px]">{item.rankChange}</p> */}
+              <p className="text-[10px]">{item}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// function GeneralRanking({ items }) {
+function GeneralRanking() {
+  const dummyItems = [4, 5, 6, 7, 8, 9, 10];
+  return (
+    <div className="w-full mt-[22px] border-[#F2F4F9] border-[1px] rounded-2xl px-4 py-[22px]">
+      {dummyItems.map((item, index) => (
+        <div
+          key={index}
+          className={clsx(
+            'h-[54px] border-[#ECEEF5] border-b-[1px] w-full flex items-center',
+            index === 0 && '-mt-[6px]',
+            index === dummyItems.length - 1 && 'border-none',
+          )}
+        >
+          {/* 순위 */}
+          <p className="font-semibold text-[#AAB2D0] text-[11px] ml-[20px]">
+            {item}
+          </p>
+
+          {/* 영단어 컨테이너 */}
+          <span className="flex ml-[29px] gap-[6px] flex-1 items-end ">
+            <p className="text-[16px] text-main-black">{item}</p>
+            <span className="text-[#F2F4F9]">|</span>
+            <p className="text-[#6F6F80] text-[14px]">{item}</p>
+          </span>
+
+          {/* 순위 등락 컨테이너  */}
+          <div className="mr-[22px] bg-[#F4F6FB] rounded-xl w-[34px] h-[17px] px-[3px] text-main-blue flex items-center justify-center">
+            <FillArrowSvg />
+            <p className="text-[10px]">{item}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function HomeTrending() {
+  // 추후 fetch logic 추가
+
   return (
     <>
-      <h1 className="text-center text-main-black text-[20px] font-semibold">
-        사용자가 많이 찾아본 개발 용어
-      </h1>
-      <div className="flex gap-[4px] ">
-        {Array.from({ length: 3 }, (_, index) => (
-          <div key={index} className="flex flex-col justify-end items-center">
-            <div className=" relative justify-center flex">
-              <CrownSvg />
-              <p
-                className={` font-extrabold  absolute  ${index === 1 ? 'top-[6px] left-[10px] text-main-blue text-[14px]' : 'top-[8px] left-[10px] text-main-blue/70 text-[12px]'}`}
-              >
-                {index === 0 ? 2 : index === 1 ? 1 : 3}
-              </p>
-            </div>
-            <div
-              className={`flex flex-col items-center w-[127px] ${index === 0 ? 'h-[84px]' : index === 1 ? 'h-[108px]' : 'h-[64px]'} bg-white  ring-1 ring-[#F2F4F9] rounded-t-2xl`}
-            >
-              <p className="mt-[14px] text-[20px] leading-[17px] font-semibold text-main-blue">
-                Asset
-              </p>
-              <p className="text-[14px] flex-1">에셋</p>
-              <div className="flex items-center justify-center mb-[6px] w-[29px] h-[16px] rounded-2xl ring-1 ring-[#EDF1FF]">
-                <TriangleSvg />
-                <p className="text-[10px] font-semibold text">1</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="flex flex-col gap-[6px]">
-        {Array.from({ length: 7 }, (_, index) => (
-          <div key={index} className="flex ">
-            <div
-              className={`flex gap-[8px] items-center w-full ring-1 ring-[#EDF1FF] bg-white rounded-2xl h-[49px]`}
-            >
-              <p className="ml-[19px] text-main-blue font-extrabold">
-                {index + 4}
-              </p>
-              <p className="ml-[4px] text-main-black text-[14px] font-semibold">
-                Asset
-              </p>
-              <span className="text-[#F2F4F9]">|</span>
-              <p className="text-[13px] text-main-charcoa">에셋</p>
-            </div>
-          </div>
-        ))}
-      </div>
+      <DescriptionZone />
+      <TopRanking />
+      <GeneralRanking />
+      {/* <TopRanking items={data.slice(0,3)} /> */}
+      {/* <GeneralRanking items={data.slice(3)} /> */}
     </>
   );
 }

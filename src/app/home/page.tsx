@@ -1,6 +1,5 @@
 import Spinner from '@/components/common/Spinner';
 import Header from '@/components/layout/Header';
-
 import HomeClientPage from '@/components/pages/home';
 import QUERY_KEYS from '@/constants/queryKey';
 import { fetchFakeData_Home } from '@/hooks/query/usePosts';
