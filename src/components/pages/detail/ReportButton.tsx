@@ -6,7 +6,7 @@ const REPORT_FORM_URL = 'https://forms.gle/McGVzfsVT9SQkt1g8';
 export default function ReportButton() {
   return (
     <a href={REPORT_FORM_URL} target="_blank">
-      <div className="w-full h-[74px] mt-2 bg-[#F1F4FA] flex justify-between items-center rounded-[16px] px-[18px]">
+      <div className="w-full h-[74px] mt-2 bg-[#F1F4FA] flex justify-between items-center rounded-[16px] px-[18px] shadow-base">
         <div className="flex gap-3">
           <NoticeIconSvg />
           <div>
