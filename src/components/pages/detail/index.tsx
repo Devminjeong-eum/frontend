@@ -6,6 +6,7 @@ import WrongSvg from '@/components/svg-component/WrongSvg.tsx';
 import useWordDetail from '@/hooks/query/useWordDetail.ts';
 import DetailHeader from './DetailHeader.tsx';
 import LikeButton from '@/components/pages/detail/LikeButton.tsx';
+import ReportButton from '@/components/pages/detail/ReportButton.tsx';
 
 type Props = {
   wordId: number;
@@ -87,6 +88,7 @@ export default function WordDetailClientPage({ wordId }: Props) {
               ))}
           </div>
         )}
+        <ReportButton />
       </main>
     </div>
   );
