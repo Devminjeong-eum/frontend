@@ -4,9 +4,9 @@ import { useWordSearch } from '@/hooks/query/useWordSearch';
 import Error from '../error';
 import SearchItem from './SearchItem';
 import { SearchWordData } from '@/hooks/query/useWordSearch';
-import { useState } from 'react';
-import Pagination from '../home/Pagination';
 import NotFoundWord from './NotFoundWord';
+// import { useState } from 'react';
+// import Pagination from '../home/Pagination';
 
 type Props = {
   wordName: string;
@@ -14,7 +14,7 @@ type Props = {
 
 export default function SearchClientPage({ wordName }: Props) {
   const { data, error } = useWordSearch(wordName);
-  const [current, setCurrent] = useState(1);
+  // const [current, setCurrent] = useState(1);
 
   if (data.data.data.length === 0) return <NotFoundWord wordName={wordName} />;
 
@@ -25,7 +25,7 @@ export default function SearchClientPage({ wordName }: Props) {
         {data.data.data.map((item: SearchWordData) => (
           <SearchItem key={item.id} item={item} />
         ))}
-        {data && (
+        {/* {data && (
           <Pagination
             viewPaginationNums={4}
             total={data?.totalItems || 0}
@@ -33,7 +33,7 @@ export default function SearchClientPage({ wordName }: Props) {
             setCurrent={setCurrent}
             current={current}
           />
-        )}
+        )} */}
       </main>
     </>
   );
