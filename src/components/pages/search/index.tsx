@@ -1,12 +1,12 @@
 'use client';
 
-import BigMagnifierSvg from '@/components/svg-component/BigMagnifierSvg';
 import { useWordSearch } from '@/hooks/query/useWordSearch';
 import Error from '../error';
 import SearchItem from './SearchItem';
 import { SearchWordData } from '@/hooks/query/useWordSearch';
 import { useState } from 'react';
 import Pagination from '../home/Pagination';
+import NotFoundWord from './NotFoundWord';
 
 type Props = {
   wordName: string;
@@ -16,15 +16,7 @@ export default function SearchClientPage({ wordName }: Props) {
   const { data, error } = useWordSearch(wordName);
   const [current, setCurrent] = useState(1);
 
-  if (data.data.data.length === 0)
-    return (
-      <div className="flex flex-col justify-center items-center pt-[200px] ">
-        <BigMagnifierSvg />
-        <div className="mt-5 text-[#A8AEBC]">
-          앗! {wordName}에 대한 검색 결과가 없어요.
-        </div>
-      </div>
-    );
+  if (data.data.data.length === 0) return <NotFoundWord wordName={wordName} />;
 
   return (
     <>
