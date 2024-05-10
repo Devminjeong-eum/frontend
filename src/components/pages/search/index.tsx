@@ -1,50 +1,48 @@
 'use client';
 
-// import axios from 'axios';
+import BigMagnifierSvg from '@/components/svg-component/BigMagnifierSvg';
+import { useWordSearch } from '@/hooks/query/useWordSearch';
+import Error from '../error';
+import SearchItem from './SearchItem';
+import { SearchWordData } from '@/hooks/query/useWordSearch';
+import { useState } from 'react';
+import Pagination from '../home/Pagination';
 
-// import { useQuery } from '@tanstack/react-query';
-// import BigMagnifierSvg from '@/components/svgComponent/BigMagnifierSvg';
-// import SearchItem from '@/components/pages/search/SearchItem';
-
-export type SearchWord = {
-  wordId: number;
+type Props = {
   wordName: string;
-  wordDescription: string;
-  wordSpeak: string;
-  wordDiacritic: string;
 };
 
-export default function Search_Client() {
-  // const { wordName } = useParams();
+export default function SearchClientPage({ wordName }: Props) {
+  const { data, error } = useWordSearch(wordName);
+  const [current, setCurrent] = useState(1);
 
-  // const { data: searchWord } = useQuery({
-  //   queryKey: ['getSearchWord', wordName],
-  //   queryFn: () =>
-  //     axios.get(
-  //       `http://3.37.179.21:8080/api/word/search?page=1&size=10&wordName=${wordName}`,
-  //     ),
-  //   enabled: !!wordName,
-  // });
-
-  // if (searchWord?.data.wordAll.length === 0)
-  //   return (
-  //     <div className="flex flex-col justify-center items-center pt-[200px] ">
-  //       <BigMagnifierSvg />
-  //       <div className="mt-5 text-[#A8AEBC]">
-  //         앗! {wordName}에 대한 검색 결과가 없어요.
-  //       </div>
-  //     </div>
-  //   );
+  if (data.data.data.length === 0)
+    return (
+      <div className="flex flex-col justify-center items-center pt-[200px] ">
+        <BigMagnifierSvg />
+        <div className="mt-5 text-[#A8AEBC]">
+          앗! {wordName}에 대한 검색 결과가 없어요.
+        </div>
+      </div>
+    );
 
   return (
-    <div className="p-5 rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[12px]">
-      {/* {searchWord?.data?.wordAll.map((item: SearchWord) => (
-        <SearchItem key={item.[wordId]} item={item} />
-      ))} */}
-      {['1', '2', '3', '4'].map(() => (
-        // <SearchItem key={item} item={item} />
-        <div />
-      ))}
-    </div>
+    <>
+      {error && <Error />}
+      <main className="p-5 rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[8px]">
+        {data.data.data.map((item: SearchWordData) => (
+          <SearchItem key={item.id} item={item} />
+        ))}
+        {data && (
+          <Pagination
+            viewPaginationNums={4}
+            total={data?.totalItems || 0}
+            limit={10}
+            setCurrent={setCurrent}
+            current={current}
+          />
+        )}
+      </main>
+    </>
   );
 }
