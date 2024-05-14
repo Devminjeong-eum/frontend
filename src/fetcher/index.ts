@@ -11,3 +11,14 @@ export const getWordDetail = async (wordId: string) => {
     notFound();
   }
 };
+
+export const login = async (code: string) => {
+  try {
+    return await backendFetch(`/auth/kakao`, {
+      params: { code },
+    });
+  } catch (e) {
+    console.error('login error: ', e);
+    throw e;
+  }
+};
