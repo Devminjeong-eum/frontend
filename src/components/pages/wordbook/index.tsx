@@ -11,7 +11,7 @@ import NoWordSvg from '@/components/svg-component/NoWordSvg';
 import ArrowDownSvg from '@/components/svg-component/ArrowDownSvg';
 import { WORD_LIST_PATH } from '@/routes/path';
 
-export default function MyWordbook() {
+export default function Wordbook() {
   const [current, setCurrent] = useState(1);
   const { data: { data: wordData, totalItems } = {} } = usePosts(current);
 

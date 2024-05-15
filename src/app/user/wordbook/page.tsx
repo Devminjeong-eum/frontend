@@ -1,5 +1,5 @@
-import MyWordbook from '@/components/pages/wordbook';
+import Wordbook from '@/components/pages/wordbook';
 
-export default function MyWordbookPage() {
-  return <MyWordbook />;
+export default function WordbookPage() {
+  return <Wordbook />;
 }
