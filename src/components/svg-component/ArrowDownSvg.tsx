@@ -1,4 +1,4 @@
-export default function ArrowDownSvg() {
+export default function ArrowDownSvg({ className }: { className?: string }) {
   return (
     <svg
       width="24"
@@ -13,6 +13,7 @@ export default function ArrowDownSvg() {
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
+        className={className}
       />
     </svg>
   );
