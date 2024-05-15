@@ -25,7 +25,7 @@ export const getSearchWord = async (wordName: string) => {
 
 export const useWordSearch = (wordName: string) => {
   return useSuspenseQuery<SearchWord>({
-    queryKey: [QUERY_KEYS.HOME_KEY, wordName],
+    queryKey: [QUERY_KEYS.SEARCH_KEY, wordName],
     queryFn: () => getSearchWord(wordName),
     staleTime: 1000 * 60 * 3600,
   });
