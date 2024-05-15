@@ -1,15 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import MyWordbookHeader from '@/components/pages/my-wordbook/MyWordbookHeader';
-import QuizBanner from '@/components/pages/my-wordbook/QuizBanner';
+import Link from 'next/link';
+import WordbookHeader from '@/components/pages/wordbook/WordbookHeader';
+import QuizBanner from '@/components/pages/wordbook/QuizBanner';
 import usePosts from '@/hooks/query/usePosts';
 import WordItem from '@/components/common/WordItem';
 import Pagination from '../../common/Pagination';
 import NoWordSvg from '@/components/svg-component/NoWordSvg';
-import Link from 'next/link';
-import { WORD_LIST_PATH } from '@/routes/path';
 import ArrowDownSvg from '@/components/svg-component/ArrowDownSvg';
+import { WORD_LIST_PATH } from '@/routes/path';
 
 export default function MyWordbook() {
   const [current, setCurrent] = useState(1);
@@ -18,7 +18,7 @@ export default function MyWordbook() {
   return (
     <div>
       <div className="bg-wordbook-gradient h-32">
-        <MyWordbookHeader />
+        <WordbookHeader />
       </div>
       <div className="flex flex-col justify-between">
         <div className="relative bottom-16 flex flex-col">
