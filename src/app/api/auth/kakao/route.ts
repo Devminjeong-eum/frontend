@@ -1,4 +1,3 @@
-// import { redirect } from 'next/navigation';
 import { NextResponse } from 'next/server';
 
 const KAKAO_OAUTH_URL = 'https://kauth.kakao.com/oauth/authorize';

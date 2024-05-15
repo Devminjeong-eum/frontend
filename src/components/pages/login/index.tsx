@@ -19,9 +19,7 @@ export default function Login() {
       </div>
       <div className="w-full flex flex-col gap-2 pb-7">
         <Link href="/api/auth/kakao">
-          <button
-            className="relative flex items-center justify-center bg-[#FFE34E] text-base font-semibold rounded-2xl p-3.5 w-full"
-          >
+          <button className="relative flex items-center justify-center bg-[#FFE34E] text-base font-semibold rounded-2xl p-3.5 w-full">
             <div className="absolute left-6">
               <KakaotalkSvg />
             </div>
@@ -31,10 +29,7 @@ export default function Login() {
           </button>
         </Link>
         <Link href={WORD_LIST_PATH}>
-          <button
-            className="w-full text-base font-semibold text-main-black opacity-60 p-3.5"
-            // onClick={handleClickNonMember}
-          >
+          <button className="w-full text-base font-semibold text-main-black opacity-60 p-3.5">
             비로그인으로 이용하기
           </button>
         </Link>
