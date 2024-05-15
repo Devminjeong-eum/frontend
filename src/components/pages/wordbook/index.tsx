@@ -6,7 +6,7 @@ import WordbookHeader from '@/components/pages/wordbook/WordbookHeader';
 import QuizBanner from '@/components/pages/wordbook/QuizBanner';
 import usePosts from '@/hooks/query/usePosts';
 import WordItem from '@/components/common/WordItem';
-import Pagination from '../../common/Pagination';
+import Pagination from '@/components/common/Pagination';
 import NoWordSvg from '@/components/svg-component/NoWordSvg';
 import ArrowDownSvg from '@/components/svg-component/ArrowDownSvg';
 import { WORD_LIST_PATH } from '@/routes/path';
