@@ -59,11 +59,7 @@ export default function SearchBar() {
           ref={inputRef}
           type="text"
           placeholder={`${isInputFocus ? '' : '궁금한 IT용어를 검색해 보세요.'}`}
-          className={`${
-            isInputFocus
-              ? 'w-full h-[48px] rounded-[16px] ring-1 ring-white/40 pl-5 py-4 outline-none'
-              : 'w-full h-[48px] rounded-[16px] bg-white/20 ring-1 ring-white/40 focus:ring-white/60 pl-5 py-4 outline-none text-white placeholder:text-[#C8CAEB]'
-          }`}
+          className={`w-full h-[48px] rounded-[16px] ring-1 ring-white/60 pl-5 py-4 outline-none ${!isInputFocus && 'bg-white/20 ring-white/40 text-white placeholder:text-[#C8CAEB]'}`}
           onKeyDown={handleSearchKeyDown}
           onFocus={handleInputFocusChange}
         />
