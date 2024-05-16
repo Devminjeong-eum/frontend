@@ -41,7 +41,7 @@ export default function SearchItem({ item }: Props) {
           <button
             className={item.wordLike ? 'text-main-blue' : 'text-[#D3DAED]'}
           >
-            <HeartSvg isLike={item.wordLike} />
+            <HeartSvg />
           </button>
         </div>
 
