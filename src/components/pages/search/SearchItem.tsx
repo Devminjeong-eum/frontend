@@ -1,8 +1,7 @@
-// import { SearchWord } from '.';
 import { getWordDetailPath } from '@/routes/path.ts';
 import { useRouter } from 'next/navigation';
 import HeartSvg from '@/components/svg-component/HeartSvg';
-import { SearchWordData } from '@/hooks/query/useWordSearch';
+import { SearchWordData } from '@/types/search';
 
 type Props = {
   item: SearchWordData;
