@@ -30,7 +30,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="bg-main-gradiant-top h-[48px] flex items-center p-6 justify-between border-none">
+      <div className="bg-main-gradient-top h-[48px] flex items-center p-6 justify-between border-none">
         <div className="flex-1">
           <Link href={WORD_LIST_PATH}>
             <LogoTextSvg />
@@ -40,7 +40,7 @@ export default function Header() {
           <QuizButton />
         </Link>
         <div className="text-[#A8B8FF]">
-          <HeartSvg isLike />
+          <HeartSvg />
         </div>
       </div>
       <SearchBar />

@@ -6,6 +6,7 @@ import WrongSvg from '@/components/svg-component/WrongSvg.tsx';
 import useWordDetail from '@/hooks/query/useWordDetail.ts';
 import DetailHeader from './DetailHeader.tsx';
 import LikeButton from '@/components/pages/detail/LikeButton.tsx';
+import ReportButton from '@/components/pages/detail/ReportButton.tsx';
 
 type Props = {
   wordId: number;
@@ -25,7 +26,7 @@ export default function WordDetailClientPage({ wordId }: Props) {
 
   return (
     <div>
-      <div className="bg-main-gradiant-full px-[16px]">
+      <div className="bg-main-gradient-full px-[16px]">
         <header className="w-full">
           <DetailHeader />
         </header>
@@ -87,6 +88,7 @@ export default function WordDetailClientPage({ wordId }: Props) {
               ))}
           </div>
         )}
+        <ReportButton />
       </main>
     </div>
   );

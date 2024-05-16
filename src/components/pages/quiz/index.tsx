@@ -12,7 +12,7 @@ export default function Quiz() {
   if (isShow) return <QuizPlay />;
 
   return (
-    <div className="px-5 h-screen flex flex-col justify-center items-center bg-main-gradiant-full relative">
+    <div className="px-5 h-screen flex flex-col justify-center items-center bg-main-gradient-full relative">
       <header className="absolute top-6 left-5 cursor-pointer">
         <Link href={WORD_LIST_PATH}>
           <BackButtonSvg />
