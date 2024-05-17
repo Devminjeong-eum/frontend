@@ -15,7 +15,7 @@ export default function Quiz() {
   return (
     <div className="px-5 h-screen flex flex-col justify-center items-center bg-main-gradient-full relative">
       <header className="absolute top-6 left-5 cursor-pointer">
-        <button onClick={() => router.back()}>
+        <button onClick={router.back}>
           <BackButtonSvg />
         </button>
       </header>
