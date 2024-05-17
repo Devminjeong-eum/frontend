@@ -33,11 +33,21 @@ export type TextSlicePrams = {
 };
 
 export type WordDetail = {
-  wordId: number; // id
-  wordName: string; // 단어
-  wordSpeak: string; // 올바른 발음 리스트 (컴마까지 합쳐서 스트링으로)
-  wrongSpeak: string; // 틀린 발음 리스트 (컴마까지 합쳐서 스트링으로)
-  wordDiacritic: string; // 한국 -> 영어 발음 기호
-  wordDescription: string; // 단어 설명
-  wordExample: string | null; // 예문 리스트 ($로 구분)
+  id: string;
+  name: string;
+  description: string;
+  diacritic: string[];
+  pronunciation: string[];
+  wrongPronunciations: string[];
+  // \n으로 구분해 사용
+  exampleSentence: string;
+
+  // NOTE: metadata
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type DefaultRes<TData> = {
+  status: number;
+  data: TData;
 };

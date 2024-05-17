@@ -1,5 +1,5 @@
-import { WordDetail } from '@/types/main.ts';
+import { DefaultRes, WordDetail } from '@/types/main.ts';
 
 export type GetWordDetailFunc = (
-  wordId: number,
-) => Promise<WordDetail | undefined>;
+  wordId: string,
+) => Promise<DefaultRes<WordDetail>>;
