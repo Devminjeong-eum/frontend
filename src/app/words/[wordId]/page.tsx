@@ -41,7 +41,7 @@ export default async function WordsPage({
                 {name}
               </h1>
               <span className="text-[#E1E2F8] font-medium pb-[6px]">
-                {/*{NOTE: 대표 발음은 스프레드시트의 첫 번재 발음으로 합니다}*/}
+                {/*{NOTE: 대표 발음은 스프레드시트의 첫 번째 발음으로 합니다}*/}
                 {pronunciation[0]}
               </span>
             </div>
