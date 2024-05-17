@@ -21,6 +21,9 @@ export default async function WordsPage({
       exampleSentence,
     },
   } = await getWordDetail(wordId);
+
+  const correctWordLen = Math.min(pronunciation.length, diacritic.length);
+
   return (
     <div>
       <div className="bg-main-gradient-full px-[16px]">
@@ -47,10 +50,13 @@ export default async function WordsPage({
                   올바른 발음
                 </span>
                 <>
-                  {}
-                  <span className="text-[13px] text-[#EAEEF8]">
-                    {pronunciation[0]} {diacritic[0]}
-                  </span>
+                  <div className="text-[13px] text-[#EAEEF8]">
+                    {new Array(correctWordLen).fill(0).map((_, idx) => (
+                      <span key={idx}>
+                        {pronunciation[idx]} {diacritic[idx]}
+                      </span>
+                    ))}
+                  </div>
                 </>
               </div>
             </div>
@@ -60,9 +66,8 @@ export default async function WordsPage({
                 <span className="text-[13px] font-semibold text-white">
                   잘못된 발음
                 </span>
-
-                {wrongPronunciations.map((wrongPronunciation) => (
-                  <span className="text-[13px] text-[#EBEBF5]">
+                {wrongPronunciations.map((wrongPronunciation, idx) => (
+                  <span className="text-[13px] text-[#EBEBF5]" key={idx}>
                     {wrongPronunciation}
                   </span>
                 ))}
