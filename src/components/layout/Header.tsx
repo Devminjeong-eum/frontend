@@ -6,7 +6,7 @@ import QuizButton from '@/components/pages/home/QuizButton';
 import { useState } from 'react';
 import useScroll from '@/hooks/useScroll';
 import { useEffect } from 'react';
-import { QUIZ_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
+import { QUIZ_PATH, WORDBOOK_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import HeartSvg from '../svg-component/HeartSvg';
@@ -35,9 +35,11 @@ export default function Header() {
         <Link href={QUIZ_PATH}>
           <QuizButton />
         </Link>
-        <div className="text-[#A8B8FF]">
-          <HeartSvg />
-        </div>
+        <Link href={WORDBOOK_PATH}>
+          <div className="text-[#A8B8FF]">
+            <HeartSvg />
+          </div>
+        </Link>
       </div>
       <SearchBar />
       {!isScrolled && (

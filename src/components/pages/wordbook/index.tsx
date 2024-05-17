@@ -1,23 +1,24 @@
 'use client';
 
 import { useState } from 'react';
-import MyWordbookHeader from '@/components/pages/my-wordbook/MyWordbookHeader';
-import QuizBanner from '@/components/pages/my-wordbook/QuizBanner';
+import Link from 'next/link';
+import WordbookHeader from '@/components/pages/wordbook/WordbookHeader';
+import QuizBanner from '@/components/pages/wordbook/QuizBanner';
 import usePosts from '@/hooks/query/usePosts';
 import WordItem from '@/components/common/WordItem';
-import Pagination from '../../common/Pagination';
+import Pagination from '@/components/common/Pagination';
 import NoWordSvg from '@/components/svg-component/NoWordSvg';
-import Link from 'next/link';
 import { WORD_LIST_PATH } from '@/routes/path';
+import WordbookDropdown from '@/components/pages/wordbook/WordbookDropdown';
 
-export default function MyWordbook() {
+export default function Wordbook() {
   const [current, setCurrent] = useState(1);
   const { data: { data: wordData, totalItems } = {} } = usePosts(current);
 
   return (
     <div>
       <div className="bg-wordbook-gradient h-32">
-        <MyWordbookHeader />
+        <WordbookHeader />
       </div>
       <div className="flex flex-col justify-between">
         <div className="relative bottom-16 flex flex-col">
@@ -29,7 +30,7 @@ export default function MyWordbook() {
                 </div>
               </div>
             </div>
-            <div>저장한순</div>
+            <WordbookDropdown />
           </div>
           {totalItems === 0 ? (
             <div className="bg-[#FBFCFE] h-[calc(100vh-23rem)] flex flex-col justify-center items-center gap-2.5">
