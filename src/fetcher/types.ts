@@ -1,5 +1,19 @@
-import { DefaultRes, WordDetail } from '@/types/main.ts';
+export type WordDetail = {
+  id: string;
+  name: string;
+  description: string;
+  diacritic: string[];
+  pronunciation: string[];
+  wrongPronunciations: string[];
+  // \n으로 구분해 사용
+  exampleSentence: string;
 
-export type GetWordDetailFunc = (
-  wordId: string,
-) => Promise<DefaultRes<WordDetail>>;
+  // NOTE: metadata
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type DefaultRes<TData> = {
+  status: number;
+  data: TData;
+};

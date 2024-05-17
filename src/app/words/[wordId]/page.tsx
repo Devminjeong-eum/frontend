@@ -10,7 +10,7 @@ export default async function WordsPage({
 }: {
   params: { wordId: string };
 }) {
-  const wordId = params.wordId;
+  const { wordId } = params;
   const {
     data: {
       name,
@@ -22,10 +22,11 @@ export default async function WordsPage({
     },
   } = await getWordDetail(wordId);
 
+  /*NOTE: 혹시 모를 발음과 방지를 위해 */
   const correctWordLen = Math.min(pronunciation.length, diacritic.length);
 
   return (
-    <div>
+    <>
       <div className="bg-main-gradient-full px-[16px]">
         <header className="w-full">
           <DetailHeader />
@@ -37,6 +38,7 @@ export default async function WordsPage({
                 {name}
               </h1>
               <span className="text-[#E1E2F8] font-medium pb-[6px]">
+                {/*{NOTE: 대표 발음은 스프레드시트의 첫 번재 발음으로 합니다}*/}
                 {pronunciation[0]}
               </span>
             </div>
@@ -100,6 +102,6 @@ export default async function WordsPage({
         )}
         <ReportButton />
       </main>
-    </div>
+    </>
   );
 }
