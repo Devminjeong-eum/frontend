@@ -5,7 +5,7 @@ export type WordDetail = {
   diacritic: string[];
   pronunciation: string[];
   wrongPronunciations: string[];
-  // \n으로 구분해 사용
+  // NOTE: \n으로 구분해 사용
   exampleSentence: string;
 
   // NOTE: metadata
