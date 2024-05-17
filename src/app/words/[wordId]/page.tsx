@@ -22,7 +22,10 @@ export default async function WordsPage({
     },
   } = await getWordDetail(wordId);
 
-  /*NOTE: 혹시 모를 발음과 방지를 위해 */
+  /*
+  NOTE: 한글 발음 표기 - 영어 발음 표기  1 : 1로 라고 생각함.
+  만약 다를 시 구글 스프레드 시트에서 변경해야 함
+  */
   const correctWordLen = Math.min(pronunciation.length, diacritic.length);
 
   return (
