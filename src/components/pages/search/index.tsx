@@ -3,7 +3,7 @@
 import { useWordSearch } from '@/hooks/query/useWordSearch';
 import Error from '../error';
 import SearchItem from './SearchItem';
-import { SearchWordData } from '@/types/search';
+import type { SearchWordData } from '@/types/search';
 import NotFoundWord from './NotFoundWord';
 
 type Props = {
