@@ -11,7 +11,7 @@ declare global {
 
 export default function useLoadKakaoScript() {
   const { Kakao } = window;
-  console.log(Kakao);
+
   /**
    * NOTE: title, description을 어떻게 처리할지 고민 필요
    * 현재는 props로 내려받는다고 가정하고 동적으로 처리되도록 구현해두었음
