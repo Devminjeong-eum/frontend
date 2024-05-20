@@ -1,6 +1,6 @@
 import BackButton from '@/components/common/BackButton';
 
-export default function MyWordbookHeader() {
+export default function WordbookHeader() {
   return (
     <header className="h-12 flex items-center px-[16px]">
       <div className="flex-1 flex items-center">
