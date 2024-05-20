@@ -9,7 +9,8 @@ export async function GET(request: Request) {
   const code = searchParams.get('code');
 
   if (!code) {
-    console.error('인증에 필요한 code parameter가 query에 없습니다.');
+    // FIXME
+    console.log('인증에 필요한 code parameter가 query에 없습니다.');
     return NextResponse.redirect(`${baseUrl}/api/auth/kakao`);
   }
 
@@ -21,7 +22,8 @@ export async function GET(request: Request) {
       //console.log('쿠키', cookie.getAll());
     }
   } catch (err) {
-    console.error(err);
+    // FIXME
+    console.log(err);
     return NextResponse.redirect(`${baseUrl}`);
   }
 }
