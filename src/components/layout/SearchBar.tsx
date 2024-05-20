@@ -5,6 +5,7 @@ import useScroll from '@/hooks/useScroll';
 import { useRouter } from 'next/navigation';
 import { useRef, useState, useEffect } from 'react';
 import ClearSearchBarSvg from '../svg-component/ClearSearchBarSvg';
+import clsx from 'clsx';
 
 export default function SearchBar() {
   const isScrolled = useScroll();
@@ -27,7 +28,7 @@ export default function SearchBar() {
     return () => document.removeEventListener('pointerdown', handleClick);
   }, []);
 
-  const navigateToSearch = (): void => {
+  const navigateToSearch = () => {
     inputRef.current?.value.trim() &&
       router.push(`/word/search/${inputRef.current.value}`);
     // router.push(`/word/search?keyword=${inputRef.current.value}`);
@@ -59,7 +60,11 @@ export default function SearchBar() {
           ref={inputRef}
           type="text"
           placeholder={`${isInputFocus ? '' : '궁금한 IT용어를 검색해 보세요.'}`}
-          className={`w-full h-[48px] rounded-[16px] ring-1 ring-white/60 pl-5 py-4 outline-none ${!isInputFocus && 'bg-white/20 ring-white/40 text-white placeholder:text-[#C8CAEB]'}`}
+          className={clsx(
+            'w-full h-[48px] rounded-[16px] ring-1 ring-white/60 pl-5 py-4 outline-none',
+            !isInputFocus &&
+              'bg-white/20 ring-white/40 text-white placeholder:text-[#C8CAEB]',
+          )}
           onKeyDown={handleSearchKeyDown}
           onFocus={handleInputFocusChange}
         />
