@@ -14,7 +14,7 @@ export default function SearchBar() {
   const searchBarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
+    const handleClick = (e: PointerEvent) => {
       if (
         searchBarRef.current &&
         !searchBarRef.current.contains(e.target as HTMLElement)
@@ -22,9 +22,9 @@ export default function SearchBar() {
         setIsInputFocus(false);
     };
 
-    document.addEventListener('mousedown', handleClick);
+    document.addEventListener('pointerdown', handleClick);
 
-    return () => document.removeEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('pointerdown', handleClick);
   }, []);
 
   const navigateToSearch = (): void => {
