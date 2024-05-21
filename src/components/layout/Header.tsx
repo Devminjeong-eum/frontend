@@ -16,8 +16,12 @@ const DynamicToolTip = dynamic(() => import('@/components/common/ToolTip'), {
 });
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(true);
   const isScrolled = useScroll();
+  const [isOpen, setIsOpen] = useState(
+    () =>
+      typeof window !== 'undefined' &&
+      sessionStorage.getItem('isOpen') !== 'false',
+  );
 
   useEffect(() => {
     if (sessionStorage.getItem('isOpen')) setIsOpen(false);
@@ -42,9 +46,7 @@ export default function Header() {
         </Link>
       </div>
       <SearchBar />
-      {!isScrolled && (
-        <DynamicToolTip isOpen={isOpen} setIsOpen={() => setIsOpen(false)} />
-      )}
+      {!isScrolled && <DynamicToolTip isOpen={isOpen} setIsOpen={setIsOpen} />}
     </>
   );
 }
