@@ -4,11 +4,22 @@ import type { DefaultRes, WordDetail, SearchWord } from './types.ts';
 
 export const getWordDetail = async (wordId: string) => {
   try {
-    return backendFetch<DefaultRes<WordDetail>>(`/word/${wordId}`);
+    return await backendFetch<DefaultRes<WordDetail>>(`/word/${wordId}`);
   } catch (e) {
     // NOTE: 상황에 맞는 페이지 보여줘야 함.
     console.log('error');
     notFound();
+  }
+};
+
+export const login = async (code: string) => {
+  try {
+    return await backendFetch(`/auth/kakao`, {
+      params: { code },
+    });
+  } catch (e) {
+    console.error('login error: ', e);
+    throw e;
   }
 };
 
