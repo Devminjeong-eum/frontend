@@ -1,4 +1,3 @@
-import { redirect } from 'next/navigation';
 import { NextResponse } from 'next/server';
 
 const KAKAO_OAUTH_URL = 'https://kauth.kakao.com/oauth/authorize';
@@ -23,5 +22,5 @@ export async function GET() {
     kakaoOauthRedirectUri || DEV_KAKAO_REDIRECT_URL,
   );
 
-  return redirect(kakaoOauthUrl.toString());
+  return NextResponse.redirect(kakaoOauthUrl.toString());
 }
