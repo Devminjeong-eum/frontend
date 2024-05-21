@@ -17,3 +17,20 @@ export type DefaultRes<TData> = {
   status: number;
   data: TData;
 };
+
+export type SearchWord = {
+  data: SearchWordData[];
+  page: number;
+  limit: number;
+  isLast: boolean;
+  totalCount: number;
+};
+
+export type SearchWordData = {
+  id: string;
+  name: string;
+  description: string;
+  diacritic: string[];
+  pronunciation: string[];
+  wordLike: boolean;
+};

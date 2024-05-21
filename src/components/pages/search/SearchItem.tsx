@@ -1,20 +1,13 @@
-import { getWordDetailPath } from '@/routes/path.ts';
-import { useRouter } from 'next/navigation';
 import HeartSvg from '@/components/svg-component/HeartSvg';
-import type { SearchWordData } from '@/types/search';
+import type { SearchWordData } from '@/fetcher/types';
 
 type Props = {
   item: SearchWordData;
 };
 
 export default function SearchItem({ item }: Props) {
-  const router = useRouter();
-
   return (
-    <article
-      className=" h-[98px] p-4 w-full ring-1 bg-white ring-[#F2F4F9] hover:ring-[#EFF2F7] rounded-2xl hover:bg-[#F1F4FA] hover:ring-2 cursor-pointer"
-      onClick={() => router.push(getWordDetailPath(item.id))}
-    >
+    <article className=" h-[98px] p-4 w-full ring-1 bg-white ring-[#F2F4F9] hover:ring-[#EFF2F7] rounded-2xl hover:bg-[#F1F4FA] hover:ring-2 cursor-pointer">
       <div className="flex flex-col gap-[10px] relative justify-center">
         <div className="flex justify-between items-center -mt-1">
           <div className="flex flex-wrap items-center gap-2">
