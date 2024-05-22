@@ -1,15 +1,10 @@
 import { notFound } from 'next/navigation';
-import type { GetWordDetailFunc } from './types.ts';
 import { backendFetch } from '@/fetcher/instance.ts';
+import type { DefaultRes, WordDetail, SearchWord } from './types.ts';
 
-export const getWordDetail: GetWordDetailFunc = async (wordId) => {
+export const getWordDetail = async (wordId: string) => {
   try {
-    return await backendFetch<ReturnType<GetWordDetailFunc>>(`/words`, {
-      method: 'GET',
-      params: {
-        wordId,
-      },
-    });
+    return await backendFetch<DefaultRes<WordDetail>>(`/word/${wordId}`);
   } catch (e) {
     // NOTE: 상황에 맞는 페이지 보여줘야 함.
     console.log('error');
@@ -17,16 +12,25 @@ export const getWordDetail: GetWordDetailFunc = async (wordId) => {
   }
 };
 
-// NOTE: 임시 값
-export const putWordLike = async (isLike: boolean) => {
+export const login = async (code: string) => {
   try {
-    return await backendFetch<ReturnType<never>>(`/words/like`, {
-      method: 'PUT',
-      body: JSON.stringify({
-        isLike,
-      }),
+    return await backendFetch(`/auth/kakao`, {
+      params: { code },
     });
   } catch (e) {
-    console.log('error');
+    console.error('login error: ', e);
+    throw e;
+  }
+};
+
+export const getWordSearch = async (wordName: string) => {
+  try {
+    return await backendFetch<DefaultRes<SearchWord>>(
+      `/word/search?keyword=${wordName}&page=1&limit=50`,
+    );
+  } catch (e) {
+    // NOTE: 상황에 맞는 페이지 보여줘야 함.
+    console.log('error', e);
+    notFound();
   }
 };

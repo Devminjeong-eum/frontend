@@ -1,15 +1,12 @@
-'use client';
-
 import KakaotalkSvg from '@/components/svg-component/KakaotalkSvg';
 import { WORD_LIST_PATH } from '@/routes/path.ts';
 import LogoSvg from '@/components/svg-component/LogoSvg';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function Login() {
-  const router = useRouter();
 
-  const handleClickNonMember = () => {
-    router.push(WORD_LIST_PATH);
+  const handleKakaoLogin = () => {
+    window.location.href = '/api/auth/kakao';
   };
 
   return (
@@ -26,23 +23,19 @@ export default function Login() {
         </span>
       </div>
       <div className="w-full flex flex-col gap-2 pb-7">
-        <button className="relative flex items-center justify-center bg-[#FFE34E] text-base font-semibold rounded-2xl p-3.5 w-full">
+        <button className="relative flex items-center justify-center bg-[#FFE34E] text-base font-semibold rounded-2xl p-3.5 w-full" onClick={handleKakaoLogin}>
           <div className="absolute left-6">
             <KakaotalkSvg />
           </div>
-          <span
-            className="text-center text-[#442E2E]"
-            onClick={handleClickNonMember}
-          >
+          <span className="text-center text-[#442E2E]">
             카카오톡으로 시작하기
           </span>
         </button>
-        <button
-          className="w-full text-base font-semibold text-main-black opacity-60 p-3.5"
-          onClick={handleClickNonMember}
-        >
-          비로그인으로 이용하기
-        </button>
+        <Link href={WORD_LIST_PATH}>
+          <button className="w-full text-base font-semibold text-main-black opacity-60 p-3.5">
+            비로그인으로 이용하기
+          </button>
+        </Link>
       </div>
     </div>
   );

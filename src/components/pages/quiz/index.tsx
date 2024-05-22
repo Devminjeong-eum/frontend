@@ -1,22 +1,23 @@
 'use client';
-import Link from 'next/link';
+
 import BackButtonSvg from '@/components/svg-component/BackButtonSvg';
 import ScoreSVG from '@/components/svg-component/ScoreSvg';
-import { WORD_LIST_PATH } from '@/routes/path';
 import QuizPlay from './QuizPlay';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Quiz() {
   const [isShow, setIsShow] = useState(false);
+  const router = useRouter();
 
   if (isShow) return <QuizPlay />;
 
   return (
     <div className="px-5 h-screen flex flex-col justify-center items-center bg-main-gradient-full relative">
       <header className="absolute top-6 left-5 cursor-pointer">
-        <Link href={WORD_LIST_PATH}>
+        <button onClick={router.back}>
           <BackButtonSvg />
-        </Link>
+        </button>
       </header>
       <div className="absolute top-12 right-0">
         <ScoreSVG />
