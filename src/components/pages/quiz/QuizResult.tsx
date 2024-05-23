@@ -5,6 +5,7 @@ import QuizResultDetail from './QuizResultDetail';
 import { Dispatch, SetStateAction, useState } from 'react';
 import ShareButton from '@/components/svg-component/ShareButton';
 import Quiz from '.';
+import useLoadKakaoScript from '@/hooks/useLoadKakaoScript';
 
 type QuizResultProps = {
   score: number;
@@ -17,28 +18,31 @@ export default function QuizResult({
   userAnswer,
   setUserAnswer,
 }: QuizResultProps) {
-  const [isShoww, setIsShoww] = useState(false);
+  const [isShow, setisShow] = useState(false);
   const resultScore = score ? score * 10 : 0;
+  const { handleShare } = useLoadKakaoScript();
 
-  if (isShoww) return <Quiz />;
+  if (isShow) return <Quiz />;
 
   return (
     <div className="relative px-5">
       <header className="flex items-center h-[68px]">
         <button
           className="ml-2 cursor-pointer"
-          onClick={() => setIsShoww(!isShoww)}
+          onClick={() => setisShow(!isShow)}
         >
           <BlackBackSpaceSVG />
         </button>
         <div className=" m-auto font-medium pr-3">TEST 결과</div>
-        <ShareButton />
+        <button onClick={handleShare}>
+          <ShareButton />
+        </button>
       </header>
       <QuizScore resultScore={resultScore} />
       <QuizResultDetail userAnswer={userAnswer} setUserAnswer={setUserAnswer} />
       <button
         className="bg-[#4057DB] rounded-[16px] mt-[24px] mb-[48px] h-[50px] font-semibold text-white w-full text-[16px]"
-        onClick={() => setIsShoww(!isShoww)}
+        onClick={() => setisShow(!isShow)}
       >
         다시 도전하러 가기
       </button>

@@ -3,6 +3,7 @@ import './global.css';
 import localFont from 'next/font/local';
 import QueryProvider from '@/providers/QueryProvider.tsx';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import Script from 'next/script';
 
 const gugi = Gugi({
   weight: '400',
@@ -77,6 +78,7 @@ export default function RootLayout({
             <QueryProvider>{children}</QueryProvider>
           </div>
         </div>
+        <Script src="https://developers.kakao.com/sdk/js/kakao.js" />
       </body>
     </html>
   );
