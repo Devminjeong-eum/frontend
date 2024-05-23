@@ -18,18 +18,18 @@ export default function QuizResult({
   userAnswer,
   setUserAnswer,
 }: QuizResultProps) {
-  const [isShoww, setIsShoww] = useState(false);
+  const [isShow, setisShow] = useState(false);
   const resultScore = score ? score * 10 : 0;
   const { handleShare } = useLoadKakaoScript();
 
-  if (isShoww) return <Quiz />;
+  if (isShow) return <Quiz />;
 
   return (
     <div className="relative px-5">
       <header className="flex items-center h-[68px]">
         <button
           className="ml-2 cursor-pointer"
-          onClick={() => setIsShoww(!isShoww)}
+          onClick={() => setisShow(!isShow)}
         >
           <BlackBackSpaceSVG />
         </button>
@@ -42,7 +42,7 @@ export default function QuizResult({
       <QuizResultDetail userAnswer={userAnswer} setUserAnswer={setUserAnswer} />
       <button
         className="bg-[#4057DB] rounded-[16px] mt-[24px] mb-[48px] h-[50px] font-semibold text-white w-full text-[16px]"
-        onClick={() => setIsShoww(!isShoww)}
+        onClick={() => setisShow(!isShow)}
       >
         다시 도전하러 가기
       </button>
