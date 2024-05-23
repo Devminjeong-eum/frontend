@@ -25,12 +25,39 @@ export const login = async (code: string) => {
 
 export const getWordSearch = async (wordName: string) => {
   try {
-    return await backendFetch<DefaultRes<SearchWord>>(
-      `/word/search?keyword=${wordName}&page=1&limit=50`,
-    );
+    return await backendFetch<DefaultRes<SearchWord>>(`/word/search`, {
+      params: { keyword: wordName, page: 1, limit: 50 },
+    });
   } catch (e) {
     // NOTE: 상황에 맞는 페이지 보여줘야 함.
     console.log('error', e);
     notFound();
+  }
+};
+
+export const updateLike = async (wordId: string) => {
+  try {
+    await backendFetch<DefaultRes<never>>(`/${wordId}`, {
+      method: 'PATCH',
+    });
+  } catch (e) {
+    console.log('error', e);
+
+    // NOTE: 발생할 수 있는 에러
+    // 401 => 권한 없음 => 로그인 모달
+    // 500 => 서버 에러
+  }
+};
+
+export const deleteLike = async (wordId: string) => {
+  try {
+    await backendFetch<DefaultRes<never>>(`/${wordId}`, {
+      method: 'DELETE',
+    });
+  } catch (e) {
+    console.log('error', e);
+    // NOTE: 발생할 수 있는 에러
+    // 401 => 권한 없음 => 로그인 모달
+    // 500 => 서버 에러
   }
 };

@@ -3,14 +3,15 @@
 import { useOptimistic } from 'react';
 import DetailLikeSvg from '@/components/svg-component/DetailLikeSvg.tsx';
 import DetailLikeActiveSvg from '@/components/svg-component/DetailLikeActiveSvg.tsx';
-import { toggleWordLike } from '@/actions';
+import { addLike, minusLike } from '@/actions';
 
 interface Props {
+  wordId: string;
   isLike: boolean;
   likeCount: number;
 }
 
-export default function LikeButton({ isLike, likeCount }: Props) {
+export default function LikeButton({ isLike, likeCount, wordId }: Props) {
   const [optimisticLikeState, addOptimisticLikeState] = useOptimistic(
     {
       isLike,
@@ -39,7 +40,11 @@ export default function LikeButton({ isLike, likeCount }: Props) {
             likeCount: isLike ? likeCount - 1 : likeCount + 1,
           });
 
-          await toggleWordLike(isLike, likeCount);
+          if (isLike) {
+            minusLike(wordId);
+          } else {
+            addLike(wordId);
+          }
         }}
       >
         {optimisticLikeState.isLike ? (

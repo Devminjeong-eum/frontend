@@ -26,7 +26,6 @@ export const backendFetch = httpClient({
         } else {
           console.error('ServerError : ', response.status);
         }
-        throw Error(response.status + ' ' + response.statusText);
       }
       return response.json();
     },
