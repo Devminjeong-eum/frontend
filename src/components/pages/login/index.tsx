@@ -1,10 +1,11 @@
+'use client';
+
 import KakaotalkSvg from '@/components/svg-component/KakaotalkSvg';
 import { WORD_LIST_PATH } from '@/routes/path.ts';
 import LogoSvg from '@/components/svg-component/LogoSvg';
 import Link from 'next/link';
 
 export default function Login() {
-
   const handleKakaoLogin = () => {
     window.location.href = '/api/auth/kakao';
   };
@@ -23,7 +24,10 @@ export default function Login() {
         </span>
       </div>
       <div className="w-full flex flex-col gap-2 pb-7">
-        <button className="relative flex items-center justify-center bg-[#FFE34E] text-base font-semibold rounded-2xl p-3.5 w-full" onClick={handleKakaoLogin}>
+        <button
+          className="relative flex items-center justify-center bg-[#FFE34E] text-base font-semibold rounded-2xl p-3.5 w-full"
+          onClick={handleKakaoLogin}
+        >
           <div className="absolute left-6">
             <KakaotalkSvg />
           </div>

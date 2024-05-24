@@ -17,7 +17,7 @@ export default async function WordsPage({
       description,
       diacritic,
       pronunciation,
-      wrongPronunciations,
+      wrongPronunciation,
       exampleSentence,
     },
   } = await getWordDetail(wordId);
@@ -72,7 +72,7 @@ export default async function WordsPage({
                 <span className="text-[13px] font-semibold text-white">
                   잘못된 발음
                 </span>
-                {wrongPronunciations.map((wrongPronunciation, idx) => (
+                {wrongPronunciation.map((wrongPronunciation, idx) => (
                   <span className="text-[13px] text-[#EBEBF5]" key={idx}>
                     {wrongPronunciation}
                   </span>
