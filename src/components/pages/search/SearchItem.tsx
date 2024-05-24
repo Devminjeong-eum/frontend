@@ -21,7 +21,7 @@ export default function SearchItem({ item, searchWord }: Props) {
                   className={clsx(
                     idx < searchWord.length &&
                       word.toLowerCase() === searchWord[idx].toLowerCase() &&
-                      'text-[#0C3FC1]',
+                      'text-[#0C3FC1] bg-[#EBF2FF]',
                   )}
                 >
                   {word}
