@@ -2,7 +2,7 @@
 
 import MagnifierSvg from '@/components/svg-component/MagnifierSvg';
 import useScroll from '@/hooks/useScroll';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useRef, useState, useEffect } from 'react';
 import ClearSearchBarSvg from '../svg-component/ClearSearchBarSvg';
 import clsx from 'clsx';
@@ -13,6 +13,8 @@ export default function SearchBar() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isInputFocus, setIsInputFocus] = useState(false);
   const searchBarRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const handleClick = (e: PointerEvent) => {
@@ -29,8 +31,7 @@ export default function SearchBar() {
   }, []);
 
   const navigateToSearch = () => {
-    inputRef.current?.value.trim() &&
-      router.push(`/word/search?keyword=${inputRef.current.value}`);
+    search.trim() && router.push(`/word/search?keyword=${search}`);
   };
 
   const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -40,14 +41,23 @@ export default function SearchBar() {
   };
 
   const handleInputClearAndFocus = () => {
-    if (inputRef.current) {
-      inputRef.current.value = '';
-      inputRef.current.focus();
+    if (search) {
+      setSearch('');
+      inputRef.current?.focus();
     }
   };
 
   const handleInputFocusChange = () => {
     setIsInputFocus(true);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (pathname !== '/home') {
+      const params = new URLSearchParams(window.location.search);
+      params.set('keyword', e.target.value);
+      window.history.replaceState({}, '', `?${params}`);
+    }
+    setSearch(e.target.value);
   };
 
   return (
@@ -57,6 +67,8 @@ export default function SearchBar() {
       <div className="relative" ref={searchBarRef}>
         <input
           ref={inputRef}
+          value={search}
+          onChange={handleChange}
           type="text"
           placeholder={`${isInputFocus ? '' : '궁금한 IT용어를 검색해 보세요.'}`}
           className={clsx(
