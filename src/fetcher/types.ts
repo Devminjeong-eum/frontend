@@ -8,6 +8,11 @@ export type WordDetail = {
   // NOTE: \n으로 구분해 사용
   exampleSentence: string;
 
+  // NOTE: 좋아요 관련 데이터
+  // 비로그인 시에는 무조건 false
+  isLike: boolean;
+  likeCount: number;
+
   // NOTE: metadata
   createdAt: Date;
   updatedAt: Date;
@@ -33,4 +38,12 @@ export type SearchWordData = {
   diacritic: string[];
   pronunciation: string[];
   wordLike: boolean;
+};
+
+export type ErrorRes = {
+  statusCode: number;
+  timestamp: string;
+  path: string;
+  method: string;
+  message: string;
 };

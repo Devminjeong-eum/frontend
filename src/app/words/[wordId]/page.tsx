@@ -19,6 +19,8 @@ export default async function WordsPage({
       pronunciation,
       wrongPronunciation,
       exampleSentence,
+      isLike,
+      likeCount,
     },
   } = await getWordDetail(wordId);
 
@@ -46,7 +48,7 @@ export default async function WordsPage({
                 {pronunciation[0]}
               </span>
             </div>
-            <LikeButton isLike={false} likeCount={3} />
+            <LikeButton isLike={isLike} likeCount={likeCount} wordId={wordId} />
           </div>
           <div className="inline-flex flex-col gap-2.5">
             <div className="flex flex-shrink">

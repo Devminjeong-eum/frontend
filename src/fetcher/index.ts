@@ -36,13 +36,15 @@ export const getWordSearch = async (wordName: string) => {
 };
 
 export const updateLike = async (wordId: string) => {
+  console.log('update');
   try {
-    await backendFetch<DefaultRes<never>>(`/${wordId}`, {
+    await backendFetch<DefaultRes<never>>(`/like/${wordId}`, {
       method: 'PATCH',
     });
   } catch (e) {
-    console.log('error', e);
-
+    if (e instanceof Error) {
+      console.log(e.message);
+    }
     // NOTE: 발생할 수 있는 에러
     // 401 => 권한 없음 => 로그인 모달
     // 500 => 서버 에러
@@ -51,13 +53,10 @@ export const updateLike = async (wordId: string) => {
 
 export const deleteLike = async (wordId: string) => {
   try {
-    await backendFetch<DefaultRes<never>>(`/${wordId}`, {
+    await backendFetch<DefaultRes<never>>(`/like/${wordId}`, {
       method: 'DELETE',
     });
   } catch (e) {
-    console.log('error', e);
-    // NOTE: 발생할 수 있는 에러
-    // 401 => 권한 없음 => 로그인 모달
-    // 500 => 서버 에러
+    console.log(e);
   }
 };
