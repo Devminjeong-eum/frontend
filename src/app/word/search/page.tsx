@@ -8,26 +8,28 @@ import { getWordSearch } from '@/fetcher';
 import { useState, useEffect } from 'react';
 import { SearchWordData } from '@/fetcher/types';
 import { useSearchParams } from 'next/navigation';
+import { useDebounce } from '@/hooks/useDebounce';
 
 export default function SearchPage() {
   const [totalCount, setTotalCount] = useState(0);
   const [data, setData] = useState<SearchWordData[]>();
   const searchParams = useSearchParams();
   const wordName = searchParams.get('keyword')?.toLowerCase();
+  const debouncedWord = useDebounce(wordName || '', 200);
+
+  const fetchWordData = async (searchWord: string) => {
+    if (searchWord) {
+      const {
+        data: { totalCount, data },
+      } = await getWordSearch(searchWord);
+      setTotalCount(totalCount);
+      setData(data);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (wordName) {
-        const {
-          data: { totalCount, data },
-        } = await getWordSearch(wordName);
-        setTotalCount(totalCount);
-        setData(data);
-      }
-    };
-
-    fetchData();
-  }, [wordName]);
+    fetchWordData(debouncedWord);
+  }, [debouncedWord]);
 
   return (
     <>
