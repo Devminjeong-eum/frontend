@@ -14,8 +14,8 @@ export default function SearchPage() {
   const [totalCount, setTotalCount] = useState(0);
   const [data, setData] = useState<SearchWordData[]>();
   const searchParams = useSearchParams();
-  const searchWord = searchParams.get('keyword')?.toLowerCase();
-  const debouncedWord = useDebounce(searchWord || '', 200);
+  const searchWord = searchParams.get('keyword')?.toLowerCase() || '';
+  const debouncedWord = useDebounce(searchWord, 200);
 
   const fetchWordData = async (word: string) => {
     if (word) {
@@ -39,7 +39,7 @@ export default function SearchPage() {
         {data &&
           data.map((item) => (
             <Link href={`/words/${item.id}`} key={item.id}>
-              <SearchItem item={item} />
+              <SearchItem item={item} searchWord={searchWord} />
             </Link>
           ))}
       </main>
