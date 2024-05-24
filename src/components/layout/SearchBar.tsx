@@ -15,6 +15,7 @@ export default function SearchBar() {
   const searchBarRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const [search, setSearch] = useState('');
+  const [isShaking, setIsShaking] = useState(false);
 
   useEffect(() => {
     const handleClick = (e: PointerEvent) => {
@@ -52,7 +53,18 @@ export default function SearchBar() {
     setIsInputFocus(true);
   };
 
-  const handleUrlWordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputShakeAndUrlChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const isHangeul = /[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(e.target.value);
+
+    if (isHangeul) {
+      setIsShaking(true);
+      setTimeout(() => {
+        setIsShaking(false);
+      }, 200);
+    }
+
     if (pathname !== '/home') {
       const params = new URLSearchParams(window.location.search);
       params.set('keyword', e.target.value);
@@ -65,11 +77,14 @@ export default function SearchBar() {
     <div
       className={`z-10 bg-main-gradient-bottom top-0 ${isScrolled ? 'sticky h-[64px] py-2 px-5' : 'h-[104px] p-5'}`}
     >
-      <div className="relative" ref={searchBarRef}>
+      <div
+        className={`relative ${isShaking && 'animate-shake'}`}
+        ref={searchBarRef}
+      >
         <input
           ref={inputRef}
           value={search}
-          onChange={handleUrlWordChange}
+          onChange={handleInputShakeAndUrlChange}
           type="text"
           placeholder={`${isInputFocus ? '' : '궁금한 IT용어를 검색해 보세요.'}`}
           className={clsx(
