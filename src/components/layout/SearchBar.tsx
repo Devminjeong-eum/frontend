@@ -20,7 +20,8 @@ export default function SearchBar() {
     const handleClick = (e: PointerEvent) => {
       if (
         searchBarRef.current &&
-        !searchBarRef.current.contains(e.target as HTMLElement)
+        !searchBarRef.current.contains(e.target as HTMLElement) &&
+        search.trim() === ''
       )
         setIsInputFocus(false);
     };
@@ -28,7 +29,7 @@ export default function SearchBar() {
     document.addEventListener('pointerdown', handleClick);
 
     return () => document.removeEventListener('pointerdown', handleClick);
-  }, []);
+  }, [search]);
 
   const navigateToSearch = () => {
     search.trim() && router.push(`/word/search?keyword=${search}`);
@@ -51,7 +52,7 @@ export default function SearchBar() {
     setIsInputFocus(true);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleUrlWordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (pathname !== '/home') {
       const params = new URLSearchParams(window.location.search);
       params.set('keyword', e.target.value);
@@ -68,7 +69,7 @@ export default function SearchBar() {
         <input
           ref={inputRef}
           value={search}
-          onChange={handleChange}
+          onChange={handleUrlWordChange}
           type="text"
           placeholder={`${isInputFocus ? '' : '궁금한 IT용어를 검색해 보세요.'}`}
           className={clsx(
@@ -84,7 +85,7 @@ export default function SearchBar() {
             <ClearSearchBarSvg className="absolute right-[20px] top-[12px]" />
           </button>
         ) : (
-          <MagnifierSvg className="absolute right-[20px] top-[12px] cursor-pointer" />
+          <MagnifierSvg className="absolute right-[20px] top-[12px]" />
         )}
       </div>
     </div>

@@ -14,14 +14,14 @@ export default function SearchPage() {
   const [totalCount, setTotalCount] = useState(0);
   const [data, setData] = useState<SearchWordData[]>();
   const searchParams = useSearchParams();
-  const wordName = searchParams.get('keyword')?.toLowerCase();
-  const debouncedWord = useDebounce(wordName || '', 200);
+  const searchWord = searchParams.get('keyword')?.toLowerCase();
+  const debouncedWord = useDebounce(searchWord || '', 200);
 
-  const fetchWordData = async (searchWord: string) => {
-    if (searchWord) {
+  const fetchWordData = async (word: string) => {
+    if (word) {
       const {
         data: { totalCount, data },
-      } = await getWordSearch(searchWord);
+      } = await getWordSearch(word);
       setTotalCount(totalCount);
       setData(data);
     }
