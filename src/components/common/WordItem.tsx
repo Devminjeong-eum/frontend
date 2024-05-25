@@ -26,10 +26,10 @@ export default function WordItem({
 
           <div className="flex flex-wrap items-center gap-2">
             {/* 영단어 */}
-            <h3 className="text-main-blue font-semibold text-[17px]">{name}</h3>
+            <h3 className="text-main-blue font-semibold text-[16px]">{name}</h3>
 
             {/* 단어 뜻 */}
-            <div className="text-main-charcoal break-words text-[14px] font-[400]">
+            <div className="text-main-charcoal break-words text-[14px]">
               <span className="mr-[1px] text-[#E1E5ED] font-extralight">|</span>{' '}
               {pronunciation.join(', ')}
             </div>
@@ -51,7 +51,7 @@ export default function WordItem({
         </div>
 
         {/* 설명 */}
-        <p className="text-main-gray text-[13px] font-[300] leading-[19px] line-clamp-2">
+        <p className="text-main-gray text-[14px] font-[300] leading-[19px] line-clamp-2">
           {description}
         </p>
       </div>
