@@ -23,7 +23,7 @@ export default function AllPosts({
       <Pagination
         style="mx-auto my-[22px] min-w-[264px]"
         viewPaginationNums={4}
-        total={10}
+        total={data.totalCount}
         limit={data.limit}
         setCurrent={setCurrentPage}
         current={currentPage}
