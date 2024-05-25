@@ -1,20 +1,18 @@
 export type MainItemType = {
-  wordId: string;
-  wordName: string;
-  wordDescription: string;
-  wordDiacritic: string;
-  wordSpeak?: string;
-  wrongSpeak?: string;
-  wordExample?: string;
-  wordLike?: boolean;
+  description: string;
+  diacritic: string[];
+  id: string;
+  isLike: boolean;
+  name: string;
+  pronunciation: string[];
 };
 
 export type MainDataType = {
-  offset: number; // 현재 페이지
-  pageSize: number; // 한페이지에 보여줄 아이템 개수
-  totalItems: number;
-  totalPages: number;
-  wordAll: Array<MainItemType>;
+  data: MainItemType[];
+  isLast: boolean;
+  limit: number;
+  page: number;
+  totalCount: number;
 };
 
 export type PaginationPropType = {

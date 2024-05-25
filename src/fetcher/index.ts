@@ -34,3 +34,15 @@ export const getWordSearch = async (wordName: string) => {
     notFound();
   }
 };
+
+export const getAllPosts = async (currentPage: number) => {
+  try {
+    const { data } = await backendFetch(
+      `/word/list?page=${currentPage}&limit=10`,
+    );
+    return data;
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
