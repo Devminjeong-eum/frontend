@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { backendFetch } from '@/fetcher/instance.ts';
 import type { DefaultRes, WordDetail, SearchWord } from './types.ts';
+import { MainDataType } from '@/types/main.ts';
 
 export const getWordDetail = async (wordId: string) => {
   try {
@@ -37,7 +38,7 @@ export const getWordSearch = async (wordName: string) => {
 
 export const getAllPosts = async (currentPage: number) => {
   try {
-    const { data } = await backendFetch(
+    const { data } = await backendFetch<DefaultRes<MainDataType>>(
       `/word/list?page=${currentPage}&limit=10`,
     );
     return data;
