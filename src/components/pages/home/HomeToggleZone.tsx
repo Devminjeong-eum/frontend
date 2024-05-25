@@ -32,7 +32,7 @@ export default function HomeToggleZone({ handleToggle, isTrending }: Props) {
       <button
         onClick={() => handleToggle('trend')}
         className={clsx(
-          'absolute left-[67px] w-[90px] text-[#D7DCEB] transition-opacity duration-700',
+          'absolute left-[37px] sm:left-[67px] w-[90px] text-[#D7DCEB] transition-opacity duration-700',
           isTrend ? 'opacity-0' : 'opacity-100',
         )}
       >
@@ -53,7 +53,7 @@ export default function HomeToggleZone({ handleToggle, isTrending }: Props) {
       <button
         onClick={() => handleToggle('all')}
         className={clsx(
-          ' absolute right-[63.5px] text-[#D7DCEB] transition-opacity duration-700',
+          ' absolute right-[33.5px] sm:right-[63.5px] text-[#D7DCEB] transition-opacity duration-700',
           isTrend ? 'opacity-100' : 'opacity-0',
         )}
       >
