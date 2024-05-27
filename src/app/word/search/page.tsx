@@ -18,7 +18,7 @@ export default function SearchPage() {
   const debouncedWord = useDebounce(searchWord, 200);
 
   const fetchWordData = async (word: string) => {
-    if (word) {
+    if (word.length >= 3) {
       const {
         data: { totalCount, data },
       } = await getWordSearch(word);
