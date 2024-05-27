@@ -6,34 +6,35 @@ interface Props {
   isLike: boolean;
   likeCount: number;
 }
-
 export const useOptimisticLike = ({ wordId, isLike, likeCount }: Props) => {
-  const [optimisticLikeState, setOptimisticLike] = useOptimistic(
+  const [optimisticLikeState, setOptimisticLike] = useOptimistic<
+    {
+      isLike: boolean;
+      likeCount: number;
+    },
+    number
+  >(
     {
       isLike,
       likeCount,
     },
-    (currentState) => {
+    (currentState, optimisticValue) => {
+      // merge and return new state wih optimistic value
       return {
         isLike: !currentState.isLike,
-        likeCount: currentState.isLike
-          ? currentState.likeCount - 1
-          : currentState.likeCount + 1,
+        likeCount: currentState.likeCount + optimisticValue,
       };
     },
   );
 
-  const handleOptimisticLikeClick = async () => {
-    setOptimisticLike({
-      isLike: !isLike,
-      likeCount: isLike ? likeCount - 1 : likeCount + 1,
-    });
+  const handleAddLike = async () => {
+    setOptimisticLike(1);
+    await addLike(wordId);
+  };
 
-    if (isLike) {
-      await addLike(wordId);
-    } else {
-      await subLike(wordId);
-    }
+  const handleSubLike = async () => {
+    setOptimisticLike(-1);
+    await subLike(wordId);
   };
 
   console.log(optimisticLikeState);
@@ -41,6 +42,7 @@ export const useOptimisticLike = ({ wordId, isLike, likeCount }: Props) => {
   return {
     optimisticLikeState,
     setOptimisticLike,
-    handleOptimisticLikeClick,
+    handleAddLike,
+    handleSubLike,
   };
 };

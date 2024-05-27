@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
-import { backendFetch } from '@/fetcher/instance.ts';
+import { backendFetch, serverFetch } from '@/fetcher/instance.ts';
 import type { DefaultRes, WordDetail, SearchWord } from './types.ts';
+import { LoginData } from './types.ts';
 
 export const getWordDetail = async (wordId: string) => {
   try {
@@ -9,17 +10,6 @@ export const getWordDetail = async (wordId: string) => {
     // NOTE: 상황에 맞는 페이지 보여줘야 함.
     console.log('error');
     notFound();
-  }
-};
-
-export const login = async (code: string) => {
-  try {
-    return await backendFetch(`/auth/kakao`, {
-      params: { code },
-    });
-  } catch (e) {
-    console.error('login error: ', e);
-    throw e;
   }
 };
 
@@ -58,5 +48,19 @@ export const deleteLike = async (wordId: string) => {
     });
   } catch (e) {
     console.log(e);
+  }
+};
+
+export const login = async (code: string) => {
+  try {
+    return await serverFetch<{
+      cookie: string;
+      response: DefaultRes<LoginData>;
+    }>(`/auth/kakao`, {
+      params: { code },
+    });
+  } catch (e) {
+    console.error('login error: ', e);
+    throw e;
   }
 };

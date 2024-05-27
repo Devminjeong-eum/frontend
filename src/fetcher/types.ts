@@ -40,6 +40,13 @@ export type SearchWordData = {
   wordLike: boolean;
 };
 
+export type LoginData = {
+  id: string;
+  name: string;
+  profileImage: string;
+  socialType: string;
+};
+
 export type ErrorRes = {
   statusCode: number;
   timestamp: string;

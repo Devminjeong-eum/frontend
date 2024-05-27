@@ -1,11 +1,11 @@
 import { login } from '@/fetcher';
 import { NextResponse } from 'next/server';
-// import { cookies } from 'next/headers';
 
 export async function GET(request: Request) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
   const { searchParams } = new URL(request.url);
+  // NORE: 인가 코드
   const code = searchParams.get('code');
 
   if (!code) {
@@ -15,11 +15,18 @@ export async function GET(request: Request) {
   }
 
   try {
-    const response = await login(code);
+    // NOTE: 로그인
+    const { cookie, response } = await login(code);
+
+    console.log(cookie, response);
+
     if (response) {
-      return NextResponse.redirect(`${baseUrl}/home`);
-      //const cookie = cookies();
-      //console.log('쿠키', cookie.getAll());
+      console.log('*********************\n', response);
+      const redirectToHome = NextResponse.redirect(`${baseUrl}/home`);
+
+      redirectToHome.headers.append('Set-Cookie', cookie);
+
+      return redirectToHome;
     }
   } catch (err) {
     // FIXME

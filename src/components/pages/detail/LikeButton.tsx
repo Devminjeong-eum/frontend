@@ -11,15 +11,18 @@ interface Props {
 }
 
 export default function LikeButton({ isLike, likeCount, wordId }: Props) {
-  const { optimisticLikeState, handleOptimisticLikeClick } = useOptimisticLike({
-    wordId,
-    likeCount,
-    isLike,
-  });
+  const { optimisticLikeState, handleSubLike, handleAddLike } =
+    useOptimisticLike({
+      wordId,
+      likeCount,
+      isLike,
+    });
+
+  console.log(isLike, likeCount);
 
   return (
     <div className="flex flex-col justify-center items-center cursor-pointer">
-      <button onClick={handleOptimisticLikeClick}>
+      <button onClick={isLike ? handleSubLike : handleAddLike}>
         {optimisticLikeState.isLike ? (
           <DetailLikeActiveSvg />
         ) : (
