@@ -32,7 +32,7 @@ export default function HomeToggleZone({ handleToggle, isTrending }: Props) {
       <button
         onClick={() => handleToggle('trend')}
         className={clsx(
-          'absolute left-[37px] sm:left-[67px] w-[90px] text-[#D7DCEB] transition-opacity duration-700',
+          'absolute left-[37px] sm:left-[60px] w-[90px] text-[#D7DCEB] transition-opacity duration-700',
           isTrend ? 'opacity-0' : 'opacity-100',
         )}
       >
