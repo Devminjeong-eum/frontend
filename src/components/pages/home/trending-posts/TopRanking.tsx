@@ -22,15 +22,13 @@ const TopRankingItem = ({
 
   return (
     <div
-      key={`item_${index}`} // Unique key
+      key={`item_${index}`}
       className={clsx(
         'h-[72px] rounded-r-[100px] flex items-center pl-[34px] transition-transform',
         index !== 0 && 'mt-[4px]',
-        `w-[${340 - index * 24}px] ${gradientStyles[index]}`,
-        {
-          '-translate-x-full': !isMount,
-          'translate-x-0': isMount,
-        },
+        gradientStyles[index],
+        `w-[${340 - index * 24}px]`,
+        isMount ? 'translate-x-0' : '-translate-x-full',
       )}
     >
       {/* 크라운, 순위 컨테이너 */}
