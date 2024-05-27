@@ -38,10 +38,9 @@ export const getWordSearch = async (wordName: string) => {
 
 export const getAllPosts = async (currentPage: number) => {
   try {
-    const { data } = await backendFetch<DefaultRes<MainDataType>>(
+    return await backendFetch<DefaultRes<MainDataType>>(
       `/word/list?page=${currentPage}&limit=10`,
     );
-    return data;
   } catch (e) {
     console.log('error', e);
     notFound();
