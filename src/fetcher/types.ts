@@ -34,3 +34,24 @@ export type SearchWordData = {
   pronunciation: string[];
   wordLike: boolean;
 };
+
+export type QuizData = {
+  correct: string;
+  selections: string[];
+  wordId: string;
+  name: string;
+  diacritic: string;
+};
+
+export type QuizResultData = {
+  quizResultId: string;
+  score: number;
+  correctWords: string[];
+  incorrectWords: string[];
+};
+
+export type QuizResultUserIdData = {
+  quizResultId: string;
+  correctWordIds: string[];
+  incorrectWordIds: string[];
+};
