@@ -24,9 +24,9 @@ export default function QuizPlay() {
 
   const fetchQuizResultData = async () => {
     const {
-      data: { userId },
+      data: { quizResultId },
     } = await postQuizData(correctWordIds, incorrectWordIds);
-    router.push(`/quiz/result/${userId}`);
+    router.push(`/quiz/result/${quizResultId}`);
   };
 
   useEffect(() => {
