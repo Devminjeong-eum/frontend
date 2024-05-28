@@ -6,6 +6,7 @@ import Quiz from '.';
 import { useGetQuizData } from '@/hooks/query/useGetQuizData';
 import { postQuizData } from '@/fetcher';
 import { useRouter } from 'next/navigation';
+import clsx from 'clsx';
 
 export default function QuizPlay() {
   const [currentQuiz, setCurrentQuiz] = useState(0);
@@ -95,16 +96,14 @@ export default function QuizPlay() {
                   onClick={() =>
                     handleAnswerOptionClick(data[currentQuiz].wordId, option)
                   }
-                  className={`shadow-quiz-button w-[90%] font-medium h-[54px] 
-        rounded-[16px] mb-[8px] ${
-          selectOption === option
-            ? option === data[currentQuiz].correct
-              ? 'bg-quiz-blue text-white'
-              : 'bg-quiz-red text-white'
-            : 'bg-white'
-        }
-        border-px border-[#F2F4F9]
-        `}
+                  className={clsx(
+                    'shadow-quiz-button w-[90%] font-medium h-[54px] rounded-[16px] mb-[8px] border-px border-[#F2F4F9]',
+                    selectOption === option &&
+                      (option === data[currentQuiz].correct
+                        ? 'bg-quiz-blue text-white'
+                        : 'bg-quiz-red text-white'),
+                    selectOption !== option && 'bg-white',
+                  )}
                 >
                   <div className="flex justify-center items-center relative">
                     {selectOption === option &&
