@@ -1,6 +1,13 @@
 import { notFound } from 'next/navigation';
 import { backendFetch } from '@/fetcher/instance.ts';
-import type { DefaultRes, WordDetail, SearchWord } from './types.ts';
+import type {
+  DefaultRes,
+  WordDetail,
+  SearchWord,
+  QuizData,
+  QuizResultData,
+  QuizResultUserIdData,
+} from './types.ts';
 
 export const getWordDetail = async (wordId: string) => {
   try {
@@ -29,7 +36,46 @@ export const getWordSearch = async (wordName: string) => {
       `/word/search?keyword=${wordName}&page=1&limit=50`,
     );
   } catch (e) {
-    // NOTE: 상황에 맞는 페이지 보여줘야 함.
+    console.log('error', e);
+    notFound();
+  }
+};
+
+export const getQuizData = async () => {
+  try {
+    return await backendFetch<DefaultRes<QuizData[]>>('/quiz/selection');
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
+
+export const getQuizResultData = async (id: string) => {
+  try {
+    return await backendFetch<DefaultRes<QuizResultData>>(`quiz/result/${id}`);
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
+
+export const postQuizData = async (
+  correctWordIds: string[],
+  incorrectWordIds: string[],
+) => {
+  try {
+    return await backendFetch<DefaultRes<QuizResultUserIdData>>(
+      '/quiz/result',
+      {
+        method: 'POST',
+        headers: {
+          Authorization: 'dev_malssami_admin',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ correctWordIds, incorrectWordIds }),
+      },
+    );
+  } catch (e) {
     console.log('error', e);
     notFound();
   }
