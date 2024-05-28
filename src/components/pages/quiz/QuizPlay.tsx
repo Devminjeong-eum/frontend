@@ -1,87 +1,65 @@
-import { useState } from 'react';
-import { quizData } from '@/components/pages/quiz/quizData';
+import { useState, useEffect } from 'react';
 import OSVG from '@/components/svg-component/OSVG';
 import XSVG from '@/components/svg-component/XSVG';
 import BlackBackSpaceSVG from '@/components/svg-component/BlackBackSpaceSVG';
-import QuizResult from './QuizResult';
-import type { UserAnswer } from '@/types/quiz';
 import Quiz from '.';
-// import { useEffect } from 'react';
-// import Spinner from '@/components/common/Spinner';
+import { useGetQuizData } from '@/hooks/query/useGetQuizData';
+import { postQuizData } from '@/fetcher';
+import { useRouter } from 'next/navigation';
 
 export default function QuizPlay() {
   const [currentQuiz, setCurrentQuiz] = useState(0);
-  const [score, setScore] = useState(0);
   const [selectOption, setSelectOption] = useState<string | null>(null);
-  const [isShowScore, setIsShowScore] = useState(false);
   const [isButtonsDisabled, setIsButtonsDisabled] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [userAnswer, setUserAnswer] = useState<UserAnswer[]>([]);
-  const [id, setId] = useState(0);
   const [isShow, setIsShow] = useState(false);
-  // const [isShowSpinner, setIsShowSpinner] = useState(false);
+  const [correctWordIds, setCorrectWordIds] = useState<string[]>([]);
+  const [incorrectWordIds, setIncorrectWordIds] = useState<string[]>([]);
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   if (isShowScore) {
-  //     const timer = setTimeout(() => {
-  //       setIsShowSpinner(false);
-  //     }, 2000);
+  const {
+    data: { data },
+  } = useGetQuizData();
 
-  //     return () => clearTimeout(timer);
-  //   }
-  // }, [isShowScore]);
+  const fetchQuizResultData = async () => {
+    const {
+      data: { userId },
+    } = await postQuizData(correctWordIds, incorrectWordIds);
+    router.push(`/quiz/result/${userId}`);
+  };
+
+  useEffect(() => {
+    if (currentQuiz === data.length - 1) {
+      fetchQuizResultData();
+    }
+  }, [correctWordIds, incorrectWordIds]);
 
   const handleNextQuiz = () => {
     setTimeout(() => {
-      if (currentQuiz < quizData.length - 1) {
+      if (currentQuiz < data.length - 1) {
         setCurrentQuiz(currentQuiz + 1);
         setSelectOption(null);
         setIsButtonsDisabled(false);
-      } else {
-        setIsShowScore(true);
-        // setIsShowSpinner(true);
       }
     }, 1000);
   };
 
-  const handleAnswerOptionClick = (selectedOption: string) => {
-    setProgress(((currentQuiz + 1) / quizData.length) * 100);
+  const handleAnswerOptionClick = (wordId: string, selectedOption: string) => {
+    setProgress(((currentQuiz + 1) / data.length) * 100);
 
-    const isAnswer = selectedOption === quizData[currentQuiz].correctAnswer;
-    setUserAnswer((prevAnswer) => [
-      ...prevAnswer,
-      {
-        id,
-        answer: quizData[currentQuiz].question,
-        wordDiacritic: quizData[currentQuiz].wordDiacritic,
-        isLike: false,
-        isAnswer,
-      },
-    ]);
+    const isAnswer = selectedOption === data[currentQuiz].correct;
 
     if (isAnswer) {
-      setScore(score + 1);
+      setCorrectWordIds((prevWordId) => [...prevWordId, wordId]);
+    } else {
+      setIncorrectWordIds((prevWordId) => [...prevWordId, wordId]);
     }
     setSelectOption(selectedOption);
     setIsButtonsDisabled(true);
-    setId((prev) => prev + 1);
     handleNextQuiz();
   };
 
   if (isShow) return <Quiz />;
-
-  if (isShowScore) {
-    // if (isShowSpinner) {
-    //   return <Spinner />;
-    // }
-    return (
-      <QuizResult
-        score={score}
-        userAnswer={userAnswer}
-        setUserAnswer={setUserAnswer}
-      />
-    );
-  }
 
   return (
     <div className="flex justify-center min-h-screen text-main-black">
@@ -105,42 +83,45 @@ export default function QuizPlay() {
           <div className="text-[14px] flex flex-col items-center mt-[73px]">
             <p className="text-main-gray">아래 단어의 발음은?</p>
             <div className={`text-[32px] font-semibold mb-[42px]`}>
-              {quizData[currentQuiz].question}
+              {data?.[currentQuiz].name}
             </div>
           </div>
           <div className="flex flex-col items-center w-full">
-            {quizData[currentQuiz].options.map((option) => (
-              <button
-                key={option}
-                disabled={isButtonsDisabled}
-                onClick={() => handleAnswerOptionClick(option)}
-                className={`shadow-quiz-button w-[90%] font-medium h-[54px] 
-                rounded-[16px] mb-[8px] ${
-                  selectOption === option
-                    ? option === quizData[currentQuiz].correctAnswer
-                      ? 'bg-quiz-blue text-white'
-                      : 'bg-quiz-red text-white'
-                    : 'bg-white'
-                }
-                border-px
-                border-[#F2F4F9]
-                `}
-              >
-                <div className="flex justify-center items-center relative">
-                  {selectOption === option &&
-                    (selectOption === quizData[currentQuiz].correctAnswer ? (
-                      <div className="absolute left-4">
-                        <OSVG />
-                      </div>
-                    ) : (
-                      <div className="absolute left-4 top-1">
-                        <XSVG />
-                      </div>
-                    ))}
-                  {option}
-                </div>
-              </button>
-            ))}
+            {data?.[currentQuiz].selections.map(
+              (option: string, idx: number) => (
+                <button
+                  key={idx}
+                  disabled={isButtonsDisabled}
+                  onClick={() =>
+                    handleAnswerOptionClick(data[currentQuiz].wordId, option)
+                  }
+                  className={`shadow-quiz-button w-[90%] font-medium h-[54px] 
+        rounded-[16px] mb-[8px] ${
+          selectOption === option
+            ? option === data[currentQuiz].correct
+              ? 'bg-quiz-blue text-white'
+              : 'bg-quiz-red text-white'
+            : 'bg-white'
+        }
+        border-px border-[#F2F4F9]
+        `}
+                >
+                  <div className="flex justify-center items-center relative">
+                    {selectOption === option &&
+                      (selectOption === data[currentQuiz].correct ? (
+                        <div className="absolute left-4">
+                          <OSVG />
+                        </div>
+                      ) : (
+                        <div className="absolute left-4 top-1">
+                          <XSVG />
+                        </div>
+                      ))}
+                    {option}
+                  </div>
+                </button>
+              ),
+            )}
           </div>
         </div>
       </div>
