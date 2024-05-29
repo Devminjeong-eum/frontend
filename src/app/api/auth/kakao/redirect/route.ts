@@ -16,15 +16,16 @@ export async function GET(request: Request) {
 
   try {
     // NOTE: 로그인
-    const { cookie, response } = await login(code);
+    const { headers, data } = await login(code);
 
-    console.log(cookie, response);
-
-    if (response) {
-      console.log('*********************\n', response);
+    if (data) {
+      console.log('*********************\n', data);
       const redirectToHome = NextResponse.redirect(`${baseUrl}/home`);
+      const cookie = headers.get('Set-Cookie');
 
-      redirectToHome.headers.append('Set-Cookie', cookie);
+      if (cookie) {
+        redirectToHome.headers.append('Set-Cookie', cookie);
+      }
 
       return redirectToHome;
     }

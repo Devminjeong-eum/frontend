@@ -23,7 +23,6 @@ export default async function WordsPage({
       likeCount,
     },
   } = await getWordDetail(wordId);
-
   /*
   NOTE: 한글 발음 표기 - 영어 발음 표기  1 : 1로 라고 생각함.
   만약 다를 시 구글 스프레드 시트에서 변경해야 함
@@ -48,7 +47,11 @@ export default async function WordsPage({
                 {pronunciation[0]}
               </span>
             </div>
-            <LikeButton isLike={isLike} likeCount={likeCount} wordId={wordId} />
+            <LikeButton
+              initialLike={isLike}
+              initialLikeCount={likeCount}
+              wordId={wordId}
+            />
           </div>
           <div className="inline-flex flex-col gap-2.5">
             <div className="flex flex-shrink">

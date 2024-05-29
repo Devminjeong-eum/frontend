@@ -54,3 +54,10 @@ export type ErrorRes = {
   method: string;
   message: string;
 };
+
+export type BackendFetchRes<TRes> = {
+  status: number;
+  statusText: string;
+  headers: Headers;
+  data: TRes;
+};

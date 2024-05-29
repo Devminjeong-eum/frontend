@@ -1,23 +1,31 @@
 import { notFound } from 'next/navigation';
-import { backendFetch, serverFetch } from '@/fetcher/instance.ts';
+import { backendFetch } from '@/fetcher/instance.ts';
 import type { DefaultRes, WordDetail, SearchWord } from './types.ts';
-import { LoginData } from './types.ts';
+import { BackendFetchRes, LoginData } from './types.ts';
 
 export const getWordDetail = async (wordId: string) => {
   try {
-    return await backendFetch<DefaultRes<WordDetail>>(`/word/${wordId}`);
+    const res = await backendFetch<BackendFetchRes<DefaultRes<WordDetail>>>(
+      `/word/${wordId}`,
+    );
+
+    return res.data;
   } catch (e) {
     // NOTE: 상황에 맞는 페이지 보여줘야 함.
-    console.log('error');
+    console.log(e);
     notFound();
   }
 };
 
 export const getWordSearch = async (wordName: string) => {
   try {
-    return await backendFetch<DefaultRes<SearchWord>>(`/word/search`, {
-      params: { keyword: wordName, page: 1, limit: 50 },
-    });
+    const res = await backendFetch<BackendFetchRes<DefaultRes<SearchWord>>>(
+      `/word/search`,
+      {
+        params: { keyword: wordName, page: 1, limit: 50 },
+      },
+    );
+    return res.data;
   } catch (e) {
     // NOTE: 상황에 맞는 페이지 보여줘야 함.
     console.log('error', e);
@@ -26,9 +34,8 @@ export const getWordSearch = async (wordName: string) => {
 };
 
 export const updateLike = async (wordId: string) => {
-  console.log('update');
   try {
-    await backendFetch<DefaultRes<never>>(`/like/${wordId}`, {
+    await backendFetch<BackendFetchRes<DefaultRes<never>>>(`/like/${wordId}`, {
       method: 'PATCH',
     });
   } catch (e) {
@@ -43,7 +50,7 @@ export const updateLike = async (wordId: string) => {
 
 export const deleteLike = async (wordId: string) => {
   try {
-    await backendFetch<DefaultRes<never>>(`/like/${wordId}`, {
+    await backendFetch<BackendFetchRes<DefaultRes<never>>>(`/like/${wordId}`, {
       method: 'DELETE',
     });
   } catch (e) {
@@ -53,12 +60,12 @@ export const deleteLike = async (wordId: string) => {
 
 export const login = async (code: string) => {
   try {
-    return await serverFetch<{
-      cookie: string;
-      response: DefaultRes<LoginData>;
-    }>(`/auth/kakao`, {
-      params: { code },
-    });
+    return await backendFetch<BackendFetchRes<DefaultRes<LoginData>>>(
+      `/auth/kakao`,
+      {
+        params: { code },
+      },
+    );
   } catch (e) {
     console.error('login error: ', e);
     throw e;

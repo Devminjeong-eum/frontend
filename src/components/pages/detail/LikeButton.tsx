@@ -6,23 +6,28 @@ import { useOptimisticLike } from '@/hooks/useOptimisticLike.ts';
 
 interface Props {
   wordId: string;
-  isLike: boolean;
-  likeCount: number;
+  initialLike: boolean;
+  initialLikeCount: number;
 }
 
-export default function LikeButton({ isLike, likeCount, wordId }: Props) {
+export default function LikeButton({
+  initialLike,
+  initialLikeCount,
+  wordId,
+}: Props) {
   const { optimisticLikeState, handleSubLike, handleAddLike } =
     useOptimisticLike({
       wordId,
-      likeCount,
-      isLike,
+      isLike: initialLike,
+      likeCount: initialLikeCount,
     });
 
-  console.log(isLike, likeCount);
-
+  // TODO: loading 시 클릭 안되게 할 필요 있음
   return (
     <div className="flex flex-col justify-center items-center cursor-pointer">
-      <button onClick={isLike ? handleSubLike : handleAddLike}>
+      <button
+        onClick={optimisticLikeState.isLike ? handleSubLike : handleAddLike}
+      >
         {optimisticLikeState.isLike ? (
           <DetailLikeActiveSvg />
         ) : (
