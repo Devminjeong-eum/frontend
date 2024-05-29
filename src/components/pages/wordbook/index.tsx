@@ -10,10 +10,22 @@ import NoWordSvg from '@/components/svg-component/NoWordSvg';
 import { WORD_LIST_PATH } from '@/routes/path';
 import WordbookDropdown from '@/components/pages/wordbook/WordbookDropdown';
 import useGetLikedWord from '@/hooks/query/useGetLikedWord';
+import useDropdown from '@/hooks/useDropdown';
+import {
+  DROPDOWN_DEFAULT_OPTION,
+  sortOptionMapping,
+} from '@/constants/sortingOptions';
 
 export default function Wordbook() {
   const [current, setCurrent] = useState(1);
-  const { data } = useGetLikedWord(current, 10);
+  const { selectedOption, setSelectedOption } = useDropdown(
+    DROPDOWN_DEFAULT_OPTION,
+  );
+  const { data } = useGetLikedWord(
+    current,
+    10,
+    sortOptionMapping[selectedOption],
+  );
 
   const { data: wordData, totalCount } = data.data;
 
@@ -32,7 +44,10 @@ export default function Wordbook() {
                 </div>
               </div>
             </div>
-            <WordbookDropdown />
+            <WordbookDropdown
+              selectedOption={selectedOption}
+              setSelectedOption={setSelectedOption}
+            />
           </div>
           {totalCount === 0 ? (
             <div className="bg-[#FBFCFE] h-[calc(100vh-23rem)] flex flex-col justify-center items-center gap-2.5">
