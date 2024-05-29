@@ -1,25 +1,25 @@
+'use client';
+
 import BlackBackSpaceSVG from '@/components/svg-component/BlackBackSpaceSVG';
 import QuizScore from './QuizScore';
-import type { UserAnswer } from '@/types/quiz';
-import QuizResultDetail from './QuizResultDetail';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import ShareButton from '@/components/svg-component/ShareButton';
 import Quiz from '.';
 import useLoadKakaoScript from '@/hooks/useLoadKakaoScript';
+import QuizResultDetail from './QuizResultDetail';
 
-type QuizResultProps = {
+type Props = {
   score: number;
-  userAnswer: UserAnswer[];
-  setUserAnswer: Dispatch<SetStateAction<UserAnswer[]>>;
+  correctWords: string[];
+  incorrectWords: string[];
 };
 
 export default function QuizResult({
   score,
-  userAnswer,
-  setUserAnswer,
-}: QuizResultProps) {
+  correctWords,
+  incorrectWords,
+}: Props) {
   const [isShow, setisShow] = useState(false);
-  const resultScore = score ? score * 10 : 0;
   const { handleShare } = useLoadKakaoScript();
 
   if (isShow) return <Quiz />;
@@ -38,8 +38,11 @@ export default function QuizResult({
           <ShareButton />
         </button>
       </header>
-      <QuizScore resultScore={resultScore} />
-      <QuizResultDetail userAnswer={userAnswer} setUserAnswer={setUserAnswer} />
+      <QuizScore score={score} />
+      <QuizResultDetail
+        correctWords={correctWords}
+        incorrectWords={incorrectWords}
+      />
       <button
         className="bg-[#4057DB] rounded-[16px] mt-[24px] mb-[48px] h-[50px] font-semibold text-white w-full text-[16px]"
         onClick={() => setisShow(!isShow)}

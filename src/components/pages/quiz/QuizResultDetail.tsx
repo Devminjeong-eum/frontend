@@ -2,28 +2,18 @@ import ArrowDownSvg from '@/components/svg-component/ArrowDownSvg';
 import ArrowUpSvg from '@/components/svg-component/ArrowUpSvg';
 import EmptyHeartSvg from '@/components/svg-component/EmptyHeartSvg';
 import Heart1Svg from '@/components/svg-component/Heart1Svg';
-import type { UserAnswer } from '@/types/quiz';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 
-type QuizResultDetailProps = {
-  userAnswer: UserAnswer[];
-  setUserAnswer: Dispatch<SetStateAction<UserAnswer[]>>;
+type Props = {
+  correctWords: string[];
+  incorrectWords: string[];
 };
 
 export default function QuizResultDetail({
-  userAnswer,
-  setUserAnswer,
-}: QuizResultDetailProps) {
+  correctWords,
+  incorrectWords,
+}: Props) {
   const [isResultDetail, setIsResultDetail] = useState(true);
-
-  const handleLikeClick = (clickedId: number) =>
-    setUserAnswer((prevUserAnswer) =>
-      prevUserAnswer.map((answer) =>
-        answer.id === clickedId
-          ? { ...answer, isLike: !answer.isLike }
-          : answer,
-      ),
-    );
 
   return (
     <>
