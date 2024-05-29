@@ -1,12 +1,10 @@
 export type MainItemType = {
-  wordId: string;
-  wordName: string;
-  wordDescription: string;
-  wordDiacritic: string;
-  wordSpeak?: string;
-  wrongSpeak?: string;
-  wordExample?: string;
-  wordLike?: boolean;
+  id: string;
+  name: string;
+  description: string;
+  diacritic: string[];
+  pronunciation: string[];
+  isLike: boolean;
 };
 
 export type MainDataType = {
