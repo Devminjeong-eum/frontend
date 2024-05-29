@@ -1,6 +1,6 @@
 const QUERY_KEYS = Object.freeze({
   HOME_KEY: 'posts',
-  SEARCH_KEY: 'search',
+  QUIZ_KEY: 'quiz',
 } as const);
 
 export default QUERY_KEYS;
