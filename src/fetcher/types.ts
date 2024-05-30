@@ -34,3 +34,10 @@ export type SearchWordData = {
   pronunciation: string[];
   wordLike: boolean;
 };
+
+export type UserData = {
+  id: string;
+  name: string;
+  profileImage: string;
+  socialType: string;
+};

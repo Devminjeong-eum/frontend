@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { backendFetch } from '@/fetcher/instance.ts';
-import type { DefaultRes, WordDetail, SearchWord } from './types.ts';
+import type { DefaultRes, WordDetail, SearchWord, UserData } from './types.ts';
 
 export const getWordDetail = async (wordId: string) => {
   try {
@@ -30,6 +30,19 @@ export const getWordSearch = async (wordName: string) => {
     );
   } catch (e) {
     // NOTE: 상황에 맞는 페이지 보여줘야 함.
+    console.log('error', e);
+    notFound();
+  }
+};
+
+export const getUserInfo = async () => {
+  try {
+    return await backendFetch<DefaultRes<UserData>>(`/user`, {
+      headers: {
+        Authorization: 'dev_malssami_admin',
+      },
+    });
+  } catch (e) {
     console.log('error', e);
     notFound();
   }
