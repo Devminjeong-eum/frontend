@@ -1,21 +1,7 @@
 import { notFound } from 'next/navigation';
-import { backendFetch } from '@/fetcher/instance.ts';
-import type { DefaultRes, WordDetail, SearchWord } from './types.ts';
-import { BackendFetchRes, LoginData } from './types.ts';
-
-export const getWordDetail = async (wordId: string) => {
-  try {
-    const res = await backendFetch<BackendFetchRes<DefaultRes<WordDetail>>>(
-      `/word/${wordId}`,
-    );
-
-    return res.data;
-  } catch (e) {
-    // NOTE: 상황에 맞는 페이지 보여줘야 함.
-    console.log(e);
-    notFound();
-  }
-};
+import { backendFetch } from '@/fetcher/backendFetch.ts';
+import type { DefaultRes, SearchWord } from './types.ts';
+import { BackendFetchRes, ErrorRes, LoginData } from './types.ts';
 
 export const getWordSearch = async (wordName: string) => {
   try {
@@ -33,31 +19,6 @@ export const getWordSearch = async (wordName: string) => {
   }
 };
 
-export const updateLike = async (wordId: string) => {
-  try {
-    await backendFetch<BackendFetchRes<DefaultRes<never>>>(`/like/${wordId}`, {
-      method: 'PATCH',
-    });
-  } catch (e) {
-    if (e instanceof Error) {
-      console.log(e.message);
-    }
-    // NOTE: 발생할 수 있는 에러
-    // 401 => 권한 없음 => 로그인 모달
-    // 500 => 서버 에러
-  }
-};
-
-export const deleteLike = async (wordId: string) => {
-  try {
-    await backendFetch<BackendFetchRes<DefaultRes<never>>>(`/like/${wordId}`, {
-      method: 'DELETE',
-    });
-  } catch (e) {
-    console.log(e);
-  }
-};
-
 export const login = async (code: string) => {
   try {
     return await backendFetch<BackendFetchRes<DefaultRes<LoginData>>>(
@@ -71,3 +32,45 @@ export const login = async (code: string) => {
     throw e;
   }
 };
+
+export function isServer() {
+  return typeof window === 'undefined';
+}
+
+export async function responseInterceptor(response: Response) {
+  if (isServer()) {
+    console.log('********* after sending request in server *********\n');
+    console.log(response.status);
+  }
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    // NOTE: 서버사이드에서 호출 시에는 로깅합니다.
+    if (isServer()) {
+      if (400 <= response.status && response.status < 500) {
+        console.log('ClientError: ', response.status);
+      } else {
+        console.error('ServerError : ', response.status);
+      }
+    }
+
+    //NOTE: 에러 시 내려오는 객체의 형식으로 type assertion 합니다.
+    const res = data as ErrorRes;
+
+    // NOTE: axios 기본 동작과 동일하게, response.ok가 아니면 Error 를 throw 합니다.
+    throw new Error(
+      JSON.stringify({
+        statusCode: response.status,
+        message: res.message,
+      }),
+    );
+  }
+
+  return {
+    status: response.status,
+    statusText: response.statusText,
+    headers: response.headers,
+    data,
+  };
+}

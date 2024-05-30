@@ -3,7 +3,24 @@ import LikeButton from '@/components/pages/detail/LikeButton.tsx';
 import CorrectSvg from '@/components/svg-component/CorrectSvg.tsx';
 import WrongSvg from '@/components/svg-component/WrongSvg.tsx';
 import ReportButton from '@/components/pages/detail/ReportButton.tsx';
-import { getWordDetail } from '@/fetcher';
+
+import { BackendFetchRes, DefaultRes, WordDetail } from '@/fetcher/types.ts';
+import { notFound } from 'next/navigation';
+import { serverFetch } from '@/fetcher/serverFetch.ts';
+
+const getWordDetail = async (wordId: string) => {
+  try {
+    const res = await serverFetch<BackendFetchRes<DefaultRes<WordDetail>>>(
+      `/word/${wordId}`,
+    );
+
+    return res.data;
+  } catch (e) {
+    // NOTE: 상황에 맞는 페이지 보여줘야 함.
+    console.log(e);
+    notFound();
+  }
+};
 
 export default async function WordsPage({
   params,
@@ -11,6 +28,7 @@ export default async function WordsPage({
   params: { wordId: string };
 }) {
   const { wordId } = params;
+
   const {
     data: {
       name,
@@ -23,6 +41,7 @@ export default async function WordsPage({
       likeCount,
     },
   } = await getWordDetail(wordId);
+
   /*
   NOTE: 한글 발음 표기 - 영어 발음 표기  1 : 1로 라고 생각함.
   만약 다를 시 구글 스프레드 시트에서 변경해야 함
