@@ -6,10 +6,11 @@ import QuizButton from '@/components/pages/home/QuizButton';
 import { useState } from 'react';
 import useScroll from '@/hooks/useScroll';
 import { useEffect } from 'react';
-import { QUIZ_PATH, WORDBOOK_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
+import { QUIZ_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import HeartSvg from '../svg-component/HeartSvg';
+import { getUserInfo } from '@/fetcher';
+import HamburgerMenuSvg from '../svg-component/HamburgerMenuSvg';
 
 const DynamicToolTip = dynamic(() => import('@/components/common/ToolTip'), {
   ssr: false,
@@ -17,6 +18,7 @@ const DynamicToolTip = dynamic(() => import('@/components/common/ToolTip'), {
 
 export default function Header() {
   const isScrolled = useScroll();
+  const [id, setId] = useState('');
   const [isOpen, setIsOpen] = useState(
     () =>
       typeof window !== 'undefined' &&
@@ -27,6 +29,17 @@ export default function Header() {
     if (sessionStorage.getItem('isOpen')) setIsOpen(false);
     if (!isOpen) sessionStorage.setItem('isOpen', 'false');
   }, [isOpen]);
+
+  const fetchUserInfo = async () => {
+    const {
+      data: { id },
+    } = await getUserInfo();
+    setId(id);
+  };
+
+  useEffect(() => {
+    fetchUserInfo();
+  }, []);
 
   return (
     <>
@@ -39,9 +52,9 @@ export default function Header() {
         <Link href={QUIZ_PATH}>
           <QuizButton />
         </Link>
-        <Link href={WORDBOOK_PATH}>
+        <Link href={`/profile/${id}`}>
           <div className="text-[#A8B8FF]">
-            <HeartSvg />
+            <HamburgerMenuSvg />
           </div>
         </Link>
       </div>
