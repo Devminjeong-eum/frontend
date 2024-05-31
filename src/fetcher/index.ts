@@ -37,9 +37,12 @@ export const getWordSearch = async (wordName: string) => {
 
 export const getLikedWord = async (page: number, limit: number) => {
   try {
-    return await backendFetch<DefaultRes<likedWord>>(
-      `/word/like?page=${page}&limit=${limit}`,
-    );
+    return await backendFetch<DefaultRes<likedWord>>(`/word/like`, {
+      params: {
+        page,
+        limit,
+      },
+    });
   } catch (e) {
     // NOTE: 상황에 맞는 페이지 보여줘야 함.
     console.log('error', e);
