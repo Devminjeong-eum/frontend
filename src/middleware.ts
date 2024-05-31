@@ -5,7 +5,7 @@ import {
   ResponseCookies,
 } from 'next/dist/server/web/spec-extension/cookies';
 import { serverFetch } from '@/fetcher/serverFetch.ts';
-import { BackendFetchRes, DefaultRes, WordDetail } from '@/fetcher/types.ts';
+import { BackendFetchRes, DefaultRes } from '@/fetcher/types.ts';
 
 export async function middleware(request: NextRequest) {
   const accessToken = request.cookies.get('accessToken')?.value;
@@ -18,11 +18,18 @@ export async function middleware(request: NextRequest) {
     console.log('accessToken이 없습니다. 새로운 access Token을 세팅해줍니다.');
 
     try {
-      const { data } = await serverFetch<
-        BackendFetchRes<DefaultRes<WordDetail>>
-      >(`/auth/reissue`, {
-        method: 'PATCH',
-      });
+      const { headers } = await serverFetch<BackendFetchRes<DefaultRes<never>>>(
+        `/auth/reissue`,
+        {
+          method: 'PATCH',
+        },
+      );
+
+      console.log(headers.get('Set-Cookie'));
+      const accessToken = extractAccessToken(headers.get('Set-Cookie'));
+      if (accessToken) {
+        next.cookies.set('accessToken', accessToken);
+      }
     } catch (e) {
       console.log(e);
       console.log('accessToken이 설정되지 않았습니다.');
@@ -54,4 +61,17 @@ function applySetCookie(req: NextRequest, res: NextResponse) {
       res.headers.set(key, value);
     }
   });
+}
+
+function extractAccessToken(setCookieHeader: string | null) {
+  if (!setCookieHeader) {
+    return null;
+  }
+
+  const match = setCookieHeader.match(/accessToken=([^;]+)/);
+  if (match) {
+    return match[1];
+  }
+
+  return null;
 }

@@ -1,4 +1,5 @@
 import { useOptimistic } from 'react';
+
 import { addLike, subLike } from '@/actions';
 
 interface Props {
@@ -7,6 +8,9 @@ interface Props {
   likeCount: number;
 }
 export const useOptimisticLike = ({ wordId, isLike, likeCount }: Props) => {
+  // const addLikeMutation = useAddLike(wordId);
+  // const deleteLikeMutation = useDeleteLike(wordId);
+
   const [optimisticLikeState, setOptimisticLike] = useOptimistic<
     {
       isLike: boolean;
