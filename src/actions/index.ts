@@ -5,18 +5,7 @@ import { serverFetch } from '@/fetcher/serverFetch.ts';
 import { BackendFetchRes, DefaultRes } from '@/fetcher/types.ts';
 
 export const addLike = async (wordId: string) => {
-  await updateLike(wordId);
-  revalidatePath(`word/${wordId}`);
-};
-
-export const subLike = async (wordId: string) => {
-  await deleteLike(wordId);
-  revalidatePath(`word/${wordId}`);
-};
-
-export const updateLike = async (wordId: string) => {
   try {
-    console.log('updateLike');
     await serverFetch<BackendFetchRes<DefaultRes<never>>>(`/like/${wordId}`, {
       method: 'PATCH',
     });
@@ -28,9 +17,11 @@ export const updateLike = async (wordId: string) => {
     // 401 => 권한 없음 => 로그인 모달
     // 500 => 서버 에러
   }
+
+  revalidatePath(`word/${wordId}`);
 };
 
-export const deleteLike = async (wordId: string) => {
+export const subLike = async (wordId: string) => {
   try {
     await serverFetch<BackendFetchRes<DefaultRes<never>>>(`/like/${wordId}`, {
       method: 'DELETE',
@@ -43,4 +34,6 @@ export const deleteLike = async (wordId: string) => {
     // 401 => 권한 없음 => 로그인 모달
     // 500 => 서버 에러
   }
+
+  revalidatePath(`word/${wordId}`);
 };

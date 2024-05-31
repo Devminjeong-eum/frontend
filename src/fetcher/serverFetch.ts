@@ -3,7 +3,7 @@
 import httpClient from '@/fetcher/fetch.ts';
 import * as process from 'process';
 import { cookies } from 'next/headers';
-import { responseInterceptor } from '@/fetcher/index.ts';
+import { responseInterceptor } from '@/fetcher/interceptors.ts';
 
 // NOTE: 서버 사이드 전용으로 사용하는 fetch 입니다. backend api에 request를 요청합니다.
 // request interceptors 에서 Cookie header에 쿠키를 넣어줍니다.
@@ -22,11 +22,13 @@ export const serverFetch = httpClient({
       // NOTE: Cookie를 직접 세팅해줘야 합니다.
       const accessToken = cookies().get('accessToken')?.value;
       const refreshToken = cookies().get('refreshToken')?.value;
+      console.log('accessToken: ', accessToken);
+      console.log('refreshToken: ', refreshToken);
 
       if (accessToken || refreshToken) {
         init.headers = {
           ...init.headers,
-          Cookie: `accessToken=${accessToken}; refreshToken=${refreshToken}`,
+          Cookie: `refreshToken=${refreshToken}; accessToken=${accessToken}`,
         };
       }
       return init;
