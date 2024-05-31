@@ -46,8 +46,16 @@ export type QuizData = {
 export type QuizResultData = {
   quizResultId: string;
   score: number;
-  correctWords: string[];
-  incorrectWords: string[];
+  correctWords: QuizResultWordData[];
+  incorrectWords: QuizResultWordData[];
+};
+
+export type QuizResultWordData = {
+  wordId: string;
+  name: string;
+  pronunciation: string;
+  diacritic: string;
+  isLike: boolean;
 };
 
 export type QuizResultUserIdData = {
