@@ -4,6 +4,8 @@ import {
   RequestCookies,
   ResponseCookies,
 } from 'next/dist/server/web/spec-extension/cookies';
+import { serverFetch } from '@/fetcher/serverFetch.ts';
+import { BackendFetchRes, DefaultRes, WordDetail } from '@/fetcher/types.ts';
 
 export async function middleware(request: NextRequest) {
   const accessToken = request.cookies.get('accessToken')?.value;
@@ -14,7 +16,17 @@ export async function middleware(request: NextRequest) {
   // accessToken이 없고 refreshToken이 있을 경우
   if (!accessToken && refreshToken) {
     console.log('accessToken이 없습니다. 새로운 access Token을 세팅해줍니다.');
-    next.cookies.set('accessToken', 'accessToken');
+
+    try {
+      const { data } = await serverFetch<
+        BackendFetchRes<DefaultRes<WordDetail>>
+      >(`/auth/reissue`, {
+        method: 'PATCH',
+      });
+    } catch (e) {
+      console.log(e);
+      console.log('accessToken이 설정되지 않았습니다.');
+    }
 
     // 응답의 Set-Cookie 헤더를 요청의 Cookie 헤더로 복사
     applySetCookie(request, next);
