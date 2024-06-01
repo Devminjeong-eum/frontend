@@ -15,9 +15,9 @@ const TopRankingItem = ({
   isMount: boolean;
 }) => {
   const gradientStyles = [
-    'bg-rank-gradient-one duration-700',
-    'bg-rank-gradient-two duration-1000',
-    'bg-rank-gradient-three h-[67px] duration-[1300ms]',
+    'bg-rank-gradient-one duration-700 w-[340px]',
+    'bg-rank-gradient-two duration-1000 w-[316px]',
+    'bg-rank-gradient-three h-[67px] duration-[1300ms] w-[292px]',
   ];
 
   return (
@@ -27,7 +27,6 @@ const TopRankingItem = ({
         'h-[72px] rounded-r-[100px] flex items-center pl-[34px] transition-transform',
         index !== 0 && 'mt-[4px]',
         gradientStyles[index],
-        `w-[${340 - index * 24}px]`,
         isMount ? 'translate-x-0' : '-translate-x-full',
       )}
     >
