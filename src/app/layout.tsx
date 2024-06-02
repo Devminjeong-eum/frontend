@@ -3,6 +3,7 @@ import './global.css';
 import localFont from 'next/font/local';
 import QueryProvider from '@/providers/QueryProvider.tsx';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import Script from 'next/script';
 
 const gugi = Gugi({
   weight: '400',
@@ -72,11 +73,12 @@ export default function RootLayout({
     <html lang="ko" className={`${gugi.variable} ${pretendard.variable}`}>
       <GoogleAnalytics gaId="G-JVH2GTHE6P" />
       <body className="font-pretendard">
-        <div className="flex justify-center min-h-screen bg-[#FBFCFE]">
-          <div className="w-full max-w-[430px] border-1 border-x border-gray-200 shadow-xl">
+        <div className="flex justify-center min-h-screen bg-[#FBFCFE] scrollbar-hide">
+          <div className="w-full max-w-[430px] border-1 border-x border-gray-200 shadow-xl ">
             <QueryProvider>{children}</QueryProvider>
           </div>
         </div>
+        <Script src="https://developers.kakao.com/sdk/js/kakao.js" />
       </body>
     </html>
   );

@@ -1,42 +1,45 @@
 'use client';
 
-import Pagination from '@/components/pages/home/Pagination';
 import { useState } from 'react';
-import usePosts from '@/hooks/query/usePosts';
-import HomeItem from './HomeItem';
+import HomeToggleZone from './HomeToggleZone';
+import AllPosts from './all-posts';
+import useGetAllPosts from '@/hooks/query/useGetAllPosts';
+import TrendingPosts from './trending-posts';
 import Error from '../error';
-import HomeTrending from './HomeTrending';
 
-export default function Home() {
-  const [current, setCurrent] = useState(1);
-  const { data, error } = usePosts(current);
+export type TrendingType = 'trend' | 'all';
+
+export default function HomeClientPage() {
+  const [isTrending, setIsTrending] = useState<TrendingType>('all');
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const {
+    data: { data: allPostsData, status: statusCode },
+  } = useGetAllPosts(currentPage);
+
+  const handleToggle = (prev: TrendingType) => {
+    setIsTrending(prev);
+  };
+
+  if (statusCode !== 200) return <Error />;
 
   return (
-    <>
-      {error && <Error />}
-      <main className="p-5 rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[8px]">
-        <HomeTrending />
-        {data?.data.map((item) => (
-          <HomeItem
-            wordDiacritic={item.wordDiacritic}
-            wordDescription={item.wordDescription}
-            key={item.wordId}
-            wordId={item.wordId}
-            wordName={item.wordName}
-            wordSpeak={item.wordSpeak}
-            wordLike={item.wordLike}
-          />
-        ))}
-        {data && (
-          <Pagination
-            viewPaginationNums={4}
-            total={data?.totalItems || 0}
-            limit={10}
-            setCurrent={setCurrent}
-            current={current}
-          />
-        )}
-      </main>
-    </>
+    // FIXME: 트렌딩 단어 오픈 후에는 py-5 -> p-5로 수정 필요
+    <main className="py-5 rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[8px]">
+      {/* FIXME: 트렌딩 단어 오픈 후 아래 div 제거 */}
+      <div className="px-5">
+        <HomeToggleZone handleToggle={handleToggle} isTrending={isTrending} />
+      </div>
+
+      {isTrending === 'trend' ? (
+        <TrendingPosts />
+      ) : (
+        <AllPosts
+          data={allPostsData}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
+    </main>
   );
 }

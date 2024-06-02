@@ -10,16 +10,18 @@ export default function ToolTip({ isOpen, setIsOpen }: Props) {
   const tooltipRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (tooltipRef.current && !tooltipRef.current.contains(target)) {
+    const handleClick = (e: PointerEvent) => {
+      if (
+        tooltipRef.current &&
+        !tooltipRef.current.contains(e.target as HTMLElement)
+      ) {
         setIsOpen(false);
       }
     };
 
-    if (isOpen) document.addEventListener('mousedown', handleClick);
+    if (isOpen) document.addEventListener('pointerdown', handleClick);
 
-    return () => document.removeEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('pointerdown', handleClick);
   }, [isOpen, setIsOpen]);
 
   if (!isOpen) {

@@ -7,18 +7,14 @@ export default function DetailLoading() {
   return (
     <>
       <div>
-        <div className="bg-main-gradiant-full px-[16px]">
+        <div className="bg-main-gradient-full px-[16px]">
           <header className="w-full">
             <DetailHeader />
           </header>
           <div className="pt-6 pb-[22px] h-[150px]">
             <div className="flex items-end mb-[8px] gap-2.5">
-              <h1 className="h-[30px] align-bottom font-semibold text-white">
-                {/*{wordName}*/}
-              </h1>
-              <span className="text-white font-medium pb-[6px]">
-                {/*{wordSpeak}*/}
-              </span>
+              <h1 className="h-[30px] align-bottom font-semibold text-white"></h1>
+              <span className="text-white font-medium pb-[6px]"></span>
             </div>
             <div className="flex flex-col gap-2.5">
               <div className="h-[25px] bg-[#4068D0] rounded-[8px] flex items-center gap-2.5 pl-2">
@@ -26,9 +22,7 @@ export default function DetailLoading() {
                 <span className="text-[13px] font-semibold text-white">
                   올바른 발음
                 </span>
-                <span className="text-[13px] text-[#EAEEF8]">
-                  {/*{wordSpeak} {wordDiacritic}*/}
-                </span>
+                <span className="text-[13px] text-[#EAEEF8]"></span>
               </div>
               <div className="h-[25px] bg-[#6264A8] rounded-[8px] flex items-center gap-2.5 pl-2">
                 <WrongSvg />
