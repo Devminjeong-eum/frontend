@@ -15,9 +15,9 @@ const TopRankingItem = ({
   isMount: boolean;
 }) => {
   const gradientStyles = [
-    'bg-rank-gradient-one duration-700 w-[340px]',
-    'bg-rank-gradient-two duration-1000 w-[316px]',
-    'bg-rank-gradient-three h-[67px] duration-[1300ms] w-[292px]',
+    'bg-rank-gradient-one duration-700 w-[340px] xs:w-[390px]',
+    'bg-rank-gradient-two duration-1000 w-[316px] xs:w-[366px]',
+    'bg-rank-gradient-three h-[67px] duration-[1300ms] w-[292px] xs:w-[342px]',
   ];
 
   return (
