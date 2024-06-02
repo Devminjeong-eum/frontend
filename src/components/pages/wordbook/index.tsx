@@ -4,16 +4,18 @@ import { useState } from 'react';
 import Link from 'next/link';
 import WordbookHeader from '@/components/pages/wordbook/WordbookHeader';
 import QuizBanner from '@/components/pages/wordbook/QuizBanner';
-import usePosts from '@/hooks/query/usePosts';
 import WordItem from '@/components/common/WordItem';
 import Pagination from '@/components/common/Pagination';
 import NoWordSvg from '@/components/svg-component/NoWordSvg';
 import { WORD_LIST_PATH } from '@/routes/path';
 import WordbookDropdown from '@/components/pages/wordbook/WordbookDropdown';
+import useGetLikedWord from '@/hooks/query/useGetLikedWord';
 
 export default function Wordbook() {
   const [current, setCurrent] = useState(1);
-  const { data: { data: wordData, totalItems } = {} } = usePosts(current);
+  const { data } = useGetLikedWord(current, 10);
+
+  const { data: wordData, totalCount } = data.data;
 
   return (
     <div>
@@ -25,14 +27,14 @@ export default function Wordbook() {
           <div className="flex">
             <div className="w-[calc(46%+30px)] h-9 overflow-hidden rounded-tl-xl relative top-px">
               <div className="bg-[#FBFCFE] [transform:rotateY(180deg)_skew(-30deg)_translate(30px,0px)] h-full rounded-tl-md flex justify-center items-center">
-                <div className="[transform:rotateY(180deg)_skew(-30deg)_translate(-40px,0px)] text-[#313140] font-medium text-sm leading-[18px] tracking-[-0.02em] opacity-90">
-                  총 {totalItems}개
+                <div className="[transform:rotateY(180deg)_skew(-30deg)_translate(-40px,0px)] pl-2.5 text-[#313140] font-medium text-sm leading-[18px] tracking-[-0.02em] opacity-90">
+                  총 {totalCount}개
                 </div>
               </div>
             </div>
             <WordbookDropdown />
           </div>
-          {totalItems === 0 ? (
+          {totalCount === 0 ? (
             <div className="bg-[#FBFCFE] h-[calc(100vh-23rem)] flex flex-col justify-center items-center gap-2.5">
               <NoWordSvg />
               <span className="text-[#A8AEBC] font-medium text-center tracking-[-0.02em]">
@@ -44,20 +46,20 @@ export default function Wordbook() {
               {wordData &&
                 wordData.map((item) => (
                   <WordItem
-                    wordDiacritic={item.wordDiacritic}
-                    wordDescription={item.wordDescription}
-                    key={item.wordId}
-                    wordId={item.wordId}
-                    wordName={item.wordName}
-                    wordSpeak={item.wordSpeak}
-                    wordLike={item.wordLike}
+                    diacritic={item.diacritic}
+                    description={item.description}
+                    key={item.id}
+                    id={item.id}
+                    name={item.name}
+                    pronunciation={item.pronunciation}
+                    isLike={true}
                   />
                 ))}
             </div>
           )}
         </div>
         <div className="flex flex-col items-center gap-8 relative top-[-2rem]">
-          {totalItems === 0 ? (
+          {totalCount === 0 ? (
             <Link
               href={WORD_LIST_PATH}
               className="flex items-center justify-center w-10/12 h-14 bg-[#E7EBF8] rounded-2xl "
@@ -67,7 +69,7 @@ export default function Wordbook() {
           ) : (
             <Pagination
               viewPaginationNums={4}
-              total={totalItems || 0}
+              total={totalCount || 0}
               limit={10}
               setCurrent={setCurrent}
               current={current}
