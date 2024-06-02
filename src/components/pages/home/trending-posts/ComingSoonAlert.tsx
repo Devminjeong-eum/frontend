@@ -1,4 +1,4 @@
-import Bell from '@/components/svg-component/Bell';
+import BellSvg from '@/components/svg-component/BellSvg';
 import clsx from 'clsx';
 
 export default function ComingSoonAlert() {
@@ -12,7 +12,7 @@ export default function ComingSoonAlert() {
         )}
       >
         <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-          <Bell />
+          <BellSvg />
         </div>
         <div className="flex flex-col items-center py-[43px] gap-[10px]">
           <p className="text-[#4568E0] font-medium text-[15px]">OPEN 예정일</p>

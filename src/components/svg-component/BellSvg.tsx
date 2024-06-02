@@ -1,4 +1,4 @@
-export default function Bell() {
+export default function BellSvg() {
   return (
     <svg
       width="40"
