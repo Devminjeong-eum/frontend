@@ -10,7 +10,7 @@ import Error from '../error';
 export type TrendingType = 'trend' | 'all';
 
 export default function HomeClientPage() {
-  const [isTrending, setIsTrending] = useState<TrendingType>('trend');
+  const [isTrending, setIsTrending] = useState<TrendingType>('all');
   const [currentPage, setCurrentPage] = useState(1);
 
   const {
