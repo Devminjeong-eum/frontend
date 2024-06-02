@@ -8,16 +8,16 @@ import { useEffect, useState } from 'react';
 const TopRankingItem = ({
   index,
   item,
-  isMount,
+  ixsount,
 }: {
   index: number;
   item: number;
-  isMount: boolean;
+  ixsount: boolean;
 }) => {
   const gradientStyles = [
-    'bg-rank-gradient-one duration-700 w-[340px]',
-    'bg-rank-gradient-two duration-1000 w-[316px]',
-    'bg-rank-gradient-three h-[67px] duration-[1300ms] w-[292px]',
+    'bg-rank-gradient-one duration-700 w-[340px] xs:w-[390px]',
+    'bg-rank-gradient-two duration-1000 w-[316px] xs:w-[366px]',
+    'bg-rank-gradient-three h-[67px] duration-[1300ms] w-[292px] xs:w-[342px]',
   ];
 
   return (
@@ -27,7 +27,7 @@ const TopRankingItem = ({
         'h-[72px] rounded-r-[100px] flex items-center pl-[34px] transition-transform',
         index !== 0 && 'mt-[4px]',
         gradientStyles[index],
-        isMount ? 'translate-x-0' : '-translate-x-full',
+        ixsount ? 'translate-x-0' : '-translate-x-full',
       )}
     >
       {/* 크라운, 순위 컨테이너 */}
@@ -94,10 +94,10 @@ const TopRankingItem = ({
 };
 
 export default function TopRanking() {
-  const [isMount, setIsMount] = useState(false);
+  const [ixsount, setIxsount] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsMount(true), 300);
+    const timer = setTimeout(() => setIxsount(true), 300);
     return () => clearTimeout(timer);
   }, []);
 
@@ -111,7 +111,7 @@ export default function TopRanking() {
             key={index}
             index={index}
             item={item}
-            isMount={isMount}
+            ixsount={ixsount}
           />
         ))}
       </div>
