@@ -4,10 +4,11 @@ import BlackBackSpaceSVG from '@/components/svg-component/BlackBackSpaceSVG';
 import QuizScore from './QuizScore';
 import { useState } from 'react';
 import ShareButton from '@/components/svg-component/ShareButton';
-import Quiz from '.';
 import QuizResultDetail from './QuizResultDetail';
 import type { QuizResultWordData } from '@/fetcher/types';
 import ShareModal from './ShareModal';
+import { QUIZ_PATH } from '@/routes/path';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   score: number;
@@ -20,21 +21,19 @@ export default function QuizResult({
   correctWords,
   incorrectWords,
 }: Props) {
-  const [isShow, setisShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   const handleModalClick = () => {
     setIsOpen(!isOpen);
   };
-
-  if (isShow) return <Quiz />;
 
   return (
     <div className="relative px-5">
       <header className="flex items-center h-[68px]">
         <button
           className="ml-2 cursor-pointer"
-          onClick={() => setisShow(!isShow)}
+          onClick={() => router.replace(`${QUIZ_PATH}`)}
         >
           <BlackBackSpaceSVG />
         </button>
@@ -49,8 +48,8 @@ export default function QuizResult({
         incorrectWords={incorrectWords}
       />
       <button
+        onClick={() => router.replace(`${QUIZ_PATH}`)}
         className="bg-[#4057DB] rounded-[16px] mt-[24px] mb-[48px] h-[50px] font-semibold text-white w-full text-[16px]"
-        onClick={() => setisShow(!isShow)}
       >
         다시 도전하러 가기
       </button>
