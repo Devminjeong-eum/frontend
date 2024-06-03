@@ -35,7 +35,7 @@ export default function URLShareButton() {
   );
 }
 
-function CopiedNotice() {
+export function CopiedNotice() {
   return (
     <div className="w-screen h-screen fixed left-0 top-0 flex justify-center items-center">
       <div className="w-full h-screen flex justify-center items-center max-w-[430px] bg-[#000000] opacity-70 mix-blend-multiply" />
