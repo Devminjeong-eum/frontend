@@ -76,9 +76,12 @@ export const deleteLike = async (wordId: string) => {
 
 export const getAllPosts = async (currentPage: number) => {
   try {
-    const res = await backendFetch<DefaultRes<MainDataType>>(
-      `/word/list?page=${currentPage}&limit=10`,
-    );
+    const res = await backendFetch<DefaultRes<MainDataType>>(`/word/list`, {
+      params: {
+        page: currentPage,
+        limit: 10,
+      },
+    });
 
     return res.data;
   } catch (e) {
