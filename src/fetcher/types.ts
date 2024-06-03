@@ -1,3 +1,10 @@
+import { MainItemType } from '@/types/main';
+
+export type DefaultRes<TData> = {
+  status: number;
+  data: TData;
+};
+
 export type WordDetail = {
   id: string;
   name: string;
@@ -18,11 +25,6 @@ export type WordDetail = {
   updatedAt: Date;
 };
 
-export type DefaultRes<TData> = {
-  status: number;
-  data: TData;
-};
-
 export type SearchWord = {
   data: SearchWordData[];
   page: number;
@@ -38,6 +40,14 @@ export type SearchWordData = {
   diacritic: string[];
   pronunciation: string[];
   wordLike: boolean;
+};
+
+export type likedWord = {
+  data: Omit<MainItemType, 'isLike'>[];
+  isLast: boolean;
+  limit: number;
+  page: number;
+  totalCount: number;
 };
 
 export type LoginData = {
