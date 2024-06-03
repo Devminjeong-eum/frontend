@@ -1,13 +1,16 @@
 import { notFound } from 'next/navigation';
 import { backendFetch } from '@/fetcher/instance.ts';
+
 import type {
   DefaultRes,
   WordDetail,
   SearchWord,
+  likedWord,
   QuizData,
   QuizResultData,
   QuizResultUserIdData,
 } from './types.ts';
+import { MainDataType } from '@/types/main.ts';
 
 export const getWordDetail = async (wordId: string) => {
   try {
@@ -76,6 +79,32 @@ export const postQuizData = async (
       },
     );
   } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
+
+export const getAllPosts = async (currentPage: number) => {
+  try {
+    return await backendFetch<DefaultRes<MainDataType>>(
+      `/word/list?page=${currentPage}&limit=10`,
+    );
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
+
+export const getLikedWord = async (page: number, limit: number) => {
+  try {
+    return await backendFetch<DefaultRes<likedWord>>(`/word/like`, {
+      params: {
+        page,
+        limit,
+      },
+    });
+  } catch (e) {
+    // NOTE: 상황에 맞는 페이지 보여줘야 함.
     console.log('error', e);
     notFound();
   }

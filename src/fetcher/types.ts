@@ -1,3 +1,10 @@
+import { MainItemType } from '@/types/main';
+
+export type DefaultRes<TData> = {
+  status: number;
+  data: TData;
+};
+
 export type WordDetail = {
   id: string;
   name: string;
@@ -11,11 +18,6 @@ export type WordDetail = {
   // NOTE: metadata
   createdAt: Date;
   updatedAt: Date;
-};
-
-export type DefaultRes<TData> = {
-  status: number;
-  data: TData;
 };
 
 export type SearchWord = {
@@ -62,4 +64,12 @@ export type QuizResultUserIdData = {
   quizResultId: string;
   correctWordIds: string[];
   incorrectWordIds: string[];
+};
+
+export type likedWord = {
+  data: Omit<MainItemType, 'isLike'>[];
+  isLast: boolean;
+  limit: number;
+  page: number;
+  totalCount: number;
 };
