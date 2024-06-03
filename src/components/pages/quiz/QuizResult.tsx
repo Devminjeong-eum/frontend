@@ -5,13 +5,14 @@ import QuizScore from './QuizScore';
 import { useState } from 'react';
 import ShareButton from '@/components/svg-component/ShareButton';
 import Quiz from '.';
-import useLoadKakaoScript from '@/hooks/useLoadKakaoScript';
 import QuizResultDetail from './QuizResultDetail';
+import type { QuizResultWordData } from '@/fetcher/types';
+import ShareModal from './ShareModal';
 
 type Props = {
   score: number;
-  correctWords: string[];
-  incorrectWords: string[];
+  correctWords: QuizResultWordData[];
+  incorrectWords: QuizResultWordData[];
 };
 
 export default function QuizResult({
@@ -20,7 +21,11 @@ export default function QuizResult({
   incorrectWords,
 }: Props) {
   const [isShow, setisShow] = useState(false);
-  const { handleShare } = useLoadKakaoScript();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleModalClick = () => {
+    setIsOpen(!isOpen);
+  };
 
   if (isShow) return <Quiz />;
 
@@ -33,8 +38,8 @@ export default function QuizResult({
         >
           <BlackBackSpaceSVG />
         </button>
-        <div className=" m-auto font-medium pr-3">TEST 결과</div>
-        <button onClick={handleShare}>
+        <div className="m-auto font-medium">TEST 결과</div>
+        <button onClick={handleModalClick}>
           <ShareButton />
         </button>
       </header>
@@ -49,6 +54,7 @@ export default function QuizResult({
       >
         다시 도전하러 가기
       </button>
+      <ShareModal isOpen={isOpen} handleModalClick={handleModalClick} />
     </div>
   );
 }
