@@ -8,7 +8,9 @@ export type Props = {
 export default async function QuizResultPage({ params }: Props) {
   const { quizResultId } = params;
   const {
-    data: { score, correctWords, incorrectWords },
+    data: {
+      data: { score, correctWords, incorrectWords },
+    },
   } = await getQuizResultData(quizResultId);
 
   return (

@@ -19,12 +19,16 @@ export default function QuizPlay() {
   const router = useRouter();
 
   const {
-    data: { data },
+    data: {
+      data: { data },
+    },
   } = useGetQuizData();
 
   const fetchQuizResultData = async () => {
     const {
-      data: { quizResultId },
+      data: {
+        data: { quizResultId },
+      },
     } = await postQuizData(correctWordIds, incorrectWordIds);
     router.push(`/quiz/result/${quizResultId}`);
   };

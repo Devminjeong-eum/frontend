@@ -107,7 +107,9 @@ export const getLikedWord = async (page: number, limit: number) => {
 
 export const getQuizData = async () => {
   try {
-    return await backendFetch<DefaultRes<QuizData[]>>('/quiz/selection');
+    return await backendFetch<FetchRes<DefaultRes<QuizData[]>>>(
+      '/quiz/selection',
+    );
   } catch (e) {
     console.log('error', e);
     notFound();
@@ -116,7 +118,9 @@ export const getQuizData = async () => {
 
 export const getQuizResultData = async (id: string) => {
   try {
-    return await backendFetch<DefaultRes<QuizResultData>>(`quiz/result/${id}`);
+    return await backendFetch<FetchRes<DefaultRes<QuizResultData>>>(
+      `quiz/result/${id}`,
+    );
   } catch (e) {
     console.log('error', e);
     notFound();
@@ -128,7 +132,7 @@ export const postQuizData = async (
   incorrectWordIds: string[],
 ) => {
   try {
-    return await backendFetch<DefaultRes<QuizResultUserIdData>>(
+    return await backendFetch<FetchRes<DefaultRes<QuizResultUserIdData>>>(
       '/quiz/result',
       {
         method: 'POST',
