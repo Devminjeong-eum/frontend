@@ -28,7 +28,12 @@ export async function middleware(request: NextRequest) {
       console.log(headers.get('Set-Cookie'));
       const accessToken = extractAccessToken(headers.get('Set-Cookie'));
       if (accessToken) {
-        next.cookies.set('accessToken', accessToken);
+        next.cookies.set('accessToken', accessToken, {
+          httpOnly: true,
+          domain: '.dev-malssami.site',
+          secure: true,
+          sameSite: 'lax',
+        });
       }
     } catch (e) {
       console.log(e);
