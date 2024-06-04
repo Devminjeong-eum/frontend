@@ -7,11 +7,11 @@ export type MainItemType = {
   pronunciation: string[];
 };
 
-export type MainDataType = {
-  data: MainItemType[];
-  isLast: boolean;
-  limit: number;
+export type PaginationRes<TData> = {
+  data: TData;
   page: number;
+  limit: number;
+  isLast: boolean;
   totalCount: number;
 };
 
