@@ -65,7 +65,7 @@ export type ErrorRes = {
   message: string;
 };
 
-export type BackendFetchRes<TRes> = {
+export type FetchRes<TRes> = {
   status: number;
   statusText: string;
   headers: Headers;

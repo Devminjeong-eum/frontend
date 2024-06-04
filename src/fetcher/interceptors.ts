@@ -1,5 +1,5 @@
-import { ErrorRes } from '@/fetcher/types.ts';
-import { isServer } from '@/fetcher/index.ts';
+import type { ErrorRes } from '@/fetcher/types.ts';
+import { isServer } from '@/utils';
 
 export async function responseInterceptor(response: Response) {
   if (isServer()) {

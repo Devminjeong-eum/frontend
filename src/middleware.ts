@@ -5,7 +5,7 @@ import {
   ResponseCookies,
 } from 'next/dist/server/web/spec-extension/cookies';
 import { serverFetch } from '@/fetcher/serverFetch.ts';
-import { BackendFetchRes, DefaultRes } from '@/fetcher/types.ts';
+import type { FetchRes, DefaultRes } from '@/fetcher/types.ts';
 
 export async function middleware(request: NextRequest) {
   const accessToken = request.cookies.get('accessToken')?.value;
@@ -18,7 +18,7 @@ export async function middleware(request: NextRequest) {
     console.log('accessToken이 없습니다. 새로운 access Token을 세팅해줍니다.');
 
     try {
-      const { headers } = await serverFetch<BackendFetchRes<DefaultRes<never>>>(
+      const { headers } = await serverFetch<FetchRes<DefaultRes<never>>>(
         `/auth/reissue`,
         {
           method: 'PATCH',

@@ -2,11 +2,11 @@
 
 import { revalidatePath } from 'next/cache';
 import { serverFetch } from '@/fetcher/serverFetch.ts';
-import { BackendFetchRes, DefaultRes } from '@/fetcher/types.ts';
+import { FetchRes, DefaultRes } from '@/fetcher/types.ts';
 
 export const addLike = async (wordId: string) => {
   try {
-    await serverFetch<BackendFetchRes<DefaultRes<never>>>(`/like/${wordId}`, {
+    await serverFetch<FetchRes<DefaultRes<never>>>(`/like/${wordId}`, {
       method: 'PATCH',
     });
   } catch (e) {
@@ -23,7 +23,7 @@ export const addLike = async (wordId: string) => {
 
 export const subLike = async (wordId: string) => {
   try {
-    await serverFetch<BackendFetchRes<DefaultRes<never>>>(`/like/${wordId}`, {
+    await serverFetch<FetchRes<DefaultRes<never>>>(`/like/${wordId}`, {
       method: 'DELETE',
     });
   } catch (e) {

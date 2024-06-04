@@ -4,13 +4,13 @@ import CorrectSvg from '@/components/svg-component/CorrectSvg.tsx';
 import WrongSvg from '@/components/svg-component/WrongSvg.tsx';
 import ReportButton from '@/components/pages/detail/ReportButton.tsx';
 
-import { BackendFetchRes, DefaultRes, WordDetail } from '@/fetcher/types.ts';
+import type { DefaultRes, FetchRes, WordDetail } from '@/fetcher/types.ts';
 import { notFound } from 'next/navigation';
 import { serverFetch } from '@/fetcher/serverFetch.ts';
 
 const getWordDetail = async (wordId: string) => {
   try {
-    const res = await serverFetch<BackendFetchRes<DefaultRes<WordDetail>>>(
+    const res = await serverFetch<FetchRes<DefaultRes<WordDetail>>>(
       `/word/${wordId}`,
     );
 

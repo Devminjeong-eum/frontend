@@ -1,17 +1,12 @@
 import { notFound } from 'next/navigation';
-import type {
-  DefaultRes,
-  SearchWord,
-  BackendFetchRes,
-  LoginData,
-  likedWord,
-} from './types.ts';
+import type { DefaultRes, SearchWord, LoginData, likedWord } from './types.ts';
 import { PaginationRes, MainItemType } from '@/types/main.ts';
 import { backendFetch } from '@/fetcher/backendFetch.ts';
+import { FetchRes } from './types.ts';
 
 export const getWordSearch = async (wordName: string) => {
   try {
-    const res = await backendFetch<BackendFetchRes<DefaultRes<SearchWord>>>(
+    const res = await backendFetch<FetchRes<DefaultRes<SearchWord>>>(
       `/word/search`,
       {
         params: { keyword: wordName, page: 1, limit: 50 },
@@ -27,12 +22,9 @@ export const getWordSearch = async (wordName: string) => {
 
 export const login = async (code: string) => {
   try {
-    return await backendFetch<BackendFetchRes<DefaultRes<LoginData>>>(
-      `/auth/kakao`,
-      {
-        params: { code },
-      },
-    );
+    return await backendFetch<FetchRes<DefaultRes<LoginData>>>(`/auth/kakao`, {
+      params: { code },
+    });
   } catch (e) {
     console.error('login error: ', e);
     throw e;
@@ -42,7 +34,7 @@ export const login = async (code: string) => {
 // NOTE: for client side fetch
 export const updateLike = async (wordId: string) => {
   try {
-    await backendFetch<BackendFetchRes<DefaultRes<never>>>(`/like/${wordId}`, {
+    await backendFetch<FetchRes<DefaultRes<never>>>(`/like/${wordId}`, {
       method: 'PATCH',
     });
   } catch (e) {
@@ -57,7 +49,7 @@ export const updateLike = async (wordId: string) => {
 // NOTE: for client side fetch
 export const deleteLike = async (wordId: string) => {
   try {
-    await backendFetch<BackendFetchRes<DefaultRes<never>>>(`/like/${wordId}`, {
+    await backendFetch<FetchRes<DefaultRes<never>>>(`/like/${wordId}`, {
       method: 'DELETE',
     });
   } catch (e) {
@@ -73,7 +65,7 @@ export const deleteLike = async (wordId: string) => {
 export const getAllPosts = async (currentPage: number) => {
   try {
     const res = await backendFetch<
-      BackendFetchRes<DefaultRes<PaginationRes<MainItemType[]>>>
+      FetchRes<DefaultRes<PaginationRes<MainItemType[]>>>
     >(`/word/list`, {
       params: {
         page: currentPage,
