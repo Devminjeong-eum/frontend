@@ -5,8 +5,6 @@ import HomeToggleZone from './HomeToggleZone';
 import AllPosts from './all-posts';
 import useGetAllPosts from '@/hooks/query/useGetAllPosts';
 import TrendingPosts from './trending-posts';
-import Error from '../error';
-
 export type TrendingType = 'trend' | 'all';
 
 export default function HomeClientPage() {
@@ -14,14 +12,12 @@ export default function HomeClientPage() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const {
-    data: { data: allPostsData, status: statusCode },
+    data: { data: allPostsData },
   } = useGetAllPosts(currentPage);
 
   const handleToggle = (prev: TrendingType) => {
     setIsTrending(prev);
   };
-
-  if (statusCode !== 200) return <Error />;
 
   return (
     // FIXME: 트렌딩 단어 오픈 후에는 py-5 -> p-5로 수정 필요

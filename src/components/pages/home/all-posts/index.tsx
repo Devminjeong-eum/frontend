@@ -3,11 +3,11 @@
 import LoginAlertModal from '@/components/common/LoginAlertModal';
 import Pagination from '@/components/common/Pagination';
 import WordItem from '@/components/common/WordItem';
-import { type MainDataType } from '@/types/main';
+import { type PaginationRes, type MainItemType } from '@/types/main';
 import { Dispatch, SetStateAction, useState } from 'react';
 
 type AllPostsProps = {
-  data: MainDataType;
+  data: PaginationRes<MainItemType[]>;
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
 };

@@ -7,7 +7,6 @@ fetch Type
 */
 
 type FetchParameters = Parameters<typeof fetch>;
-
 type Promiseable<T> = T | Promise<T>;
 
 type Params = {

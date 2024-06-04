@@ -8,11 +8,11 @@ import { useEffect, useState } from 'react';
 const TopRankingItem = ({
   index,
   item,
-  ixsount,
+  isMount,
 }: {
   index: number;
   item: number;
-  ixsount: boolean;
+  isMount: boolean;
 }) => {
   const gradientStyles = [
     'bg-rank-gradient-one duration-700 w-[340px] xs:w-[390px]',
@@ -27,7 +27,7 @@ const TopRankingItem = ({
         'h-[72px] rounded-r-[100px] flex items-center pl-[34px] transition-transform',
         index !== 0 && 'mt-[4px]',
         gradientStyles[index],
-        ixsount ? 'translate-x-0' : '-translate-x-full',
+        isMount ? 'translate-x-0' : '-translate-x-full',
       )}
     >
       {/* 크라운, 순위 컨테이너 */}
@@ -94,10 +94,10 @@ const TopRankingItem = ({
 };
 
 export default function TopRanking() {
-  const [ixsount, setIxsount] = useState(false);
+  const [isMount, setIsMount] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIxsount(true), 300);
+    const timer = setTimeout(() => setIsMount(true), 300);
     return () => clearTimeout(timer);
   }, []);
 
@@ -111,7 +111,7 @@ export default function TopRanking() {
             key={index}
             index={index}
             item={item}
-            ixsount={ixsount}
+            isMount={isMount}
           />
         ))}
       </div>
