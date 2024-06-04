@@ -31,12 +31,13 @@ const getWordDetail = async (type: 'ID' | 'NAME', value: string) => {
 export default async function WordsPage({
   params,
 }: {
-  params: { wordId: string };
+  params: { wordName: string };
 }) {
-  const { wordId } = params;
+  const { wordName } = params;
 
   const {
     data: {
+      id,
       name,
       description,
       diacritic,
@@ -46,7 +47,7 @@ export default async function WordsPage({
       isLike,
       likeCount,
     },
-  } = await getWordDetail('ID', wordId);
+  } = await getWordDetail('NAME', wordName);
 
   /*
   NOTE: 한글 발음 표기 - 영어 발음 표기  1 : 1로 라고 생각함.
@@ -75,7 +76,7 @@ export default async function WordsPage({
             <LikeButton
               initialLike={isLike}
               initialLikeCount={likeCount}
-              wordId={wordId}
+              wordId={id}
             />
           </div>
           <div className="inline-flex flex-col gap-2.5">
