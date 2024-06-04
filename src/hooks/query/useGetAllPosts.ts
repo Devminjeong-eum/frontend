@@ -6,7 +6,8 @@ const useGetAllPosts = (pageNumber: number) => {
   return useSuspenseQuery({
     queryKey: [QUERY_KEYS.HOME_KEY, pageNumber],
     queryFn: () => getAllPosts(pageNumber),
-    staleTime: 1000 * 60 * 3600,
+    // staleTime: 1000 * 60 * 3600,
+    staleTime: 0,
   });
 };
 

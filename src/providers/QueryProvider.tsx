@@ -6,7 +6,8 @@ function makeQueryClient() {
   return new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: 60 * 1000,
+        // FIXME: 돌맹 이것도 문제가 있으려나요?
+        // staleTime: 60 * 1000,
       },
     },
   });

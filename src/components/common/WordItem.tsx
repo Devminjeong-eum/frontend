@@ -3,6 +3,8 @@ import { getWordDetailPath } from '@/routes/path.ts';
 import { useRouter } from 'next/navigation';
 import HeartSvg from '@/components/svg-component/HeartSvg';
 import clsx from 'clsx';
+import { useOptimisticLike } from '@/hooks/useOptimisticLike';
+import { startTransition } from 'react';
 
 type Props = MainItemType & {
   handleModal: () => void;
@@ -16,8 +18,22 @@ export default function WordItem({
   pronunciation, // 발음 (국문)
   description,
   handleModal,
+  likeCount,
 }: Props) {
   const router = useRouter();
+
+  const { optimisticLikeState, handleSubLike, handleAddLike } =
+    useOptimisticLike({
+      wordId: id,
+      isLike,
+      likeCount,
+    });
+
+  const handleLikeButton = () => {
+    startTransition(() => {
+      optimisticLikeState.isLike ? handleSubLike() : handleAddLike();
+    });
+  };
 
   return (
     <article
@@ -50,7 +66,8 @@ export default function WordItem({
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                // FIXME: 좋아요 API 연동 후 로그인 체크 로직 추가 예정
+                handleLikeButton();
+                // 로그인 유무 확인 로직 필요
                 handleModal();
               }}
               className={clsx(isLike ? 'text-main-blue' : 'text-[#D3DAED]')}

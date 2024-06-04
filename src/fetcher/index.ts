@@ -3,6 +3,7 @@ import type { DefaultRes, SearchWord, LoginData, likedWord } from './types.ts';
 import { PaginationRes, MainItemType } from '@/types/main.ts';
 import { backendFetch } from '@/fetcher/backendFetch.ts';
 import { FetchRes } from './types.ts';
+import { serverFetch } from './serverFetch.ts';
 
 export const getWordSearch = async (wordName: string) => {
   try {
@@ -64,7 +65,7 @@ export const deleteLike = async (wordId: string) => {
 
 export const getAllPosts = async (currentPage: number) => {
   try {
-    const res = await backendFetch<
+    const res = await serverFetch<
       FetchRes<DefaultRes<PaginationRes<MainItemType[]>>>
     >(`/word/list`, {
       params: {

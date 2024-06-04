@@ -1,10 +1,11 @@
 export type MainItemType = {
-  description: string;
-  diacritic: string[];
   id: string;
+  name: string; // 영문 명
+  description: string; // 단어 설명
+  pronunciation: string[]; // 발음 기호 (국문)
+  diacritic: string[]; // 발음 기호 (영문)
   isLike: boolean;
-  name: string;
-  pronunciation: string[];
+  likeCount: number; 
 };
 
 export type PaginationRes<TData> = {
