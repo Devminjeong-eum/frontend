@@ -13,7 +13,7 @@ export default function HomeClientPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const params = searchParams.get('view') as TrendingType;
-  
+
   const [currentPage, setCurrentPage] = useState(1);
   const [isTrending, setIsTrending] = useState<TrendingType>(params);
 
@@ -25,6 +25,8 @@ export default function HomeClientPage() {
     setIsTrending(prev);
     router.push(`/home?view=${prev}`);
   };
+
+  console.log('hello');
 
   return (
     // FIXME: 트렌딩 단어 오픈 후에는 py-5 -> p-5로 수정 필요
