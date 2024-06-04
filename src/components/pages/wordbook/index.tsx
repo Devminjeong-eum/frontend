@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import WordbookHeader from '@/components/pages/wordbook/WordbookHeader';
 import QuizBanner from '@/components/pages/wordbook/QuizBanner';
@@ -17,12 +16,10 @@ import {
 } from '@/constants/sortingOptions';
 
 export default function Wordbook() {
-  const [current, setCurrent] = useState(1);
-  const { selectedOption, setSelectedOption } = useDropdown(
-    DROPDOWN_DEFAULT_OPTION,
-  );
+  const { selectedOption, setSelectedOption, currentPage, setCurrentPage } =
+    useDropdown(DROPDOWN_DEFAULT_OPTION);
   const { data } = useGetLikedWord(
-    current,
+    currentPage,
     10,
     sortOptionMapping[selectedOption],
   );
@@ -86,8 +83,8 @@ export default function Wordbook() {
               viewPaginationNums={4}
               total={totalCount || 0}
               limit={10}
-              setCurrent={setCurrent}
-              current={current}
+              setCurrent={setCurrentPage}
+              current={currentPage}
             />
           )}
           <QuizBanner />
