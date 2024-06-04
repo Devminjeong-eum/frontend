@@ -15,7 +15,7 @@ export default function Wordbook() {
   const [current, setCurrent] = useState(1);
   const { data } = useGetLikedWord(current, 10);
 
-  const { data: wordData, totalCount } = data.data;
+  const { data: wordData, totalCount } = data;
 
   return (
     <div>

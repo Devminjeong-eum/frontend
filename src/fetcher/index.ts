@@ -6,7 +6,7 @@ import type {
   LoginData,
   likedWord,
 } from './types.ts';
-import { MainDataType } from '@/types/main.ts';
+import { PaginationRes, MainItemType } from '@/types/main.ts';
 import { backendFetch } from '@/fetcher/backendFetch.ts';
 
 export const getWordSearch = async (wordName: string) => {
@@ -39,11 +39,7 @@ export const login = async (code: string) => {
   }
 };
 
-export function isServer() {
-  return typeof window === 'undefined';
-}
-
-// NOTE: client side fetch
+// NOTE: for client side fetch
 export const updateLike = async (wordId: string) => {
   try {
     await backendFetch<BackendFetchRes<DefaultRes<never>>>(`/like/${wordId}`, {
@@ -58,7 +54,7 @@ export const updateLike = async (wordId: string) => {
   }
 };
 
-// NOTE: client side fetch
+// NOTE: for client side fetch
 export const deleteLike = async (wordId: string) => {
   try {
     await backendFetch<BackendFetchRes<DefaultRes<never>>>(`/like/${wordId}`, {
@@ -76,7 +72,9 @@ export const deleteLike = async (wordId: string) => {
 
 export const getAllPosts = async (currentPage: number) => {
   try {
-    const res = await backendFetch<DefaultRes<MainDataType>>(`/word/list`, {
+    const res = await backendFetch<
+      BackendFetchRes<DefaultRes<PaginationRes<MainItemType[]>>>
+    >(`/word/list`, {
       params: {
         page: currentPage,
         limit: 10,
