@@ -27,7 +27,7 @@ export default function Wordbook() {
     sortOptionMapping[selectedOption],
   );
 
-  const { data: wordData, totalCount } = data;
+  const { data: wordData, totalCount } = data.data;
 
   return (
     <div>
