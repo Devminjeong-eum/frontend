@@ -86,14 +86,13 @@ export const getLikedWord = async (
   selectedOption: string,
 ) => {
   try {
-    return await backendFetch<DefaultRes<likedWord>>(
-      `/word/like?page=${page}&limit=${limit}&sorting=${selectedOption}`,
-      {
-        headers: {
-          Authorization: 'dev_malssami_admin',
-        },
+    return await backendFetch<FetchRes<DefaultRes<likedWord>>>(`/word/like`, {
+      params: {
+        page,
+        limit,
+        sorting: selectedOption,
       },
-    );
+    });
   } catch (e) {
     // NOTE: 상황에 맞는 페이지 보여줘야 함.
     console.log('error', e);
