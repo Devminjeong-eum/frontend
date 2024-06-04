@@ -1,20 +1,28 @@
 import { notFound } from 'next/navigation';
-import { backendFetch } from '@/fetcher/instance.ts';
-import type { DefaultRes, WordDetail, SearchWord, likedWord } from './types.ts';
+import type { DefaultRes, SearchWord, LoginData, likedWord } from './types.ts';
+import { PaginationRes, MainItemType } from '@/types/main.ts';
+import { backendFetch } from '@/fetcher/backendFetch.ts';
+import { FetchRes } from './types.ts';
 
-export const getWordDetail = async (wordId: string) => {
+export const getWordSearch = async (wordName: string) => {
   try {
-    return await backendFetch<DefaultRes<WordDetail>>(`/word/${wordId}`);
+    const res = await backendFetch<FetchRes<DefaultRes<SearchWord>>>(
+      `/word/search`,
+      {
+        params: { keyword: wordName, page: 1, limit: 50 },
+      },
+    );
+    return res.data;
   } catch (e) {
     // NOTE: 상황에 맞는 페이지 보여줘야 함.
-    console.log('error');
+    console.log('error', e);
     notFound();
   }
 };
 
 export const login = async (code: string) => {
   try {
-    return await backendFetch(`/auth/kakao`, {
+    return await backendFetch<FetchRes<DefaultRes<LoginData>>>(`/auth/kakao`, {
       params: { code },
     });
   } catch (e) {
@@ -23,13 +31,50 @@ export const login = async (code: string) => {
   }
 };
 
-export const getWordSearch = async (wordName: string) => {
+// NOTE: for client side fetch
+export const updateLike = async (wordId: string) => {
   try {
-    return await backendFetch<DefaultRes<SearchWord>>(
-      `/word/search?keyword=${wordName}&page=1&limit=50`,
-    );
+    await backendFetch<FetchRes<DefaultRes<never>>>(`/like/${wordId}`, {
+      method: 'PATCH',
+    });
   } catch (e) {
-    // NOTE: 상황에 맞는 페이지 보여줘야 함.
+    if (e instanceof Error) {
+      console.log(e.message);
+    }
+    // 401 => 권한 없음 => 로그인 모달
+    // 500 => 서버 에러
+  }
+};
+
+// NOTE: for client side fetch
+export const deleteLike = async (wordId: string) => {
+  try {
+    await backendFetch<FetchRes<DefaultRes<never>>>(`/like/${wordId}`, {
+      method: 'DELETE',
+    });
+  } catch (e) {
+    if (e instanceof Error) {
+      console.log(e.message);
+    }
+    // NOTE: 발생할 수 있는 에러
+    // 401 => 권한 없음 => 로그인 모달
+    // 500 => 서버 에러
+  }
+};
+
+export const getAllPosts = async (currentPage: number) => {
+  try {
+    const res = await backendFetch<
+      FetchRes<DefaultRes<PaginationRes<MainItemType[]>>>
+    >(`/word/list`, {
+      params: {
+        page: currentPage,
+        limit: 10,
+      },
+    });
+
+    return res.data;
+  } catch (e) {
     console.log('error', e);
     notFound();
   }

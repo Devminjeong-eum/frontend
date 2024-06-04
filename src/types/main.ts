@@ -1,18 +1,18 @@
 export type MainItemType = {
-  id: string;
-  name: string;
   description: string;
   diacritic: string[];
-  pronunciation: string[];
+  id: string;
   isLike: boolean;
+  name: string;
+  pronunciation: string[];
 };
 
-export type MainDataType = {
-  offset: number; // 현재 페이지
-  pageSize: number; // 한페이지에 보여줄 아이템 개수
-  totalItems: number;
-  totalPages: number;
-  wordAll: Array<MainItemType>;
+export type PaginationRes<TData> = {
+  data: TData;
+  page: number;
+  limit: number;
+  isLast: boolean;
+  totalCount: number;
 };
 
 export type PaginationPropType = {
