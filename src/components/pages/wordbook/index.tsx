@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import WordbookHeader from '@/components/pages/wordbook/WordbookHeader';
 import QuizBanner from '@/components/pages/wordbook/QuizBanner';
@@ -10,12 +9,22 @@ import NoWordSvg from '@/components/svg-component/NoWordSvg';
 import { WORD_LIST_PATH } from '@/routes/path';
 import WordbookDropdown from '@/components/pages/wordbook/WordbookDropdown';
 import useGetLikedWord from '@/hooks/query/useGetLikedWord';
+import useDropdown from '@/hooks/useDropdown';
+import {
+  DROPDOWN_DEFAULT_OPTION,
+  sortOptionMapping,
+} from '@/constants/sortingOptions';
 
 export default function Wordbook() {
-  const [current, setCurrent] = useState(1);
-  const { data } = useGetLikedWord(current, 10);
+  const { selectedOption, setSelectedOption, currentPage, setCurrentPage } =
+    useDropdown(DROPDOWN_DEFAULT_OPTION);
+  const { data } = useGetLikedWord(
+    currentPage,
+    10,
+    sortOptionMapping[selectedOption],
+  );
 
-  const { data: wordData, totalCount } = data;
+  const { data: wordData, totalCount } = data.data.data;
 
   return (
     <div>
@@ -32,7 +41,10 @@ export default function Wordbook() {
                 </div>
               </div>
             </div>
-            <WordbookDropdown />
+            <WordbookDropdown
+              selectedOption={selectedOption}
+              setSelectedOption={setSelectedOption}
+            />
           </div>
           {totalCount === 0 ? (
             <div className="bg-[#FBFCFE] h-[calc(100vh-23rem)] flex flex-col justify-center items-center gap-2.5">
@@ -71,8 +83,8 @@ export default function Wordbook() {
               viewPaginationNums={4}
               total={totalCount || 0}
               limit={10}
-              setCurrent={setCurrent}
-              current={current}
+              setCurrent={setCurrentPage}
+              current={currentPage}
             />
           )}
           <QuizBanner />

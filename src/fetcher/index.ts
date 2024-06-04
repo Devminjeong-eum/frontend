@@ -80,16 +80,19 @@ export const getAllPosts = async (currentPage: number) => {
   }
 };
 
-export const getLikedWord = async (page: number, limit: number) => {
+export const getLikedWord = async (
+  page: number,
+  limit: number,
+  selectedOption: string,
+) => {
   try {
-    const res = await backendFetch<DefaultRes<likedWord>>(`/word/like`, {
+    return await backendFetch<FetchRes<DefaultRes<likedWord>>>(`/word/like`, {
       params: {
         page,
         limit,
+        sorting: selectedOption,
       },
     });
-
-    return res.data;
   } catch (e) {
     // NOTE: 상황에 맞는 페이지 보여줘야 함.
     console.log('error', e);
