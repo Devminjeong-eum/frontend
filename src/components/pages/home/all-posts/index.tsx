@@ -1,10 +1,11 @@
 import Pagination from '@/components/common/Pagination';
 import WordItem from '@/components/common/WordItem';
-import { type MainDataType } from '@/types/main';
+
 import { Dispatch, SetStateAction } from 'react';
+import type { MainItemType, PaginationRes } from '@/types/main.ts';
 
 type AllPostsProps = {
-  data: MainDataType;
+  data: PaginationRes<MainItemType[]>;
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
 };
