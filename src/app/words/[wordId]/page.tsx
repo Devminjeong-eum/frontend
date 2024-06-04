@@ -8,10 +8,16 @@ import type { DefaultRes, FetchRes, WordDetail } from '@/fetcher/types.ts';
 import { notFound } from 'next/navigation';
 import { serverFetch } from '@/fetcher/serverFetch.ts';
 
-const getWordDetail = async (wordId: string) => {
+const getWordDetail = async (type: 'ID' | 'NAME', value: string) => {
   try {
     const res = await serverFetch<FetchRes<DefaultRes<WordDetail>>>(
-      `/word/${wordId}`,
+      `/word/detail`,
+      {
+        params: {
+          searchType: type,
+          searchValue: value,
+        },
+      },
     );
 
     return res.data;
@@ -40,7 +46,7 @@ export default async function WordsPage({
       isLike,
       likeCount,
     },
-  } = await getWordDetail(wordId);
+  } = await getWordDetail('ID', wordId);
 
   /*
   NOTE: 한글 발음 표기 - 영어 발음 표기  1 : 1로 라고 생각함.
