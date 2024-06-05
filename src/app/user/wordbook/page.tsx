@@ -10,6 +10,31 @@ import {
   QueryClient,
   dehydrate,
 } from '@tanstack/react-query';
+import { ResolvingMetadata } from 'next';
+
+export async function generateMetadata(parent: ResolvingMetadata) {
+  const parentMetadata = (await parent) || [];
+
+  const openGraph = parentMetadata?.openGraph ?? {};
+  const twitter = parentMetadata?.twitter ?? {};
+
+  return {
+    ...parentMetadata,
+    title: '단어장',
+    description: '좋아요한 단어를 확인하고 관리해보세요.',
+    openGraph: {
+      ...openGraph,
+      title: '단어장',
+      description: '좋아요한 단어를 확인하고 관리해보세요.',
+      url: 'https://dev-malssami.site/user/wordbook',
+    },
+    twitter: {
+      ...twitter,
+      title: '단어장',
+      description: '좋아요한 단어를 확인하고 관리해보세요.',
+    },
+  };
+}
 
 export default async function WordbookPage() {
   const queryClient = new QueryClient();
