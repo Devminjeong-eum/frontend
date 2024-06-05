@@ -32,8 +32,8 @@ export async function middleware(request: NextRequest) {
           httpOnly: true,
           secure: true,
           domain: '.dev-malssami.site',
-          sameSite: 'lax',
-          maxAge: 5 * 60,
+          maxAge: 5 * 60 * 1000,
+          path: '/',
         });
       }
     } catch (e) {
