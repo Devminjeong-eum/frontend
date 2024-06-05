@@ -6,7 +6,6 @@ import { useState } from 'react';
 import ShareButton from '@/components/svg-component/ShareButton';
 import QuizResultDetail from './QuizResultDetail';
 import type { QuizResultWordData } from '@/fetcher/types';
-import ShareModal from './ShareModal';
 import { QUIZ_PATH } from '@/routes/path';
 import { useRouter } from 'next/navigation';
 
@@ -53,7 +52,6 @@ export default function QuizResult({
       >
         다시 도전하러 가기
       </button>
-      <ShareModal isOpen={isOpen} handleModalClick={handleModalClick} />
     </div>
   );
 }
