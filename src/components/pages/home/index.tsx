@@ -26,8 +26,6 @@ export default function HomeClientPage() {
     router.push(`/home?view=${prev}`);
   };
 
-  console.log('hello');
-
   return (
     // FIXME: 트렌딩 단어 오픈 후에는 py-5 -> p-5로 수정 필요
     <main className="py-5 rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[8px]">

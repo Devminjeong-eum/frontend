@@ -19,7 +19,6 @@ export const addLike = async (wordId: string) => {
   }
 
   revalidatePath(`word/${wordId}`);
-  revalidatePath(`home`);
 };
 
 export const subLike = async (wordId: string) => {
@@ -37,5 +36,4 @@ export const subLike = async (wordId: string) => {
   }
 
   revalidatePath(`word/${wordId}`);
-  revalidatePath(`home`);
 };
