@@ -73,8 +73,8 @@ export type FetchRes<TRes> = {
 };
 
 export type UserData = {
-  id: string;
+  userId: string;
   name: string;
   profileImage: string;
-  socialType: string;
+  likeCount: number;
 };

@@ -9,13 +9,28 @@ import ProfileHeader from './ProfileHeader';
 import ProfileInfo from './ProfileInfo';
 import Link from 'next/link';
 import { QUIZ_PATH, REPORT_FORM_URL, WORDBOOK_PATH } from '@/routes/path';
-
-/**
- * NOTE:
- * 1. 좋아요 갯수 추가
- */
+import { getUserInfo } from '@/fetcher';
+import { useEffect, useState } from 'react';
+import { UserData } from '@/fetcher/types';
+// import { useParams, usePathname } from 'next/navigation';
 
 export default function Profile() {
+  // const { id } = useParams();
+  const [userData, setUserData] = useState<UserData | null>(null);
+
+  const fetchUserInfo = async () => {
+    const {
+      data: {
+        data: { userId, likeCount, name, profileImage },
+      },
+    } = await getUserInfo();
+    setUserData({ userId, likeCount, name, profileImage });
+  };
+
+  useEffect(() => {
+    fetchUserInfo();
+  }, []);
+
   return (
     <>
       <ProfileHeader />
@@ -28,7 +43,7 @@ export default function Profile() {
           </span>
           <span className="text-white text-[17px]">좋아요를 누른 단어</span>
           <span className="text-white h-[18px] w-[18px] flex items-center ml-auto">
-            {4}
+            {userData?.likeCount}
           </span>
         </div>
       </Link>

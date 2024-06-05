@@ -108,11 +108,7 @@ export const getLikedWord = async (
 
 export const getUserInfo = async () => {
   try {
-    return await backendFetch<DefaultRes<UserData>>(`/user`, {
-      headers: {
-        Authorization: 'dev_malssami_admin',
-      },
-    });
+    return await backendFetch<FetchRes<DefaultRes<UserData>>>(`/user`);
   } catch (e) {
     console.log('error', e);
     notFound();

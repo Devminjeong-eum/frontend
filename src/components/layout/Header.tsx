@@ -32,9 +32,11 @@ export default function Header() {
 
   const fetchUserInfo = async () => {
     const {
-      data: { id },
+      data: {
+        data: { userId },
+      },
     } = await getUserInfo();
-    setId(id);
+    setId(userId);
   };
 
   useEffect(() => {
