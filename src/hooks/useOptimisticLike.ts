@@ -5,9 +5,9 @@ import { addLike, subLike } from '@/actions';
 interface Props {
   wordId: string;
   isLike: boolean;
-  likeCount: number;
+  likeCount?: number;
 }
-export const useOptimisticLike = ({ wordId, isLike, likeCount }: Props) => {
+export const useOptimisticLike = ({ wordId, isLike, likeCount = 0 }: Props) => {
   // const addLikeMutation = useAddLike(wordId);
   // const deleteLikeMutation = useDeleteLike(wordId);
 
@@ -41,7 +41,7 @@ export const useOptimisticLike = ({ wordId, isLike, likeCount }: Props) => {
     await subLike(wordId);
   };
 
-  console.log(optimisticLikeState);
+  // console.log(optimisticLikeState);
 
   return {
     optimisticLikeState,
