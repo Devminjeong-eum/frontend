@@ -22,8 +22,8 @@ export default function WordItem({
   return (
     <article
       key={id}
-      className=" h-[98px] p-4 w-full ring-1 bg-white ring-[#F2F4F9] hover:ring-[#EFF2F7] rounded-2xl hover:bg-[#F1F4FA] hover:ring-2 cursor-pointer"
-      onClick={() => router.push(getWordDetailPath(id))}
+      className="h-[98px] p-4 w-full ring-1 bg-white ring-[#F2F4F9] hover:ring-[#EFF2F7] rounded-2xl hover:bg-[#F1F4FA] hover:ring-2 cursor-pointer"
+      onClick={() => router.push(getWordDetailPath(name))}
     >
       <div className="flex flex-col gap-[10px] relative ">
         <div className="flex justify-between items-center -mt-1">

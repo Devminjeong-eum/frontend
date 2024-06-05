@@ -65,6 +65,9 @@ export default function Wordbook() {
                     name={item.name}
                     pronunciation={item.pronunciation}
                     isLike={true}
+                    handleModal={() => {
+                      // NOTE: handleModal 필요
+                    }}
                   />
                 ))}
             </div>
