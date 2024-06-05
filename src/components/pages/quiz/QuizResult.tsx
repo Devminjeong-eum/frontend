@@ -2,12 +2,13 @@
 
 import BlackBackSpaceSVG from '@/components/svg-component/BlackBackSpaceSVG';
 import QuizScore from './QuizScore';
-import { useState } from 'react';
 import ShareButton from '@/components/svg-component/ShareButton';
 import QuizResultDetail from './QuizResultDetail';
 import type { QuizResultWordData } from '@/fetcher/types';
 import { QUIZ_PATH } from '@/routes/path';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { RESULT_PATH } from '@/routes/path.ts';
 
 type Props = {
   score: number;
@@ -20,12 +21,7 @@ export default function QuizResult({
   correctWords,
   incorrectWords,
 }: Props) {
-  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
-
-  const handleModalClick = () => {
-    setIsOpen(!isOpen);
-  };
 
   return (
     <div className="relative px-5">
@@ -36,10 +32,10 @@ export default function QuizResult({
         >
           <BlackBackSpaceSVG />
         </button>
-        <div className="m-auto font-medium">TEST 결과</div>
-        <button onClick={handleModalClick}>
+        <div className=" m-auto font-medium pr-3">TEST 결과</div>
+        <Link href={RESULT_PATH}>
           <ShareButton />
-        </button>
+        </Link>
       </header>
       <QuizScore score={score} />
       <QuizResultDetail
