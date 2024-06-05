@@ -2,13 +2,14 @@ import { login } from '@/fetcher';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const { searchParams } = new URL(request.url);
   // NOTE: params에 포함된 인가 코드를 추출한다.
   const code = searchParams.get('code');
 
   if (!code) {
     console.log('인증에 필요한 code parameter가 query에 없습니다.');
-    return NextResponse.redirect(`/api/auth/kakao`);
+    return NextResponse.redirect(`${baseUrl}/api/auth/kakao`);
   }
 
   try {
@@ -16,7 +17,7 @@ export async function GET(request: Request) {
     const { headers, data, status } = await login(code);
 
     if (data) {
-      const redirectToHome = NextResponse.redirect(`/home`);
+      const redirectToHome = NextResponse.redirect(`${baseUrl}/home`);
       const cookie = headers.get('Set-Cookie');
 
       if (cookie) {
@@ -34,6 +35,6 @@ export async function GET(request: Request) {
     );
   } catch (err) {
     console.log(err);
-    return NextResponse.redirect(`/`);
+    return NextResponse.redirect(`${baseUrl}`);
   }
 }
