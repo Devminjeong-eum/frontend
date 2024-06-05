@@ -5,7 +5,6 @@ import type {
   LoginData,
   likedWord,
   QuizData,
-  QuizResultData,
   QuizResultUserIdData,
 } from './types.ts';
 import { PaginationRes, MainItemType } from '@/types/main.ts';
@@ -116,17 +115,6 @@ export const getQuizData = async () => {
   }
 };
 
-export const getQuizResultData = async (id: string) => {
-  try {
-    return await backendFetch<FetchRes<DefaultRes<QuizResultData>>>(
-      `quiz/result/${id}`,
-    );
-  } catch (e) {
-    console.log('error', e);
-    notFound();
-  }
-};
-
 export const postQuizData = async (
   correctWordIds: string[],
   incorrectWordIds: string[],
@@ -136,10 +124,6 @@ export const postQuizData = async (
       '/quiz/result',
       {
         method: 'POST',
-        headers: {
-          Authorization: 'dev_malssami_admin',
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({ correctWordIds, incorrectWordIds }),
       },
     );
