@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 import { SearchWordData } from '@/fetcher/types';
 import { useSearchParams } from 'next/navigation';
 import { useDebounce } from '@/hooks/useDebounce';
+import { getWordDetailPath } from '@/routes/path.ts';
 
 export default function SearchPage() {
   const [totalCount, setTotalCount] = useState(0);
@@ -38,7 +39,7 @@ export default function SearchPage() {
         {!totalCount && <NotFoundWord />}
         {data &&
           data.map((item) => (
-            <Link href={`/words/${item.id}`} key={item.id}>
+            <Link href={getWordDetailPath(item.name)} key={item.id}>
               <SearchItem item={item} searchWord={searchWord} />
             </Link>
           ))}

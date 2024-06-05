@@ -90,7 +90,14 @@ jobs:
             sudo docker rm frontend
           fi
 
+          echo "KAKAO_CLIENT_ID=${{ secrets.KAKAO_CLIENT_ID }}" >> .env.production
+          echo "KAKAO_REDIRECT_URI=${{ secrets.KAKAO_REDIRECT_URI }}" >> .env.production
+          echo "KAKAO_SECRET_KEY=${{ secrets.KAKAO_SECRET_KEY }}" >> .env.production
+          echo "NEXT_PUBLIC_BACKEND_BASE_URL=${{ secrets.NEXT_PUBLIC_BACKEND_BASE_URL }}" >> .env.production
+          echo "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}" >> .env.production
+
           sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/devminjeong-eum-frontend:latest
           sudo docker run -p 3000:3000 \
           --name frontend \
+          --env-file ./.env.production \
           -d ${{ secrets.DOCKER_HUB_USERNAME }}/devminjeong-eum-frontend:latest

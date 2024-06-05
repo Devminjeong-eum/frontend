@@ -3,29 +3,56 @@ import LikeButton from '@/components/pages/detail/LikeButton.tsx';
 import CorrectSvg from '@/components/svg-component/CorrectSvg.tsx';
 import WrongSvg from '@/components/svg-component/WrongSvg.tsx';
 import ReportButton from '@/components/pages/detail/ReportButton.tsx';
-import { getWordDetail } from '@/fetcher';
+
+import type { DefaultRes, FetchRes, WordDetail } from '@/fetcher/types.ts';
+import { notFound } from 'next/navigation';
+import { serverFetch } from '@/fetcher/serverFetch.ts';
+
+const getWordDetail = async (type: 'ID' | 'NAME', value: string) => {
+  try {
+    const res = await serverFetch<FetchRes<DefaultRes<WordDetail>>>(
+      `/word/detail`,
+      {
+        params: {
+          searchType: type,
+          searchValue: value,
+        },
+      },
+    );
+
+    return res.data;
+  } catch (e) {
+    // NOTE: 상황에 맞는 페이지 보여줘야 함.
+    console.log(e);
+    notFound();
+  }
+};
 
 export default async function WordsPage({
   params,
 }: {
-  params: { wordId: string };
+  params: { wordName: string };
 }) {
-  const { wordId } = params;
+  const { wordName } = params;
   const {
     data: {
+      id,
       name,
       description,
       diacritic,
       pronunciation,
       wrongPronunciation,
       exampleSentence,
+      isLike,
+      likeCount,
     },
-  } = await getWordDetail(wordId);
+  } = await getWordDetail('NAME', wordName.toLowerCase());
 
   /*
   NOTE: 한글 발음 표기 - 영어 발음 표기  1 : 1로 라고 생각함.
   만약 다를 시 구글 스프레드 시트에서 변경해야 함
   */
+
   const correctWordLen = Math.min(pronunciation.length, diacritic.length);
 
   return (
@@ -45,7 +72,11 @@ export default async function WordsPage({
                 {pronunciation[0]}
               </span>
             </div>
-            <LikeButton />
+            <LikeButton
+              initialLike={isLike}
+              initialLikeCount={likeCount}
+              wordId={id}
+            />
           </div>
           <div className="inline-flex flex-col gap-2.5">
             <div className="flex flex-shrink">
