@@ -30,9 +30,10 @@ export async function middleware(request: NextRequest) {
       if (accessToken) {
         next.cookies.set('accessToken', accessToken, {
           httpOnly: true,
-          domain: '.dev-malssami.site',
           secure: true,
+          domain: '.dev-malssami.site',
           sameSite: 'lax',
+          maxAge: 5 * 60,
         });
       }
     } catch (e) {
