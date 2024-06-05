@@ -1,6 +1,7 @@
 import Quiz from '@/components/pages/quiz';
 import { ResolvingMetadata } from 'next';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export async function generateMetadata(parent: ResolvingMetadata) {
   const parentMetadata = (await parent) || [];
 
