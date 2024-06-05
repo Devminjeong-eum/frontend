@@ -34,7 +34,6 @@ export default async function WordsPage({
   params: { wordName: string };
 }) {
   const { wordName } = params;
-
   const {
     data: {
       id,
@@ -47,7 +46,7 @@ export default async function WordsPage({
       isLike,
       likeCount,
     },
-  } = await getWordDetail('NAME', wordName);
+  } = await getWordDetail('NAME', wordName.toLowerCase());
 
   /*
   NOTE: 한글 발음 표기 - 영어 발음 표기  1 : 1로 라고 생각함.
