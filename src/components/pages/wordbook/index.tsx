@@ -65,6 +65,9 @@ export default function Wordbook() {
                     name={item.name}
                     pronunciation={item.pronunciation}
                     isLike={true}
+                    currentPage={1}
+                    handleModal={() => {}}
+                    likeCount={0}
                   />
                 ))}
             </div>
