@@ -5,7 +5,8 @@ import QuizResultDetail from './QuizResultDetail';
 import { Dispatch, SetStateAction, useState } from 'react';
 import ShareButton from '@/components/svg-component/ShareButton';
 import Quiz from '.';
-import useLoadKakaoScript from '@/hooks/useLoadKakaoScript';
+import Link from 'next/link';
+import { RESULT_PATH } from '@/routes/path.ts';
 
 type QuizResultProps = {
   score: number;
@@ -20,7 +21,7 @@ export default function QuizResult({
 }: QuizResultProps) {
   const [isShow, setisShow] = useState(false);
   const resultScore = score ? score * 10 : 0;
-  const { handleShare } = useLoadKakaoScript();
+  // const { handleShare } = useLoadKakaoScript();
 
   if (isShow) return <Quiz />;
 
@@ -34,9 +35,9 @@ export default function QuizResult({
           <BlackBackSpaceSVG />
         </button>
         <div className=" m-auto font-medium pr-3">TEST 결과</div>
-        <button onClick={handleShare}>
+        <Link href={RESULT_PATH}>
           <ShareButton />
-        </button>
+        </Link>
       </header>
       <QuizScore resultScore={resultScore} />
       <QuizResultDetail userAnswer={userAnswer} setUserAnswer={setUserAnswer} />

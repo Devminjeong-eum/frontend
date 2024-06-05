@@ -20,8 +20,8 @@ export default {
         'main-gray': '#5E5E5E',
         'quiz-red': '#912828',
         'quiz-blue': '#0C3FC1',
+        kakao: '#FFE34E',
       },
-
       backgroundImage: {
         'main-gradient-full': 'linear-gradient(to bottom, #0F3FBB, #5545C3)',
         'main-gradient-top': 'linear-gradient(to bottom, #194FDC, #4557DA)',
@@ -63,9 +63,35 @@ export default {
           '50%': { transform: 'translateX(1.5px)' },
           '75%': { transform: 'translateX(-1.5px)' },
         },
+        slideUp: {
+          '0%': { bottom: '0' },
+          '100%': { bottom: '2.5rem' },
+        },
+        bounce: {
+          '0%': { transform: 'translateY(0)' },
+          '25%': { transform: 'translateY(-0.5rem)' },
+          '50%': { transform: 'translateY(0.5rem)' },
+          '75%': { transform: 'translateY(-0.5rem)' },
+          '100%': { bottom: '2.5rem' },
+        },
+        // 로그인 안내 애니메이션 추가
+        slideUpBounce: {
+          '0%': { bottom: '0' },
+          '20%': { bottom: '4rem' },
+          '40%': { bottom: '2.25rem' },
+          '60%': { bottom: '3.25rem' },
+          '70%': { bottom: '3rem' },
+          '80%': { bottom: '2.75rem' },
+          '90%': { bottom: '2.5rem' },
+          '95%': { bottom: '2.65rem' },
+          '100%': { bottom: '2.5rem' },
+        },
       },
       animation: {
         shake: 'shake 0.2s',
+        // 로그인 안내 애니메이션
+        slideUpBounce:
+          'slideUpBounce 500ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards',
       },
     },
   },

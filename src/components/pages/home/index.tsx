@@ -5,11 +5,17 @@ import HomeToggleZone from './HomeToggleZone';
 import AllPosts from './all-posts';
 import useGetAllPosts from '@/hooks/query/useGetAllPosts';
 import TrendingPosts from './trending-posts';
+import { useRouter, useSearchParams } from 'next/navigation';
+
 export type TrendingType = 'trend' | 'all';
 
 export default function HomeClientPage() {
-  const [isTrending, setIsTrending] = useState<TrendingType>('all');
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const params = searchParams.get('view') as TrendingType;
+  
   const [currentPage, setCurrentPage] = useState(1);
+  const [isTrending, setIsTrending] = useState<TrendingType>(params);
 
   const {
     data: { data: allPostsData },
@@ -17,6 +23,7 @@ export default function HomeClientPage() {
 
   const handleToggle = (prev: TrendingType) => {
     setIsTrending(prev);
+    router.push(`/home?view=${prev}`);
   };
 
   return (
