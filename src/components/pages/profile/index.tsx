@@ -10,8 +10,7 @@ import ProfileInfo from './ProfileInfo';
 import Link from 'next/link';
 import { QUIZ_PATH, REPORT_FORM_URL, WORDBOOK_PATH } from '@/routes/path';
 import NonLoginProfileInfo from './NonLoginProfileInfo';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import LogoutModal from './Modal/LogoutModal';
 
 type Props = {
@@ -21,21 +20,11 @@ type Props = {
 };
 
 export default function Profile({ likeCount, name, profileImage }: Props) {
-  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleModalClick = () => {
     setIsOpen(!isOpen);
   };
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const isToken = document.cookie.includes('accessToken');
-      if (!isToken) {
-        router.push('/');
-      }
-    }
-  }, [router]);
 
   return (
     <>
