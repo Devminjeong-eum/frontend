@@ -1,19 +1,19 @@
 import { useRouter } from 'next/navigation';
-import CloseSvg from '@/components/svg-component/CloseSvg';
+import BlackBackSpaceSVG from '@/components/svg-component/BlackBackSpaceSVG';
 
 type Props = {
-  text?: string;
+  text: string;
 };
 
 export default function ProfileHeader({ text }: Props) {
   const router = useRouter();
 
   return (
-    <div className="w-full h-[48px] flex flex-row-reverse items-center pr-[16px]">
-      {text && <div>{text}</div>}
+    <div className="h-[48px] flex items-center mx-[16px] font-medium">
       <button onClick={router.back}>
-        <CloseSvg />
+        <BlackBackSpaceSVG />
       </button>
+      <div className="mx-auto">{text}</div>
     </div>
   );
 }
