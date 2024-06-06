@@ -31,11 +31,9 @@ export default function Header() {
   }, [isOpen]);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const isToken = document.cookie.includes('accessToken');
-      if (isToken) {
-        fetchUserId();
-      }
+    const isToken = document.cookie.includes('accessToken');
+    if (isToken) {
+      fetchUserId();
     }
   }, []);
 
