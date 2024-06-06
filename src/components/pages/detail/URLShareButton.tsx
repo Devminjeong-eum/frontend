@@ -1,48 +1,16 @@
 import ExternalSvg from '@/components/svg-component/ExternalSvg';
-import { useEffect, useState } from 'react';
-import CheckSvg from '@/components/svg-component/CheckSvg';
-
-function copyURL() {
-  const url = window.document.location.href;
-  return navigator.clipboard.writeText(url);
-}
+import useCopyClipboard from '@/hooks/useCopyClipboard.ts';
+import { CopiedNotice } from '@/components/common/CopiedNotice.tsx';
 
 export default function URLShareButton() {
-  const [isCopied, setIsCopied] = useState(false);
+  const { isCopied, onCopyClipboard } = useCopyClipboard();
 
-  useEffect(() => {
-    let id: NodeJS.Timeout | null;
-    if (isCopied) {
-      id = setTimeout(() => setIsCopied(false), 600);
-    }
-
-    return () => {
-      if (id) clearTimeout(id);
-    };
-  }, [isCopied]);
-
-  const onClickButton = async () => {
-    await copyURL();
-    setIsCopied(true);
-  };
   return (
     <div>
-      <button onClick={() => onClickButton()}>
+      <button onClick={() => onCopyClipboard()}>
         <ExternalSvg />
       </button>
       {isCopied && <CopiedNotice />}
-    </div>
-  );
-}
-
-function CopiedNotice() {
-  return (
-    <div className="w-screen h-screen fixed left-0 top-0 flex justify-center items-center">
-      <div className="w-full h-screen flex justify-center items-center max-w-[430px] bg-[#000000] opacity-70 mix-blend-multiply" />
-      <div className="absolute flex gap-1.5 py-4 px-[22px] rounded-[16px] bg-[#05050555]">
-        <CheckSvg />
-        <span className="font-semibold text-white">링크 복사 완료</span>
-      </div>
     </div>
   );
 }

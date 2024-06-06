@@ -4,6 +4,10 @@ import { useRouter } from 'next/navigation';
 import HeartSvg from '@/components/svg-component/HeartSvg';
 import clsx from 'clsx';
 
+type Props = MainItemType & {
+  handleModal: () => void;
+};
+
 export default function WordItem({
   id,
   name,
@@ -11,14 +15,15 @@ export default function WordItem({
   diacritic, // 발음 기호 (영문)
   pronunciation, // 발음 (국문)
   description,
-}: MainItemType) {
+  handleModal,
+}: Props) {
   const router = useRouter();
 
   return (
     <article
       key={id}
-      className=" h-[98px] p-4 w-full ring-1 bg-white ring-[#F2F4F9] hover:ring-[#EFF2F7] rounded-2xl hover:bg-[#F1F4FA] hover:ring-2 cursor-pointer"
-      onClick={() => router.push(getWordDetailPath(id))}
+      className="h-[98px] p-4 w-full ring-1 bg-white ring-[#F2F4F9] hover:ring-[#EFF2F7] rounded-2xl hover:bg-[#F1F4FA] hover:ring-2 cursor-pointer"
+      onClick={() => router.push(getWordDetailPath(name))}
     >
       <div className="flex flex-col gap-[10px] relative ">
         <div className="flex justify-between items-center -mt-1">
@@ -43,6 +48,11 @@ export default function WordItem({
           {/* 좋아요 버튼 */}
           <div>
             <button
+              onClick={(e) => {
+                e.stopPropagation();
+                // FIXME: 좋아요 API 연동 후 로그인 체크 로직 추가 예정
+                handleModal();
+              }}
               className={clsx(isLike ? 'text-main-blue' : 'text-[#D3DAED]')}
             >
               <HeartSvg />
