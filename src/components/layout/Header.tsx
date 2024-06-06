@@ -18,7 +18,7 @@ const DynamicToolTip = dynamic(() => import('@/components/common/ToolTip'), {
 
 export default function Header() {
   const isScrolled = useScroll();
-  const [id, setId] = useState('');
+  const [id, setId] = useState('Non-login');
   const [isOpen, setIsOpen] = useState(
     () =>
       typeof window !== 'undefined' &&
@@ -30,7 +30,16 @@ export default function Header() {
     if (!isOpen) sessionStorage.setItem('isOpen', 'false');
   }, [isOpen]);
 
-  const fetchUserInfo = async () => {
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const isToken = document.cookie.includes('accessToken');
+      if (isToken) {
+        fetchUserId();
+      }
+    }
+  }, []);
+
+  const fetchUserId = async () => {
     const {
       data: {
         data: { userId },
@@ -38,10 +47,6 @@ export default function Header() {
     } = await getUserInfo();
     setId(userId);
   };
-
-  useEffect(() => {
-    fetchUserInfo();
-  }, []);
 
   return (
     <>
