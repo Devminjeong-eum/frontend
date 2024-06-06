@@ -9,7 +9,7 @@ export default function LogoutModal({ isOpen, handleModalClick }: Props) {
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 bg-black/30 flex justify-center items-center max-w-[430px] mx-auto">
+    <div className="fixed inset-0 bg-black/70 flex justify-center items-center max-w-[430px] mx-auto">
       <div className="bg-white rounded-[16px] mx-[34px] w-full flex flex-col items-center justify-center">
         <div className="text-[18px] font-semibold mt-[34px] mb-[10px]">
           로그아웃
