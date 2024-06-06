@@ -10,7 +10,7 @@ import { LOGIN_PATH } from '@/routes/path';
  */
 
 export default function ProfileInfo() {
-  const token = 0;
+  const token = 1;
 
   return (
     <div className="flex flex-col items-center">
@@ -34,7 +34,7 @@ export default function ProfileInfo() {
       {token ? (
         <div className="font-semibold text-[22px] mb-[8px]">김데브</div>
       ) : (
-        <div className="text-[16px] mb-[8px] h-[33px]">
+        <div className="text-[20px] mb-[8px] h-[33px]">
           <span className="font-semibold">로그인</span>이 필요해요.
         </div>
       )}
