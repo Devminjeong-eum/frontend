@@ -10,4 +10,5 @@ export const SEARCH_PATH = '/word/search/:wordName';
 export const getWordDetailPath = (wordId: string) => `/words/${wordId}`;
 export const getSearchPath = (wordName: string) => `/word/search/${wordName}`;
 
-export const RESULT_PATH = '/quiz/share';
+export const getQuizResultPath = (quizId: string) =>
+  `/quiz/result/${quizId}/share`;

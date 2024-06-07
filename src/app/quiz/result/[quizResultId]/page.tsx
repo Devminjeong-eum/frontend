@@ -28,6 +28,7 @@ export default async function QuizResultPage({ params }: Props) {
 
   return (
     <QuizResult
+      quizResultId={quizResultId}
       score={score}
       correctWords={correctWords}
       incorrectWords={incorrectWords}
