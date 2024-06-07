@@ -5,8 +5,47 @@ import WrongSvg from '@/components/svg-component/WrongSvg.tsx';
 import ReportButton from '@/components/pages/detail/ReportButton.tsx';
 
 import type { DefaultRes, FetchRes, WordDetail } from '@/fetcher/types.ts';
-import { notFound } from 'next/navigation';
 import { serverFetch } from '@/fetcher/serverFetch.ts';
+import { notFound } from 'next/navigation';
+import { ResolvingMetadata } from 'next';
+
+// eslint-disable-next-line react-refresh/only-export-components
+export async function generateMetadata(
+  { params }: { params: { wordName: string } },
+  parent: ResolvingMetadata,
+) {
+  const parentMetadata = (await parent) || [];
+
+  const openGraph = parentMetadata?.openGraph ?? {};
+  const twitter = parentMetadata?.twitter ?? {};
+
+  const {
+    data: { name, pronunciation, wrongPronunciation },
+  } = await getWordDetail('NAME', params.wordName.toLowerCase());
+
+  return {
+    ...parentMetadata,
+    title: {
+      absolute: `'${name}' | 데브말싸미`,
+    },
+    description: `올바른 발음: ${pronunciation} 잘못된 발음: ${wrongPronunciation}`,
+    robots: {
+      index: true,
+      follow: true,
+    },
+    openGraph: {
+      ...openGraph,
+      title: { absoulte: `'${name}' | 데브말싸미` },
+      description: `올바른 발음: ${pronunciation} 잘못된 발음: ${wrongPronunciation}`,
+      url: `https://dev-malssami.site/words/${name}`,
+    },
+    twitter: {
+      ...twitter,
+      title: { absoulte: `'${name}' | 데브말싸미` },
+      description: `올바른 발음: ${pronunciation} 잘못된 발음: ${wrongPronunciation}`,
+    },
+  };
+}
 
 const getWordDetail = async (type: 'ID' | 'NAME', value: string) => {
   try {

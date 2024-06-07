@@ -41,8 +41,6 @@ export const useOptimisticLike = ({ wordId, isLike, likeCount }: Props) => {
     await subLike(wordId);
   };
 
-  console.log(optimisticLikeState);
-
   return {
     optimisticLikeState,
     setOptimisticLike,
