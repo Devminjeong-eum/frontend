@@ -27,6 +27,10 @@ export async function generateMetadata(
     ...parentMetadata,
     title: '단어장',
     description: '좋아요한 단어를 확인하고 관리해보세요.',
+    robots: {
+      index: false,
+      follow: false,
+    },
     openGraph: {
       ...openGraph,
       title: '단어장',
