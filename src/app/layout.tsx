@@ -6,9 +6,11 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
 import { Metadata } from 'next';
 
+const PRODUCTION_URL = 'https://dev-malssami.site';
+
 const baseUrl =
   process.env.NODE_ENV === 'production'
-    ? process.env.PRODUCTION_URL
+    ? PRODUCTION_URL
     : process.env.NEXT_PUBLIC_BASE_URL;
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -28,11 +30,11 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  metadataBase: new URL(baseUrl || 'https://dev-malssami.site'),
+  metadataBase: new URL(baseUrl || PRODUCTION_URL),
   openGraph: {
     title: {
       template: '데브말싸미 | %s',
-      default: '데브마싸미 | 개발 용어 발음 사전',
+      default: '데브말싸미 | 개발 용어 발음 사전',
     },
     description:
       '발음이 헷갈리는 개발 용어에 대해 손쉽게 발음과 뜻을 검색해보세요.',
