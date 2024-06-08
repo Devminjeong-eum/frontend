@@ -1,5 +1,12 @@
 import { notFound } from 'next/navigation';
-import type { DefaultRes, SearchWord, LoginData, likedWord } from './types.ts';
+import type {
+  DefaultRes,
+  SearchWord,
+  LoginData,
+  likedWord,
+  UserInfo,
+  ErrorResponse,
+} from './types.ts';
 import { PaginationRes, MainItemType } from '@/types/main.ts';
 import { backendFetch } from '@/fetcher/backendFetch.ts';
 import { FetchRes } from './types.ts';
@@ -97,5 +104,16 @@ export const getLikedWord = async (
     // NOTE: 상황에 맞는 페이지 보여줘야 함.
     console.log('error', e);
     notFound();
+  }
+};
+
+export const checkUserAuthentication = async (): Promise<
+  DefaultRes<UserInfo> | ErrorResponse
+> => {
+  try {
+    const res = await backendFetch<FetchRes<DefaultRes<UserInfo>>>(`/user`);
+    return res.data;
+  } catch (error) {
+    return { error: true };
   }
 };
