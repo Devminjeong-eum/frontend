@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import Wordbook from '@/components/pages/wordbook';
 import QUERY_KEYS from '@/constants/queryKey';
 import {
