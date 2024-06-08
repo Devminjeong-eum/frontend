@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Wordbook from '@/components/pages/wordbook';
 import QUERY_KEYS from '@/constants/queryKey';
 import {
@@ -13,7 +14,10 @@ import {
 import { ResolvingMetadata } from 'next';
 
 // eslint-disable-next-line react-refresh/only-export-components
-export async function generateMetadata(parent: ResolvingMetadata) {
+export async function generateMetadata(
+  _: { [x: string]: never },
+  parent: ResolvingMetadata,
+) {
   const parentMetadata = (await parent) || [];
 
   const openGraph = parentMetadata?.openGraph ?? {};
@@ -23,6 +27,10 @@ export async function generateMetadata(parent: ResolvingMetadata) {
     ...parentMetadata,
     title: '단어장',
     description: '좋아요한 단어를 확인하고 관리해보세요.',
+    robots: {
+      index: false,
+      follow: false,
+    },
     openGraph: {
       ...openGraph,
       title: '단어장',

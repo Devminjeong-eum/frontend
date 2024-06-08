@@ -1,9 +1,11 @@
 import { ResolvingMetadata } from 'next';
 import PageClient from './PageClient';
-
+//searchParams: { [key: string]: string | string[] | undefined }
 // eslint-disable-next-line react-refresh/only-export-components
 export async function generateMetadata(
-  { searchParams }: { searchParams: { keyword: string } },
+  {
+    searchParams,
+  }: { searchParams: { [key: string]: string | string[] | undefined } },
   parent: ResolvingMetadata,
 ) {
   const parentMetadata = (await parent) || [];
