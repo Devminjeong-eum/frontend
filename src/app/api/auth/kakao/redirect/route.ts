@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-
   const { searchParams } = new URL(request.url);
   // NOTE: params에 포함된 인가 코드를 추출한다.
   const code = searchParams.get('code');

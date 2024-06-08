@@ -20,6 +20,7 @@ export default {
         'main-gray': '#5E5E5E',
         'quiz-red': '#912828',
         'quiz-blue': '#0C3FC1',
+        kakao: '#FFE34E',
       },
       backgroundImage: {
         'main-gradient-full': 'linear-gradient(to bottom, #0F3FBB, #5545C3)',

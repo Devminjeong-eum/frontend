@@ -4,6 +4,72 @@ import localFont from 'next/font/local';
 import QueryProvider from '@/providers/QueryProvider.tsx';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
+import { Metadata } from 'next';
+
+const baseUrl =
+  process.env.NODE_ENV === 'production'
+    ? process.env.PRODUCTION_URL
+    : process.env.NEXT_PUBLIC_BASE_URL;
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const metadata: Metadata = {
+  title: {
+    template: '데브말싸미 | %s',
+    default: '데브말싸미 | 개발 용어 발음 사전',
+  },
+  description:
+    '발음이 헷갈리는 개발 용어에 대해 손쉽게 발음과 뜻을 검색해보세요.',
+  keywords:
+    '개발, 용어, 발음, 사전, 프로그래밍, 코딩, 개발자, 소프트웨어, IT용어사전, 개발용어사전',
+  authors: [
+    { name: '뎁민정음', url: 'https://github.com/Devminjeong-eum/frontend' },
+  ],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  metadataBase: new URL(baseUrl || 'https://dev-malssami.site'),
+  openGraph: {
+    title: {
+      template: '데브말싸미 | %s',
+      default: '데브마싸미 | 개발 용어 발음 사전',
+    },
+    description:
+      '발음이 헷갈리는 개발 용어에 대해 손쉽게 발음과 뜻을 검색해보세요.',
+    url: baseUrl,
+    siteName: '데브말싸미',
+    type: 'website',
+    locale: 'ko_KR',
+    images: [
+      {
+        url: '/opengraph-image.png',
+        alt: '데브말싸미 로고',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: {
+      template: '데브말싸미 | %s',
+      default: '데브말싸미 | 개발 용어 발음 사전',
+    },
+    description:
+      '발음이 헷갈리는 개발 용어에 대해 손쉽게 발음과 뜻을 검색해보세요.',
+    images: [
+      {
+        url: '/opengraph-image.png',
+        alt: '데브말싸미 로고',
+      },
+    ],
+  },
+  appleWebApp: {
+    title: '데브말싸미',
+    statusBarStyle: 'black-translucent',
+  },
+  icons: {
+    apple: [{ url: '/apple-touch-icon.png' }],
+  },
+};
 
 const gugi = Gugi({
   weight: '400',
