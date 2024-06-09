@@ -4,11 +4,10 @@ import XSVG from '@/components/svg-component/XSVG';
 import BlackBackSpaceSVG from '@/components/svg-component/BlackBackSpaceSVG';
 import Quiz from '.';
 import { useGetQuizData } from '@/hooks/query/useGetQuizData';
-import { postQuizData } from '@/fetcher';
 import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
 import { getQuizResultPath } from '@/routes/path.ts';
-import usePostsQuizResult from '@/hooks/mutation/useQuizResult.ts';
+import { postQuizResult } from '@/fetcher';
 
 export default function QuizPlay() {
   const [currentQuiz, setCurrentQuiz] = useState(0);
@@ -19,6 +18,7 @@ export default function QuizPlay() {
   const [correctWordIds, setCorrectWordIds] = useState<string[]>([]);
   const [incorrectWordIds, setIncorrectWordIds] = useState<string[]>([]);
   const router = useRouter();
+
   const {
     data: {
       data: { data },
@@ -31,7 +31,7 @@ export default function QuizPlay() {
         data: {
           data: { quizResultId },
         },
-      } = await postQuizData(correctWordIds, incorrectWordIds);
+      } = await postQuizResult(correctWordIds, incorrectWordIds);
       router.push(getQuizResultPath(quizResultId));
     };
 
