@@ -34,13 +34,13 @@ export async function generateMetadata(
     },
     openGraph: {
       ...openGraph,
-      title: { absoulte: `'${name}' | 데브말싸미` },
+      title: { absolute: `'${name}' | 데브말싸미` },
       description: `올바른 발음: ${pronunciation} 잘못된 발음: ${wrongPronunciation}`,
       url: `https://dev-malssami.site/words/${name}`,
     },
     twitter: {
       ...twitter,
-      title: { absoulte: `'${name}' | 데브말싸미` },
+      title: { absolute: `'${name}' | 데브말싸미` },
       description: `올바른 발음: ${pronunciation} 잘못된 발음: ${wrongPronunciation}`,
     },
   };

@@ -1,11 +1,11 @@
 'use client';
 
+import clsx from 'clsx';
 import React, { useState } from 'react';
 import DetailPronunciationCorrectSvg from '@/components/svg-component/DetailPronunciationCorrectSvg.tsx';
 import DetailPronunciationWrongSvg from '@/components/svg-component/DetailPronunciationWrongSvg.tsx';
 import DetailPronunciationShowArrowSvg from '@/components/svg-component/DetailPronunciationShowArrowSvg.tsx';
 import DetailPronunciationCloseArrowSvg from '@/components/svg-component/DetailPronunciationCloseArrowSvg.tsx';
-import clsx from 'clsx';
 
 interface Props {
   pronunciation: string[];
