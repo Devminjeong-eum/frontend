@@ -1,10 +1,11 @@
 'use client';
 
+import { useState, type Dispatch, type SetStateAction } from 'react';
 import LoginAlertModal from '@/components/common/LoginAlertModal';
 import Pagination from '@/components/common/Pagination';
 import WordItem from '@/components/common/WordItem';
+import { checkUserAuthentication } from '@/fetcher';
 import { type PaginationRes, type MainItemType } from '@/types/main';
-import { Dispatch, SetStateAction, useState } from 'react';
 
 type AllPostsProps = {
   data: PaginationRes<MainItemType[]>;
@@ -18,8 +19,16 @@ export default function AllPosts({
   setCurrentPage,
 }: AllPostsProps) {
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const handleModal = () => {
-    setIsOpenModal(!isOpenModal);
+
+  const handleModal = async () => {
+    const { error } = await checkUserAuthentication();
+
+    if (error) {
+      setIsOpenModal(true);
+      setTimeout(() => {
+        setIsOpenModal(false);
+      }, 2000);
+    }
   };
 
   return (

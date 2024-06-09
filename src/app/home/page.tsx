@@ -2,7 +2,7 @@ import Spinner from '@/components/common/Spinner';
 import Header from '@/components/layout/Header';
 import HomeClientPage from '@/components/pages/home';
 import QUERY_KEYS from '@/constants/queryKey';
-import { getAllPosts } from '@/fetcher';
+import { getAllPostsServer } from '@/fetcher';
 
 import {
   HydrationBoundary,
@@ -11,12 +11,16 @@ import {
 } from '@tanstack/react-query';
 import { Suspense } from 'react';
 
-export default async function HomePage() {
+export default async function HomePage({
+  searchParams: { page },
+}: {
+  searchParams: { page: string };
+}) {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryFn: () => getAllPosts(1),
-    queryKey: [QUERY_KEYS.HOME_KEY, 1],
+    queryFn: () => getAllPostsServer(Number(page)),
+    queryKey: [QUERY_KEYS.HOME_KEY, Number(page)],
   });
 
   return (

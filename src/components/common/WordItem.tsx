@@ -72,8 +72,8 @@ export default function WordItem({
               onClick={(e) => {
                 e.stopPropagation();
                 handleLikeButton();
-                // 로그인 유무 확인 로직 필요
                 handleModal();
+
                 // NOTE: queryClient.removeQueries로 query Cache를 날리면 업데이트됩니다.
                 queryClient.removeQueries({
                   queryKey: [QUERY_KEYS.HOME_KEY, currentPage],

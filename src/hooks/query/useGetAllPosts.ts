@@ -1,11 +1,11 @@
 import QUERY_KEYS from '@/constants/queryKey';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { getAllPosts } from '@/fetcher';
+import { getAllPostsClient } from '@/fetcher';
 
 const useGetAllPosts = (pageNumber: number) => {
   return useSuspenseQuery({
     queryKey: [QUERY_KEYS.HOME_KEY, pageNumber],
-    queryFn: () => getAllPosts(pageNumber),
+    queryFn: () => getAllPostsClient(pageNumber),
     staleTime: 1000 * 60 * 3600,
   });
 };
