@@ -10,7 +10,7 @@ export const addLike = async (wordId: string) => {
       method: 'PATCH',
     });
   } catch (e) {
-    console.log('error: ', JSON.parse(e.message).statusCode);
+    console.log(e);
 
     // NOTE: 발생할 수 있는 에러
     // 401 => 권한 없음 => 로그인 모달
@@ -26,7 +26,7 @@ export const subLike = async (wordId: string) => {
       method: 'DELETE',
     });
   } catch (e) {
-    console.log('error: ', JSON.parse(e.message).statusCode);
+    console.log(e);
 
     // NOTE: 발생할 수 있는 에러
     // 401 => 권한 없음 => 로그인 모달
