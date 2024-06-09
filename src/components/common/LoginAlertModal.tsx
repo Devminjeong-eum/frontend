@@ -2,6 +2,7 @@ import LockSmallSvg from '@/components/svg-component/LockSmallSvg';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { createPortal } from 'react-dom';
+import { LOGIN_PATH } from '@/routes/path.ts';
 
 type Props = {
   isOpen: boolean;
@@ -25,7 +26,7 @@ export default function LoginAlertModal({ isOpen }: Props) {
         <p>로그인이 필요한 서비스에요.</p>
       </div>
       <Link
-        href={'/'}
+        href={LOGIN_PATH}
         className="font-semibold hover:underline underline-offset-[3px] pr-[18px]"
       >
         로그인하기
