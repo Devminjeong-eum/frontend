@@ -1,49 +1,42 @@
-'use client';
+import { ResolvingMetadata } from 'next';
+import PageClient from './PageClient';
 
-import Header from '@/components/layout/Header';
-import SearchItem from '@/components/pages/search/SearchItem';
-import NotFoundWord from '@/components/pages/search/NotFoundWord';
-import Link from 'next/link';
-import { getWordSearch } from '@/fetcher';
-import { useState, useEffect } from 'react';
-import { SearchWordData } from '@/fetcher/types';
-import { useSearchParams } from 'next/navigation';
-import { useDebounce } from '@/hooks/useDebounce';
-import { getWordDetailPath } from '@/routes/path.ts';
+// eslint-disable-next-line react-refresh/only-export-components
+export async function generateMetadata(
+  {
+    searchParams,
+  }: { searchParams: { [key: string]: string | string[] | undefined } },
+  parent: ResolvingMetadata,
+) {
+  const parentMetadata = (await parent) || [];
+
+  const openGraph = parentMetadata?.openGraph ?? {};
+  const twitter = parentMetadata?.twitter ?? {};
+
+  return {
+    ...parentMetadata,
+    title: {
+      absolute: `'${searchParams.keyword}'의 검색결과 | 데브말싸미`,
+    },
+    description: `'${searchParams.keyword}'에 대한 검색 결과를 확인해보세요.`,
+    robots: {
+      index: false,
+      follow: false,
+    },
+    openGraph: {
+      ...openGraph,
+      title: { absoulte: `'${searchParams.keyword}'의 검색결과 | 데브말싸미` },
+      description: `'${searchParams.keyword}'에 대한 검색 결과를 확인해보세요.`,
+      url: 'https://dev-malssami.site/search',
+    },
+    twitter: {
+      ...twitter,
+      title: { absoulte: `'${searchParams.keyword}'의 검색결과 | 데브말싸미` },
+      description: `'${searchParams.keyword}'에 대한 검색 결과를 확인해보세요.`,
+    },
+  };
+}
 
 export default function SearchPage() {
-  const [totalCount, setTotalCount] = useState(0);
-  const [data, setData] = useState<SearchWordData[]>();
-  const searchParams = useSearchParams();
-  const searchWord = searchParams.get('keyword')?.toLowerCase() || '';
-  const debouncedWord = useDebounce(searchWord, 200);
-
-  const fetchWordData = async (word: string) => {
-    if (word.length >= 3) {
-      const {
-        data: { totalCount, data },
-      } = await getWordSearch(word);
-      setTotalCount(totalCount);
-      setData(data);
-    }
-  };
-
-  useEffect(() => {
-    fetchWordData(debouncedWord);
-  }, [debouncedWord]);
-
-  return (
-    <>
-      <Header />
-      <main className="p-5 rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[8px]">
-        {!totalCount && <NotFoundWord />}
-        {data &&
-          data.map((item) => (
-            <Link href={getWordDetailPath(item.name)} key={item.id}>
-              <SearchItem item={item} searchWord={searchWord} />
-            </Link>
-          ))}
-      </main>
-    </>
-  );
+  return <PageClient />;
 }

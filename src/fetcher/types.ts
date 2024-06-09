@@ -3,6 +3,7 @@ import { MainItemType } from '@/types/main';
 export type DefaultRes<TData> = {
   status: number;
   data: TData;
+  error?: boolean;
 };
 
 export type WordDetail = {
@@ -77,4 +78,15 @@ export type UserData = {
   name: string;
   profileImage: string;
   likeCount: number;
+};
+export type ErrorResponse = {
+  error: boolean;
+};
+
+export type UserInfo = {
+  userId: string;
+  name: string;
+  profileImage: string;
+  likeCount: number;
+  error?: boolean;
 };

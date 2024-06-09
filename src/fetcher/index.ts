@@ -5,10 +5,13 @@ import type {
   LoginData,
   likedWord,
   UserData,
+  UserInfo,
+  ErrorResponse,
 } from './types.ts';
 import { PaginationRes, MainItemType } from '@/types/main.ts';
 import { backendFetch } from '@/fetcher/backendFetch.ts';
 import { FetchRes } from './types.ts';
+import { serverFetch } from './serverFetch.ts';
 
 export const getWordSearch = async (wordName: string) => {
   try {
@@ -68,9 +71,27 @@ export const deleteLike = async (wordId: string) => {
   }
 };
 
-export const getAllPosts = async (currentPage: number) => {
+export const getAllPostsClient = async (currentPage: number) => {
   try {
     const res = await backendFetch<
+      FetchRes<DefaultRes<PaginationRes<MainItemType[]>>>
+    >(`/word/list`, {
+      params: {
+        page: currentPage,
+        limit: 10,
+      },
+    });
+
+    return res.data;
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
+
+export const getAllPostsServer = async (currentPage: number) => {
+  try {
+    const res = await serverFetch<
       FetchRes<DefaultRes<PaginationRes<MainItemType[]>>>
     >(`/word/list`, {
       params: {
@@ -103,6 +124,17 @@ export const getLikedWord = async (
     // NOTE: 상황에 맞는 페이지 보여줘야 함.
     console.log('error', e);
     notFound();
+  }
+};
+
+export const checkUserAuthentication = async (): Promise<
+  DefaultRes<UserInfo> | ErrorResponse
+> => {
+  try {
+    const res = await backendFetch<FetchRes<DefaultRes<UserInfo>>>(`/user`);
+    return res.data;
+  } catch (error) {
+    return { error: true };
   }
 };
 

@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
 import { updateLike } from '@/fetcher';
 
-const useAddLike = (wordId: string) => {
+const useAddLike = () => {
   return useMutation({
-    mutationFn: () => updateLike(wordId),
+    mutationFn: (wordId: string) => updateLike(wordId),
   });
 };
 

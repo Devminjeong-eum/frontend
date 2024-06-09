@@ -10,7 +10,6 @@ interface Props {
 export const useOptimisticLike = ({ wordId, isLike, likeCount }: Props) => {
   // const addLikeMutation = useAddLike(wordId);
   // const deleteLikeMutation = useDeleteLike(wordId);
-
   const [optimisticLikeState, setOptimisticLike] = useOptimistic<
     {
       isLike: boolean;
@@ -40,8 +39,6 @@ export const useOptimisticLike = ({ wordId, isLike, likeCount }: Props) => {
     setOptimisticLike(-1);
     await subLike(wordId);
   };
-
-  console.log(optimisticLikeState);
 
   return {
     optimisticLikeState,

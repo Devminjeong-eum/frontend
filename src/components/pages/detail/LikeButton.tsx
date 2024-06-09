@@ -23,20 +23,24 @@ export default function LikeButton({
     });
 
   // TODO: loading 시 클릭 안되게 할 필요 있음
+
   return (
-    <div className="flex flex-col justify-center items-center cursor-pointer">
-      <button
-        onClick={optimisticLikeState.isLike ? handleSubLike : handleAddLike}
-      >
-        {optimisticLikeState.isLike ? (
-          <DetailLikeActiveSvg />
-        ) : (
-          <DetailLikeSvg />
-        )}
-      </button>
-      <span className="text-xs text-[#E1E2F8]">
-        {optimisticLikeState.likeCount}
-      </span>
-    </div>
+    <>
+      <div className="flex flex-col justify-center items-center cursor-pointer">
+        <button
+          onClick={optimisticLikeState.isLike ? handleSubLike : handleAddLike}
+        >
+          {optimisticLikeState.isLike ? (
+            <DetailLikeActiveSvg />
+          ) : (
+            <DetailLikeSvg />
+          )}
+        </button>
+        <span className="text-xs text-[#E1E2F8]">
+          {optimisticLikeState.likeCount}
+        </span>
+      </div>
+      {/*<LoginAlertModal isOpen={true} />*/}
+    </>
   );
 }
