@@ -3,7 +3,6 @@
 import DetailLikeSvg from '@/components/svg-component/DetailLikeSvg.tsx';
 import DetailLikeActiveSvg from '@/components/svg-component/DetailLikeActiveSvg.tsx';
 import { useOptimisticLike } from '@/hooks/useOptimisticLike.ts';
-import LoginAlertModal from '@/components/common/LoginAlertModal.tsx';
 
 interface Props {
   wordId: string;
@@ -41,7 +40,7 @@ export default function LikeButton({
           {optimisticLikeState.likeCount}
         </span>
       </div>
-      <LoginAlertModal isOpen={true} />
+      {/*<LoginAlertModal isOpen={true} />*/}
     </>
   );
 }

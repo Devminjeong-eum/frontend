@@ -10,9 +10,8 @@ export const addLike = async (wordId: string) => {
       method: 'PATCH',
     });
   } catch (e) {
-    if (e instanceof Error) {
-      console.log(e.message);
-    }
+    console.log('error: ', JSON.parse(e.message).statusCode);
+
     // NOTE: 발생할 수 있는 에러
     // 401 => 권한 없음 => 로그인 모달
     // 500 => 서버 에러
@@ -27,9 +26,8 @@ export const subLike = async (wordId: string) => {
       method: 'DELETE',
     });
   } catch (e) {
-    if (e instanceof Error) {
-      console.log(e.message);
-    }
+    console.log('error: ', JSON.parse(e.message).statusCode);
+
     // NOTE: 발생할 수 있는 에러
     // 401 => 권한 없음 => 로그인 모달
     // 500 => 서버 에러
