@@ -5,8 +5,8 @@ import HeartSvg from '@/components/svg-component/HeartSvg';
 import clsx from 'clsx';
 import { useOptimisticLike } from '@/hooks/useOptimisticLike';
 import { startTransition } from 'react';
-// import { useQueryClient } from '@tanstack/react-query';
-// import QUERY_KEYS from '@/constants/queryKey.ts';
+import { useQueryClient } from '@tanstack/react-query';
+import QUERY_KEYS from '@/constants/queryKey.ts';
 
 type Props = MainItemType & {
   handleModal: () => void;
@@ -22,10 +22,10 @@ export default function WordItem({
   description,
   handleModal,
   likeCount,
-  // currentPage,
+  currentPage,
 }: Props) {
   const router = useRouter();
-  // const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
   const { optimisticLikeState, handleSubLike, handleAddLike } =
     useOptimisticLike({
@@ -75,9 +75,9 @@ export default function WordItem({
                 handleModal();
 
                 // NOTE: queryClient.removeQueries로 query Cache를 날리면 업데이트됩니다.
-                // queryClient.removeQueries({
-                //   queryKey: [QUERY_KEYS.HOME_KEY, currentPage],
-                // });
+                queryClient.removeQueries({
+                  queryKey: [QUERY_KEYS.HOME_KEY, currentPage],
+                });
               }}
               className={clsx(isLike ? 'text-main-blue' : 'text-[#D3DAED]')}
             >
