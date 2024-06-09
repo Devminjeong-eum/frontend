@@ -118,20 +118,15 @@ export const getQuizData = async () => {
   }
 };
 
-export const postQuizData = async (
+export const postQuizResult = async (
   correctWordIds: string[],
   incorrectWordIds: string[],
 ) => {
-  try {
-    return await backendFetch<FetchRes<DefaultRes<QuizResultUserIdData>>>(
-      '/quiz/result',
-      {
-        method: 'POST',
-        body: JSON.stringify({ correctWordIds, incorrectWordIds }),
-      },
-    );
-  } catch (e) {
-    console.log('error', e);
-    notFound();
-  }
+  return await backendFetch<FetchRes<DefaultRes<QuizResultUserIdData>>>(
+    '/quiz/result',
+    {
+      method: 'POST',
+      body: JSON.stringify({ correctWordIds, incorrectWordIds }),
+    },
+  );
 };

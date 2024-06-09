@@ -7,6 +7,8 @@ import { useGetQuizData } from '@/hooks/query/useGetQuizData';
 import { postQuizData } from '@/fetcher';
 import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
+import { getQuizResultPath } from '@/routes/path.ts';
+import usePostsQuizResult from '@/hooks/mutation/useQuizResult.ts';
 
 export default function QuizPlay() {
   const [currentQuiz, setCurrentQuiz] = useState(0);
@@ -17,27 +19,26 @@ export default function QuizPlay() {
   const [correctWordIds, setCorrectWordIds] = useState<string[]>([]);
   const [incorrectWordIds, setIncorrectWordIds] = useState<string[]>([]);
   const router = useRouter();
-
   const {
     data: {
       data: { data },
     },
   } = useGetQuizData();
 
-  const fetchQuizResultData = async () => {
-    const {
-      data: {
-        data: { quizResultId },
-      },
-    } = await postQuizData(correctWordIds, incorrectWordIds);
-    router.push(`/quiz/result/${quizResultId}`);
-  };
-
   useEffect(() => {
+    const fetchQuizResultData = async () => {
+      const {
+        data: {
+          data: { quizResultId },
+        },
+      } = await postQuizData(correctWordIds, incorrectWordIds);
+      router.push(getQuizResultPath(quizResultId));
+    };
+
     if (currentQuiz === data.length - 1) {
       fetchQuizResultData();
     }
-  }, [correctWordIds, incorrectWordIds]);
+  }, [correctWordIds, currentQuiz, data.length, incorrectWordIds, router]);
 
   const handleNextQuiz = () => {
     setTimeout(() => {
@@ -46,7 +47,7 @@ export default function QuizPlay() {
         setSelectOption(null);
         setIsButtonsDisabled(false);
       }
-    }, 1000);
+    }, 500);
   };
 
   const handleAnswerOptionClick = (wordId: string, selectedOption: string) => {
