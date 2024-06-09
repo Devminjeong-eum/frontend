@@ -3,22 +3,22 @@
 import KakaoIconSvg from '@/components/svg-component/KakaoIconSvg.tsx';
 import LinkShareIconSvg from '@/components/svg-component/LinkShareIconSvg.tsx';
 import ModalXSvg from '@/components/svg-component/ModalXSvg.tsx';
-import Link from 'next/link';
-import { QUIZ_PATH } from '@/routes/path.ts';
 import useLoadKakaoScript from '@/hooks/useLoadKakaoScript.ts';
 import useCopyClipboard from '@/hooks/useCopyClipboard.ts';
 import { CopiedNotice } from '@/components/common/CopiedNotice.tsx';
+import { useRouter } from 'next/navigation';
 
 export default function ShareModal() {
   const { handleShare } = useLoadKakaoScript();
+  const router = useRouter();
   const { isCopied, onCopyClipboard } = useCopyClipboard();
 
   return (
     <div className="fixed max-w-[430px] top-0 w-full h-full flex justify-center items-center bg-[#17192470] px-[46px]">
       <div className="relative w-full h-[172px] bg-white rounded-[16px] flex flex-col justify-center items-center">
-        <Link href={QUIZ_PATH} className="absolute top-4 right-4">
+        <button onClick={router.back} className="absolute top-4 right-4">
           <ModalXSvg />
-        </Link>
+        </button>
         <h3 className="font-semibold text-[18px] text-[#181818]">
           퀴즈 결과 공유하기
         </h3>
