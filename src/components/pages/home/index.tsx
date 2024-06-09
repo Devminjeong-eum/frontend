@@ -13,7 +13,7 @@ export default function HomeClientPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const params = searchParams.get('view') as TrendingType;
-  
+
   const [currentPage, setCurrentPage] = useState(1);
   const [isTrending, setIsTrending] = useState<TrendingType>(params);
 
