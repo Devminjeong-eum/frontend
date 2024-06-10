@@ -1,3 +1,5 @@
+import { logout } from '@/fetcher';
+import { useRouter } from 'next/navigation';
 import { createPortal } from 'react-dom';
 
 interface Props {
@@ -6,6 +8,14 @@ interface Props {
 }
 
 export default function LogoutModal({ isOpen, handleModalClick }: Props) {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    logout();
+    handleModalClick();
+    router.push('/profile/Non-login');
+  };
+
   if (!isOpen) return null;
 
   return createPortal(
@@ -25,8 +35,10 @@ export default function LogoutModal({ isOpen, handleModalClick }: Props) {
           >
             취소
           </button>
-          {/* TODO: onClick={회원탈퇴 요청 함수} */}
-          <button className="flex-1 text-[16px] font-medium text-[#FFFFFF] bg-[#4057DB] rounded-[16px] h-[46px]">
+          <button
+            className="flex-1 text-[16px] font-medium text-[#FFFFFF] bg-[#4057DB] rounded-[16px] h-[46px]"
+            onClick={handleLogout}
+          >
             확인
           </button>
         </div>

@@ -146,3 +146,14 @@ export const checkUserAuthentication = async (): Promise<
     return { error: true };
   }
 };
+
+export const logout = async () => {
+  try {
+    return await backendFetch('/auth/logout', {
+      method: 'DELETE',
+    });
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
