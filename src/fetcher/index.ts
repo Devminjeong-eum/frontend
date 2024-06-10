@@ -127,6 +127,15 @@ export const getLikedWord = async (
   }
 };
 
+export const getUserInfo = async () => {
+  try {
+    return await backendFetch<FetchRes<DefaultRes<UserData>>>(`/user`);
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
+
 export const checkUserAuthentication = async (): Promise<
   DefaultRes<UserInfo> | ErrorResponse
 > => {
@@ -135,14 +144,5 @@ export const checkUserAuthentication = async (): Promise<
     return res.data;
   } catch (error) {
     return { error: true };
-  }
-};
-
-export const getUserInfo = async () => {
-  try {
-    return await backendFetch<FetchRes<DefaultRes<UserData>>>(`/user`);
-  } catch (e) {
-    console.log('error', e);
-    notFound();
   }
 };

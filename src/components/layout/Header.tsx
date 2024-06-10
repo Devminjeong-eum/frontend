@@ -16,7 +16,11 @@ const DynamicToolTip = dynamic(() => import('@/components/common/ToolTip'), {
   ssr: false,
 });
 
-export default function Header() {
+type Props = {
+  isToken: boolean;
+};
+
+export default function Header({ isToken }: Props) {
   const isScrolled = useScroll();
   const [id, setId] = useState('Non-login');
   const [isOpen, setIsOpen] = useState(
@@ -31,11 +35,10 @@ export default function Header() {
   }, [isOpen]);
 
   useEffect(() => {
-    const isToken = document.cookie.includes('accessToken');
     if (isToken) {
       fetchUserId();
     }
-  }, []);
+  }, [isToken]);
 
   const fetchUserId = async () => {
     const {
