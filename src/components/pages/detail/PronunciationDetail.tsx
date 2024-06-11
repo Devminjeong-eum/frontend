@@ -28,7 +28,7 @@ const PronunciationDetail = ({
         className={`flex flex-col gap-2 transition-all overflow-hidden ${clsx(isShowDetail ? 'max-h-[100vh]' : 'max-h-[0px]')}`}
       >
         <div className="px-3.5 rounded-[14px] bg-[#D9E6FF] pt-3.5 pb-3">
-          <span className="flex gap-1 items-center font-semibold text-main-blue text-sm">
+          <span className="flex gap-1 items-center font-medium text-main-blue text-sm">
             <DetailPronunciationCorrectSvg />
             올바른 발음
           </span>
@@ -42,7 +42,7 @@ const PronunciationDetail = ({
           </div>
         </div>
         <div className="px-3.5 rounded-[14px] bg-[#FFE5F5] pt-3.5 pb-3">
-          <span className="flex gap-1 items-center font-semibold text-[#912828] text-sm">
+          <span className="flex gap-1 items-center font-medium text-[#912828] text-sm">
             <DetailPronunciationWrongSvg />
             잘못된 발음
           </span>

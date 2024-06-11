@@ -93,17 +93,17 @@ export default async function WordsPage({
 
   return (
     <>
-      <div className="bg-main-gradient-full px-[22px]">
-        <header className="w-full">
-          <DetailHeader />
-        </header>
-        <div className="pt-[18px]">
-          <div className="flex items-start justify-between">
-            <div className="flex flex-col mb-[8px]">
-              <h1 className="text-[30px] align-bottom font-semibold text-white">
+      <header className="w-full">
+        <DetailHeader />
+      </header>
+      <div className="px-[22px] bg-detail-gradient-open">
+        <div>
+          <div className="flex items-start justify-between pt-[18px] pb-[26px]">
+            <div className="flex flex-col">
+              <h1 className="text-[30px] align-bottom font-normal text-white">
                 {name}
               </h1>
-              <span className="text-[#E1E2F8] font-medium pb-[6px]">
+              <span className="text-[#E1E2F8] font-normal">
                 {/*{NOTE: 대표 발음은 스프레드시트의 첫 번째 발음으로 합니다}*/}
                 {pronunciation[0]}
               </span>
@@ -123,12 +123,12 @@ export default async function WordsPage({
       </div>
       <main className="p-5 flex flex-col gap-2">
         <div className="p-[18px] rounded-[16px] border border-[#F2F4F9] shadow-base bg-white">
-          <h3 className="font-semibold text-main-black pb-1.5">의미</h3>
-          <p className="text-main-gray">{description}</p>
+          <h3 className="font-medium text-main-black pb-1.5">의미</h3>
+          <p className="text-main-gray font-light">{description}</p>
         </div>
         {exampleSentence && (
           <div className="p-[18px] rounded-[16px] border border-[#F2F4F9] shadow-base bg-white">
-            <h3 className="font-semibold text-main-black pb-1.5">예문</h3>
+            <h3 className="font-medium text-main-black pb-1.5">예문</h3>
             {exampleSentence
               .split('\n')
               .filter((example) => example.trim())
@@ -138,7 +138,7 @@ export default async function WordsPage({
                   key={idx}
                 >
                   <div className="w-1 h-1 rounded-full bg-main-charcoal self-start mt-2.5 flex-shrink-0" />
-                  <p className="text-main-gray">{example}</p>
+                  <p className="text-main-gray font-light">{example}</p>
                 </div>
               ))}
           </div>
