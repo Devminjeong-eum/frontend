@@ -14,13 +14,13 @@ export default function HomeToggleZone({ handleToggle, isTrending }: Props) {
       <div
         className={clsx(
           'absolute w-[174px] xs:w-[194px] -top-[8px] h-[40px] rounded-full bg-[#ECF0FF] transition-transform duration-[600ms]',
-          isTrend ? '-translate-x-[90px] xs:-translate-x-[100px]' : 'translate-x-[90px] xs:translate-x-[100px]',
+          isTrend ? '-translate-x-[90px] xs:-translate-x-[97px]' : 'translate-x-[90px] xs:translate-x-[97px]',
         )}
       />
 
       <p
         className={clsx(
-          'ml-[10px] xs:mr-0 z-10 w-[90px] text-center transition-all duration-[600ms]',
+          'ml-[13px] xs:mr-0 z-10 w-[90px] text-center transition-all duration-[600ms]',
           isTrend
             ? 'text-main-blue font-semibold '
             : 'text-[#D7DCEB] translate-x-[180px] opacity-0',
