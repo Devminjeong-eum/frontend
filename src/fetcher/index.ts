@@ -157,3 +157,14 @@ export const logout = async () => {
     notFound();
   }
 };
+
+export const deleteAccount = async (userId: string) => {
+  try {
+    return await backendFetch(`/user/${userId}`, {
+      method: 'DELETE',
+    });
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};

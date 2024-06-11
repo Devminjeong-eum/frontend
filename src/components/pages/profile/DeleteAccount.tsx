@@ -5,7 +5,11 @@ import ProfileHeader from './ProfileHeader';
 import BigEmailSvg from '@/components/svg-component/BigEmailSvg';
 import DeleteAccountModal from './Modal/DeleteAccountModal';
 
-export default function DeleteAccount() {
+type Props = {
+  userId: string;
+};
+
+export default function DeleteAccount({ userId }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [selectedOption, setSelectedOption] = useState('');
   const [text, setText] = useState('');
@@ -27,7 +31,6 @@ export default function DeleteAccount() {
     setText(e.target.value);
   };
 
-  // TODO: 서버에 전달하는 POST 함수 필요
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert(`선택된 옵션: ${selectedOption}, ${text}`);
@@ -129,6 +132,7 @@ export default function DeleteAccount() {
         <DeleteAccountModal
           isOpen={isOpen}
           handleModalClick={handleModalClick}
+          userId={userId}
         />
       )}
     </>

@@ -1,14 +1,26 @@
+import { deleteAccount } from '@/fetcher';
+import { useRouter } from 'next/navigation';
 import { createPortal } from 'react-dom';
 
 interface Props {
   isOpen: boolean;
   handleModalClick: () => void;
+  userId: string;
 }
 
 export default function DeleteAccountModal({
   isOpen,
   handleModalClick,
+  userId,
 }: Props) {
+  const router = useRouter();
+
+  const handleDeleteAccount = () => {
+    deleteAccount(userId);
+    handleModalClick();
+    router.push('/profile/Non-login');
+  };
+
   if (!isOpen) return null;
 
   return createPortal(
@@ -30,8 +42,10 @@ export default function DeleteAccountModal({
           >
             취소
           </button>
-          {/* TODO: onClick={로그아웃 요청 함수} */}
-          <button className="flex-1 text-[16px] font-medium text-[#FFFFFF] bg-[#4057DB] rounded-[16px] h-[46px]">
+          <button
+            className="flex-1 text-[16px] font-medium text-[#FFFFFF] bg-[#4057DB] rounded-[16px] h-[46px]"
+            onClick={handleDeleteAccount}
+          >
             확인
           </button>
         </div>
