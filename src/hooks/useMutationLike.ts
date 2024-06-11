@@ -1,4 +1,3 @@
-import { addLike, subLike } from '@/actions';
 import QUERY_KEYS from '@/constants/queryKey';
 import { deleteLike, updateLike } from '@/fetcher';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
@@ -17,11 +16,10 @@ export const useMutationLike = ({ wordId, setIsOpenModal }: Props) => {
   const { data: isLoggedIn } = useAuthQuery();
 
   const updateLikeMutation = useMutation({
-    mutationFn: () =>
-      isLoggedIn?.error ? updateLike(wordId) : addLike(wordId),
+    mutationFn: () => updateLike(wordId),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.LIKEDWORD_KEY, wordId],
+        queryKey: [QUERY_KEYS.HOME_KEY],
       });
     },
     onError: (error) => {
@@ -30,11 +28,10 @@ export const useMutationLike = ({ wordId, setIsOpenModal }: Props) => {
   });
 
   const deleteLikeMutation = useMutation({
-    mutationFn: () =>
-      isLoggedIn?.error ? deleteLike(wordId) : subLike(wordId),
+    mutationFn: () => deleteLike(wordId),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.LIKEDWORD_KEY, wordId],
+        queryKey: [QUERY_KEYS.HOME_KEY],
       });
     },
     onError: (error) => {
