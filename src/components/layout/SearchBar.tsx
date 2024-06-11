@@ -88,7 +88,7 @@ export default function SearchBar() {
           type="text"
           placeholder={`${isInputFocus ? '' : '궁금한 IT용어를 검색해 보세요.'}`}
           className={clsx(
-            'w-full h-[48px] rounded-[16px] ring-1 ring-white/60 pl-5 py-4 outline-none',
+            'w-full h-[48px] rounded-[16px] ring-1 ring-white/26 pl-5 py-4 outline-none',
             !isInputFocus &&
               'bg-white/20 ring-white/40 text-white placeholder:text-[#C8CAEB]',
           )}
