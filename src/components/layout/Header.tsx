@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { QUIZ_PATH, WORDBOOK_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import HeartSvg from '../svg-component/HeartSvg';
+import HamburgerMenuSvg from '../svg-component/HamburgerMenuSvg';
 
 const DynamicToolTip = dynamic(() => import('@/components/common/ToolTip'), {
   ssr: false,
@@ -41,7 +41,7 @@ export default function Header() {
         </Link>
         <Link href={WORDBOOK_PATH}>
           <div className="text-[#A8B8FF]">
-            <HeartSvg />
+            <HamburgerMenuSvg />
           </div>
         </Link>
       </div>
