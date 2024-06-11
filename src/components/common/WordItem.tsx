@@ -3,14 +3,11 @@ import { getWordDetailPath } from '@/routes/path.ts';
 import { useRouter } from 'next/navigation';
 import HeartSvg from '@/components/svg-component/HeartSvg';
 import clsx from 'clsx';
-import { useOptimisticLike } from '@/hooks/useOptimisticLike';
-import { startTransition } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
-import QUERY_KEYS from '@/constants/queryKey.ts';
+import { useMutationLike } from '@/hooks/useMutationLike';
+import { Dispatch, SetStateAction } from 'react';
 
 type Props = MainItemType & {
-  handleModal: () => void;
-  currentPage: number;
+  setIsOpenModal: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function WordItem({
@@ -20,24 +17,17 @@ export default function WordItem({
   diacritic, // 발음 기호 (영문)
   pronunciation, // 발음 (국문)
   description,
-  handleModal,
-  likeCount,
-  currentPage,
+  setIsOpenModal,
 }: Props) {
   const router = useRouter();
-  const queryClient = useQueryClient();
 
-  const { optimisticLikeState, handleSubLike, handleAddLike } =
-    useOptimisticLike({
-      wordId: id,
-      isLike,
-      likeCount,
-    });
+  const { handleAddLike, handleSubLike } = useMutationLike({
+    wordId: id,
+    setIsOpenModal,
+  });
 
   const handleLikeButton = () => {
-    startTransition(() => {
-      optimisticLikeState.isLike ? handleSubLike() : handleAddLike();
-    });
+    isLike ? handleSubLike() : handleAddLike();
   };
 
   return (
@@ -72,12 +62,6 @@ export default function WordItem({
               onClick={(e) => {
                 e.stopPropagation();
                 handleLikeButton();
-                handleModal();
-
-                // NOTE: queryClient.removeQueries로 query Cache를 날리면 업데이트됩니다.
-                queryClient.removeQueries({
-                  queryKey: [QUERY_KEYS.HOME_KEY, currentPage],
-                });
               }}
               className={clsx(isLike ? 'text-main-blue' : 'text-[#D3DAED]')}
             >

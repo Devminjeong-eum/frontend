@@ -47,7 +47,7 @@ export const updateLike = async (wordId: string) => {
     });
   } catch (e) {
     if (e instanceof Error) {
-      console.log(e.message);
+      console.error(e.message);
     }
     // 401 => 권한 없음 => 로그인 모달
     // 500 => 서버 에러
@@ -62,7 +62,7 @@ export const deleteLike = async (wordId: string) => {
     });
   } catch (e) {
     if (e instanceof Error) {
-      console.log(e.message);
+      console.error(e.message);
     }
     // NOTE: 발생할 수 있는 에러
     // 401 => 권한 없음 => 로그인 모달
