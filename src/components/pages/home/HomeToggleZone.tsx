@@ -20,7 +20,7 @@ export default function HomeToggleZone({ handleToggle, isTrending }: Props) {
 
       <p
         className={clsx(
-          'ml-[13px] xs:mr-0 z-10 w-[90px] text-center transition-all duration-[600ms]',
+          'ml-[20px] xs:mr-0 z-10 w-[90px] text-center transition-all duration-[600ms]',
           isTrend
             ? 'text-main-blue font-semibold '
             : 'text-[#D7DCEB] translate-x-[180px] opacity-0',
@@ -32,7 +32,7 @@ export default function HomeToggleZone({ handleToggle, isTrending }: Props) {
       <button
         onClick={() => handleToggle('trend')}
         className={clsx(
-          'absolute left-[37px] xs:left-[42px] w-[90px] text-[#D7DCEB] transition-opacity duration-700',
+          'absolute left-[37px] xs:left-[52px] w-[90px] text-[#D7DCEB] transition-opacity duration-700',
           isTrend ? 'opacity-0' : 'opacity-100',
         )}
       >
@@ -41,7 +41,7 @@ export default function HomeToggleZone({ handleToggle, isTrending }: Props) {
 
       <p
         className={clsx(
-          'xs:ml-[20px] mr-[10px] text-center z-10 w-[100px] transition-all duration-[600ms]',
+          'xs:ml-[20px] mr-[20px] text-center z-10 w-[100px] transition-all duration-[600ms]',
           !isTrend
             ? 'text-main-blue font-semibold '
             : 'text-[#D7DCEB] -translate-x-[180px] opacity-0',
