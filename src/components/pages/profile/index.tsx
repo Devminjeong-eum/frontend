@@ -10,21 +10,37 @@ import ProfileInfo from './ProfileInfo';
 import Link from 'next/link';
 import { QUIZ_PATH, REPORT_FORM_URL, WORDBOOK_PATH } from '@/routes/path';
 import NonLoginProfileInfo from './NonLoginProfileInfo';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LogoutModal from './Modal/LogoutModal';
+import { useRouter } from 'next/navigation';
 
 type Props = {
+  userId?: string;
   likeCount?: number;
   name?: string;
   profileImage?: string;
+  isToken?: boolean;
 };
 
-export default function Profile({ likeCount, name, profileImage }: Props) {
+export default function Profile({
+  userId,
+  likeCount,
+  name,
+  profileImage,
+  isToken,
+}: Props) {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   const handleModalClick = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    if (isToken) {
+      router.push(`/profile/${userId}`);
+    }
+  }, [isToken, userId]);
 
   return (
     <>

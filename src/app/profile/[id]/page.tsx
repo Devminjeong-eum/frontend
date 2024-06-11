@@ -15,11 +15,16 @@ const getUserInfo = async () => {
 export default async function ProfilePage() {
   const {
     data: {
-      data: { likeCount, name, profileImage },
+      data: { userId, likeCount, name, profileImage },
     },
   } = await getUserInfo();
 
   return (
-    <Profile likeCount={likeCount} name={name} profileImage={profileImage} />
+    <Profile
+      userId={userId}
+      likeCount={likeCount}
+      name={name}
+      profileImage={profileImage}
+    />
   );
 }
