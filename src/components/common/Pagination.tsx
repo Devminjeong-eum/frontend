@@ -59,7 +59,7 @@ export default function Pagination({
       <button
         onClick={goToPrevPage}
         disabled={noPrev}
-        className={`rotate-180  ${noPrev ? 'text-[#E5E8F2]' : 'text-main-blue'}`}
+        className={`mr-1 rotate-180  ${noPrev ? 'text-[#E5E8F2]' : 'text-main-blue'}`}
       >
         <OneButtonSvg />
       </button>
@@ -70,9 +70,9 @@ export default function Pagination({
           const page = startPage + i;
           return (
             page <= totalPages && (
-              <div key={page} className="flex gap-[12px]">
+              <div key={page} className="flex gap-[18px]">
                 <button
-                  className={`text-[18px] ${current === page ? 'text-main-blue font-bold' : 'text-main-gray font-normal'}`}
+                  className={`${current === page ? 'text-main-blue font-bold' : 'text-main-gray font-normal'}`}
                   onClick={() => onChangePage(page)}
                 >
                   {page}
@@ -89,7 +89,7 @@ export default function Pagination({
       <button
         onClick={goToNextPage}
         disabled={noNext}
-        className={` ${noNext ? 'text-[#E5E8F2]' : 'text-main-blue'}`}
+        className={`ml-1 ${noNext ? 'text-[#E5E8F2]' : 'text-main-blue'}`}
       >
         <OneButtonSvg />
       </button>
