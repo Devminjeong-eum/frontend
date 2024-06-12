@@ -46,6 +46,11 @@ export default {
         // QuizBanner
         'quiz-banner-circle-gradient':
           'linear-gradient(133.25deg, #294cd1 -7.96%, rgba(97, 122, 218, 0.425) 43.43%, rgba(123, 129, 153, 0) 83%)',
+
+        // Detail
+        'detail-gradient-close': 'linear-gradient(to bottom, #1B41BD, #5146C3)',
+        'detail-gradient-open':
+          'linear-gradient(to bottom, #1B41BD 0%, #3D44C1 35%, #4C4EC9 70%,  #5257D0 100%)',
       },
       boxShadow: {
         base: '3px 3px 4px 0px rgba(26, 29, 37, 0.01)',
