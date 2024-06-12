@@ -3,7 +3,7 @@
 import DetailLikeSvg from '@/components/svg-component/DetailLikeSvg.tsx';
 import DetailLikeActiveSvg from '@/components/svg-component/DetailLikeActiveSvg.tsx';
 import { useOptimisticLike } from '@/hooks/useOptimisticLike.ts';
-import useAuthQuery from '@/hooks/query/useAuthQuery.ts';
+import useAuthQuery from '@/hooks/query/useAuthQuery.ts';
 import { useState } from 'react';
 import LoginAlertModal from '@/components/common/LoginAlertModal.tsx';
 
