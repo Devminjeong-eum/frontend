@@ -2,7 +2,7 @@ import QUERY_KEYS from '@/constants/queryKey';
 import { deleteLike, updateLike } from '@/fetcher';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { Dispatch, SetStateAction } from 'react';
-import useAuthQuery from './query/\buseAuthQuery';
+import useAuthQuery from './query/useAuthQuery';
 
 type Props = {
   wordId: string;
