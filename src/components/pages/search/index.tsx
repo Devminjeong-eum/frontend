@@ -11,7 +11,7 @@ import { useSearchParams } from 'next/navigation';
 import { useDebounce } from '@/hooks/useDebounce';
 import { getWordDetailPath } from '@/routes/path.ts';
 
-export default function PageClient() {
+export default function Search() {
   const [totalCount, setTotalCount] = useState(0);
   const [data, setData] = useState<SearchWordData[]>();
   const searchParams = useSearchParams();

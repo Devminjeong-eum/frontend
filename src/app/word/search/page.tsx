@@ -1,5 +1,5 @@
 import { ResolvingMetadata } from 'next';
-import PageClient from './PageClient';
+import Search from '@/components/pages/search';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function generateMetadata(
@@ -38,5 +38,5 @@ export async function generateMetadata(
 }
 
 export default function SearchPage() {
-  return <PageClient />;
+  return <Search />;
 }
