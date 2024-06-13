@@ -28,8 +28,8 @@ export default function AutoComplete({
   };
 
   return (
-    <ul className="relative w-full pb-[20px] max-h-[40vh] overflow-y-auto">
-      <div className="pt-[12px] pb-[6px] px-5 text-[14px] text-[#858596]">
+    <ul className="relative w-full pb-[10px] overflow-y-auto">
+      <div className="pt-[12px] pb-[6px] mx-5 text-[14px] text-[#858596] border-t border-[#E3E6F6]">
         검색은 영어로만 가능해요.
       </div>
       {wordData &&
@@ -38,7 +38,7 @@ export default function AutoComplete({
             key={data.id}
             className={clsx(
               'py-[8px] px-5 text-[16px]',
-              selectedIndex === idx && 'bg-gray-200',
+              selectedIndex === idx && 'bg-gray-100',
             )}
             onMouseEnter={() => handleMouseEnter(idx)}
             onMouseLeave={handleMouseLeave}
