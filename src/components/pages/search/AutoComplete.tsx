@@ -7,6 +7,7 @@ type Props = {
   navigateToSearch: (data: string) => void;
   setSelectedIndex: (data: number) => void;
   selectedIndex: number;
+  search: string;
 };
 
 export default function AutoComplete({
@@ -15,6 +16,7 @@ export default function AutoComplete({
   navigateToSearch,
   setSelectedIndex,
   selectedIndex,
+  search,
 }: Props) {
   if (!wordData) return null;
   const handleMouseEnter = (idx: number) => {
@@ -26,11 +28,8 @@ export default function AutoComplete({
   };
 
   return (
-    <ul
-      tabIndex={0}
-      className="absolute z-30 w-full h-[500px] bg-[#FFFFFF] ring-1 ring-[#0C3FC1]"
-    >
-      <div className="pt-[12px] pb-[14px] px-5 text-[14px] text-[#858596]">
+    <ul className="relative w-full pb-[20px] max-h-[40vh] overflow-y-auto">
+      <div className="pt-[12px] pb-[6px] px-5 text-[14px] text-[#858596]">
         검색은 영어로만 가능해요.
       </div>
       {wordData &&
@@ -38,7 +37,7 @@ export default function AutoComplete({
           <li
             key={data.id}
             className={clsx(
-              'py-2 px-5 text-[18px]',
+              'py-[8px] px-5 text-[16px]',
               selectedIndex === idx && 'bg-gray-200',
             )}
             onMouseEnter={() => handleMouseEnter(idx)}
@@ -48,7 +47,18 @@ export default function AutoComplete({
               navigateToSearch(data.name);
             }}
           >
-            {data.name}
+            {data.name.split('').map((word, idx) => (
+              <span
+                key={idx}
+                className={clsx(
+                  idx < search.length &&
+                    word.toLowerCase() === search[idx].toLowerCase() &&
+                    'text-[#0C3FC1]',
+                )}
+              >
+                {word}
+              </span>
+            ))}
           </li>
         ))}
     </ul>
