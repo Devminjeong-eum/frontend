@@ -4,12 +4,15 @@ import type {
   SearchWord,
   LoginData,
   likedWord,
-  QuizData,
-  QuizResultUserIdData,
+  UserInfo,
+  ErrorResponse,
+    QuizData,
+    QuizResultUserIdData
 } from './types.ts';
 import { PaginationRes, MainItemType } from '@/types/main.ts';
 import { backendFetch } from '@/fetcher/backendFetch.ts';
 import { FetchRes } from './types.ts';
+import { serverFetch } from './serverFetch.ts';
 
 export const getWordSearch = async (wordName: string) => {
   try {
@@ -46,7 +49,7 @@ export const updateLike = async (wordId: string) => {
     });
   } catch (e) {
     if (e instanceof Error) {
-      console.log(e.message);
+      console.error(e.message);
     }
     // 401 => 권한 없음 => 로그인 모달
     // 500 => 서버 에러
@@ -61,7 +64,7 @@ export const deleteLike = async (wordId: string) => {
     });
   } catch (e) {
     if (e instanceof Error) {
-      console.log(e.message);
+      console.error(e.message);
     }
     // NOTE: 발생할 수 있는 에러
     // 401 => 권한 없음 => 로그인 모달
@@ -69,9 +72,27 @@ export const deleteLike = async (wordId: string) => {
   }
 };
 
-export const getAllPosts = async (currentPage: number) => {
+export const getAllPostsClient = async (currentPage: number) => {
   try {
     const res = await backendFetch<
+      FetchRes<DefaultRes<PaginationRes<MainItemType[]>>>
+    >(`/word/list`, {
+      params: {
+        page: currentPage,
+        limit: 10,
+      },
+    });
+
+    return res.data;
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
+
+export const getAllPostsServer = async (currentPage: number) => {
+  try {
+    const res = await serverFetch<
       FetchRes<DefaultRes<PaginationRes<MainItemType[]>>>
     >(`/word/list`, {
       params: {
@@ -104,6 +125,17 @@ export const getLikedWord = async (
     // NOTE: 상황에 맞는 페이지 보여줘야 함.
     console.log('error', e);
     notFound();
+  }
+};
+
+export const checkUserAuthentication = async (): Promise<
+  DefaultRes<UserInfo> | ErrorResponse
+> => {
+  try {
+    const res = await backendFetch<FetchRes<DefaultRes<UserInfo>>>(`/user`);
+    return res.data;
+  } catch (error) {
+    return { error: true };
   }
 };
 

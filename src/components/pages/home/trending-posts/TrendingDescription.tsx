@@ -1,6 +1,6 @@
 export default function TrendingDescription() {
   return (
-    <div className="ml-[26px] mt-[44px]">
+    <div className="ml-[8px] mt-[44px]">
       <p className="text-main-charcoal text-[18px] leading-[16px] font-medium">
         사람들이 이번 주에
       </p>

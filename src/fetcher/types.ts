@@ -3,6 +3,7 @@ import { MainItemType } from '@/types/main';
 export type DefaultRes<TData> = {
   status: number;
   data: TData;
+  error?: boolean;
 };
 
 export type WordDetail = {
@@ -99,4 +100,16 @@ export type FetchRes<TRes> = {
   statusText: string;
   headers: Headers;
   data: TRes;
+};
+
+export type ErrorResponse = {
+  error: boolean;
+};
+
+export type UserInfo = {
+  userId: string;
+  name: string;
+  profileImage: string;
+  likeCount: number;
+  error?: boolean;
 };
