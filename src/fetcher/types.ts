@@ -84,3 +84,17 @@ export type UserInfo = {
   likeCount: number;
   error?: boolean;
 };
+
+export type AutoCompleteWord = {
+  data: AutoCompleteWordData[];
+  page: number;
+  limit: number;
+  isLast: boolean;
+  totalCount: number;
+};
+
+export type AutoCompleteWordData = {
+  id: string;
+  name: string;
+  diacritic: string;
+};
