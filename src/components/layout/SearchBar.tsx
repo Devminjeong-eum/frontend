@@ -4,10 +4,9 @@ import MagnifierSvg from '@/components/svg-component/MagnifierSvg';
 import useScroll from '@/hooks/useScroll';
 import { useRouter } from 'next/navigation';
 import React, { useRef, useState, useEffect } from 'react';
-import ClearSearchBarSvg from '../svg-component/ClearSearchBarSvg';
 import clsx from 'clsx';
 import { getAutoCompleteWord } from '@/fetcher';
-import { AutoCompleteWord } from '@/fetcher/types';
+import type { AutoCompleteWord } from '@/fetcher/types';
 import AutoComplete from '../pages/search/AutoComplete';
 
 export default function SearchBar() {
@@ -19,7 +18,7 @@ export default function SearchBar() {
   const [search, setSearch] = useState('');
   const [isDropdown, setIsDropdown] = useState(false);
   const [wordData, setWordData] = useState<AutoCompleteWord | null>(null);
-  const [selectedIndex, setSelectedIndex] = useState<number>(-1);
+  const [selectedIdx, setSelectedIdx] = useState<number>(-1);
 
   useEffect(() => {
     const handleClick = (e: PointerEvent) => {
@@ -43,7 +42,6 @@ export default function SearchBar() {
     return () => document.removeEventListener('pointerdown', handleClick);
   }, [search]);
 
-  // FIXME: 숫자 허용되면 정규식에 추가하기, 세글자 이상으로 받기
   useEffect(() => {
     const searchRegex = /^[a-zA-Z]*$/;
     if (search.trim() !== '' && searchRegex.test(search)) {
@@ -59,19 +57,19 @@ export default function SearchBar() {
 
     if (e.key === 'ArrowDown') {
       e.preventDefault();
-      setSelectedIndex((prevIndex: number) =>
+      setSelectedIdx((prevIndex: number) =>
         prevIndex < wordData.data.length - 1 ? prevIndex + 1 : prevIndex,
       );
     }
     if (e.key === 'ArrowUp') {
       e.preventDefault();
-      setSelectedIndex((prevIndex: number) =>
+      setSelectedIdx((prevIndex: number) =>
         prevIndex > 0 ? prevIndex - 1 : prevIndex,
       );
     }
-    if (e.key === 'Enter' && selectedIndex >= 0) {
+    if (e.key === 'Enter' && selectedIdx >= 0) {
       setIsDropdown(false);
-      navigateToSearch(wordData.data[selectedIndex].name);
+      navigateToSearch(wordData.data[selectedIdx].name);
     }
   };
 
@@ -92,13 +90,6 @@ export default function SearchBar() {
     }
   };
 
-  const handleInputClearAndFocus = () => {
-    if (search) {
-      setSearch('');
-      inputRef.current?.focus();
-    }
-  };
-
   const handleInputFocusChange = () => {
     setIsInputFocus(true);
   };
@@ -116,9 +107,7 @@ export default function SearchBar() {
       className={`z-20 bg-main-gradient-bottom top-0 ${isScrolled ? 'sticky h-[64px] py-2 px-5' : 'h-[104px] p-5'}`}
     >
       <div
-        className={
-          'relative border-[2px] border-[#4357DB] rounded-[16px] bg-[#ffffff] z-20'
-        }
+        className={'relative border-[2px] border-[#4357DB] rounded-[16px] z-20'}
         ref={searchBarRef}
       >
         <input
@@ -134,26 +123,23 @@ export default function SearchBar() {
           onFocus={handleInputFocusChange}
           onClick={handleInputClickDropdownOpen}
           className={clsx(
-            'w-full h-[48px] rounded-[16px] pl-5 py-4 outline-none',
+            'w-full h-[48px] rounded-[16px] pl-5 py-4 outline-none ring-1 ring-white/60',
             !isInputFocus &&
               'bg-white/20 ring-white/40 text-white placeholder:text-[#C8CAEB]',
-            isDropdown && 'rounded-b-[0px]',
+            isDropdown && 'rounded-b-[0px] ring-0 ',
           )}
         />
-        {isInputFocus ? (
-          <button onClick={handleInputClearAndFocus}>
-            <ClearSearchBarSvg className="absolute right-[20px] top-[12px]" />
-          </button>
-        ) : (
-          <MagnifierSvg className="absolute right-[20px] top-[12px]" />
-        )}
+        <MagnifierSvg
+          className="absolute right-[20px] top-[12px]"
+          color={isInputFocus ? '#0C3FC1' : '#FFFFFF'}
+        />
         {isDropdown && (
           <AutoComplete
             wordData={wordData}
             setIsDropdown={setIsDropdown}
             navigateToSearch={navigateToSearch}
-            setSelectedIndex={setSelectedIndex}
-            selectedIndex={selectedIndex}
+            setSelectedIndex={setSelectedIdx}
+            selectedIndex={selectedIdx}
             search={search}
           />
         )}

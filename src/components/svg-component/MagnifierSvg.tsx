@@ -1,4 +1,8 @@
-export default function MagnifierSvg({ className }: { className?: string }) {
+type Props = {
+  className: string;
+  color: string;
+};
+export default function MagnifierSvg({ className, color }: Props) {
   return (
     <svg
       className={className}
@@ -8,10 +12,10 @@ export default function MagnifierSvg({ className }: { className?: string }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="11" cy="11" r="7" stroke="white" strokeWidth="1.5" />
+      <circle cx="11" cy="11" r="7" stroke={color} strokeWidth="1.5" />
       <path
         d="M20 20L16 16"
-        stroke="white"
+        stroke={color}
         strokeWidth="1.5"
         strokeLinecap="round"
       />
