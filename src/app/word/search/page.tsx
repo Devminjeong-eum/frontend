@@ -54,7 +54,7 @@ export default async function SearchPage({ searchParams }: Props) {
   return (
     <>
       <Header wordName={wordName} />
-      <main className="py-5 rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[8px]">
+      <main className="rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[8px]">
         {!totalCount && <NotFoundWord />}
         <Search data={data} />
       </main>
