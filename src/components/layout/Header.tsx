@@ -16,10 +16,10 @@ const DynamicToolTip = dynamic(() => import('@/components/common/ToolTip'), {
 });
 
 type Props = {
-  wordName: string;
+  wordName?: string;
 };
 
-export default function Header({ wordName }: Props) {
+export default function Header({ wordName = '' }: Props) {
   const isScrolled = useScroll();
   const [isOpen, setIsOpen] = useState(
     () =>

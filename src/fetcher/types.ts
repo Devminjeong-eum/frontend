@@ -40,7 +40,7 @@ export type SearchWordData = {
   description: string;
   diacritic: string[];
   pronunciation: string[];
-  wordLike: boolean;
+  isLike: boolean;
 };
 
 export type likedWord = {
