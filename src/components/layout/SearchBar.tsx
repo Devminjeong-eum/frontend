@@ -8,33 +8,38 @@ import clsx from 'clsx';
 import { getAutoCompleteWord } from '@/fetcher';
 import type { AutoCompleteWord } from '@/fetcher/types';
 import AutoComplete from '../pages/search/AutoComplete';
+import EngNotice from '../pages/search/EngNotice';
 
-export default function SearchBar() {
+type Props = {
+  wordName: string;
+};
+
+export default function SearchBar({ wordName }: Props) {
   const isScrolled = useScroll();
   const router = useRouter();
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [isInputFocus, setIsInputFocus] = useState(false);
   const searchBarRef = useRef<HTMLDivElement>(null);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(wordName || '');
+  const [isInputFocus, setIsInputFocus] = useState(search && true);
   const [isDropdown, setIsDropdown] = useState(false);
   const [wordData, setWordData] = useState<AutoCompleteWord | null>(null);
   const [selectedIdx, setSelectedIdx] = useState<number>(-1);
+  const [isEng, setIsEng] = useState(false);
+  const [isIdxChange, setIsIdxChange] = useState(false);
+  const [isInputChange, setIsInputChange] = useState(false);
+  const searchRegex = /^[a-zA-Z]*$/;
 
   useEffect(() => {
     const handleClick = (e: PointerEvent) => {
       if (
         searchBarRef.current &&
-        !searchBarRef.current.contains(e.target as HTMLElement) &&
-        search.trim() === ''
-      )
-        setIsInputFocus(false);
-
-      if (
-        searchBarRef.current &&
-        !searchBarRef.current.contains(e.target as HTMLElement) &&
-        search.trim() !== ''
-      )
-        setIsDropdown(false);
+        !searchBarRef.current.contains(e.target as HTMLElement)
+      ) {
+        if (search.trim() === '') {
+          setIsInputFocus(false);
+        } else {
+          setIsDropdown(false);
+        }
+      }
     };
 
     document.addEventListener('pointerdown', handleClick);
@@ -43,33 +48,47 @@ export default function SearchBar() {
   }, [search]);
 
   useEffect(() => {
-    const searchRegex = /^[a-zA-Z]*$/;
-    if (search.trim() !== '' && searchRegex.test(search)) {
+    if (search.trim() === '') {
+      setIsDropdown(false);
+      setSelectedIdx(-1);
+    }
+    if (
+      search.trim() !== '' &&
+      searchRegex.test(search) &&
+      isInputChange &&
+      !isIdxChange
+    ) {
       setIsDropdown(true);
       fetchAutoCompleteWord();
-    } else {
-      setIsDropdown(false);
     }
-  }, [search]);
+  }, [search, isInputChange, isIdxChange]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (!wordData) return;
 
     if (e.key === 'ArrowDown') {
       e.preventDefault();
-      setSelectedIdx((prevIndex: number) =>
-        prevIndex < wordData.data.length - 1 ? prevIndex + 1 : prevIndex,
+      setSelectedIdx((prevIdx) =>
+        prevIdx < wordData.data.length - 1 ? prevIdx + 1 : -1,
       );
+      setIsDropdown(true);
+      setIsIdxChange(true);
+      setSearch(wordData.data[selectedIdx + 1]?.name || '');
     }
+
     if (e.key === 'ArrowUp') {
       e.preventDefault();
-      setSelectedIdx((prevIndex: number) =>
-        prevIndex > 0 ? prevIndex - 1 : prevIndex,
+      setSelectedIdx((prevIdx) =>
+        prevIdx > 0 ? prevIdx - 1 : wordData.data.length - 1,
       );
+      setIsDropdown(true);
+      setIsIdxChange(true);
+      setSearch(wordData.data[selectedIdx - 1]?.name || '');
     }
+
     if (e.key === 'Enter' && selectedIdx >= 0) {
       setIsDropdown(false);
-      navigateToSearch(wordData.data[selectedIdx].name);
+      handleSearch(wordData.data[selectedIdx].name);
     }
   };
 
@@ -79,14 +98,24 @@ export default function SearchBar() {
   };
 
   const navigateToSearch = (wordData: string) => {
-    search.trim() && router.push(`/word/search?keyword=${wordData}`);
+    if (search.length < 3) return null;
+
+    if (search.trim() && searchRegex.test(search))
+      router.push(`/word/search?keyword=${wordData}`);
     setIsDropdown(false);
+  };
+
+  const handleSearch = (wordData: string) => {
+    router.push(`/word/search?keyword=${wordData}`);
+    setSelectedIdx(-1);
+    setSearch(wordData || '');
+    setIsDropdown(false);
+    setIsInputChange(false);
   };
 
   const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       navigateToSearch(search);
-      setIsDropdown(false);
     }
   };
 
@@ -96,6 +125,9 @@ export default function SearchBar() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
+    setIsEng(!searchRegex.test(e.target.value));
+    setIsInputChange(true);
+    setIsIdxChange(false);
   };
 
   const handleInputClickDropdownOpen = () => {
@@ -107,12 +139,14 @@ export default function SearchBar() {
       className={`z-20 bg-main-gradient-bottom top-0 ${isScrolled ? 'sticky h-[64px] py-2 px-5' : 'h-[104px] p-5'}`}
     >
       <div
-        className={'relative border-[2px] border-[#4357DB] rounded-[16px] z-20'}
+        className={clsx(
+          'relative border-[2px] border-[#4357DB] rounded-[16px] z-[60]',
+          isDropdown && 'bg-white',
+        )}
         ref={searchBarRef}
       >
         <input
           type="text"
-          ref={inputRef}
           value={search}
           placeholder={`${isInputFocus ? '' : '궁금한 IT용어를 검색해 보세요.'}`}
           onChange={handleInputChange}
@@ -126,24 +160,26 @@ export default function SearchBar() {
             'w-full h-[48px] rounded-[16px] pl-5 py-4 outline-none ring-1 ring-white/60',
             !isInputFocus &&
               'bg-white/20 ring-white/40 text-white placeholder:text-[#C8CAEB]',
-            isDropdown && 'rounded-b-[0px] ring-0 ',
+            isDropdown && 'ring-0 ',
           )}
         />
-        <MagnifierSvg
-          className="absolute right-[20px] top-[12px]"
-          color={isInputFocus ? '#0C3FC1' : '#FFFFFF'}
-        />
+        <button onClick={() => navigateToSearch(search)}>
+          <MagnifierSvg
+            className="absolute right-[20px] top-[12px]"
+            color={isInputFocus ? '#0C3FC1' : '#FFFFFF'}
+          />
+        </button>
         {isDropdown && (
           <AutoComplete
             wordData={wordData}
-            setIsDropdown={setIsDropdown}
-            navigateToSearch={navigateToSearch}
             setSelectedIndex={setSelectedIdx}
             selectedIndex={selectedIdx}
             search={search}
+            handleSearch={handleSearch}
           />
         )}
       </div>
+      {isEng && <EngNotice />}
     </div>
   );
 }

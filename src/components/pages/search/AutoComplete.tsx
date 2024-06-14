@@ -3,20 +3,18 @@ import clsx from 'clsx';
 
 type Props = {
   wordData: AutoCompleteWord | null;
-  setIsDropdown: (data: boolean) => void;
-  navigateToSearch: (data: string) => void;
   setSelectedIndex: (data: number) => void;
   selectedIndex: number;
   search: string;
+  handleSearch: (data: string) => void;
 };
 
 export default function AutoComplete({
   wordData,
-  setIsDropdown,
-  navigateToSearch,
   setSelectedIndex,
   selectedIndex,
   search,
+  handleSearch,
 }: Props) {
   if (!wordData) return null;
   const handleMouseEnter = (idx: number) => {
@@ -43,8 +41,7 @@ export default function AutoComplete({
             onMouseEnter={() => handleMouseEnter(idx)}
             onMouseLeave={handleMouseLeave}
             onClick={() => {
-              setIsDropdown(false);
-              navigateToSearch(data.name);
+              handleSearch(data.name);
             }}
           >
             {data.name.split('').map((word, idx) => (
