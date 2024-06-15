@@ -31,7 +31,7 @@ export default function Quiz() {
         <p className="text-white font-medium">나의 개발 용어 발음 지식은?</p>
       </div>
       <button
-        onClick={() => setIsShow && setIsShow(!isShow)}
+        onClick={() => setIsShow(true)}
         className="w-[calc(100%-40px)] flex justify-center items-center absolute bottom-[50px] h-12 rounded-[16px] bg-white/20 ring-1 ring-white/40 focus:ring-white/60 outline-none text-white
         shadow-quiz
         hover:cursor-pointer"

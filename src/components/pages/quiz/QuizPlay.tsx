@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import OSVG from '@/components/svg-component/OSVG';
 import XSVG from '@/components/svg-component/XSVG';
 import BlackBackSpaceSVG from '@/components/svg-component/BlackBackSpaceSVG';
@@ -7,7 +7,7 @@ import { useGetQuizData } from '@/hooks/query/useGetQuizData';
 import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
 import { getQuizResultPath } from '@/routes/path.ts';
-import { postQuizResult } from '@/fetcher';
+import useQuizResult from '@/hooks/mutation/useQuizResult.ts';
 
 export default function QuizPlay() {
   const [currentQuiz, setCurrentQuiz] = useState(0);
@@ -15,30 +15,17 @@ export default function QuizPlay() {
   const [isButtonsDisabled, setIsButtonsDisabled] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isShow, setIsShow] = useState(false);
-  const [correctWordIds, setCorrectWordIds] = useState<string[]>([]);
-  const [incorrectWordIds, setIncorrectWordIds] = useState<string[]>([]);
+  const correctWordIdsRef = useRef<string[]>([]);
+  const incorrectWordIdsRef = useRef<string[]>([]);
   const router = useRouter();
+
+  const quizMutation = useQuizResult();
 
   const {
     data: {
       data: { data },
     },
   } = useGetQuizData();
-
-  useEffect(() => {
-    const fetchQuizResultData = async () => {
-      const {
-        data: {
-          data: { quizResultId },
-        },
-      } = await postQuizResult(correctWordIds, incorrectWordIds);
-      router.push(getQuizResultPath(quizResultId));
-    };
-
-    if (currentQuiz === data.length - 1) {
-      fetchQuizResultData();
-    }
-  }, [correctWordIds, currentQuiz, data.length, incorrectWordIds, router]);
 
   const handleNextQuiz = () => {
     setTimeout(() => {
@@ -50,19 +37,46 @@ export default function QuizPlay() {
     }, 500);
   };
 
+  const makeQuizResult = (
+    correctWordIds: string[],
+    incorrectWordIds: string[],
+  ) => {
+    quizMutation.mutate(
+      {
+        correctWordIds,
+        incorrectWordIds,
+      },
+      {
+        onSuccess: (res) => {
+          router.push(getQuizResultPath(res.data.data.quizResultId));
+        },
+        onError: () => {
+          // 401 : 별도의 페이지 생성
+          // 500 : 서버에러 페이지
+        },
+      },
+    );
+  };
+
   const handleAnswerOptionClick = (wordId: string, selectedOption: string) => {
     setProgress(((currentQuiz + 1) / data.length) * 100);
 
     const isAnswer = selectedOption === data[currentQuiz].correct;
-
     if (isAnswer) {
-      setCorrectWordIds((prevWordId) => [...prevWordId, wordId]);
+      correctWordIdsRef.current.push(wordId);
     } else {
-      setIncorrectWordIds((prevWordId) => [...prevWordId, wordId]);
+      incorrectWordIdsRef.current.push(wordId);
     }
+
     setSelectOption(selectedOption);
     setIsButtonsDisabled(true);
-    handleNextQuiz();
+
+    if (currentQuiz === data.length - 1) {
+      makeQuizResult(
+        [...correctWordIdsRef.current],
+        [...incorrectWordIdsRef.current],
+      );
+    } else handleNextQuiz();
   };
 
   if (isShow) return <Quiz />;

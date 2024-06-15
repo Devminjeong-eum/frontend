@@ -5,7 +5,7 @@ import QuizScore from './QuizScore';
 import ShareButton from '@/components/svg-component/ShareButton';
 import QuizResultDetail from './QuizResultDetail';
 import type { QuizResultWordData } from '@/fetcher/types';
-import { getQuizResultPath, QUIZ_PATH } from '@/routes/path';
+import { getQuizResultSharePath, QUIZ_PATH } from '@/routes/path';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -34,7 +34,7 @@ export default function QuizResult({
           <BlackBackSpaceSVG />
         </button>
         <div className="m-auto font-medium pr-3">TEST 결과</div>
-        <Link href={getQuizResultPath(quizResultId)}>
+        <Link href={getQuizResultSharePath(quizResultId)}>
           <ShareButton />
         </Link>
       </header>
