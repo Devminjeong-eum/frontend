@@ -75,7 +75,7 @@ export default function SearchBar() {
 
   return (
     <div
-      className={`z-20 bg-main-gradient-bottom top-0 ${isScrolled ? 'sticky h-[64px] py-2 px-5' : 'h-[104px] p-5'}`}
+      className={`z-50 bg-main-gradient-bottom top-0 ${isScrolled ? 'sticky h-[64px] py-2 px-5' : 'h-[104px] p-5'}`}
     >
       <div
         className={clsx('relative', isShaking && 'animate-shake')}
