@@ -4,7 +4,7 @@ import XSVG from '@/components/svg-component/XSVG';
 import BlackBackSpaceSVG from '@/components/svg-component/BlackBackSpaceSVG';
 import Quiz from '.';
 import { useGetQuizData } from '@/hooks/query/useGetQuizData';
-import { useRouter } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 import clsx from 'clsx';
 import { getQuizResultPath } from '@/routes/path.ts';
 import useQuizResult from '@/hooks/mutation/useQuizResult.ts';
@@ -47,11 +47,17 @@ export default function QuizPlay() {
         incorrectWordIds,
       },
       {
-        onSuccess: (res) => {
-          router.push(getQuizResultPath(res.data.data.quizResultId));
+        onSuccess: ({ data }) => {
+          router.push(getQuizResultPath(data.data.quizResultId));
         },
-        onError: () => {
+        onError: (error) => {
           // 401 : 별도의 페이지 생성
+          // FIXME : Error 처리 개선 필요
+          if (Number(JSON.parse(error.message).statusCode) === 401) {
+            router.push(getQuizResultPath('unknown'));
+          } else {
+            throw error;
+          }
           // 500 : 서버에러 페이지
         },
       },

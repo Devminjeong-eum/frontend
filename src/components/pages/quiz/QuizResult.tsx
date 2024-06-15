@@ -44,7 +44,7 @@ export default function QuizResult({
         incorrectWords={incorrectWords}
       />
       <button
-        onClick={() => router.replace(`${QUIZ_PATH}`)}
+        onClick={() => router.replace(QUIZ_PATH)}
         className="bg-[#4057DB] rounded-[16px] mt-[24px] mb-[48px] h-[50px] font-semibold text-white w-full text-[16px]"
       >
         다시 도전하러 가기
