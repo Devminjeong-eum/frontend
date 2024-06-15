@@ -4,7 +4,7 @@ import XSVG from '@/components/svg-component/XSVG';
 import BlackBackSpaceSVG from '@/components/svg-component/BlackBackSpaceSVG';
 import Quiz from '.';
 import { useGetQuizData } from '@/hooks/query/useGetQuizData';
-import { notFound, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
 import { getQuizResultPath } from '@/routes/path.ts';
 import useQuizResult from '@/hooks/mutation/useQuizResult.ts';
