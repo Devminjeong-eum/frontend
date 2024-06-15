@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 export default function ComingSoonAlert() {
   return (
-    <div className="absolute w-full min-h-screen bg-[#FBFCFE]/20 backdrop-blur-[3px]  z-50">
+    <div className="absolute w-full min-h-full bg-[#FBFCFE]/20 backdrop-blur-[3px] z-30">
       <div
         className={clsx(
           'absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2',
