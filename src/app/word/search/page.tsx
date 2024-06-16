@@ -1,7 +1,5 @@
 import { ResolvingMetadata } from 'next';
 import Header from '@/components/layout/Header';
-import NotFoundWord from '@/components/pages/search/NotFoundWord';
-import { getWordSearch } from '@/fetcher';
 import Search from '@/components/pages/search';
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -28,13 +26,13 @@ export async function generateMetadata(
     },
     openGraph: {
       ...openGraph,
-      title: { absoulte: `'${searchParams.keyword}'의 검색결과 | 데브말싸미` },
+      title: { absolute: `'${searchParams.keyword}'의 검색결과 | 데브말싸미` },
       description: `'${searchParams.keyword}'에 대한 검색 결과를 확인해보세요.`,
       url: 'https://dev-malssami.site/search',
     },
     twitter: {
       ...twitter,
-      title: { absoulte: `'${searchParams.keyword}'의 검색결과 | 데브말싸미` },
+      title: { absolute: `'${searchParams.keyword}'의 검색결과 | 데브말싸미` },
       description: `'${searchParams.keyword}'에 대한 검색 결과를 확인해보세요.`,
     },
   };
@@ -45,18 +43,13 @@ type Props = {
 };
 
 export default async function SearchPage({ searchParams }: Props) {
-  const wordName = decodeURI(searchParams.keyword);
-
-  const {
-    data: { totalCount, data },
-  } = await getWordSearch(wordName);
+  const word = decodeURI(searchParams.keyword);
 
   return (
     <>
-      <Header wordName={wordName} />
+      <Header wordName={word} />
       <main className="rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[8px]">
-        {!totalCount && <NotFoundWord />}
-        <Search data={data} />
+        <Search word={word} />
       </main>
     </>
   );
