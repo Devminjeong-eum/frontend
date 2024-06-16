@@ -79,6 +79,7 @@ export type UserData = {
   profileImage: string;
   likeCount: number;
 };
+
 export type ErrorResponse = {
   error: boolean;
 };

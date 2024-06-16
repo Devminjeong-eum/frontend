@@ -13,6 +13,7 @@ import NonLoginProfileInfo from './NonLoginProfileInfo';
 import { useEffect, useState } from 'react';
 import LogoutModal from './Modal/LogoutModal';
 import { useRouter } from 'next/navigation';
+import clsx from 'clsx';
 
 type Props = {
   userId?: string;
@@ -52,7 +53,10 @@ export default function Profile({
         <NonLoginProfileInfo />
       )}
 
-      <Link href={WORDBOOK_PATH}>
+      <Link
+        href={WORDBOOK_PATH}
+        className={clsx(!isToken && 'pointer-events-none')}
+      >
         <div className="flex items-center bg-[#3D4FF3] h-[72px] mx-[20px] px-[22px] rounded-[16px] mt-[26px] mb-[22px] ">
           <span className="w-[20px] mr-[20px]">
             <WordBookSvg />
@@ -70,7 +74,7 @@ export default function Profile({
             <span className="w-[20px] mr-[20px]">
               <QuizSvg />
             </span>
-            <span className=" text-[17px]">개발 용어 발음 퀴즈</span>
+            <span className="text-[17px]">개발 용어 발음 퀴즈</span>
             <span className="ml-auto">
               <RightAngleBracketSvg />
             </span>
@@ -93,12 +97,21 @@ export default function Profile({
           <span>
             <PowerSvg />
           </span>
-          <button className="text-[#A8AEBC]" onClick={handleModalClick}>
+          <button
+            className={clsx(
+              'text-[#A8AEBC]',
+              !isToken && 'pointer-events-none',
+            )}
+            onClick={handleModalClick}
+          >
             로그아웃
           </button>
           <span className="border border-l mx-[35px] h-[16px]"></span>
 
-          <Link href={'/profile/DeleteAccount'}>
+          <Link
+            href={'/profile/DeleteAccount'}
+            className={clsx(!isToken && 'pointer-events-none')}
+          >
             <button className="text-[#A8AEBC] mr-[20px]">탈퇴하기</button>
           </Link>
         </div>
