@@ -20,7 +20,6 @@ type Props = {
   likeCount?: number;
   name?: string;
   profileImage?: string;
-  isToken?: boolean;
 };
 
 export default function Profile({
@@ -28,7 +27,6 @@ export default function Profile({
   likeCount,
   name,
   profileImage,
-  isToken,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
@@ -38,10 +36,10 @@ export default function Profile({
   };
 
   useEffect(() => {
-    if (isToken) {
+    if (userId) {
       router.push(`/profile/${userId}`);
     }
-  }, [isToken, userId]);
+  }, [userId]);
 
   return (
     <>
@@ -55,7 +53,7 @@ export default function Profile({
 
       <Link
         href={WORDBOOK_PATH}
-        className={clsx(!isToken && 'pointer-events-none')}
+        className={clsx(!userId && 'pointer-events-none')}
       >
         <div className="flex items-center bg-[#3D4FF3] h-[72px] mx-[20px] px-[22px] rounded-[16px] mt-[26px] mb-[22px] ">
           <span className="w-[20px] mr-[20px]">
@@ -98,10 +96,7 @@ export default function Profile({
             <PowerSvg />
           </span>
           <button
-            className={clsx(
-              'text-[#A8AEBC]',
-              !isToken && 'pointer-events-none',
-            )}
+            className={clsx('text-[#A8AEBC]', !userId && 'pointer-events-none')}
             onClick={handleModalClick}
           >
             로그아웃
@@ -110,7 +105,7 @@ export default function Profile({
 
           <Link
             href={'/profile/DeleteAccount'}
-            className={clsx(!isToken && 'pointer-events-none')}
+            className={clsx(!userId && 'pointer-events-none')}
           >
             <button className="text-[#A8AEBC] mr-[20px]">탈퇴하기</button>
           </Link>
