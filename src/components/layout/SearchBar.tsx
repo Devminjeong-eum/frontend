@@ -11,14 +11,14 @@ import AutoComplete from '../pages/search/AutoComplete';
 import EngNotice from '../pages/search/EngNotice';
 
 type Props = {
-  wordName: string;
+  word: string;
 };
 
-export default function SearchBar({ wordName }: Props) {
+export default function SearchBar({ word }: Props) {
   const isScrolled = useScroll();
   const router = useRouter();
   const searchBarRef = useRef<HTMLDivElement>(null);
-  const [search, setSearch] = useState(wordName || '');
+  const [search, setSearch] = useState(word || '');
   const [isInputFocus, setIsInputFocus] = useState(search && true);
   const [isDropdown, setIsDropdown] = useState(false);
   const [wordData, setWordData] = useState<AutoCompleteWord | null>(null);
