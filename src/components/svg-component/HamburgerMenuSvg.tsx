@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function HamburgerMenuSvg() {
   return (
     <svg
@@ -10,19 +12,19 @@ export default function HamburgerMenuSvg() {
       <path
         d="M5 7H19"
         stroke="white"
-        strokeWidth="1.5"
+        stroke-width="1.5"
         strokeLinecap="round"
       />
       <path
         d="M5 12H19"
         stroke="white"
-        strokeWidth="1.5"
+        stroke-width="1.5"
         strokeLinecap="round"
       />
       <path
         d="M5 17H19"
         stroke="white"
-        strokeWidth="1.5"
+        stroke-width="1.5"
         strokeLinecap="round"
       />
     </svg>

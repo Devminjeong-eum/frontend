@@ -19,7 +19,7 @@ export default function Login() {
         <span className="font-gugi text-[#4B4AC5] text-2xl font-normal tracking-wide pt-1.5">
           데브말싸미
         </span>
-        <span className="text-main-black text-sm font-normal pt-1">
+        <span className="text-main-black text-base leading-5 font-normal pt-1">
           당신의 개발용어 발음을 도와드릴게요!
         </span>
       </div>
@@ -36,7 +36,7 @@ export default function Login() {
           </span>
         </button>
         <Link href={WORD_LIST_PATH}>
-          <button className="w-full text-base font-semibold text-main-black opacity-60 p-3.5">
+          <button className="w-full text-base font-normal text-main-black opacity-60 p-3.5">
             비로그인으로 이용하기
           </button>
         </Link>

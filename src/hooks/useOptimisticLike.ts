@@ -8,8 +8,6 @@ interface Props {
   likeCount: number;
 }
 export const useOptimisticLike = ({ wordId, isLike, likeCount }: Props) => {
-  // const addLikeMutation = useAddLike(wordId);
-  // const deleteLikeMutation = useDeleteLike(wordId);
   const [optimisticLikeState, setOptimisticLike] = useOptimistic<
     {
       isLike: boolean;

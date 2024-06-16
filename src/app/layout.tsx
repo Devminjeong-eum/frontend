@@ -5,6 +5,7 @@ import QueryProvider from '@/providers/QueryProvider.tsx';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
 import { Metadata } from 'next';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const PRODUCTION_URL = 'https://dev-malssami.site';
 
@@ -143,7 +144,10 @@ export default function RootLayout({
       <body className="font-pretendard">
         <div className="flex justify-center min-h-screen bg-[#FBFCFE] scrollbar-hide">
           <div className="w-full max-w-[430px] border-1 border-x border-gray-200 shadow-xl ">
-            <QueryProvider>{children}</QueryProvider>
+            <QueryProvider>
+              {children}
+              <ReactQueryDevtools initialIsOpen={false} />
+            </QueryProvider>
           </div>
         </div>
         <Script src="https://developers.kakao.com/sdk/js/kakao.js" />

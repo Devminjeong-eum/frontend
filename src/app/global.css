@@ -31,7 +31,7 @@
 
 .customButton.hover-disabled {
   --svg-stroke-color: #d7dceb;
-  --svg-fill-color: #ecf0f9;
+  --svg-fill-color: #FBFCFE;
 }
 
 @keyframes slow-spin {
