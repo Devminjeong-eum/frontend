@@ -1,9 +1,11 @@
 import type { QuizResultWordData } from '@/fetcher/types';
 import EmptyHeartSvg from '@/components/svg-component/EmptyHeartSvg';
 import clsx from 'clsx';
-import { startTransition } from 'react';
+import { startTransition, useState } from 'react';
 import Heart1Svg from '@/components/svg-component/Heart1Svg';
 import { useOptimisticLike } from '@/hooks/useOptimisticLike';
+import useAuthQuery from '@/hooks/query/useAuthQuery.ts';
+import LoginAlertModal from '@/components/common/LoginAlertModal.tsx';
 
 type Props = {
   data: QuizResultWordData;
@@ -11,16 +13,33 @@ type Props = {
 };
 
 export default function QuizResultDetailWord({ data, correctWords }: Props) {
+  const { data: authData } = useAuthQuery();
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const isLoggedIn = !authData?.error ?? false;
+
+  const handleNeedLogin = () => {
+    // NOTE: 2초간 로그인 toast UI
+
+    setIsOpenModal(true);
+    setTimeout(() => {
+      setIsOpenModal(false);
+    }, 2000);
+  };
   const { optimisticLikeState, handleSubLike, handleAddLike } =
     useOptimisticLike({
       wordId: data.wordId,
       isLike: data.isLike,
+      likeCount: 0,
     });
 
   const handleLikeClick = () => {
-    startTransition(() => {
-      optimisticLikeState.isLike ? handleSubLike() : handleAddLike();
-    });
+    if (isLoggedIn) {
+      startTransition(() => {
+        optimisticLikeState.isLike ? handleSubLike() : handleAddLike();
+      });
+    } else {
+      handleNeedLogin();
+    }
   };
 
   return (
@@ -44,6 +63,7 @@ export default function QuizResultDetailWord({ data, correctWords }: Props) {
           {optimisticLikeState.isLike ? <Heart1Svg /> : <EmptyHeartSvg />}
         </button>
       </div>
+      <LoginAlertModal isOpen={isOpenModal} />
     </div>
   );
 }

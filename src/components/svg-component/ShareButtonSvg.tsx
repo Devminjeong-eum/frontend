@@ -1,4 +1,4 @@
-export default function ShareButton() {
+export default function ShareButtonSvg() {
   return (
     <svg
       width="24"

@@ -15,7 +15,6 @@ export default function QuizResultDetail({
 }: Props) {
   const [isDetail, setIsDetail] = useState(true);
   const words = [...correctWords, ...incorrectWords];
-
   const handleIsDetailChange = () => {
     setIsDetail(!isDetail);
   };

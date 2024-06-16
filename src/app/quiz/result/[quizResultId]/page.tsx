@@ -2,6 +2,7 @@ import QuizResult from '@/components/pages/quiz/QuizResult';
 import { serverFetch } from '@/fetcher/serverFetch';
 import { notFound } from 'next/navigation';
 import { FetchRes, DefaultRes, QuizResultData } from '@/fetcher/types';
+import GuestQuizResult from '@/components/pages/quiz/GuestQuizResult.tsx';
 
 export type Props = {
   params: { quizResultId: string };
@@ -21,8 +22,8 @@ const getQuizResultData = async (id: string) => {
 export default async function QuizResultPage({ params }: Props) {
   const { quizResultId } = params;
 
-  if (quizResultId === 'unknown') {
-    return <div>로그인 안 한 유저 </div>;
+  if (quizResultId === 'guest') {
+    return <GuestQuizResult />;
   }
 
   const {
