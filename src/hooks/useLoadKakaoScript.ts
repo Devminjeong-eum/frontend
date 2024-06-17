@@ -12,11 +12,8 @@ declare global {
 
 export default function useLoadKakaoScript() {
   const { Kakao } = window;
-  const {
-    data: userInfo,
-  } = useAuthQuery();
-
-  const userName = userInfo?.name
+  const { data } = useAuthQuery();
+  const userName = data?.data?.name;
   const title = `${userName}님의 개발 용어 점수는?`;
   const desc = `${userName}님의 개발 용어 점수는 몇 점일까요? 클릭해서 확인해보고, 함께 도전해보세요!`;
 

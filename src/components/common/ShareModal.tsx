@@ -8,10 +8,22 @@ import { QUIZ_PATH } from '@/routes/path.ts';
 import useLoadKakaoScript from '@/hooks/useLoadKakaoScript.ts';
 import useCopyClipboard from '@/hooks/useCopyClipboard.ts';
 import { CopiedNotice } from '@/components/common/CopiedNotice.tsx';
+import useAuthQuery from '@/hooks/query/useAuthQuery';
+import useCheckLoggedin from '@/hooks/useCheckLoggedin';
 
 export default function ShareModal() {
+  const { data } = useAuthQuery();
   const { handleShare } = useLoadKakaoScript();
   const { isCopied, onCopyClipboard } = useCopyClipboard();
+  const { isUser, setIsUser } = useCheckLoggedin();
+
+  const handleShareClick = () => {
+    if (data?.error) {
+      setIsUser(true);
+      return;
+    }
+    handleShare();
+  };
 
   return (
     <div className="fixed max-w-[430px] top-0 w-full h-full flex justify-center items-center bg-[#17192470] px-[46px]">
@@ -24,13 +36,14 @@ export default function ShareModal() {
         </h3>
         <div className="flex justify-center gap-[37px]">
           <div className="flex flex-col items-center">
-            <button onClick={handleShare}>
+            <button onClick={handleShareClick}>
               <div className="w-[52px] h-[52px] rounded-full bg-kakao m-2 flex justify-center items-center">
                 <KakaoIconSvg />
               </div>
               <span>카카오톡</span>
             </button>
           </div>
+
           <div className="flex flex-col items-center">
             <button onClick={onCopyClipboard}>
               <div className="w-[52px] h-[52px] rounded-full bg-[#F2F4F9] m-2 flex justify-center items-center">
@@ -41,7 +54,7 @@ export default function ShareModal() {
           </div>
         </div>
       </div>
-      {isCopied && <CopiedNotice />}
+      {<CopiedNotice isCopied={isCopied} isUser={isUser} />}
     </div>
   );
 }
