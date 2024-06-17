@@ -21,6 +21,9 @@ export const useMutationLike = ({ wordId, setIsOpenModal }: Props) => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.HOME_KEY],
       });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.LIKEDWORD_KEY],
+      });
     },
     onError: (error) => {
       console.error('Failed to update like:', error);
@@ -32,6 +35,9 @@ export const useMutationLike = ({ wordId, setIsOpenModal }: Props) => {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.HOME_KEY],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.LIKEDWORD_KEY],
       });
     },
     onError: (error) => {
