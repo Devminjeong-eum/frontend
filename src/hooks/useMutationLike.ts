@@ -22,7 +22,7 @@ export const useMutationLike = ({ wordId, setIsOpenModal }: Props) => {
         queryKey: [QUERY_KEYS.HOME_KEY],
       });
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       console.error('Failed to update like:', error);
     },
   });
@@ -34,7 +34,7 @@ export const useMutationLike = ({ wordId, setIsOpenModal }: Props) => {
         queryKey: [QUERY_KEYS.HOME_KEY],
       });
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       console.error('Failed to delete like:', error);
     },
   });
