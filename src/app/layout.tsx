@@ -6,13 +6,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
 import { Metadata } from 'next';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-
-const PRODUCTION_URL = 'https://dev-malssami.site';
-
-const baseUrl =
-  process.env.NODE_ENV === 'production'
-    ? PRODUCTION_URL
-    : process.env.NEXT_PUBLIC_BASE_URL;
+import { BASE_URL, PRODUCTION_URL } from '@/utils';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const metadata: Metadata = {
@@ -31,7 +25,7 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  metadataBase: new URL(baseUrl || PRODUCTION_URL),
+  metadataBase: new URL(BASE_URL || PRODUCTION_URL),
   openGraph: {
     title: {
       template: '데브말싸미 | %s',
@@ -39,7 +33,7 @@ export const metadata: Metadata = {
     },
     description:
       '발음이 헷갈리는 개발 용어에 대해 손쉽게 발음과 뜻을 검색해보세요.',
-    url: baseUrl,
+    url: BASE_URL,
     siteName: '데브말싸미',
     type: 'website',
     locale: 'ko_KR',
