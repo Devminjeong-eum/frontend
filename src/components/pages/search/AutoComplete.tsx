@@ -31,7 +31,7 @@ export default function AutoComplete({
         검색은 영어로만 가능해요.
       </div>
       {wordData &&
-        wordData.data.map((data, idx) => (
+        wordData.data.slice(0, 6).map((data, idx) => (
           <li
             key={data.id}
             className={clsx(
