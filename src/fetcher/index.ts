@@ -7,6 +7,7 @@ import type {
   UserData,
   UserInfo,
   ErrorResponse,
+  AutoCompleteWord,
 } from './types.ts';
 import { PaginationRes, MainItemType } from '@/types/main.ts';
 import { backendFetch } from '@/fetcher/backendFetch.ts';
@@ -163,6 +164,21 @@ export const deleteAccount = async (userId: string) => {
     return await backendFetch(`/user/${userId}`, {
       method: 'DELETE',
     });
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
+
+export const getAutoCompleteWord = async (wordName: string) => {
+  try {
+    const res = await backendFetch<FetchRes<DefaultRes<AutoCompleteWord>>>(
+      `/word/search/related`,
+      {
+        params: { page: 1, limit: 50, keyword: wordName },
+      },
+    );
+    return res.data;
   } catch (e) {
     console.log('error', e);
     notFound();
