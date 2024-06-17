@@ -8,6 +8,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 type Props = MainItemType & {
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
+  isOpenModal: boolean;
 };
 
 export default function WordItem({
@@ -18,6 +19,7 @@ export default function WordItem({
   pronunciation, // 발음 (국문)
   description,
   setIsOpenModal,
+  isOpenModal,
 }: Props) {
   const router = useRouter();
 
@@ -27,6 +29,7 @@ export default function WordItem({
   });
 
   const handleLikeButton = () => {
+    if (isOpenModal) return;
     isLike ? handleSubLike() : handleAddLike();
   };
 

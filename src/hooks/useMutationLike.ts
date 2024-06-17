@@ -13,7 +13,7 @@ export const useMutationLike = ({ wordId, setIsOpenModal }: Props) => {
   const queryClient = useQueryClient();
 
   // 로그인 유무 판별
-  const { data: isLoggedIn } = useAuthQuery();
+  const { data } = useAuthQuery();
 
   const updateLikeMutation = useMutation({
     mutationFn: () => updateLike(wordId),
@@ -40,7 +40,7 @@ export const useMutationLike = ({ wordId, setIsOpenModal }: Props) => {
   });
 
   const handleAddLike = () => {
-    if (isLoggedIn?.error) {
+    if (data.error) {
       setIsOpenModal(true);
       setTimeout(() => {
         setIsOpenModal(false);
