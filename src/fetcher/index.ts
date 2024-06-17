@@ -184,3 +184,15 @@ export const getAutoCompleteWord = async (wordName: string) => {
     notFound();
   }
 };
+
+export const postFeedback = async (question1: string, question2: string) => {
+  try {
+    return await backendFetch('research/before-quit', {
+      method: 'POST',
+      body: JSON.stringify({ question1, question2 }),
+    });
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};

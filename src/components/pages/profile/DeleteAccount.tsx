@@ -5,6 +5,7 @@ import ProfileHeader from './ProfileHeader';
 import BigEmailSvg from '@/components/svg-component/BigEmailSvg';
 import DeleteAccountModal from './Modal/DeleteAccountModal';
 import SubmitFeedback from './SubmitFeedback';
+import { postFeedback } from '@/fetcher';
 
 type Props = {
   userId: string;
@@ -35,7 +36,7 @@ export default function DeleteAccount({ userId }: Props) {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(`선택된 옵션: ${selectedOption}, ${text}`);
+    postFeedback(selectedOption, text);
     setIsSubmit(true);
   };
 
@@ -53,7 +54,7 @@ export default function DeleteAccount({ userId }: Props) {
 
   return (
     <>
-      <ProfileHeader text={'회원탈퇴'} />
+      <ProfileHeader text={'회원탈퇴'} userId={userId} />
 
       <div className="flex flex-col items-center mt-[15px]">
         <BigEmailSvg />
