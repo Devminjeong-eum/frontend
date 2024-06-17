@@ -4,6 +4,7 @@ import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 import ProfileHeader from './ProfileHeader';
 import BigEmailSvg from '@/components/svg-component/BigEmailSvg';
 import DeleteAccountModal from './Modal/DeleteAccountModal';
+import SubmitFeedback from './SubmitFeedback';
 
 type Props = {
   userId: string;
@@ -14,6 +15,7 @@ export default function DeleteAccount({ userId }: Props) {
   const [selectedOption, setSelectedOption] = useState('');
   const [text, setText] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
   const options = [
     '평소에 사용을 잘 안하게 돼요.',
     '원하는 정보가 존재하지 않아요.',
@@ -33,9 +35,8 @@ export default function DeleteAccount({ userId }: Props) {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert(`선택된 옵션: ${selectedOption}, ${text}`);
-    setSelectedOption('');
-    setText('');
+    console.log(`선택된 옵션: ${selectedOption}, ${text}`);
+    setIsSubmit(true);
   };
 
   const handleModalClick = () => {
@@ -47,6 +48,8 @@ export default function DeleteAccount({ userId }: Props) {
       ref.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [selectedOption]);
+
+  if (isSubmit) return <SubmitFeedback />;
 
   return (
     <>
@@ -110,7 +113,6 @@ export default function DeleteAccount({ userId }: Props) {
             어떨까요?
           </div>
 
-          {/* TODO: 의견 보내기 -> 모달 -> 마이 페이지 */}
           <div className="w-full flex space-x-[8px] mb-[36px]">
             <button
               className="flex-1 bg-[#E7EBF8] text-[#383697] text-[16px] rounded-[16px] font-semibold h-[54px]"
