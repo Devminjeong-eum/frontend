@@ -1,4 +1,4 @@
-import { Metadata, ResolvingMetadata } from 'next';
+import { ResolvingMetadata } from 'next';
 import PageClient from './PageClient';
 
 // eslint-disable-next-line react-refresh/only-export-components
