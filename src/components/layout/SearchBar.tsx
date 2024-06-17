@@ -3,7 +3,7 @@
 import MagnifierSvg from '@/components/svg-component/MagnifierSvg';
 import useScroll from '@/hooks/useScroll';
 import { useRouter } from 'next/navigation';
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useMemo } from 'react';
 import clsx from 'clsx';
 import { getAutoCompleteWord } from '@/fetcher';
 import type { AutoCompleteWord } from '@/fetcher/types';
@@ -26,7 +26,7 @@ export default function SearchBar({ word }: Props) {
   const [isEng, setIsEng] = useState(false);
   const [isIdxChange, setIsIdxChange] = useState(false);
   const [isInputChange, setIsInputChange] = useState(false);
-  const searchRegex = /^[a-zA-Z]*$/;
+  const searchRegex = useMemo(() => /^[a-zA-Z0-9]*$/, []);
 
   useEffect(() => {
     const handleClick = (e: PointerEvent) => {
