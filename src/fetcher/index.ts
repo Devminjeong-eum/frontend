@@ -26,7 +26,6 @@ export const getWordSearch = async (wordName: string) => {
   } catch (e) {
     // NOTE: 상황에 맞는 페이지 보여줘야 함.
     console.log('error', e);
-    notFound();
   }
 };
 
@@ -133,7 +132,6 @@ export const getUserInfo = async () => {
     return await backendFetch<FetchRes<DefaultRes<UserData>>>(`/user`);
   } catch (e) {
     console.log('error', e);
-    notFound();
   }
 };
 
@@ -155,7 +153,6 @@ export const logout = async () => {
     });
   } catch (e) {
     console.log('error', e);
-    notFound();
   }
 };
 
@@ -166,7 +163,6 @@ export const deleteAccount = async (userId: string) => {
     });
   } catch (e) {
     console.log('error', e);
-    notFound();
   }
 };
 
@@ -181,7 +177,6 @@ export const getAutoCompleteWord = async (wordName: string) => {
     return res.data;
   } catch (e) {
     console.log('error', e);
-    notFound();
   }
 };
 
@@ -193,6 +188,5 @@ export const postFeedback = async (question1: string, question2: string) => {
     });
   } catch (e) {
     console.log('error', e);
-    notFound();
   }
 };
