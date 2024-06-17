@@ -6,6 +6,7 @@ import type {
   likedWord,
   UserInfo,
   ErrorResponse,
+  AutoCompleteWord,
 } from './types.ts';
 import { PaginationRes, MainItemType } from '@/types/main.ts';
 import { backendFetch } from '@/fetcher/backendFetch.ts';
@@ -134,5 +135,20 @@ export const checkUserAuthentication = async (): Promise<
     return res.data;
   } catch (error) {
     return { error: true };
+  }
+};
+
+export const getAutoCompleteWord = async (wordName: string) => {
+  try {
+    const res = await backendFetch<FetchRes<DefaultRes<AutoCompleteWord>>>(
+      `/word/search/related`,
+      {
+        params: { page: 1, limit: 50, keyword: wordName },
+      },
+    );
+    return res.data;
+  } catch (e) {
+    console.log('error', e);
+    notFound();
   }
 };
