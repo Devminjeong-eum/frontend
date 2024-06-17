@@ -39,11 +39,11 @@ export default function Profile({
     if (userId) {
       router.push(`/profile/${userId}`);
     }
-  }, [userId, router]);
+  }, [userId]);
 
   return (
     <>
-      <ProfileHeader text={'마이페이지'} userId={userId} />
+      <ProfileHeader text={'마이페이지'} />
 
       {profileImage && name ? (
         <ProfileInfo profileImage={profileImage} name={name} />

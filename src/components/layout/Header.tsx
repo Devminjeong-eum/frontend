@@ -18,7 +18,7 @@ const DynamicToolTip = dynamic(() => import('@/components/common/ToolTip'), {
 
 type Props = {
   isToken?: boolean;
-  word?: string;
+  word: string;
 };
 
 export default function Header({ isToken, word = '' }: Props) {
