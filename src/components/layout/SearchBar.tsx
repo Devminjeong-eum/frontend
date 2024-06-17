@@ -48,6 +48,11 @@ export default function SearchBar({ word }: Props) {
   }, [search]);
 
   useEffect(() => {
+    const fetchAutoCompleteWord = async () => {
+      const { data } = await getAutoCompleteWord(search);
+      setWordData(data);
+    };
+
     if (search.trim() === '') {
       setIsDropdown(false);
       setSelectedIdx(-1);
@@ -61,7 +66,7 @@ export default function SearchBar({ word }: Props) {
       setIsDropdown(true);
       fetchAutoCompleteWord();
     }
-  }, [search, isInputChange, isIdxChange]);
+  }, [search, isInputChange, isIdxChange, searchRegex]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (!wordData) return;
@@ -90,11 +95,6 @@ export default function SearchBar({ word }: Props) {
       setIsDropdown(false);
       handleSearch(wordData.data[selectedIdx].name);
     }
-  };
-
-  const fetchAutoCompleteWord = async () => {
-    const { data } = await getAutoCompleteWord(search);
-    setWordData(data);
   };
 
   const navigateToSearch = (wordData: string) => {
