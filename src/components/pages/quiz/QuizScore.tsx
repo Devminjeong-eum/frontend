@@ -1,10 +1,10 @@
 import ScoreResultSvg from '@/components/svg-component/ScoreResultSvg';
 
-type QuizScoreProps = {
-  resultScore: number;
+type Props = {
+  score: number;
 };
 
-export default function QuizScore({ resultScore }: QuizScoreProps) {
+export default function QuizScore({ score }: Props) {
   return (
     <div className="w-full aspect-square relative flex justify-center">
       <div className="absolute top-[30%] text-center">
@@ -18,9 +18,9 @@ export default function QuizScore({ resultScore }: QuizScoreProps) {
           </span>
         </p>
         <div
-          className={`font-gugi text-main-blue ${resultScore.toString().length > 2 ? `text-[64px]` : `text-[70px]`}`}
+          className={`font-gugi text-main-blue ${score.toString().length > 2 ? `text-[64px]` : `text-[70px]`}`}
         >
-          {resultScore}점
+          {score}점
         </div>
       </div>
       <ScoreResultSvg />

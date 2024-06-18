@@ -43,6 +43,35 @@ export type SearchWordData = {
   isLike: boolean;
 };
 
+export type QuizData = {
+  correct: string;
+  selections: string[];
+  wordId: string;
+  name: string;
+  diacritic: string;
+};
+
+export type QuizResultData = {
+  quizResultId: string;
+  score: number;
+  correctWords: QuizResultWordData[];
+  incorrectWords: QuizResultWordData[];
+};
+
+export type QuizResultWordData = {
+  wordId: string;
+  name: string;
+  pronunciation: string;
+  diacritic: string;
+  isLike: boolean;
+};
+
+export type QuizResultUserIdData = {
+  quizResultId: string;
+  correctWordIds: string[];
+  incorrectWordIds: string[];
+};
+
 export type likedWord = {
   data: Omit<MainItemType, 'isLike'>[];
   isLast: boolean;

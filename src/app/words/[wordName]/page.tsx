@@ -5,8 +5,8 @@ import ReportButton from '@/components/pages/detail/ReportButton.tsx';
 import type { DefaultRes, FetchRes, WordDetail } from '@/fetcher/types.ts';
 import { serverFetch } from '@/fetcher/serverFetch.ts';
 import { notFound } from 'next/navigation';
-import { ResolvingMetadata } from 'next';
 import PronunciationDetail from '@/components/pages/detail/PronunciationDetail.tsx';
+import { ResolvingMetadata } from 'next';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function generateMetadata(

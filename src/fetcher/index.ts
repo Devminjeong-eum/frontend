@@ -8,6 +8,8 @@ import type {
   UserInfo,
   ErrorResponse,
   AutoCompleteWord,
+    QuizData,
+    QuizResultUserIdData
 } from './types.ts';
 import { PaginationRes, MainItemType } from '@/types/main.ts';
 import { backendFetch } from '@/fetcher/backendFetch.ts';
@@ -146,6 +148,30 @@ export const checkUserAuthentication = async (): Promise<
   } catch (error) {
     return { error: true };
   }
+};
+
+export const getQuizData = async () => {
+  try {
+    return await backendFetch<FetchRes<DefaultRes<QuizData[]>>>(
+      '/quiz/selection',
+    );
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
+
+export const postQuizResult = async (
+  correctWordIds: string[],
+  incorrectWordIds: string[],
+) => {
+  return await backendFetch<FetchRes<DefaultRes<QuizResultUserIdData>>>(
+    '/quiz/result',
+    {
+      method: 'POST',
+      body: JSON.stringify({ correctWordIds, incorrectWordIds }),
+    },
+  );
 };
 
 export const logout = async () => {
