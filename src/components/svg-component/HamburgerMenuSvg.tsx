@@ -12,19 +12,19 @@ export default function HamburgerMenuSvg() {
       <path
         d="M5 7H19"
         stroke="white"
-        stroke-width="1.5"
+        strokeWidth="1.5"
         strokeLinecap="round"
       />
       <path
         d="M5 12H19"
         stroke="white"
-        stroke-width="1.5"
+        strokeWidth="1.5"
         strokeLinecap="round"
       />
       <path
         d="M5 17H19"
         stroke="white"
-        stroke-width="1.5"
+        strokeWidth="1.5"
         strokeLinecap="round"
       />
     </svg>

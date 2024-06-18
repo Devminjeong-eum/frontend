@@ -29,7 +29,7 @@ export default function ToolTip({ isOpen, setIsOpen }: Props) {
   }
 
   return createPortal(
-    <div className="fixed inset-0 max-w-[430px] mx-auto">
+    <div className="fixed z-[60] inset-0 max-w-[430px] mx-auto">
       <div className="relative">
         <button
           className="absolute top-12 right-11 cursor-default"

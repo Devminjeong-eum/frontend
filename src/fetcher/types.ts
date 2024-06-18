@@ -40,7 +40,7 @@ export type SearchWordData = {
   description: string;
   diacritic: string[];
   pronunciation: string[];
-  wordLike: boolean;
+  isLike: boolean;
 };
 
 export type likedWord = {
@@ -73,6 +73,13 @@ export type FetchRes<TRes> = {
   data: TRes;
 };
 
+export type UserData = {
+  userId: string;
+  name: string;
+  profileImage: string;
+  likeCount: number;
+};
+
 export type ErrorResponse = {
   error: boolean;
 };
@@ -83,4 +90,18 @@ export type UserInfo = {
   profileImage: string;
   likeCount: number;
   error?: boolean;
+};
+
+export type AutoCompleteWord = {
+  data: AutoCompleteWordData[];
+  page: number;
+  limit: number;
+  isLast: boolean;
+  totalCount: number;
+};
+
+export type AutoCompleteWordData = {
+  id: string;
+  name: string;
+  diacritic: string;
 };
