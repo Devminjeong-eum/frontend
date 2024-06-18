@@ -27,7 +27,6 @@ export const getWordSearch = async (wordName: string) => {
     return res.data;
   } catch (e) {
     // NOTE: 상황에 맞는 페이지 보여줘야 함.
-    console.log('error', e);
     notFound();
   }
 };
@@ -50,9 +49,9 @@ export const updateLike = async (wordId: string) => {
       method: 'PATCH',
     });
   } catch (e) {
-    if (e instanceof Error) {
-      console.error(e.message);
-    }
+    // if (e instanceof Error) {
+    //   console.error(e.message);
+    // }
     // 401 => 권한 없음 => 로그인 모달
     // 500 => 서버 에러
   }
@@ -65,9 +64,9 @@ export const deleteLike = async (wordId: string) => {
       method: 'DELETE',
     });
   } catch (e) {
-    if (e instanceof Error) {
-      console.error(e.message);
-    }
+    // if (e instanceof Error) {
+    //   console.error(e.message);
+    // }
     // NOTE: 발생할 수 있는 에러
     // 401 => 권한 없음 => 로그인 모달
     // 500 => 서버 에러
@@ -87,7 +86,6 @@ export const getAllPostsClient = async (currentPage: number) => {
 
     return res.data;
   } catch (e) {
-    console.log('error', e);
     notFound();
   }
 };
@@ -124,8 +122,6 @@ export const getLikedWord = async (
       },
     });
   } catch (e) {
-    // NOTE: 상황에 맞는 페이지 보여줘야 함.
-    console.log('error', e);
     notFound();
   }
 };

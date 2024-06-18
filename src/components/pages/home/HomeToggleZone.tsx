@@ -6,24 +6,32 @@ type Props = {
   isTrending: TrendingType;
 };
 
+const STYLE_P_TAG =
+  'absolute transition-all duration-[600ms] w-1/2 text-center';
+
 export default function HomeToggleZone({ handleToggle, isTrending }: Props) {
   const isTrend = isTrending === 'trend';
 
   return (
-    <div className="text-main-blue flex gap-[86.5px] mx-auto w-full justify-center relative">
+    <div
+      className={clsx(
+        'relative flex justify-between w-full',
+        isTrend ? 'mb-11' : 'mb-4',
+      )}
+    >
       <div
         className={clsx(
-          'absolute w-[174px] xs:w-[194px] -top-[8px] h-[40px] rounded-full bg-[#ECF0FF] transition-transform duration-[600ms]',
-          isTrend ? '-translate-x-[90px] xs:-translate-x-[97px]' : 'translate-x-[90px] xs:translate-x-[97px]',
+          'absolute w-1/2 -top-[8px] h-[40px] rounded-full bg-[#ECF0FF] transition-transform duration-[600ms]',
+          isTrend ? ' translate-x-0' : ' translate-x-full',
         )}
       />
 
       <p
         className={clsx(
-          'ml-[20px] xs:mr-0 z-10 w-[90px] text-center transition-all duration-[600ms]',
+          STYLE_P_TAG,
           isTrend
-            ? 'text-main-blue font-semibold '
-            : 'text-[#D7DCEB] translate-x-[180px] opacity-0',
+            ? `text-main-blue font-semibold opacity-100`
+            : 'text-[#D7DCEB] translate-x-full opacity-0',
         )}
       >
         트렌딩 단어
@@ -32,8 +40,8 @@ export default function HomeToggleZone({ handleToggle, isTrending }: Props) {
       <button
         onClick={() => handleToggle('trend')}
         className={clsx(
-          'absolute left-[37px] xs:left-[52px] w-[90px] text-[#D7DCEB] transition-opacity duration-700',
-          isTrend ? 'opacity-0' : 'opacity-100',
+          'absolute w-1/2 text-center translate-x-0 text-[#D7DCEB] transition-all duration-[600ms]',
+          isTrend ? 'opacity-0' : 'opacity-100 ',
         )}
       >
         {!isTrend && '트렌딩 단어'}
@@ -41,10 +49,10 @@ export default function HomeToggleZone({ handleToggle, isTrending }: Props) {
 
       <p
         className={clsx(
-          'xs:ml-[20px] mr-[20px] text-center z-10 w-[100px] transition-all duration-[600ms]',
+          STYLE_P_TAG,
           !isTrend
-            ? 'text-main-blue font-semibold '
-            : 'text-[#D7DCEB] -translate-x-[180px] opacity-0',
+            ? 'text-main-blue font-semibold opacity-100 translate-x-full'
+            : 'text-[#D7DCEB] translate-x-0 opacity-0',
         )}
       >
         모든 용어 보기
@@ -53,7 +61,7 @@ export default function HomeToggleZone({ handleToggle, isTrending }: Props) {
       <button
         onClick={() => handleToggle('all')}
         className={clsx(
-          ' absolute right-[43.5px] xs:right-[49.5px] text-[#D7DCEB] transition-opacity duration-700',
+          'absolute w-1/2 translate-x-full text-center text-[#D7DCEB] transition-all duration-[600ms]',
           isTrend ? 'opacity-100' : 'opacity-0',
         )}
       >
