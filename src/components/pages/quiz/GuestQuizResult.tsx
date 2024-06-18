@@ -6,7 +6,6 @@ import QuizResult from '@/components/pages/quiz/QuizResult.tsx';
 
 export default function GuestQuizResult() {
   const { correctWordData, incorrectWordData } = useAtomValue(guestQuizAtom);
-  console.log(correctWordData, incorrectWordData);
   const score = correctWordData.length * 10;
 
   const correctWords = correctWordData.map((data) => {
