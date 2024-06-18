@@ -1,7 +1,6 @@
 import NoticeIconSvg from '@/components/svg-component/NoticeIconSvg.tsx';
 import RightArrowSvg from '@/components/svg-component/RightArrowSvg.tsx';
-
-const REPORT_FORM_URL = 'https://forms.gle/McGVzfsVT9SQkt1g8';
+import { REPORT_FORM_URL } from '@/routes/path';
 
 export default function ReportButton() {
   return (
