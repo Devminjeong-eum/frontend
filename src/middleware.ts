@@ -6,12 +6,18 @@ import {
 } from 'next/dist/server/web/spec-extension/cookies';
 import { serverFetch } from '@/fetcher/serverFetch.ts';
 import type { FetchRes, DefaultRes } from '@/fetcher/types.ts';
+import { BASE_URL } from './utils';
 
 export async function middleware(request: NextRequest) {
   const accessToken = request.cookies.get('accessToken')?.value;
   const refreshToken = request.cookies.get('refreshToken')?.value;
+  const { pathname } = request.nextUrl;
 
   const next = NextResponse.next();
+
+  // 비로그인 상태로 단어장 페이지에 진입할 경우 "/"으로 redirect
+  if (pathname === '/user/wordbook' && !accessToken && !refreshToken)
+    return NextResponse.redirect(new URL('/', BASE_URL));
 
   // accessToken이 없고 refreshToken이 있을 경우
   if (!accessToken && refreshToken) {
