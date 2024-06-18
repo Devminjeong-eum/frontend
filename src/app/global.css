@@ -1,10 +1,8 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-
   html,
   body {
     font-family:
@@ -31,7 +29,7 @@
 
 .customButton.hover-disabled {
   --svg-stroke-color: #d7dceb;
-  --svg-fill-color: #FBFCFE;
+  --svg-fill-color: #fbfcfe;
 }
 
 @keyframes slow-spin {

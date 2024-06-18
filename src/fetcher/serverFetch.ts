@@ -16,7 +16,9 @@ export const serverFetch = httpClient({
   interceptors: {
     request: async (url, init) => {
       // NOTE: 로깅
-      console.log('********* before sending request in server *********');
+      console.log(
+        '********* before sending request in server with serverFetch *********',
+      );
       console.log('request to: ', url.toString());
 
       // NOTE: Cookie를 직접 세팅해줘야 합니다.

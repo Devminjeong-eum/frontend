@@ -5,7 +5,7 @@ export type MainItemType = {
   isLike: boolean;
   name: string;
   pronunciation: string[];
-  likeCount: number;
+  likeCount?: number;
 };
 
 export type PaginationRes<TData> = {

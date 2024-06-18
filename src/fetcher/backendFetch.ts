@@ -14,7 +14,9 @@ export const backendFetch = httpClient({
   interceptors: {
     request: async (url, init) => {
       if (isServer()) {
-        console.log('********* before sending request in server *********');
+        console.log(
+          '********* before sending request in server with backendFetch *********',
+        );
         console.log('request to: ', url.toString());
       }
       return init;

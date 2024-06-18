@@ -4,8 +4,12 @@ import type {
   SearchWord,
   LoginData,
   likedWord,
+  UserData,
   UserInfo,
   ErrorResponse,
+  AutoCompleteWord,
+    QuizData,
+    QuizResultUserIdData
 } from './types.ts';
 import { PaginationRes, MainItemType } from '@/types/main.ts';
 import { backendFetch } from '@/fetcher/backendFetch.ts';
@@ -23,7 +27,6 @@ export const getWordSearch = async (wordName: string) => {
     return res.data;
   } catch (e) {
     // NOTE: 상황에 맞는 페이지 보여줘야 함.
-    console.log('error', e);
     notFound();
   }
 };
@@ -46,9 +49,9 @@ export const updateLike = async (wordId: string) => {
       method: 'PATCH',
     });
   } catch (e) {
-    if (e instanceof Error) {
-      console.error(e.message);
-    }
+    // if (e instanceof Error) {
+    //   console.error(e.message);
+    // }
     // 401 => 권한 없음 => 로그인 모달
     // 500 => 서버 에러
   }
@@ -61,9 +64,9 @@ export const deleteLike = async (wordId: string) => {
       method: 'DELETE',
     });
   } catch (e) {
-    if (e instanceof Error) {
-      console.error(e.message);
-    }
+    // if (e instanceof Error) {
+    //   console.error(e.message);
+    // }
     // NOTE: 발생할 수 있는 에러
     // 401 => 권한 없음 => 로그인 모달
     // 500 => 서버 에러
@@ -83,7 +86,6 @@ export const getAllPostsClient = async (currentPage: number) => {
 
     return res.data;
   } catch (e) {
-    console.log('error', e);
     notFound();
   }
 };
@@ -120,7 +122,14 @@ export const getLikedWord = async (
       },
     });
   } catch (e) {
-    // NOTE: 상황에 맞는 페이지 보여줘야 함.
+    notFound();
+  }
+};
+
+export const getUserInfo = async () => {
+  try {
+    return await backendFetch<FetchRes<DefaultRes<UserData>>>(`/user`);
+  } catch (e) {
     console.log('error', e);
     notFound();
   }
@@ -134,5 +143,78 @@ export const checkUserAuthentication = async (): Promise<
     return res.data;
   } catch (error) {
     return { error: true };
+  }
+};
+
+export const getQuizData = async () => {
+  try {
+    return await backendFetch<FetchRes<DefaultRes<QuizData[]>>>(
+      '/quiz/selection',
+    );
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
+
+export const postQuizResult = async (
+  correctWordIds: string[],
+  incorrectWordIds: string[],
+) => {
+  return await backendFetch<FetchRes<DefaultRes<QuizResultUserIdData>>>(
+    '/quiz/result',
+    {
+      method: 'POST',
+      body: JSON.stringify({ correctWordIds, incorrectWordIds }),
+    },
+  );
+};
+
+export const logout = async () => {
+  try {
+    return await backendFetch('/auth/logout', {
+      method: 'DELETE',
+    });
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
+
+export const deleteAccount = async (userId: string) => {
+  try {
+    return await backendFetch(`/user/${userId}`, {
+      method: 'DELETE',
+    });
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
+
+export const getAutoCompleteWord = async (wordName: string) => {
+  try {
+    const res = await backendFetch<FetchRes<DefaultRes<AutoCompleteWord>>>(
+      `/word/search/related`,
+      {
+        params: { page: 1, limit: 50, keyword: wordName },
+      },
+    );
+    return res.data;
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
+
+export const postFeedback = async (question1: string, question2: string) => {
+  try {
+    return await backendFetch('research/before-quit', {
+      method: 'POST',
+      body: JSON.stringify({ question1, question2 }),
+    });
+  } catch (e) {
+    console.log('error', e);
+    notFound();
   }
 };

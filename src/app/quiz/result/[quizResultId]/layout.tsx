@@ -7,8 +7,6 @@ export default function Layout({
   children: ReactNode;
   modal: ReactNode;
 }) {
-  console.log(children);
-  console.log(modal);
   return (
     <div>
       {children}

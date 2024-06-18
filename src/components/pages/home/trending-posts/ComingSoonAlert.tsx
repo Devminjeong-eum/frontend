@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 export default function ComingSoonAlert() {
   return (
-    <div className="absolute w-full min-h-screen bg-[#FBFCFE]/20 backdrop-blur-[3px]  z-50">
+    <div className="absolute w-full min-h-full bg-[#FBFCFE]/20 backdrop-blur-[3px] z-30">
       <div
         className={clsx(
           'absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2',
@@ -19,7 +19,7 @@ export default function ComingSoonAlert() {
             트렌딩 단어 OPEN
           </p>
           <p className=" text-[25px] leading-[16px] mt-[16px] mb-[28px] font-medium text-main-black ">
-            2024년 6월 19일
+            2024년 6월 26일
           </p>
           <p className=" text-main-black/80 px-10 text-center text-[15px] leading-[14px]">
             조회 기반 조회수 랭킹 페이지가 <br />

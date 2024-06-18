@@ -22,21 +22,21 @@ export default function NoWordSvg() {
       <path
         d="M51 42L74 65"
         stroke="#8991BD"
-        stroke-width="4.79167"
-        stroke-linecap="round"
+        strokeWidth="4.79167"
+        strokeLinecap="round"
       />
       <path
         d="M74 42L51 65"
         stroke="#8991BD"
-        stroke-width="4.79167"
-        stroke-linecap="round"
+        strokeWidth="4.79167"
+        strokeLinecap="round"
       />
       <circle
         cx="97.9481"
         cy="68.5603"
         r="23.0677"
         fill="#FBFCFE"
-        fill-opacity="0.55"
+        fillOpacity="0.55"
         style={{ mixBlendMode: 'lighten' }}
       />
       <circle
@@ -44,13 +44,13 @@ export default function NoWordSvg() {
         cy="68.5603"
         r="23.0677"
         stroke="#CBD1E4"
-        stroke-width="8"
+        strokeWidth="8"
       />
       <path
         d="M129.388 99.9999L114.425 85.0371"
         stroke="#CBD1E4"
-        stroke-width="8"
-        stroke-linecap="round"
+        strokeWidth="8"
+        strokeLinecap="round"
       />
       <defs>
         <filter
@@ -60,9 +60,9 @@ export default function NoWordSvg() {
           width="125.866"
           height="92.6104"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
