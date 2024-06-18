@@ -73,6 +73,13 @@ export type FetchRes<TRes> = {
   data: TRes;
 };
 
+export type UserData = {
+  userId: string;
+  name: string;
+  profileImage: string;
+  likeCount: number;
+};
+
 export type ErrorResponse = {
   error: boolean;
 };

@@ -10,6 +10,7 @@ import {
   dehydrate,
 } from '@tanstack/react-query';
 import { Suspense } from 'react';
+import { cookies } from 'next/headers';
 
 export default async function HomePage({
   searchParams: { page },
@@ -23,9 +24,11 @@ export default async function HomePage({
     queryKey: [QUERY_KEYS.HOME_KEY, Number(page)],
   });
 
+  const isToken = cookies().has('accessToken');
+
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Header />
+      <Header isToken={isToken} />
       <Suspense fallback={<Spinner />}>
         <HomeClientPage />
       </Suspense>
