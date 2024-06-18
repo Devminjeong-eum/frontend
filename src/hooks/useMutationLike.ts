@@ -22,6 +22,9 @@ export const useMutationLike = ({ wordId, setIsOpenModal }: Props) => {
         queryKey: [QUERY_KEYS.HOME_KEY],
       });
       queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.LIKEDWORD_KEY],
+      });
+      queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.SEARCH_KEY],
       });
     },
@@ -35,6 +38,9 @@ export const useMutationLike = ({ wordId, setIsOpenModal }: Props) => {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.HOME_KEY],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.LIKEDWORD_KEY],
       });
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.SEARCH_KEY],
