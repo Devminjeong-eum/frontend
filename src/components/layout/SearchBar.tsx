@@ -140,8 +140,8 @@ export default function SearchBar({ word }: Props) {
     >
       <div
         className={clsx(
-          'relative border-[2px] border-[#4357DB] rounded-[16px] z-[60]',
-          isDropdown && 'bg-white',
+          'relative rounded-[16px] z-[60]',
+          isDropdown && 'bg-white border-[2px] border-[#4357DB]',
         )}
         ref={searchBarRef}
       >
