@@ -31,9 +31,7 @@ export default function SearchItem({ item }: Props) {
           </div>
 
           {/* 좋아요 버튼 */}
-          <button
-            className={item.wordLike ? 'text-main-blue' : 'text-[#D3DAED]'}
-          >
+          <button className={item.isLike ? 'text-main-blue' : 'text-[#D3DAED]'}>
             <HeartSvg />
           </button>
         </div>
