@@ -4,8 +4,10 @@ import type {
   SearchWord,
   LoginData,
   likedWord,
+  UserData,
   UserInfo,
   ErrorResponse,
+  AutoCompleteWord,
 } from './types.ts';
 import { PaginationRes, MainItemType } from '@/types/main.ts';
 import { backendFetch } from '@/fetcher/backendFetch.ts';
@@ -122,6 +124,15 @@ export const getLikedWord = async (
   }
 };
 
+export const getUserInfo = async () => {
+  try {
+    return await backendFetch<FetchRes<DefaultRes<UserData>>>(`/user`);
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
+
 export const checkUserAuthentication = async (): Promise<
   DefaultRes<UserInfo> | ErrorResponse
 > => {
@@ -130,5 +141,54 @@ export const checkUserAuthentication = async (): Promise<
     return res.data;
   } catch (error) {
     return { error: true };
+  }
+};
+
+export const logout = async () => {
+  try {
+    return await backendFetch('/auth/logout', {
+      method: 'DELETE',
+    });
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
+
+export const deleteAccount = async (userId: string) => {
+  try {
+    return await backendFetch(`/user/${userId}`, {
+      method: 'DELETE',
+    });
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
+
+export const getAutoCompleteWord = async (wordName: string) => {
+  try {
+    const res = await backendFetch<FetchRes<DefaultRes<AutoCompleteWord>>>(
+      `/word/search/related`,
+      {
+        params: { page: 1, limit: 50, keyword: wordName },
+      },
+    );
+    return res.data;
+  } catch (e) {
+    console.log('error', e);
+    notFound();
+  }
+};
+
+export const postFeedback = async (question1: string, question2: string) => {
+  try {
+    return await backendFetch('research/before-quit', {
+      method: 'POST',
+      body: JSON.stringify({ question1, question2 }),
+    });
+  } catch (e) {
+    console.log('error', e);
+    notFound();
   }
 };
