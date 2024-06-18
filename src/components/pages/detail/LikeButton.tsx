@@ -53,7 +53,7 @@ export default function LikeButton({
             <DetailLikeSvg />
           )}
         </button>
-        <span className="text-xs text-[#E1E2F8]">
+        <span className="text-xs text-[#E1E2F8] pt-1">
           {optimisticLikeState.likeCount}
         </span>
       </div>

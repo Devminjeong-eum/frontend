@@ -1,5 +1,6 @@
 import { ResolvingMetadata } from 'next';
-import PageClient from './PageClient';
+import Header from '@/components/layout/Header';
+import Search from '@/components/pages/search';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function generateMetadata(
@@ -25,18 +26,31 @@ export async function generateMetadata(
     },
     openGraph: {
       ...openGraph,
-      title: { absoulte: `'${searchParams.keyword}'의 검색결과 | 데브말싸미` },
+      title: { absolute: `'${searchParams.keyword}'의 검색결과 | 데브말싸미` },
       description: `'${searchParams.keyword}'에 대한 검색 결과를 확인해보세요.`,
       url: 'https://dev-malssami.site/search',
     },
     twitter: {
       ...twitter,
-      title: { absoulte: `'${searchParams.keyword}'의 검색결과 | 데브말싸미` },
+      title: { absolute: `'${searchParams.keyword}'의 검색결과 | 데브말싸미` },
       description: `'${searchParams.keyword}'에 대한 검색 결과를 확인해보세요.`,
     },
   };
 }
 
-export default function SearchPage() {
-  return <PageClient />;
+type Props = {
+  searchParams: { keyword: string };
+};
+
+export default async function SearchPage({ searchParams }: Props) {
+  const word = decodeURI(searchParams.keyword);
+
+  return (
+    <>
+      <Header word={word} />
+      <main className="rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[8px]">
+        <Search word={word} />
+      </main>
+    </>
+  );
 }
