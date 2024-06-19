@@ -54,7 +54,7 @@ export default function QuizResult({
         >
           <BlackBackSpaceSVG />
         </button>
-        <div className="m-auto font-medium pr-3">TEST 결과</div>
+        <div className="m-auto font-medium">TEST 결과</div>
         <button onClick={handleShare}>
           <ShareButtonSvg />
         </button>
