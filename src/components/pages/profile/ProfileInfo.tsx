@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import DefaultProfileIconSvg from '@/components/svg-component/DefaultProfileIconSvg.tsx';
+import { useState } from 'react';
 
 type Props = {
   profileImage: string;
@@ -6,18 +8,28 @@ type Props = {
 };
 
 export default function ProfileInfo({ profileImage, name }: Props) {
+  const [isImageError, setImageError] = useState(false);
+
   return (
     <div className="flex flex-col items-center">
-      <Image
-        src={profileImage}
-        alt="Profile Image"
-        width={88}
-        height={88}
-        className="rounded-[31px] mt-[8px] mb-[16px]"
-        priority
-      />
-
-      <div className="font-semibold text-[22px]">
+      <div className="mt-[8px] mb-[16px]">
+        {isImageError ? (
+          <DefaultProfileIconSvg />
+        ) : (
+          <Image
+            src={profileImage}
+            alt="Profile Image"
+            width={88}
+            height={88}
+            className="w-[88px] h-[88px] rounded-[31px]"
+            priority
+            onError={() => {
+              setImageError(true);
+            }}
+          />
+        )}
+      </div>
+      <div className="font-semibold text-[22px] mb-[8px]">
         {name}
         <span className="font-normal">님</span>
       </div>

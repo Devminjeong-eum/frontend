@@ -17,7 +17,9 @@ export async function GET(request: Request) {
     const { headers, data, status } = await login(code);
 
     if (data) {
-      const redirectToHome = NextResponse.redirect(`${baseUrl}/home?view=all&page=1`);
+      const redirectToHome = NextResponse.redirect(
+        `${baseUrl}/home?view=all&page=1`,
+      );
       const cookie = headers.get('Set-Cookie');
 
       if (cookie) {
