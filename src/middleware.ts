@@ -55,8 +55,8 @@ export async function middleware(request: NextRequest) {
     applySetCookie(request, next);
   }
   // 로그인 상태일 경우 로그인 화면 접근 시 홈으로 리다이렉트
-  console.log(request.url);
-  if (request.url === `${baseUrl}/` && accessToken && refreshToken) {
+
+  if (pathname === '/' && accessToken && refreshToken) {
     try {
       await getUserInfoServer();
       console.log('로그인된 유저입니다. 홈으로 이동합니다');

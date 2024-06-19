@@ -35,7 +35,7 @@ export default function QuizResultDetail({
         </div>
       ) : null}
       <div
-        className={`w-full bg-[#F2F4F9] ${clsx(isDetail ? 'max-h-[100vh]' : 'max-h-[0px]')} transition-all overflow-hidden`}
+        className={`w-full bg-[#F2F4F9] ${clsx(isDetail ? 'max-h-[1000vh]' : 'max-h-[0px]')} transition-all overflow-hidden`}
       >
         <div className="flex justify-between items-center px-5 pt-[40px]">
           <span className="text-[20px] font-semibold">퀴즈 정답이에요!</span>
