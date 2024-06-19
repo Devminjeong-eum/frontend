@@ -55,7 +55,7 @@ export default function Profile({
         href={WORDBOOK_PATH}
         className={clsx(!userId && 'pointer-events-none')}
       >
-        <div className="flex items-center bg-[#3D4FF3] h-[72px] mx-[20px] px-[22px] rounded-[16px] mt-[26px] mb-[22px] ">
+        <div className="flex items-center bg-[#3D4FF3] h-[72px] mx-[20px] px-[22px] rounded-[16px] mt-[31px] mb-[22px] ">
           <span className="w-[20px] mr-[20px]">
             <WordBookSvg />
           </span>
