@@ -25,13 +25,13 @@ export default function Login() {
       </div>
       <div className="w-full flex flex-col gap-2 pb-7">
         <button
-          className="relative flex items-center justify-center bg-[#FFE34E] text-base font-semibold rounded-2xl p-3.5 w-full"
+          className="relative flex items-center justify-center bg-[#FFE34E] rounded-2xl p-3.5 w-full"
           onClick={handleKakaoLogin}
         >
           <div className="absolute left-6">
             <KakaotalkSvg />
           </div>
-          <span className="text-center text-[#442E2E]">
+          <span className="text-center text-base font-semibold text-[#442E2E]">
             카카오톡으로 시작하기
           </span>
         </button>

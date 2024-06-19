@@ -36,7 +36,7 @@ const PronunciationDetail = ({
             {new Array(correctWordLen).fill(0).map((_, idx) => (
               <span key={idx}>
                 {pronunciation[idx]} {diacritic[idx]}
-                {idx !== correctWordLen - 1 ? ' , ' : ''}
+                {idx !== correctWordLen - 1 ? ', ' : ''}
               </span>
             ))}
           </div>
@@ -50,7 +50,7 @@ const PronunciationDetail = ({
             {wrongPronunciation.map((wrong, idx) => (
               <span key={idx}>
                 {wrong}
-                {idx !== wrongPronunciation.length - 1 ? ' , ' : ''}
+                {idx !== wrongPronunciation.length - 1 ? ', ' : ''}
               </span>
             ))}
           </div>
