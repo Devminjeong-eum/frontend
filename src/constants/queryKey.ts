@@ -4,6 +4,7 @@ const QUERY_KEYS = Object.freeze({
   SEARCH_KEY: 'search',
   LIKEDWORD_KEY: 'likedWord',
   AUTH_KEY: 'auth',
+  USER_KEY: 'user',
 } as const);
 
 export default QUERY_KEYS;

@@ -14,7 +14,6 @@ import type {
 import { PaginationRes, MainItemType } from '@/types/main.ts';
 import { backendFetch } from '@/fetcher/backendFetch.ts';
 import { FetchRes } from './types.ts';
-import { serverFetch } from './serverFetch.ts';
 
 export const getWordSearch = async (wordName: string) => {
   try {
@@ -86,24 +85,6 @@ export const getAllPostsClient = async (currentPage: number) => {
 
     return res.data;
   } catch (e) {
-    notFound();
-  }
-};
-
-export const getAllPostsServer = async (currentPage: number) => {
-  try {
-    const res = await serverFetch<
-      FetchRes<DefaultRes<PaginationRes<MainItemType[]>>>
-    >(`/word/list`, {
-      params: {
-        page: currentPage,
-        limit: 10,
-      },
-    });
-
-    return res.data;
-  } catch (e) {
-    console.log('error', e);
     notFound();
   }
 };

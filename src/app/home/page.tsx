@@ -2,7 +2,6 @@ import Spinner from '@/components/common/Spinner';
 import Header from '@/components/layout/Header';
 import HomeClientPage from '@/components/pages/home';
 import QUERY_KEYS from '@/constants/queryKey';
-import { getAllPostsServer } from '@/fetcher';
 
 import {
   HydrationBoundary,
@@ -11,6 +10,7 @@ import {
 } from '@tanstack/react-query';
 import { Suspense } from 'react';
 import { cookies } from 'next/headers';
+import { getAllPostsServer } from '@/fetcher/server.ts';
 
 export default async function HomePage({
   searchParams: { page },

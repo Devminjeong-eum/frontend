@@ -15,13 +15,13 @@ export default function ComingSoonAlert() {
           <BellSvg />
         </div>
         <div className="flex flex-col items-center py-[43px]">
-          <p className="text-[#4568E0] font-medium text-[15px] leading-[14px]">
+          <p className="text-[#4568E0] font-semibold text-[15px] leading-[14px]">
             트렌딩 단어 OPEN
           </p>
           <p className=" text-[25px] leading-[16px] mt-[16px] mb-[28px] font-medium text-main-black ">
             2024년 6월 26일
           </p>
-          <p className=" text-main-black/80 px-10 text-center text-[15px] leading-[14px]">
+          <p className=" text-main-black/80 px-10 text-center text-[15px] leading-[21px]">
             조회 기반 조회수 랭킹 페이지가 <br />
             오픈될 예정입니다! 🚀
           </p>
