@@ -91,22 +91,21 @@ export default function Profile({
           </div>
         </Link>
 
-        <div className="mt-[60px] mb-[32px] flex justify-center items-center">
+        <div
+          className={clsx(
+            'mt-[60px] mb-[32px] flex justify-center items-center',
+            !userId && 'invisible',
+          )}
+        >
           <span>
             <PowerSvg />
           </span>
-          <button
-            className={clsx('text-[#A8AEBC]', !userId && 'pointer-events-none')}
-            onClick={handleModalClick}
-          >
+          <button className="text-[#A8AEBC]" onClick={handleModalClick}>
             로그아웃
           </button>
           <span className="border border-l mx-[35px] h-[16px]"></span>
 
-          <Link
-            href={'/profile/DeleteAccount'}
-            className={clsx(!userId && 'pointer-events-none')}
-          >
+          <Link href={'/profile/DeleteAccount'}>
             <button className="text-[#A8AEBC] mr-[20px]">탈퇴하기</button>
           </Link>
         </div>
