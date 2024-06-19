@@ -141,7 +141,7 @@ export default function SearchBar({ word }: Props) {
       <div
         className={clsx(
           'relative rounded-[16px] z-[60]',
-          isDropdown && 'bg-white border-[2px] border-[#4357DB]',
+          isDropdown && 'bg-white ring-[2px] ring-[#4357DB]',
         )}
         ref={searchBarRef}
       >
@@ -157,10 +157,10 @@ export default function SearchBar({ word }: Props) {
           onFocus={handleInputFocusChange}
           onClick={handleInputClickDropdownOpen}
           className={clsx(
-            'w-full h-[48px] rounded-[16px] pl-5 py-4 outline-none ring-1 ring-white/60',
+            'w-full h-[48px] rounded-[16px] pl-5 py-4 outline-none',
             !isInputFocus &&
               'bg-white/20 ring-white/40 text-white placeholder:text-[#C8CAEB]',
-            isDropdown && 'ring-0 ',
+            isDropdown ? 'ring-0' : 'ring-1 ring-white/60',
           )}
         />
         <button onClick={() => navigateToSearch(search)}>

@@ -8,8 +8,8 @@ import type {
   UserInfo,
   ErrorResponse,
   AutoCompleteWord,
-    QuizData,
-    QuizResultUserIdData
+  QuizData,
+  QuizResultUserIdData,
 } from './types.ts';
 import { PaginationRes, MainItemType } from '@/types/main.ts';
 import { backendFetch } from '@/fetcher/backendFetch.ts';
@@ -19,7 +19,7 @@ import { serverFetch } from './serverFetch.ts';
 export const getWordSearch = async (wordName: string) => {
   try {
     const res = await backendFetch<FetchRes<DefaultRes<SearchWord>>>(
-      `/word/search`,
+      `/search/keyword`,
       {
         params: { keyword: wordName, page: 1, limit: 50 },
       },
@@ -195,7 +195,7 @@ export const deleteAccount = async (userId: string) => {
 export const getAutoCompleteWord = async (wordName: string) => {
   try {
     const res = await backendFetch<FetchRes<DefaultRes<AutoCompleteWord>>>(
-      `/word/search/related`,
+      `/search/related`,
       {
         params: { page: 1, limit: 50, keyword: wordName },
       },
