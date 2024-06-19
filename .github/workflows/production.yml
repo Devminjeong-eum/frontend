@@ -52,6 +52,8 @@ jobs:
           echo "KAKAO_SECRET_KEY=${{ secrets.KAKAO_SECRET_KEY }}" >> .env
           echo "NEXT_PUBLIC_BACKEND_BASE_URL=${{ secrets.NEXT_PUBLIC_BACKEND_BASE_URL }}" >> .env
           echo "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}" >> .env
+          echo "NEXT_PUBLIC_KAKAO_SHARE_KEY=${{ secrets.NEXT_PUBLIC_KAKAO_SHARE_KEY }}" >> .env
+          echo "NEXT_PUBLIC_KAKAO_SHARE_TEMPLATE_ID=${{ secrets.NEXT_PUBLIC_KAKAO_SHARE_TEMPLATE_ID }}" >> .env
 
       - name: Login to DockerHub
         uses: docker/login-action@v3
@@ -78,26 +80,26 @@ jobs:
     needs: docker-image
     runs-on: ubuntu-latest
     steps:
-    - name: Deploy to AWS EC2
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.EC2_SSH_HOST }}
-        username: ${{ secrets.EC2_SSH_USER }}
-        key: ${{ secrets.EC2_PRIVATE_KEY }}
-        script: |
-          if [ "$(sudo docker ps | grep frontend)" ]; then
-            sudo docker stop frontend
-            sudo docker rm frontend
-          fi
+      - name: Deploy to AWS EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_SSH_HOST }}
+          username: ${{ secrets.EC2_SSH_USER }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          script: |
+            if [ "$(sudo docker ps | grep frontend)" ]; then
+              sudo docker stop frontend
+              sudo docker rm frontend
+            fi
 
-          echo "KAKAO_CLIENT_ID=${{ secrets.KAKAO_CLIENT_ID }}" >> .env.production
-          echo "KAKAO_REDIRECT_URI=${{ secrets.KAKAO_REDIRECT_URI }}" >> .env.production
-          echo "KAKAO_SECRET_KEY=${{ secrets.KAKAO_SECRET_KEY }}" >> .env.production
-          echo "NEXT_PUBLIC_BACKEND_BASE_URL=${{ secrets.NEXT_PUBLIC_BACKEND_BASE_URL }}" >> .env.production
-          echo "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}" >> .env.production
+            echo "KAKAO_CLIENT_ID=${{ secrets.KAKAO_CLIENT_ID }}" >> .env.production
+            echo "KAKAO_REDIRECT_URI=${{ secrets.KAKAO_REDIRECT_URI }}" >> .env.production
+            echo "KAKAO_SECRET_KEY=${{ secrets.KAKAO_SECRET_KEY }}" >> .env.production
+            echo "NEXT_PUBLIC_BACKEND_BASE_URL=${{ secrets.NEXT_PUBLIC_BACKEND_BASE_URL }}" >> .env.production
+            echo "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}" >> .env.production
 
-          sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/devminjeong-eum-frontend:latest
-          sudo docker run -p 3000:3000 \
-          --name frontend \
-          --env-file ./.env.production \
-          -d ${{ secrets.DOCKER_HUB_USERNAME }}/devminjeong-eum-frontend:latest
+            sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/devminjeong-eum-frontend:latest
+            sudo docker run -p 3000:3000 \
+            --name frontend \
+            --env-file ./.env.production \
+            -d ${{ secrets.DOCKER_HUB_USERNAME }}/devminjeong-eum-frontend:latest
