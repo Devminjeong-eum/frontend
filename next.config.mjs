@@ -3,7 +3,20 @@ const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
   images: {
-    domains: ['t1.kakaocdn.net'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*.kakaocdn.net',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: '*.kakaocdn.net',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 };
 
