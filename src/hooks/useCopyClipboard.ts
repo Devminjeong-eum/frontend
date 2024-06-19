@@ -1,26 +1,35 @@
 import { useEffect, useState } from 'react';
 
-async function copyURL() {
-  const url = window.document.location.href;
-  await navigator.clipboard.writeText(url);
+async function copyURL(url?: string) {
+  const targetUrl = url ? url : window.document.location.href;
+  await navigator.clipboard.writeText(targetUrl);
+}
+interface Props {
+  ms?: number;
+  url?: string;
 }
 
-export default function useCopyClipboard(ms = 600) {
+const DEFAULT_COPIED_ALERT_TIME = 600;
+
+export default function useCopyClipboard(props?: Props) {
   const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
     let id: NodeJS.Timeout | null;
     if (isCopied) {
-      id = setTimeout(() => setIsCopied(false), ms ?? 600);
+      id = setTimeout(
+        () => setIsCopied(false),
+        props?.ms ?? DEFAULT_COPIED_ALERT_TIME,
+      );
     }
 
     return () => {
       if (id) clearTimeout(id);
     };
-  }, [isCopied, ms]);
+  }, [isCopied, props?.ms]);
 
   const onCopyClipboard = async () => {
-    await copyURL();
+    await copyURL(props?.url);
     setIsCopied(true);
   };
 

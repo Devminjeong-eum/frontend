@@ -1,21 +1,27 @@
 import { deleteAccount } from '@/fetcher';
 import { useRouter } from 'next/navigation';
 import { createPortal } from 'react-dom';
+import { postFeedback } from '@/fetcher';
 
 interface Props {
   isOpen: boolean;
   handleModalClick: () => void;
   userId: string;
+  text: string;
+  selectedOption: string;
 }
 
 export default function DeleteAccountModal({
   isOpen,
   handleModalClick,
   userId,
+  text,
+  selectedOption,
 }: Props) {
   const router = useRouter();
 
   const handleDeleteAccount = () => {
+    postFeedback(selectedOption, text);
     deleteAccount(userId);
     handleModalClick();
     router.push('/profile/Non-login');

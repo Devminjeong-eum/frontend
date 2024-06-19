@@ -1,5 +1,6 @@
 import ArrowDownSvg from '@/components/svg-component/ArrowDownSvg';
 import { dropdownOptions } from '@/constants/sortingOptions';
+import clsx from 'clsx';
 import { Dispatch, SetStateAction } from 'react';
 
 interface Props {
@@ -21,7 +22,12 @@ export default function WordbookDropdown({
         {dropdownOptions.map((option, index) => (
           <li
             key={index}
-            className="p-1 hover:bg-[#F1F4FA] focus:bg-[#F1F4FA] focus:rounded-lg hover:rounded-lg"
+            className={clsx(
+              'p-1 hover:bg-[#F1F4FA] focus:bg-[#F1F4FA] focus:rounded-lg hover:rounded-lg',
+              selectedOption === option
+                ? 'text-main-blue font-semibold'
+                : 'font-normal',
+            )}
             onClick={() => setSelectedOption(option)}
           >
             {option}

@@ -1,4 +1,3 @@
-import { Gugi } from 'next/font/google';
 import './global.css';
 import localFont from 'next/font/local';
 import QueryProvider from '@/providers/QueryProvider.tsx';
@@ -68,9 +67,14 @@ export const metadata: Metadata = {
   },
 };
 
-const gugi = Gugi({
-  weight: '400',
-  subsets: ['latin'],
+const gugi = localFont({
+  src: [
+    {
+      path: './fonts/Gugi-Regular.woff2',
+      //weight: '400',
+      style: 'normal',
+    },
+  ],
   display: 'swap',
   variable: '--font-gugi',
 });

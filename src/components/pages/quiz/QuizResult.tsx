@@ -28,6 +28,7 @@ export default function QuizResult({
   const { data } = useAuthQuery();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const isLoggedIn = !data?.error ?? false;
+  const isGuest = quizResultId === 'guest';
 
   const handleNeedLogin = () => {
     // NOTE: 2초간 로그인 toast UI
@@ -54,7 +55,7 @@ export default function QuizResult({
         >
           <BlackBackSpaceSVG />
         </button>
-        <div className="m-auto font-medium pr-3">TEST 결과</div>
+        <div className="m-auto font-medium">TEST 결과</div>
         <button onClick={handleShare}>
           <ShareButtonSvg />
         </button>
@@ -68,7 +69,11 @@ export default function QuizResult({
         onClick={() => router.replace(QUIZ_PATH)}
         className="bg-[#4057DB] rounded-[16px] mt-[24px] mb-[48px] h-[50px] font-semibold text-white w-full text-[16px]"
       >
-        다시 도전하러 가기
+        {data?.error && !isGuest ? (
+          <span>나도 도전하러 가기</span>
+        ) : (
+          <span>다시 도전하러 가기</span>
+        )}
       </button>
       <LoginAlertModal isOpen={isOpenModal} />
     </div>
