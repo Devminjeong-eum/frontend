@@ -14,12 +14,14 @@ import { useEffect, useState } from 'react';
 import LogoutModal from './Modal/LogoutModal';
 import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
+import LoginAlertModal from '@/components/common/LoginAlertModal';
 
 type Props = {
   userId?: string;
   likeCount?: number;
   name?: string;
   profileImage?: string;
+  isToken?: boolean;
 };
 
 export default function Profile({
@@ -27,9 +29,22 @@ export default function Profile({
   likeCount,
   name,
   profileImage,
+  isToken,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isToastOpen, setIsToastOpen] = useState(false);
   const router = useRouter();
+
+  const handleLoginToast = () => {
+    if (!isToken) {
+      setIsToastOpen(true);
+      setTimeout(() => {
+        setIsToastOpen(false);
+      }, 2000);
+    } else {
+      router.push(WORDBOOK_PATH);
+    }
+  };
 
   const handleModalClick = () => {
     setIsOpen(!isOpen);
@@ -51,11 +66,8 @@ export default function Profile({
         <NonLoginProfileInfo />
       )}
 
-      <Link
-        href={WORDBOOK_PATH}
-        className={clsx(!userId && 'pointer-events-none')}
-      >
-        <div className="flex items-center bg-[#3D4FF3] h-[72px] mx-[20px] px-[22px] rounded-[16px] mt-[31px] mb-[22px] ">
+      <button className="w-full" onClick={handleLoginToast}>
+        <div className="flex items-center bg-[#3D4FF3] h-[72px] mx-[20px] px-[22px] rounded-[16px] mt-[26px] mb-[22px] ">
           <span className="w-[20px] mr-[20px]">
             <WordBookSvg />
           </span>
@@ -64,7 +76,7 @@ export default function Profile({
             {likeCount ? likeCount : 0}
           </span>
         </div>
-      </Link>
+      </button>
 
       <div className="bg-[#F1F4FA] flex flex-col">
         <Link href={QUIZ_PATH}>
@@ -91,22 +103,21 @@ export default function Profile({
           </div>
         </Link>
 
-        <div className="mt-[60px] mb-[32px] flex justify-center items-center">
+        <div
+          className={clsx(
+            'mt-[60px] mb-[32px] flex justify-center items-center',
+            !userId && 'invisible',
+          )}
+        >
           <span>
             <PowerSvg />
           </span>
-          <button
-            className={clsx('text-[#A8AEBC]', !userId && 'pointer-events-none')}
-            onClick={handleModalClick}
-          >
+          <button className="text-[#A8AEBC]" onClick={handleModalClick}>
             로그아웃
           </button>
           <span className="border border-l mx-[35px] h-[16px]"></span>
 
-          <Link
-            href={'/profile/DeleteAccount'}
-            className={clsx(!userId && 'pointer-events-none')}
-          >
+          <Link href={'/profile/DeleteAccount'}>
             <button className="text-[#A8AEBC] mr-[20px]">탈퇴하기</button>
           </Link>
         </div>
@@ -114,6 +125,7 @@ export default function Profile({
       {isOpen && (
         <LogoutModal isOpen={isOpen} handleModalClick={handleModalClick} />
       )}
+      {!isToken && <LoginAlertModal isOpen={isToastOpen} />}
     </>
   );
 }
