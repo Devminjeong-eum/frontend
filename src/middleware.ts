@@ -7,10 +7,14 @@ import {
 import { serverFetch } from '@/fetcher/serverFetch.ts';
 import type { FetchRes, DefaultRes } from '@/fetcher/types.ts';
 import { BASE_URL } from './utils';
+import { getUserInfoServer } from '@/fetcher/server.ts';
 
 export async function middleware(request: NextRequest) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
   const accessToken = request.cookies.get('accessToken')?.value;
   const refreshToken = request.cookies.get('refreshToken')?.value;
+
   const { pathname } = request.nextUrl;
 
   const next = NextResponse.next();
@@ -50,6 +54,19 @@ export async function middleware(request: NextRequest) {
     // 응답의 Set-Cookie 헤더를 요청의 Cookie 헤더로 복사
     applySetCookie(request, next);
   }
+  // 로그인 상태일 경우 로그인 화면 접근 시 홈으로 리다이렉트
+  console.log(request.url);
+  if (request.url === `${baseUrl}/` && accessToken && refreshToken) {
+    try {
+      await getUserInfoServer();
+      console.log('로그인된 유저입니다. 홈으로 이동합니다');
+      return NextResponse.redirect(`${baseUrl}/home?view=all&page=1`);
+    } catch (e) {
+      console.log('정상적이지 않은 토큰이거나, 서버 에러입니다.', e);
+      // pass through
+    }
+  }
+
   return next;
 }
 
