@@ -45,7 +45,7 @@ export default function Profile({
       router.push(WORDBOOK_PATH);
     }
   };
-  console.log(isToken);
+
   const handleModalClick = () => {
     setIsOpen(!isOpen);
   };
