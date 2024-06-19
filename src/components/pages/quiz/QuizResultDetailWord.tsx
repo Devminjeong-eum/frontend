@@ -6,6 +6,8 @@ import Heart1Svg from '@/components/svg-component/Heart1Svg';
 import { useOptimisticLike } from '@/hooks/useOptimisticLike';
 import useAuthQuery from '@/hooks/query/useAuthQuery.ts';
 import LoginAlertModal from '@/components/common/LoginAlertModal.tsx';
+import { getWordDetailPath } from '@/routes/path.ts';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   data: QuizResultWordData;
@@ -13,6 +15,8 @@ type Props = {
 };
 
 export default function QuizResultDetailWord({ data, correctWords }: Props) {
+  const router = useRouter();
+
   const { data: authData } = useAuthQuery();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const isLoggedIn = !authData?.error ?? false;
@@ -32,7 +36,11 @@ export default function QuizResultDetailWord({ data, correctWords }: Props) {
     }, 2000);
   };
 
-  const handleLikeClick = () => {
+  const handleLikeClick = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    e.stopPropagation();
+
     if (isLoggedIn) {
       startTransition(() => {
         optimisticLikeState.isLike ? handleSubLike() : handleAddLike();
@@ -42,8 +50,15 @@ export default function QuizResultDetailWord({ data, correctWords }: Props) {
     }
   };
 
+  const handleClickWordDetail = () => {
+    router.push(getWordDetailPath(data.name));
+  };
+
   return (
-    <div className="flex flex-col mt-[14px] mx-5 border-b-2">
+    <div
+      className="flex flex-col mt-[14px] mx-5 border-b-2 cursor-pointer"
+      onClick={handleClickWordDetail}
+    >
       <div className="flex items-center justify-between pb-3">
         <div>
           <div

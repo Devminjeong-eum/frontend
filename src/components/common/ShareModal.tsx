@@ -11,7 +11,10 @@ import { useRouter } from 'next/navigation';
 export default function ShareModal() {
   const { handleShare } = useLoadKakaoScript();
   const router = useRouter();
-  const { isCopied, onCopyClipboard } = useCopyClipboard();
+  const shareURL = window.location.href;
+  const { isCopied, onCopyClipboard } = useCopyClipboard({
+    url: shareURL,
+  });
 
   return (
     <div className="fixed max-w-[430px] top-0 w-full h-full flex justify-center items-center bg-[#17192470] px-[46px]">
