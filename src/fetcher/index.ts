@@ -8,8 +8,8 @@ import type {
   UserInfo,
   ErrorResponse,
   AutoCompleteWord,
-    QuizData,
-    QuizResultUserIdData
+  QuizData,
+  QuizResultUserIdData,
 } from './types.ts';
 import { PaginationRes, MainItemType } from '@/types/main.ts';
 import { backendFetch } from '@/fetcher/backendFetch.ts';
