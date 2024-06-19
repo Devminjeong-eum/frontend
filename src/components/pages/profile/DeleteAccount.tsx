@@ -63,17 +63,19 @@ export default function DeleteAccount({ userId }: Props) {
         </div>
 
         <form onSubmit={handleSubmit} className="w-[90%]">
-          {options.map((option, index) => (
-            <label key={index}>
+          {options.map((option, idx) => (
+            <label key={idx}>
               <div className="flex items-center h-[38px] mb-[4px] ">
                 <input
                   type="radio"
                   name="test"
                   value={option}
                   onChange={handleOptionChange}
-                  checked={selectedOption === option}
+                  checked={
+                    selectedOption === option ||
+                    (selectedOption === '' && idx === 0)
+                  }
                   className="w-[19px] h-[19px] accent-[#4057DB] bg-red-500"
-                  required
                 />
                 <span className="ml-[10px] text-[17px] font-medium">
                   {option}
@@ -136,6 +138,8 @@ export default function DeleteAccount({ userId }: Props) {
           isOpen={isOpen}
           handleModalClick={handleModalClick}
           userId={userId}
+          text={text}
+          selectedOption={selectedOption}
         />
       )}
     </>
