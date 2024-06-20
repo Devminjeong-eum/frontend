@@ -28,13 +28,14 @@ export default async function QuizResultPage({ params }: Props) {
 
   const {
     data: {
-      data: { score, correctWords, incorrectWords },
+      data: { userName, score, correctWords, incorrectWords },
     },
   } = await getQuizResultData(quizResultId);
 
   return (
     <QuizResult
       quizResultId={quizResultId}
+      userName={userName}
       score={score}
       correctWords={correctWords}
       incorrectWords={incorrectWords}

@@ -2,16 +2,16 @@ import ScoreResultSvg from '@/components/svg-component/ScoreResultSvg';
 
 type Props = {
   score: number;
+  userName: string;
 };
 
-export default function QuizScore({ score }: Props) {
+export default function QuizScore({ score, userName }: Props) {
   return (
     <div className="w-full max-h-[374px] overflow-hidden relative flex justify-center">
       <div className="absolute top-[30%] text-center">
         <p>
           <span className="font-semibold text-[#313140] text-[18px] mr-1">
-            {/*{FIXME: quiz result에서 사용자 이름 추가되면 사용자 이름 받아오기}*/}
-            사용자
+            {userName}
           </span>
           <span className="text-[#313140] font-medium">
             님의 <br />

@@ -13,6 +13,7 @@ import LoginAlertModal from '@/components/common/LoginAlertModal.tsx';
 
 type Props = {
   quizResultId: string;
+  userName: string;
   score: number;
   correctWords: QuizResultWordData[];
   incorrectWords: QuizResultWordData[];
@@ -20,6 +21,7 @@ type Props = {
 
 export default function QuizResult({
   quizResultId,
+  userName,
   score,
   correctWords,
   incorrectWords,
@@ -60,7 +62,7 @@ export default function QuizResult({
           <ShareButtonSvg />
         </button>
       </header>
-      <QuizScore score={score} />
+      <QuizScore score={score} userName={userName} />
       <QuizResultDetail
         correctWords={correctWords}
         incorrectWords={incorrectWords}

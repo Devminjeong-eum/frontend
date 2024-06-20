@@ -27,6 +27,7 @@ export default function GuestQuizResult() {
   return (
     <QuizResult
       quizResultId={'guest'}
+      userName={'사용자'}
       score={score}
       correctWords={correctWords}
       incorrectWords={incorrectWords}
