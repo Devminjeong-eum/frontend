@@ -1,10 +1,10 @@
 import NoticeIconSvg from '@/components/svg-component/NoticeIconSvg.tsx';
 import RightArrowSvg from '@/components/svg-component/RightArrowSvg.tsx';
-import { REPORT_FORM_URL } from '@/routes/path';
+import { WORD_INQUIRY_FORM_URL } from '@/routes/path';
 
 export default function ReportButton() {
   return (
-    <a href={REPORT_FORM_URL} target="_blank">
+    <a href={WORD_INQUIRY_FORM_URL} target="_blank">
       <div className="w-full h-[74px] mt-2 bg-[#F1F4FA] flex justify-between items-center rounded-[16px] px-[18px] shadow-base">
         <div className="flex gap-3">
           <NoticeIconSvg />
