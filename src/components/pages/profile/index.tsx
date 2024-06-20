@@ -3,18 +3,19 @@
 import WordBookSvg from '@/components/svg-component/WordBookSvg';
 import RightAngleBracketSvg from '@/components/svg-component/RightAngleBracketSvg';
 import QuizSvg from '@/components/svg-component/QuizSvg';
-import EmailSvg from '@/components/svg-component/EmailSvg';
 import PowerSvg from '@/components/svg-component/PowerSvg';
 import ProfileHeader from './ProfileHeader';
 import ProfileInfo from './ProfileInfo';
 import Link from 'next/link';
-import { QUIZ_PATH, REPORT_FORM_URL, WORDBOOK_PATH } from '@/routes/path';
+import { QUIZ_PATH, WORDBOOK_PATH } from '@/routes/path';
 import NonLoginProfileInfo from './NonLoginProfileInfo';
 import { useEffect, useState } from 'react';
 import LogoutModal from './Modal/LogoutModal';
 import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
 import LoginAlertModal from '@/components/common/LoginAlertModal';
+import InquiryModal from './Modal/InquiryModal';
+import InquirySvg from '@/components/svg-component/InquirySvg';
 
 type Props = {
   userId?: string;
@@ -31,7 +32,8 @@ export default function Profile({
   profileImage,
   isToken,
 }: Props) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
   const [isToastOpen, setIsToastOpen] = useState(false);
   const router = useRouter();
 
@@ -46,8 +48,12 @@ export default function Profile({
     }
   };
 
-  const handleModalClick = () => {
-    setIsOpen(!isOpen);
+  const handleLogoutModalClick = () => {
+    setIsLogoutOpen(!isLogoutOpen);
+  };
+
+  const handleContactModalClick = () => {
+    setIsContactOpen(!isContactOpen);
   };
 
   useEffect(() => {
@@ -91,17 +97,17 @@ export default function Profile({
           </div>
         </Link>
 
-        <Link href={REPORT_FORM_URL} target="_blank">
+        <button onClick={handleContactModalClick}>
           <div className="bg-white mt-[22px] mx-[20px] h-[60px] text-[17px] rounded-[16px] flex items-center px-[22px]">
             <span className="w-[20px] mr-[20px]">
-              <EmailSvg />
+              <InquirySvg width={24} height={24} />
             </span>
-            <span className=" text-[17px]">잘못된 정보 문의하기</span>
+            <span className=" text-[17px]">문의하기</span>
             <span className="ml-auto">
               <RightAngleBracketSvg />
             </span>
           </div>
-        </Link>
+        </button>
 
         <div
           className={clsx(
@@ -112,7 +118,7 @@ export default function Profile({
           <span>
             <PowerSvg />
           </span>
-          <button className="text-[#A8AEBC]" onClick={handleModalClick}>
+          <button className="text-[#A8AEBC]" onClick={handleLogoutModalClick}>
             로그아웃
           </button>
           <span className="border border-l mx-[35px] h-[16px]"></span>
@@ -122,8 +128,17 @@ export default function Profile({
           </Link>
         </div>
       </div>
-      {isOpen && (
-        <LogoutModal isOpen={isOpen} handleModalClick={handleModalClick} />
+      {isLogoutOpen && (
+        <LogoutModal
+          isOpen={isLogoutOpen}
+          handleModalClick={handleLogoutModalClick}
+        />
+      )}
+      {isContactOpen && (
+        <InquiryModal
+          isOpen={isContactOpen}
+          handleModalClick={handleContactModalClick}
+        />
       )}
       {!isToken && <LoginAlertModal isOpen={isToastOpen} />}
     </>

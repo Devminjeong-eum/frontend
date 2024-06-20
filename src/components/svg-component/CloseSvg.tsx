@@ -1,4 +1,4 @@
-export default function CloseSvg1() {
+export default function CloseSvg() {
   return (
     <svg
       width="24"
