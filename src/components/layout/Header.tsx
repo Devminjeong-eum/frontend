@@ -10,7 +10,6 @@ import { QUIZ_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { getUserInfo } from '@/fetcher';
-import HamburgerMenuSvg from '../svg-component/HamburgerMenuSvg';
 import MypageIconSvg from '@/components/svg-component/MypageIconSvg.tsx';
 
 const DynamicToolTip = dynamic(() => import('@/components/common/ToolTip'), {
