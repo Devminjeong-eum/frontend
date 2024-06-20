@@ -11,6 +11,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { getUserInfo } from '@/fetcher';
 import HamburgerMenuSvg from '../svg-component/HamburgerMenuSvg';
+import MypageIconSvg from '@/components/svg-component/MypageIconSvg.tsx';
 
 const DynamicToolTip = dynamic(() => import('@/components/common/ToolTip'), {
   ssr: false,
@@ -63,7 +64,7 @@ export default function Header({ isToken, word = '' }: Props) {
         </Link>
         <Link href={`/profile/${id}`}>
           <div className="text-[#A8B8FF]">
-            <HamburgerMenuSvg />
+            <MypageIconSvg />
           </div>
         </Link>
       </div>
