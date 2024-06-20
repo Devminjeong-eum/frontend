@@ -9,12 +9,12 @@
 
 # 💼 서비스 소개
 
-vite는 비트? 바이트? 
+vite는 비트? 바이트?
 <br>
-href는 허레프? 에이치레프? 헬프? 
+href는 흐레프? 에이치레프?
 <br>
-AJAX는 아작스? 에이젝스? 
- 
+AJAX는 아작스? 에이젝스?
+
 
 누구나 한 번쯤은 <b>개발 용어 발음</b> 때문에 고통받았던 적이 있습니다... 
 이제 더 이상 고통받지 마세요!🔥
@@ -42,28 +42,36 @@ AJAX는 아작스? 에이젝스?
 
 # 💻 핵심 기능
 
-```jsx
-핵심 기능을 소개해주세요
-이미지 혹은 영상을 활용해도 좋습니다.
-```
+| 로그인 페이지 | 메인 페이지 | 트렌딩 페이지 |
+|:-----------:|:-----------:|:-----------:|
+| ![로그인](https://github.com/Devminjeong-eum/frontend/assets/111267716/12d844ff-083e-4795-b955-bc22783d1eb2) | ![메인](https://github.com/Devminjeong-eum/frontend/assets/111267716/d8a9cfe2-e93c-4daa-bbca-4b909d96de27) | ![트렌딩](https://github.com/Devminjeong-eum/frontend/assets/111267716/07651f57-e891-41af-a762-fadd052dcb9d) |
+
+<br >
+
+| 디테일  페이지 | 검색 페이지 | 검색 페이지 |
+|:-----------:|:-----------:|:-----------:|
+| ![디테일](https://github.com/Devminjeong-eum/frontend/assets/111267716/030df622-c716-4f8f-9181-fd285fbd2d40) | ![검색](https://github.com/Devminjeong-eum/frontend/assets/111267716/5a6934db-8d15-4e93-9b99-1fcd0d97ee1b) | ![검색2](https://github.com/Devminjeong-eum/frontend/assets/111267716/7cfc29e0-18fc-45a4-87bf-57579cc3f49f) |
+
+<br >
+
+| 퀴즈 페이지 | 퀴즈 페이지 | 퀴즈 결과 페이지 |
+|:-----------:|:-----------:|:-----------:|
+| ![퀴즈1](https://github.com/Devminjeong-eum/frontend/assets/111267716/a2399c2e-df82-43f2-ab09-b70413452351) | ![퀴즈2](https://github.com/Devminjeong-eum/frontend/assets/111267716/61940e90-4268-4b93-8a8a-65a8baf53587) | ![퀴즈결과](https://github.com/Devminjeong-eum/frontend/assets/111267716/3efde7c1-2ef7-42fe-9dd1-17967b7690f1) |
+
+<br >
+
+| 단어장 페이지 | 마이 페이지 | 회원탈퇴 페이지 |
+|:-----------:|:-----------:|:-----------:|
+| ![단어장](https://github.com/Devminjeong-eum/frontend/assets/111267716/8c99271a-84f7-47be-8c49-515cb7e81fc1) | ![마이](https://github.com/Devminjeong-eum/frontend/assets/111267716/5256a917-80a0-41bc-80cf-f5882398cb77) | ![회원탈퇴](https://github.com/Devminjeong-eum/frontend/assets/111267716/0f1334c4-037f-484e-ad39-725c1c3ecef0) |
 
 
-|  메인 페이지  | 검색 기능 | 상세 페이지 | 
-| :--------: | :----------: | :-----------: |
-| ![메인](https://github.com/Devminjeong-eum/frontend/assets/55550034/347e01a5-f8fd-4add-b427-8cdf81d78534) | <figure class="half"> ![검색](https://github.com/Devminjeong-eum/frontend/assets/55550034/7fcd511e-2959-4e99-8873-a05e90a992ca) | ![상세 페이지](https://github.com/Devminjeong-eum/frontend/assets/55550034/4c95ed76-e909-4bbf-a096-be7382c3c760) </figure> |
-
-|  테스트 기능  |  테스트 기능  |  로그인  |
-| :--------: | :----------: | :----------: | 
-| <figure class="thrid">![테스트 시작하기](https://github.com/Devminjeong-eum/frontend/assets/55550034/5617a51f-2269-410d-ad97-8b73a83824de) | ![테스트페이지](https://github.com/Devminjeong-eum/frontend/assets/55550034/01a9c0ee-1834-4baa-beea-12eb87522fc4)  | ![로그인페이지](https://github.com/Devminjeong-eum/frontend/assets/55550034/ad188328-0c3b-43de-a5f9-93f6c5f94f4c) </figure>|
-
-
-
-- 발음이 헷갈리는 개발 용어에 대해 발음과 뜻을 확인할 수 있어요.
+- 용어의 발음과 뜻을 확인할 수 있어요.
 - 찾고 싶은 개발 용어를 검색할 수 있어요.
-- 개발 용어의 정의와 발음, 예시를 볼 수 있어요.
-- 내가 얼마나 제대로 발음들을 알고 있는지 퀴즈를 풀 수 있어요.
-- 헷갈리는 개발 용어들을 모아, 단어장을 만들 수 있어요.
-
+- 개발 용어의 정의와 발음, 예시를 볼 수 있어요. 설명과 예시는 최대한 쉽게, 실무에서 쓰이는 팁들로 구성되어 있어요.
+- 퀴즈를 풀고 동료들과 공유할 수 있어요.
+- 헷갈리는 개발 용어들을 모아 단어장을 만들 수 있어요.
+- 사람들이 많이 찾아본 트렌드 단어를 볼 수 있어요. (2주 차부터 오픈돼요.)
+- 개발 용어를 잘못 발음하고 있는 동료에게 공유해서 알려줄 수 있어요.
 
 <br >
 <br >
@@ -85,9 +93,12 @@ AJAX는 아작스? 에이젝스?
 ### 프론트엔드
 
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white">
+<img src="https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff&style=for-the-badge">
 <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
 <img src="https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=react-query&logoColor=white">
 <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=TailwindCss&logoColor=white">
+<br/>
+<img src="https://img.shields.io/badge/Jotai-593D88?style=for-the-badge&logoColor=white">
 <img src="https://img.shields.io/badge/reactrouter-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white">
 <img src="https://img.shields.io/badge/amazonsaws-232F3E?style=for-the-badge&logo=amazonsaws&logoColor=white">
 <img src="https://img.shields.io/badge/amazons3-569A31?style=for-the-badge&logo=amazons3&logoColor=white">
