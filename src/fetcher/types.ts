@@ -53,6 +53,7 @@ export type QuizData = {
 
 export type QuizResultData = {
   quizResultId: string;
+  userName: string;
   score: number;
   correctWords: QuizResultWordData[];
   incorrectWords: QuizResultWordData[];
