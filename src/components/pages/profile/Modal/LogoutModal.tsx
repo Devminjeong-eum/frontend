@@ -14,6 +14,7 @@ export default function LogoutModal({ isOpen, handleModalClick }: Props) {
     logout();
     handleModalClick();
     router.push('/profile/Non-login');
+    router.refresh();
   };
 
   if (!isOpen) return null;

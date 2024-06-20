@@ -25,6 +25,7 @@ export default function DeleteAccountModal({
     deleteAccount(userId);
     handleModalClick();
     router.push('/profile/Non-login');
+    router.refresh();
   };
 
   if (!isOpen) return null;
