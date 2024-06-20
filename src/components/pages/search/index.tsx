@@ -18,7 +18,7 @@ export default function Search({ word }: Props) {
     data: {
       data: { data, totalCount },
     },
-  } = useGetSearchWord(word);
+  } = useGetSearchWord(word.toLowerCase());
 
   return (
     // FIXME: 트렌딩 단어 오픈 후에는 아래 px-5 제거하기
