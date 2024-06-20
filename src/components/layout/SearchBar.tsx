@@ -49,7 +49,7 @@ export default function SearchBar({ word }: Props) {
 
   useEffect(() => {
     const fetchAutoCompleteWord = async () => {
-      const { data } = await getAutoCompleteWord(search);
+      const { data } = await getAutoCompleteWord(search.toLowerCase());
       setWordData(data);
     };
 
