@@ -3,7 +3,6 @@
 import WordBookSvg from '@/components/svg-component/WordBookSvg';
 import RightAngleBracketSvg from '@/components/svg-component/RightAngleBracketSvg';
 import QuizSvg from '@/components/svg-component/QuizSvg';
-import EmailSvg from '@/components/svg-component/EmailSvg';
 import PowerSvg from '@/components/svg-component/PowerSvg';
 import ProfileHeader from './ProfileHeader';
 import ProfileInfo from './ProfileInfo';
