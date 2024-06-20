@@ -11,7 +11,7 @@ export default function InquirySvg({ width, height }: Props) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_2220_3800)">
+      <g clipPath="url(#clip0_2220_3800)">
         <rect width="24" height="24" fill="white" />
         <path
           d="M18 6H19C21.7614 6 24 8.23858 24 11C24 13.7614 21.7614 16 19 16L18 6Z"

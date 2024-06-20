@@ -16,6 +16,7 @@ import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
 import LoginAlertModal from '@/components/common/LoginAlertModal';
 import InquiryModal from './Modal/InquiryModal';
+import InquirySvg from '@/components/svg-component/InquirySvg';
 
 type Props = {
   userId?: string;
@@ -100,7 +101,7 @@ export default function Profile({
         <button onClick={handleContactModalClick}>
           <div className="bg-white mt-[22px] mx-[20px] h-[60px] text-[17px] rounded-[16px] flex items-center px-[22px]">
             <span className="w-[20px] mr-[20px]">
-              <EmailSvg />
+              <InquirySvg width={24} height={24} />
             </span>
             <span className=" text-[17px]">문의하기</span>
             <span className="ml-auto">
