@@ -61,7 +61,8 @@ AJAX는 아작스? 에이젝스?
 - 발음이 헷갈리는 개발 용어에 대해 발음과 뜻을 확인할 수 있어요.
 - 찾고 싶은 개발 용어를 검색할 수 있어요.
 - 개발 용어의 정의와 발음, 예시를 볼 수 있어요.
-- 내가 얼마나 제대로 발음들을 알고 있는지 테스트할 수 있어요.
+- 내가 얼마나 제대로 발음들을 알고 있는지 퀴즈를 풀 수 있어요.
+- 헷갈리는 개발 용어들을 모아, 단어장을 만들 수 있어요.
 
 
 <br >
@@ -71,7 +72,7 @@ AJAX는 아작스? 에이젝스?
 
 |     Design      |     Backend      |     Frontend     |     Frontend     |     Frontend     |     Frontend     |
 | :-------------: | :--------------: | :--------------: | :--------------: | :--------------: | :--------------: |
-| 여름 | [머가리](https://github.com/tls3254) | [돌맹](https://github.com/nyoung113) | [덕배](https://github.com/dotory0829) | [욱](https://github.com/uk11) | [치치](https://github.com/ono212) | 
+| 여름 | [루키](https://github.com/RookieAND) | [돌맹](https://github.com/nyoung113) | [덕배](https://github.com/dotory0829) | [욱](https://github.com/uk11) | [치치](https://github.com/ono212) | 
 
 <br>
 <br>
@@ -93,9 +94,6 @@ AJAX는 아작스? 에이젝스?
 <img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white">
 
 ### 백엔드
-
-<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=black">
-<img src="https://img.shields.io/badge/spring-000000?style=for-the-badge&logo=spring&logoColor=white">
 <img src="https://img.shields.io/badge/amazonec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=black">
 <img src="https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white">
 
