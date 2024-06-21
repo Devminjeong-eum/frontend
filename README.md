@@ -1,11 +1,12 @@
 # 개발 발음 용어 사전 | 데브말싸미
 
 <p align="center">
-<img width="1920" alt="서비스 소개" src="https://github.com/Devminjeong-eum/frontend/assets/55550034/7abcf4af-a78d-4183-8980-8978556da2e8">
-
+<img width="1920" alt="서비스 소개" src="https://github.com/Devminjeong-eum/frontend/assets/111267716/302df5ee-ac10-400d-9d92-ae68ced79e0c">
 </p>
 
 <br >
+<br >
+
 
 # 💼 서비스 소개
 
@@ -14,7 +15,6 @@ vite는 비트? 바이트?
 href는 흐레프? 에이치레프?
 <br >
 AJAX는 아작스? 에이잭스?
-
 
 누구나 한 번쯤은 <b>개발 용어 발음</b> 때문에 고통받았던 적이 있습니다... 
 이제 더 이상 고통받지 마세요!🔥
@@ -30,6 +30,7 @@ AJAX는 아작스? 에이잭스?
 <br >
 <br >
 
+
 # 🗓️ 프로젝트 기간
 
 ```jsx
@@ -44,6 +45,32 @@ AJAX는 아작스? 에이잭스?
 
 <br >
 <br >
+
+
+# 👨‍👩‍👧‍👦 팀원 소개
+
+|     팀장/Frontend      |     Frontend      |     Frontend     |     Frontend     |     Backend     |     Design     |
+| :-------------: | :--------------: | :--------------: | :--------------: | :--------------: | :--------------: |
+| [돌맹](https://github.com/nyoung113) | [덕배](https://github.com/dotory0829) | [욱](https://github.com/uk11) | [치치](https://github.com/ono212) | [루키](https://github.com/RookieAND) | 여름 |
+
+<br>
+<br>
+
+
+# ⚙️ 기술 스택
+
+### Frontend
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff&style=for-the-badge"> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"> <img src="https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=react-query&logoColor=white"> <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=TailwindCss&logoColor=white"> <img src="https://img.shields.io/badge/Jotai-593D88?style=for-the-badge&logoColor=white"> <img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white"> <img src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E"> <img src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white">
+
+### Backend
+<img src="https://img.shields.io/badge/amazonec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=black"> <img src="https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white">
+
+### etc.
+<img src="https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"> <img src="https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=Jira&logoColor=white">  <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"> <img src="https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white"> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"> <img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white">
+
+<br >
+<br >
+
 
 # 💻 주요 기능 및 페이지
 
@@ -78,32 +105,6 @@ AJAX는 아작스? 에이잭스?
 - 퀴즈를 풀고 공유할 수 있어요.
 - 헷갈리는 개발 용어들을 저장해 단어장을 만들 수 있어요.
 - 개발 용어를 잘못 발음하고 있는 동료에게 공유해서 알려줄 수 있어요.
-
-<br >
-<br >
-
-# 👨‍👩‍👧‍👦 팀원 소개
-
-|     팀장/Frontend      |     Frontend      |     Frontend     |     Frontend     |     Backend     |     Design     |
-| :-------------: | :--------------: | :--------------: | :--------------: | :--------------: | :--------------: |
-| [돌맹](https://github.com/nyoung113) | [덕배](https://github.com/dotory0829) | [욱](https://github.com/uk11) | [치치](https://github.com/ono212) | [루키](https://github.com/RookieAND) | 여름 |
-
-<br>
-<br>
-
-# ⚙️ 기술 스택
-
-
-
-### Frontend
-<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff&style=for-the-badge"> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"> <img src="https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=react-query&logoColor=white"> <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=TailwindCss&logoColor=white"> <img src="https://img.shields.io/badge/Jotai-593D88?style=for-the-badge&logoColor=white"> <img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white"> <img src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E"> <img src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white">
-
-### Backend
-<img src="https://img.shields.io/badge/amazonec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=black"> <img src="https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white">
-
-### etc.
-<img src="https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"> <img src="https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=Jira&logoColor=white">  <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"> <img src="https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white"> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"> <img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white">
-
 
 <br >
 <br >
