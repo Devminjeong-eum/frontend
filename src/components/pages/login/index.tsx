@@ -10,8 +10,9 @@ export default function Login() {
     window.location.href = '/api/auth/kakao';
   };
 
+  //
   return (
-    <div className="flex flex-col items-center justify-between mt-[30vh] h-[70vh] px-5">
+    <div className="flex flex-col items-center justify-between pt-[30vh] min-h-screen gap-44 px-5 ">
       <div className="flex flex-col items-center">
         <div className="w-[102px] h-[102px]">
           <LogoSvg />
