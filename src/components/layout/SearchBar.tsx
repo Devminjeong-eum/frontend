@@ -158,10 +158,10 @@ export default function SearchBar() {
         </button>
         {isDropdownOpen && searchInput && (
           <AutoComplete
-            wordData={searchWordResult}
+            searchWordResult={searchWordResult}
             setSelectedIndex={setSelectedIdx}
             selectedIndex={selectedIdx}
-            search={searchInput}
+            searchInput={searchInput}
             handleSearch={handleWordSearch}
           />
         )}
