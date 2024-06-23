@@ -2,7 +2,7 @@ import { AutoCompleteWordData } from '@/fetcher/types';
 import clsx from 'clsx';
 
 type Props = {
-  wordData: AutoCompleteWordData[];
+  wordData: AutoCompleteWordData[] | null;
   setSelectedIndex: (data: number) => void;
   selectedIndex: number;
   search: string;
@@ -16,16 +16,13 @@ export default function AutoComplete({
   search,
   handleSearch,
 }: Props) {
-  const handleMouseEnter = (idx: number) => {
-    setSelectedIndex(idx);
-  };
+  const isResultEmpty =
+    search && Array.isArray(wordData) && wordData.length === 0;
 
-  const handleMouseLeave = () => {
-    setSelectedIndex(-1);
+  const getSearchFeedbackMessage = () => {
+    if (isResultEmpty) return '검색 결과가 없습니다.';
+    if (!wordData) return '검색 중입니다...';
   };
-
-  const isResultEmpty = search.length > 0 && wordData.length === 0;
-  console.log(isResultEmpty);
 
   return (
     <ul className="relative w-full pb-[10px] overflow-y-auto bg-[#ffffff] rounded-b-[16px]">
@@ -35,7 +32,7 @@ export default function AutoComplete({
           isResultEmpty && 'pb-[6px]',
         )}
       >
-        {isResultEmpty ? '검색 결과가 없습니다.' : ''}
+        {getSearchFeedbackMessage()}
       </div>
       {wordData &&
         wordData.slice(0, 6).map((data, idx) => (
@@ -45,8 +42,8 @@ export default function AutoComplete({
               'py-[8px] px-5 text-[16px]',
               selectedIndex === idx && 'bg-gray-100',
             )}
-            onMouseEnter={() => handleMouseEnter(idx)}
-            onMouseLeave={handleMouseLeave}
+            onPointerEnter={() => setSelectedIndex(idx)}
+            onPointerLeave={() => setSelectedIndex(-1)}
             onClick={() => {
               handleSearch(data.name);
             }}

@@ -24,8 +24,8 @@ export default function SearchBar() {
   const [searchInput, setSearchInput] = useState(initialSearchInput);
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
   const [searchWordResult, setWordSearchResult] = useState<
-    AutoCompleteWordData[]
-  >([]);
+    AutoCompleteWordData[] | null
+  >(null);
 
   const [isInputFocus, setIsInputFocus] = useState(!!searchInput);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -36,7 +36,7 @@ export default function SearchBar() {
       return;
     }
     setIsInputFocus(false);
-    setWordSearchResult([]);
+    setWordSearchResult(null);
   };
 
   const { targetRef: searchBarRef } = useOnClickOutside<HTMLDivElement>({
@@ -54,7 +54,7 @@ export default function SearchBar() {
       setWordSearchResult(searchResult);
       return;
     }
-    setWordSearchResult([]);
+    setWordSearchResult(null);
   };
 
   const handleInputChange = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -63,7 +63,7 @@ export default function SearchBar() {
 
     setSearchInput(typedKeyword);
     setSelectedIdx(0);
-    setWordSearchResult([]);
+    setWordSearchResult(null);
 
     if (isKeywordTyped) {
       setIsDropdownOpen(isKeywordTyped);
