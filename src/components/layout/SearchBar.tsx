@@ -3,12 +3,20 @@
 import MagnifierSvg from '@/components/svg-component/MagnifierSvg';
 import useScroll from '@/hooks/useScroll';
 import { useRouter } from 'next/navigation';
-import React, { useRef, useState, useEffect, useMemo } from 'react';
+import {
+  useState,
+  useEffect,
+  useMemo,
+  type ChangeEvent,
+  type KeyboardEvent,
+} from 'react';
 import clsx from 'clsx';
 import { getAutoCompleteWord } from '@/fetcher';
 import type { AutoCompleteWord } from '@/fetcher/types';
 import AutoComplete from '../pages/search/AutoComplete';
 import EngNotice from '../pages/search/EngNotice';
+import { useOnClickOutside } from '@/hooks/useOnClickOutside';
+import { useDebounce } from '@/hooks/useDebounce';
 
 type Props = {
   word: string;
@@ -17,7 +25,7 @@ type Props = {
 export default function SearchBar({ word }: Props) {
   const isScrolled = useScroll();
   const router = useRouter();
-  const searchBarRef = useRef<HTMLDivElement>(null);
+  // const searchBarRef = useRef<HTMLDivElement>(null);
   const [search, setSearch] = useState(word || '');
   const [isInputFocus, setIsInputFocus] = useState(search && true);
   const [isDropdown, setIsDropdown] = useState(false);
@@ -28,24 +36,15 @@ export default function SearchBar({ word }: Props) {
   const [isInputChange, setIsInputChange] = useState(false);
   const searchRegex = useMemo(() => /^[a-zA-Z0-9]*$/, []);
 
-  useEffect(() => {
-    const handleClick = (e: PointerEvent) => {
-      if (
-        searchBarRef.current &&
-        !searchBarRef.current.contains(e.target as HTMLElement)
-      ) {
-        if (search.trim() === '') {
-          setIsInputFocus(false);
-        } else {
-          setIsDropdown(false);
-        }
-      }
-    };
+  const handleSearchBarClick = () => {
+    search.trim() === '' ? setIsInputFocus(false) : setIsDropdown(false);
+  };
 
-    document.addEventListener('pointerdown', handleClick);
+  const { targetRef: searchBarRef } = useOnClickOutside<HTMLDivElement>({
+    onClickOutside: handleSearchBarClick,
+  });
 
-    return () => document.removeEventListener('pointerdown', handleClick);
-  }, [search]);
+  const { debounce } = useDebounce();
 
   useEffect(() => {
     const fetchAutoCompleteWord = async () => {
@@ -64,9 +63,9 @@ export default function SearchBar({ word }: Props) {
       !isIdxChange
     ) {
       setIsDropdown(true);
-      fetchAutoCompleteWord();
+      debounce(fetchAutoCompleteWord, 330)();
     }
-  }, [search, isInputChange, isIdxChange, searchRegex]);
+  }, [search, isInputChange, isIdxChange, searchRegex, debounce]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (!wordData) return;
@@ -113,7 +112,7 @@ export default function SearchBar({ word }: Props) {
     setIsInputChange(false);
   };
 
-  const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleSearchKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       navigateToSearch(search);
     }
@@ -123,7 +122,7 @@ export default function SearchBar({ word }: Props) {
     setIsInputFocus(true);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
     setIsEng(!searchRegex.test(e.target.value));
     setIsInputChange(true);
