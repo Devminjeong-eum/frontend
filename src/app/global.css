@@ -51,3 +51,11 @@
 .circle-spin {
   animation: slow-spin 2.5s ease-in-out infinite;
 }
+
+.login-height {
+  min-height: var(--login-height, 100vh);
+}
+
+.login-padding-top {
+  padding-top: var(--login-padding-top, 30vh);
+}
