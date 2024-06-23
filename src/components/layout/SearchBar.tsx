@@ -2,7 +2,7 @@
 
 import MagnifierSvg from '@/components/svg-component/MagnifierSvg';
 import useScroll from '@/hooks/useScroll';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useState, type ChangeEvent } from 'react';
 import clsx from 'clsx';
 import { getAutoCompleteWord } from '@/fetcher';
@@ -12,21 +12,20 @@ import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useRef } from 'react';
 
-type Props = {
-  word: string;
-};
-
-export default function SearchBar({ word }: Props) {
+export default function SearchBar() {
   const isScrolled = useScroll();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { debounce } = useDebounce();
 
+  const initialSearchInput = searchParams.get('keyword') ?? '';
+
   const searchInputRef = useRef<HTMLInputElement | null>(null);
-  const [searchInput, setSearchInput] = useState(word || '');
-  const [searchWordResult, setWordSearchResult] = useState<
-    AutoCompleteWordData[] | null
-  >(null);
+  const [searchInput, setSearchInput] = useState(initialSearchInput);
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
+  const [searchWordResult, setWordSearchResult] = useState<
+    AutoCompleteWordData[]
+  >([]);
 
   const [isInputFocus, setIsInputFocus] = useState(!!searchInput);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -37,7 +36,7 @@ export default function SearchBar({ word }: Props) {
       return;
     }
     setIsInputFocus(false);
-    setWordSearchResult(null);
+    setWordSearchResult([]);
   };
 
   const { targetRef: searchBarRef } = useOnClickOutside<HTMLDivElement>({
@@ -46,13 +45,16 @@ export default function SearchBar({ word }: Props) {
 
   const fetchAutoCompleteWord = async () => {
     const currentSearchInput = searchInputRef.current?.value;
+
     if (currentSearchInput) {
       const { data } = await getAutoCompleteWord(
         currentSearchInput.toLowerCase(),
       );
-      const searchResult = data?.data;
+      const searchResult = data?.data ?? [];
       setWordSearchResult(searchResult);
+      return;
     }
+    setWordSearchResult([]);
   };
 
   const handleInputChange = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -60,8 +62,8 @@ export default function SearchBar({ word }: Props) {
     const isKeywordTyped = typedKeyword.length > 0;
 
     setSearchInput(typedKeyword);
-    setWordSearchResult(null);
     setSelectedIdx(0);
+    setWordSearchResult([]);
 
     if (isKeywordTyped) {
       setIsDropdownOpen(isKeywordTyped);
@@ -85,6 +87,7 @@ export default function SearchBar({ word }: Props) {
 
   const handleWordSearch = (searchKeyword: string) => {
     router.push(`/word/search?keyword=${searchKeyword}`);
+    setSearchInput(searchKeyword);
     setIsDropdownOpen(false);
   };
 
@@ -153,7 +156,7 @@ export default function SearchBar({ word }: Props) {
             color={isInputFocus ? '#0C3FC1' : '#FFFFFF'}
           />
         </button>
-        {isDropdownOpen && (
+        {isDropdownOpen && searchInput && (
           <AutoComplete
             wordData={searchWordResult}
             setSelectedIndex={setSelectedIdx}
