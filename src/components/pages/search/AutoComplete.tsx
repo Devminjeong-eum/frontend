@@ -1,8 +1,8 @@
-import { AutoCompleteWord } from '@/fetcher/types';
+import { AutoCompleteWordData } from '@/fetcher/types';
 import clsx from 'clsx';
 
 type Props = {
-  wordData: AutoCompleteWord | null;
+  wordData: AutoCompleteWordData[] | null;
   setSelectedIndex: (data: number) => void;
   selectedIndex: number;
   search: string;
@@ -25,13 +25,15 @@ export default function AutoComplete({
     setSelectedIndex(-1);
   };
 
+  const isResultEmpty = search && !wordData?.length;
+
   return (
     <ul className="relative w-full pb-[10px] overflow-y-auto bg-[#ffffff] rounded-b-[16px]">
       <div className="pt-[12px] pb-[6px] mx-5 text-[14px] text-[#858596] border-t border-[#E3E6F6]">
-        검색은 영어로만 가능해요.
+        {isResultEmpty ? '검색 결과가 없습니다.' : '검색은 영어로만 가능해요.'}
       </div>
       {wordData &&
-        wordData.data.slice(0, 6).map((data, idx) => (
+        wordData.slice(0, 6).map((data, idx) => (
           <li
             key={data.id}
             className={clsx(
