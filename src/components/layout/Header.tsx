@@ -18,10 +18,9 @@ const DynamicToolTip = dynamic(() => import('@/components/common/ToolTip'), {
 
 type Props = {
   isToken?: boolean;
-  word?: string;
 };
 
-export default function Header({ isToken, word = '' }: Props) {
+export default function Header({ isToken }: Props) {
   const isScrolled = useScroll();
   const [id, setId] = useState('Non-login');
   const [isOpen, setIsOpen] = useState(
@@ -67,7 +66,7 @@ export default function Header({ isToken, word = '' }: Props) {
           </div>
         </Link>
       </div>
-      <SearchBar word={word} />
+      <SearchBar />
       {!isScrolled && <DynamicToolTip isOpen={isOpen} setIsOpen={setIsOpen} />}
     </>
   );

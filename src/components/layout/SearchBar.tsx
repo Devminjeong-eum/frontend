@@ -2,120 +2,73 @@
 
 import MagnifierSvg from '@/components/svg-component/MagnifierSvg';
 import useScroll from '@/hooks/useScroll';
-import { useRouter } from 'next/navigation';
-import React, { useRef, useState, useEffect, useMemo } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, type ChangeEvent } from 'react';
 import clsx from 'clsx';
 import { getAutoCompleteWord } from '@/fetcher';
-import type { AutoCompleteWord } from '@/fetcher/types';
+import type { AutoCompleteWordData } from '@/fetcher/types';
 import AutoComplete from '../pages/search/AutoComplete';
-import EngNotice from '../pages/search/EngNotice';
+import { useOnClickOutside } from '@/hooks/useOnClickOutside';
+import { useDebounce } from '@/hooks/useDebounce';
+import { useRef } from 'react';
 
-type Props = {
-  word: string;
-};
-
-export default function SearchBar({ word }: Props) {
+export default function SearchBar() {
   const isScrolled = useScroll();
   const router = useRouter();
-  const searchBarRef = useRef<HTMLDivElement>(null);
-  const [search, setSearch] = useState(word || '');
-  const [isInputFocus, setIsInputFocus] = useState(search && true);
-  const [isDropdown, setIsDropdown] = useState(false);
-  const [wordData, setWordData] = useState<AutoCompleteWord | null>(null);
-  const [selectedIdx, setSelectedIdx] = useState<number>(-1);
-  const [isEng, setIsEng] = useState(false);
-  const [isIdxChange, setIsIdxChange] = useState(false);
-  const [isInputChange, setIsInputChange] = useState(false);
-  const searchRegex = useMemo(() => /^[a-zA-Z0-9]*$/, []);
+  const searchParams = useSearchParams();
+  const { debounce } = useDebounce();
 
-  useEffect(() => {
-    const handleClick = (e: PointerEvent) => {
-      if (
-        searchBarRef.current &&
-        !searchBarRef.current.contains(e.target as HTMLElement)
-      ) {
-        if (search.trim() === '') {
-          setIsInputFocus(false);
-        } else {
-          setIsDropdown(false);
-        }
-      }
-    };
+  const initialSearchInput = searchParams.get('keyword') ?? '';
 
-    document.addEventListener('pointerdown', handleClick);
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const [searchInput, setSearchInput] = useState(initialSearchInput);
+  const [selectedIdx, setSelectedIdx] = useState<number>(0);
+  const [searchWordResult, setWordSearchResult] = useState<
+    AutoCompleteWordData[] | null
+  >(null);
 
-    return () => document.removeEventListener('pointerdown', handleClick);
-  }, [search]);
+  const [isInputFocus, setIsInputFocus] = useState(!!searchInput);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  useEffect(() => {
-    const fetchAutoCompleteWord = async () => {
-      const { data } = await getAutoCompleteWord(search.toLowerCase());
-      setWordData(data);
-    };
-
-    if (search.trim() === '') {
-      setIsDropdown(false);
-      setSelectedIdx(-1);
+  const handleSearchBarOutsideClick = () => {
+    if (searchInput.length) {
+      setIsDropdownOpen(false);
+      return;
     }
-    if (
-      search.trim() !== '' &&
-      searchRegex.test(search) &&
-      isInputChange &&
-      !isIdxChange
-    ) {
-      setIsDropdown(true);
-      fetchAutoCompleteWord();
-    }
-  }, [search, isInputChange, isIdxChange, searchRegex]);
+    setIsInputFocus(false);
+    setWordSearchResult(null);
+  };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (!wordData) return;
+  const { targetRef: searchBarRef } = useOnClickOutside<HTMLDivElement>({
+    onClickOutside: handleSearchBarOutsideClick,
+  });
 
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      setSelectedIdx((prevIdx) =>
-        prevIdx < wordData.data.length - 1 ? prevIdx + 1 : -1,
+  const fetchAutoCompleteWord = async () => {
+    const currentSearchInput = searchInputRef.current?.value;
+
+    if (currentSearchInput) {
+      const { data } = await getAutoCompleteWord(
+        currentSearchInput.toLowerCase(),
       );
-      setIsDropdown(true);
-      setIsIdxChange(true);
-      setSearch(wordData.data[selectedIdx + 1]?.name || '');
+      const searchResult = data?.data ?? [];
+      setWordSearchResult(searchResult);
+      return;
     }
-
-    if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      setSelectedIdx((prevIdx) =>
-        prevIdx > 0 ? prevIdx - 1 : wordData.data.length - 1,
-      );
-      setIsDropdown(true);
-      setIsIdxChange(true);
-      setSearch(wordData.data[selectedIdx - 1]?.name || '');
-    }
-
-    if (e.key === 'Enter' && selectedIdx >= 0) {
-      setIsDropdown(false);
-      handleSearch(wordData.data[selectedIdx].name);
-    }
+    setWordSearchResult(null);
   };
 
-  const navigateToSearch = (wordData: string) => {
-    if (search.length < 3) return null;
+  const handleInputChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    const typedKeyword = event.target.value.trim();
+    const isKeywordTyped = typedKeyword.length > 0;
 
-    if (search.trim() && searchRegex.test(search))
-      router.push(`/word/search?keyword=${wordData}`);
-    setIsDropdown(false);
-  };
+    setSearchInput(typedKeyword);
+    setSelectedIdx(0);
+    setWordSearchResult(null);
 
-  const handleSearch = (wordData: string) => {
-    router.push(`/word/search?keyword=${wordData}`);
-    setSelectedIdx(-1);
-    setSearch(wordData || '');
-    setIsDropdown(false);
-    setIsInputChange(false);
-  };
-
-  const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      navigateToSearch(search);
+    if (isKeywordTyped) {
+      setIsDropdownOpen(isKeywordTyped);
+      debounce(fetchAutoCompleteWord, 330)();
+      return;
     }
   };
 
@@ -123,15 +76,51 @@ export default function SearchBar({ word }: Props) {
     setIsInputFocus(true);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-    setIsEng(!searchRegex.test(e.target.value));
-    setIsInputChange(true);
-    setIsIdxChange(false);
+  const handleSearchBarClick = () => {
+    if (searchInput) setIsDropdownOpen(true);
   };
 
-  const handleInputClickDropdownOpen = () => {
-    if (search) setIsDropdown(true);
+  const handleSearchButtonClick = () => {
+    if (searchInput.length < 3) return;
+    handleWordSearch(searchInput);
+  };
+
+  const handleWordSearch = (searchKeyword: string) => {
+    router.push(`/word/search?keyword=${searchKeyword}`);
+    setSearchInput(searchKeyword);
+    setIsDropdownOpen(false);
+  };
+
+  const handleSearchInputKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+  ) => {
+    if (!searchWordResult?.length || !isDropdownOpen) return;
+
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      const updatedSelectedIndex = selectedIdx + (e.key === 'ArrowUp' ? -1 : 1);
+      const maxAutoCompletions = Math.min(searchWordResult.length - 1, 5);
+
+      if (
+        updatedSelectedIndex >= 0 &&
+        updatedSelectedIndex <= maxAutoCompletions
+      ) {
+        const selectedWord = searchWordResult[updatedSelectedIndex];
+        setSelectedIdx(updatedSelectedIndex);
+        setSearchInput(selectedWord.name);
+        return;
+      }
+
+      setSearchInput('');
+      setSelectedIdx(0);
+      setIsDropdownOpen(false);
+    }
+
+    if (e.key === 'Enter') {
+      setSelectedIdx(0);
+      setIsDropdownOpen(false);
+      handleWordSearch(searchInput);
+    }
   };
 
   return (
@@ -141,45 +130,42 @@ export default function SearchBar({ word }: Props) {
       <div
         className={clsx(
           'relative rounded-[16px] z-[60]',
-          isDropdown && 'bg-white ring-[2px] ring-[#4357DB]',
+          isDropdownOpen && 'bg-white ring-[2px] ring-[#4357DB]',
         )}
         ref={searchBarRef}
       >
         <input
           type="text"
-          value={search}
+          ref={searchInputRef}
+          value={searchInput}
           placeholder={`${isInputFocus ? '' : '궁금한 IT용어를 검색해 보세요.'}`}
           onChange={handleInputChange}
-          onKeyDown={(event) => {
-            handleSearchKeyDown(event);
-            handleKeyDown(event);
-          }}
+          onKeyDown={handleSearchInputKeyDown}
           onFocus={handleInputFocusChange}
-          onClick={handleInputClickDropdownOpen}
+          onClick={handleSearchBarClick}
           className={clsx(
             'w-full h-[48px] rounded-[16px] pl-5 py-4 outline-none',
             !isInputFocus &&
               'bg-white/20 ring-white/40 text-white placeholder:text-[#C8CAEB]',
-            isDropdown ? 'ring-0' : 'ring-1 ring-white/60',
+            isDropdownOpen ? 'ring-0' : 'ring-1 ring-white/60',
           )}
         />
-        <button onClick={() => navigateToSearch(search)}>
+        <button onClick={handleSearchButtonClick}>
           <MagnifierSvg
             className="absolute right-[20px] top-[12px]"
             color={isInputFocus ? '#0C3FC1' : '#FFFFFF'}
           />
         </button>
-        {isDropdown && (
+        {isDropdownOpen && searchInput && (
           <AutoComplete
-            wordData={wordData}
+            searchWordResult={searchWordResult}
             setSelectedIndex={setSelectedIdx}
             selectedIndex={selectedIdx}
-            search={search}
-            handleSearch={handleSearch}
+            searchInput={searchInput}
+            handleSearch={handleWordSearch}
           />
         )}
       </div>
-      {isEng && <EngNotice />}
     </div>
   );
 }
