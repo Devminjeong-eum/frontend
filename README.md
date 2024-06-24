@@ -1,31 +1,37 @@
 # 개발 발음 용어 사전 | 데브말싸미
 
 <p align="center">
-<img width="1920" alt="서비스 소개" src="https://github.com/Devminjeong-eum/frontend/assets/55550034/7abcf4af-a78d-4183-8980-8978556da2e8">
-
+<img width="1920" alt="서비스 소개" src="https://github.com/Devminjeong-eum/frontend/assets/111267716/302df5ee-ac10-400d-9d92-ae68ced79e0c">
 </p>
 
 <br >
+<br >
+
 
 # 💼 서비스 소개
 
 vite는 비트? 바이트?
-<br>
+<br >
 href는 흐레프? 에이치레프?
-<br>
-AJAX는 아작스? 에이젝스?
-
+<br >
+AJAX는 아작스? 에이잭스?
 
 누구나 한 번쯤은 <b>개발 용어 발음</b> 때문에 고통받았던 적이 있습니다... 
 이제 더 이상 고통받지 마세요!🔥
 
-데브말ㅆㆍ미에서 다 정리해드립니다!😁
+데브말ㅆㆍ미에서 정리해드립니다!😁
 
+최초의 개발 용어 발음 사전 서비스!  데브말싸미를 이용해보세요!
+
+<br >
+
+[데브말싸미 바로가기](https://dev-malssami.site/)
 
 <br >
 <br >
 
-# 🗓️ 개발 기간
+
+# 🗓️ 프로젝트 기간
 
 ```jsx
 1차 스프린트: 24.04.04 ~ 24.04.08
@@ -40,7 +46,33 @@ AJAX는 아작스? 에이젝스?
 <br >
 <br >
 
-# 💻 핵심 기능
+
+# 👨‍👩‍👧‍👦 팀원 소개
+
+|     팀장/Frontend      |     Frontend      |     Frontend     |     Frontend     |     Backend     |     Design     |
+| :-------------: | :--------------: | :--------------: | :--------------: | :--------------: | :--------------: |
+| [돌맹](https://github.com/nyoung113) | [덕배](https://github.com/dotory0829) | [욱](https://github.com/uk11) | [치치](https://github.com/ono212) | [루키](https://github.com/RookieAND) | 여름 |
+
+<br>
+<br>
+
+
+# ⚙️ 기술 스택
+
+### Frontend
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff&style=for-the-badge"> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"> <img src="https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=react-query&logoColor=white"> <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=TailwindCss&logoColor=white"> <img src="https://img.shields.io/badge/Jotai-593D88?style=for-the-badge&logoColor=white"> <img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white"> <img src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E"> <img src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white">
+
+### Backend
+<img src="https://img.shields.io/badge/amazonec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=black"> <img src="https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white">
+
+### etc.
+<img src="https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"> <img src="https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=Jira&logoColor=white">  <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"> <img src="https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white"> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"> <img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white">
+
+<br >
+<br >
+
+
+# 💻 주요 기능 및 페이지
 
 | 로그인 페이지 | 메인 페이지 | 트렌딩 페이지 |
 |:-----------:|:-----------:|:-----------:|
@@ -48,9 +80,9 @@ AJAX는 아작스? 에이젝스?
 
 <br >
 
-| 디테일  페이지 | 검색 페이지 | 검색 페이지 |
+| 검색 페이지 | 검색 페이지 | 디테일 페이지 |
 |:-----------:|:-----------:|:-----------:|
-| ![디테일](https://github.com/Devminjeong-eum/frontend/assets/111267716/030df622-c716-4f8f-9181-fd285fbd2d40) | ![검색](https://github.com/Devminjeong-eum/frontend/assets/111267716/5a6934db-8d15-4e93-9b99-1fcd0d97ee1b) | ![검색2](https://github.com/Devminjeong-eum/frontend/assets/111267716/7cfc29e0-18fc-45a4-87bf-57579cc3f49f) |
+| ![검색](https://github.com/Devminjeong-eum/frontend/assets/111267716/5a6934db-8d15-4e93-9b99-1fcd0d97ee1b) | ![검색2](https://github.com/Devminjeong-eum/frontend/assets/111267716/7cfc29e0-18fc-45a4-87bf-57579cc3f49f) | ![디테일](https://github.com/Devminjeong-eum/frontend/assets/111267716/030df622-c716-4f8f-9181-fd285fbd2d40) |
 
 <br >
 
@@ -64,56 +96,18 @@ AJAX는 아작스? 에이젝스?
 |:-----------:|:-----------:|:-----------:|
 | ![단어장](https://github.com/Devminjeong-eum/frontend/assets/111267716/8c99271a-84f7-47be-8c49-515cb7e81fc1) | ![마이](https://github.com/Devminjeong-eum/frontend/assets/111267716/5256a917-80a0-41bc-80cf-f5882398cb77) | ![회원탈퇴](https://github.com/Devminjeong-eum/frontend/assets/111267716/0f1334c4-037f-484e-ad39-725c1c3ecef0) |
 
+<br >
 
-- 용어의 발음과 뜻을 확인할 수 있어요.
+- 개발 용어의 발음과 정의를 확인할 수 있어요.
+- 사람들이 많이 찾아본 트렌드 단어를 볼 수 있어요.
 - 찾고 싶은 개발 용어를 검색할 수 있어요.
-- 개발 용어의 정의와 발음, 예시를 볼 수 있어요. 설명과 예시는 최대한 쉽게, 실무에서 쓰이는 팁들로 구성되어 있어요.
-- 퀴즈를 풀고 동료들과 공유할 수 있어요.
-- 헷갈리는 개발 용어들을 모아 단어장을 만들 수 있어요.
-- 사람들이 많이 찾아본 트렌드 단어를 볼 수 있어요. (2주 차부터 오픈돼요.)
+- 개발 용어의 올바른 발음과 틀린 발음, 정의, 예시를 자세히 볼 수 있어요.
+- 퀴즈를 풀고 공유할 수 있어요.
+- 헷갈리는 개발 용어들을 저장해 단어장을 만들 수 있어요.
 - 개발 용어를 잘못 발음하고 있는 동료에게 공유해서 알려줄 수 있어요.
 
 <br >
 <br >
-
-# 👨‍👩‍👧‍👦 팀 소개
-
-|     Design      |     Backend      |     Frontend     |     Frontend     |     Frontend     |     Frontend     |
-| :-------------: | :--------------: | :--------------: | :--------------: | :--------------: | :--------------: |
-| 여름 | [루키](https://github.com/RookieAND) | [돌맹](https://github.com/nyoung113) | [덕배](https://github.com/dotory0829) | [욱](https://github.com/uk11) | [치치](https://github.com/ono212) | 
-
-<br>
-<br>
-
-# ⚙️ 기술 스택
-
-<div align="middle">
-
-
-### 프론트엔드
-
-<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white">
-<img src="https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff&style=for-the-badge">
-<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
-<img src="https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=react-query&logoColor=white">
-<img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=TailwindCss&logoColor=white">
-<br/>
-<img src="https://img.shields.io/badge/Jotai-593D88?style=for-the-badge&logoColor=white">
-<img src="https://img.shields.io/badge/reactrouter-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white">
-<img src="https://img.shields.io/badge/amazonsaws-232F3E?style=for-the-badge&logo=amazonsaws&logoColor=white">
-<img src="https://img.shields.io/badge/amazons3-569A31?style=for-the-badge&logo=amazons3&logoColor=white">
-<img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white">
-
-### 백엔드
-<img src="https://img.shields.io/badge/amazonec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=black">
-<img src="https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white">
-
-### 디자인
-
-<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white">
-
-<br/>
-<br/>
 
 - - -
 
