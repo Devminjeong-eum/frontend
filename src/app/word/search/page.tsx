@@ -1,6 +1,7 @@
 import { ResolvingMetadata } from 'next';
 import Header from '@/components/layout/Header';
 import Search from '@/components/pages/search';
+import { cookies } from 'next/headers';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function generateMetadata(
@@ -44,10 +45,11 @@ type Props = {
 
 export default async function SearchPage({ searchParams }: Props) {
   const word = decodeURI(searchParams.keyword);
+  const isToken = cookies().has('accessToken');
 
   return (
     <>
-      <Header word={word} />
+      <Header word={word} isToken={isToken} />
       <main className="rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[8px]">
         <Search word={word} />
       </main>
