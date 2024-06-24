@@ -1,68 +1,63 @@
-import { AutoCompleteWordData } from '@/fetcher/types';
+import { AutoCompleteWord } from '@/fetcher/types';
 import clsx from 'clsx';
 
 type Props = {
-  searchWordResult: AutoCompleteWordData[] | null;
+  wordData: AutoCompleteWord | null;
   setSelectedIndex: (data: number) => void;
   selectedIndex: number;
-  searchInput: string;
+  search: string;
   handleSearch: (data: string) => void;
 };
 
 export default function AutoComplete({
-  searchWordResult,
+  wordData,
   setSelectedIndex,
   selectedIndex,
-  searchInput,
+  search,
   handleSearch,
 }: Props) {
-  const isSearchResultEmpty =
-    searchInput && Array.isArray(searchWordResult) && !searchWordResult.length;
-
-  const getSearchFeedbackMessage = () => {
-    if (isSearchResultEmpty) return '검색 결과가 없습니다.';
-    if (!searchWordResult) return '검색 중입니다...';
+  if (!wordData) return null;
+  const handleMouseEnter = (idx: number) => {
+    setSelectedIndex(idx);
   };
 
-  const searchFeedback = getSearchFeedbackMessage();
+  const handleMouseLeave = () => {
+    setSelectedIndex(-1);
+  };
 
   return (
     <ul className="relative w-full pb-[10px] overflow-y-auto bg-[#ffffff] rounded-b-[16px]">
-      <div
-        className={clsx(
-          'pt-[12px] mx-5 text-[14px] text-[#858596] border-t border-[#E3E6F6]',
-          isSearchResultEmpty && 'pb-[6px]',
-        )}
-      >
-        {searchFeedback}
+      <div className="pt-[12px] pb-[6px] mx-5 text-[14px] text-[#858596] border-t border-[#E3E6F6]">
+        검색은 영어로만 가능해요.
       </div>
-      {searchWordResult?.slice(0, 6).map((word, idx) => (
-        <li
-          key={word.id}
-          className={clsx(
-            'py-[8px] px-5 text-[16px]',
-            selectedIndex === idx && 'bg-gray-100',
-          )}
-          onPointerEnter={() => setSelectedIndex(idx)}
-          onPointerLeave={() => setSelectedIndex(-1)}
-          onClick={() => {
-            handleSearch(word.name);
-          }}
-        >
-          {word.name.split('').map((alphabet, idx) => (
-            <span
-              key={idx}
-              className={clsx(
-                idx < searchInput.length &&
-                  alphabet.toLowerCase() === searchInput[idx].toLowerCase() &&
-                  'text-[#0C3FC1] font-semibold',
-              )}
-            >
-              {alphabet}
-            </span>
-          ))}
-        </li>
-      ))}
+      {wordData &&
+        wordData.data.slice(0, 6).map((data, idx) => (
+          <li
+            key={data.id}
+            className={clsx(
+              'py-[8px] px-5 text-[16px]',
+              selectedIndex === idx && 'bg-gray-100',
+            )}
+            onMouseEnter={() => handleMouseEnter(idx)}
+            onMouseLeave={handleMouseLeave}
+            onClick={() => {
+              handleSearch(data.name);
+            }}
+          >
+            {data.name.split('').map((word, idx) => (
+              <span
+                key={idx}
+                className={clsx(
+                  idx < search.length &&
+                    word.toLowerCase() === search[idx].toLowerCase() &&
+                    'text-[#0C3FC1] font-semibold',
+                )}
+              >
+                {word}
+              </span>
+            ))}
+          </li>
+        ))}
     </ul>
   );
 }
