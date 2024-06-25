@@ -6,24 +6,22 @@ on:
       - main
 
 jobs:
-  build-image:
+  docker-image:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create Environment Variable File
+      - name: Environment Variable Setting
         run: |
-          cat <<EOF > .env
-          KAKAO_CLIENT_ID=${{ secrets.KAKAO_CLIENT_ID }}
-          KAKAO_REDIRECT_URI=${{ secrets.KAKAO_REDIRECT_URI }}
-          KAKAO_SECRET_KEY=${{ secrets.KAKAO_SECRET_KEY }}
-          NEXT_PUBLIC_BACKEND_BASE_URL=${{ secrets.NEXT_PUBLIC_BACKEND_BASE_URL }}
-          NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}
-          NEXT_PUBLIC_KAKAO_SHARE_KEY=${{ secrets.NEXT_PUBLIC_KAKAO_SHARE_KEY }}
-          NEXT_PUBLIC_KAKAO_SHARE_TEMPLATE_ID=${{ secrets.NEXT_PUBLIC_KAKAO_SHARE_TEMPLATE_ID }}
-          EOF
+          echo "KAKAO_CLIENT_ID=${{ secrets.KAKAO_CLIENT_ID }}" >> .env
+          echo "KAKAO_REDIRECT_URI=${{ secrets.KAKAO_REDIRECT_URI }}" >> .env
+          echo "KAKAO_SECRET_KEY=${{ secrets.KAKAO_SECRET_KEY }}" >> .env
+          echo "NEXT_PUBLIC_BACKEND_BASE_URL=${{ secrets.NEXT_PUBLIC_BACKEND_BASE_URL }}" >> .env
+          echo "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}" >> .env
+          echo "NEXT_PUBLIC_KAKAO_SHARE_KEY=${{ secrets.NEXT_PUBLIC_KAKAO_SHARE_KEY }}" >> .env
+          echo "NEXT_PUBLIC_KAKAO_SHARE_TEMPLATE_ID=${{ secrets.NEXT_PUBLIC_KAKAO_SHARE_TEMPLATE_ID }}" >> .env
 
       - name: Login to DockerHub
         uses: docker/login-action@v3
@@ -37,20 +35,18 @@ jobs:
       - name: Build and Push Docker image
         uses: docker/build-push-action@v5
         with:
+          context: .
+          file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/devminjeong-eum-frontend:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-  deploy-application:
-    needs: build-image
+
+  deploy:
+    needs: docker-image
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
-
       - name: Deploy to AWS EC2
         uses: appleboy/ssh-action@master
         with:
@@ -60,7 +56,7 @@ jobs:
           script: |
             cd /home/${{ secrets.EC2_SSH_USER }}/dev-malssami/frontend
             sudo docker system prune -a --volumes -f
-            
+
             if [ "$(sudo docker ps | grep frontend)" ]; then
               sudo docker stop frontend
               sudo docker rm frontend
