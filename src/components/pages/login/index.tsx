@@ -4,53 +4,14 @@ import KakaotalkSvg from '@/components/svg-component/KakaotalkSvg';
 import { WORD_LIST_PATH } from '@/routes/path.ts';
 import LogoSvg from '@/components/svg-component/LogoSvg';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import Spinner from '@/components/common/Spinner';
-
-const isMobile = () => {
-  const userAgent = typeof navigator === 'undefined' ? '' : navigator.userAgent;
-  return /android|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i.test(
-    userAgent,
-  );
-};
-
-const setLoginViewportStyles = () => {
-  const { innerHeight } = window;
-  document.documentElement.style.setProperty(
-    '--login-height',
-    `${innerHeight}px`,
-  );
-  document.documentElement.style.setProperty(
-    '--login-padding-top',
-    'calc(var(--login-height) * 20.624 / 100)',
-  );
-};
 
 export default function Login() {
-  const [isHeightSet, setIsHeightSet] = useState(false);
-
-  useEffect(() => {
-    if (isMobile()) {
-      setLoginViewportStyles();
-      setIsHeightSet(true);
-      window.addEventListener('resize', setLoginViewportStyles);
-
-      return () => {
-        window.removeEventListener('resize', setLoginViewportStyles);
-      };
-    } else {
-      setIsHeightSet(true);
-    }
-  }, []);
-
   const handleKakaoLogin = () => {
     window.location.href = '/api/auth/kakao';
   };
 
-  if (!isHeightSet) return <Spinner />;
-
   return (
-    <div className="flex flex-col items-center justify-between gap-44 px-5 login-height login-padding-top">
+    <div className="flex flex-col items-center justify-between px-5 pt-44 pb-[2.375rem] h-full">
       <div className="flex flex-col items-center">
         <div className="w-[102px] h-[102px]">
           <LogoSvg />
@@ -75,7 +36,7 @@ export default function Login() {
           </span>
         </button>
         <Link href={WORD_LIST_PATH}>
-          <button className="w-full text-base font-normal text-main-black opacity-60 p-3.5">
+          <button className="w-full text-base font-normal text-main-black opacity-60 p-3.5 bg-orange-500">
             비로그인으로 이용하기
           </button>
         </Link>
