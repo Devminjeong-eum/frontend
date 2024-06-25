@@ -135,3 +135,15 @@ export type AutoCompleteWordData = {
   name: string;
   diacritic: string;
 };
+
+export type TrendWord = {
+  rank: number;
+  rankChange?: number;
+  id: string;
+  name: string;
+  description: string;
+  diacritic: string;
+  pronunciation: string;
+};
+
+export type TrendWordData = TrendWord[];
