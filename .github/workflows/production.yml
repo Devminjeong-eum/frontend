@@ -31,8 +31,8 @@ jobs:
           cache-to: type=gha,mode=max
 
   deploy-application:
-    needs: docker-image
-    runs-on: build-image
+    needs: build-image
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
