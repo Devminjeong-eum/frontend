@@ -36,7 +36,7 @@ export default function Login() {
           </span>
         </button>
         <Link href={WORD_LIST_PATH}>
-          <button className="w-full text-base font-normal text-main-black opacity-60 p-3.5 bg-orange-500">
+          <button className="w-full text-base font-normal text-main-black opacity-60 p-3.5">
             비로그인으로 이용하기
           </button>
         </Link>
