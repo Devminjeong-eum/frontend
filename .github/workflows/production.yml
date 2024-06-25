@@ -6,63 +6,18 @@ on:
       - main
 
 jobs:
-  check-lint:
+  build-image:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Setup npm cache
-        uses: actions/cache@v4
-        id: npm-cache
-        with:
-          path: |
-            **/node_modules
-            ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-            ${{ runner.os }}
-
-      - name: Install dependencies
-        if: ${{ steps.npm-cache.outputs.cache-hit != 'true' }}
-        run: npm ci
-
-      - name: Run Eslint
-        run: npm run lint
-
-  docker-image:
-    needs: check-lint
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Environment Variable Setting
-        run: |
-          echo "KAKAO_CLIENT_ID=${{ secrets.KAKAO_CLIENT_ID }}" >> .env
-          echo "KAKAO_REDIRECT_URI=${{ secrets.KAKAO_REDIRECT_URI }}" >> .env
-          echo "KAKAO_SECRET_KEY=${{ secrets.KAKAO_SECRET_KEY }}" >> .env
-          echo "NEXT_PUBLIC_BACKEND_BASE_URL=${{ secrets.NEXT_PUBLIC_BACKEND_BASE_URL }}" >> .env
-          echo "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}" >> .env
-          echo "NEXT_PUBLIC_KAKAO_SHARE_KEY=${{ secrets.NEXT_PUBLIC_KAKAO_SHARE_KEY }}" >> .env
-          echo "NEXT_PUBLIC_KAKAO_SHARE_TEMPLATE_ID=${{ secrets.NEXT_PUBLIC_KAKAO_SHARE_TEMPLATE_ID }}" >> .env
-
+    
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -70,16 +25,55 @@ jobs:
       - name: Build and Push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .
-          file: ./Dockerfile
           push: true
-          # platforms: linux/amd64,linux/arm64
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/devminjeong-eum-frontend:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
-  deploy:
+  deploy-application:
     needs: docker-image
-    runs-on: ubuntu-latest
+    runs-on: build-image
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Create Environment Variable File
+        run: |
+          cat <<EOF > ./env.fe-production
+          KAKAO_CLIENT_ID=${{ secrets.KAKAO_CLIENT_ID }}
+          KAKAO_REDIRECT_URI=${{ secrets.KAKAO_REDIRECT_URI }}
+          KAKAO_SECRET_KEY=${{ secrets.KAKAO_SECRET_KEY }}
+          NEXT_PUBLIC_BACKEND_BASE_URL=${{ secrets.NEXT_PUBLIC_BACKEND_BASE_URL }}
+          NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}
+          NEXT_PUBLIC_KAKAO_SHARE_KEY=${{ secrets.NEXT_PUBLIC_KAKAO_SHARE_KEY }}
+          NEXT_PUBLIC_KAKAO_SHARE_TEMPLATE_ID=${{ secrets.NEXT_PUBLIC_KAKAO_SHARE_TEMPLATE_ID }}
+          EOF
+
+      - name: Compute Environment Variable File Hash
+        id: compute-env-hash
+        run: |
+          ENV_HASH=$(sha256sum ./env.fe-production | awk '{ print $1 }')
+          echo "ENV_HASH=${ENV_HASH}" >> $GITHUB_ENV
+
+      - name: Setup Environment Variable Cache
+        id: cache-env-file
+        uses: actions/cache@v4
+        with:
+          path: ./env.fe-production
+          key: env-fe-production-${{ env.ENV_HASH }}
+
+      - name: Copy Configuration Files
+        if: ${{ steps.cache-env-file.outputs.cache-hit }}
+        uses: appleboy/scp-action@v0.1.7
+        with: 
+          host: ${{ secrets.EC2_SSH_HOST }}
+          username: ${{ secrets.EC2_SSH_USER }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          source: "./env.fe-production"
+          target: "/home/${{ secrets.EC2_SSH_USER }}/dev-malssami"
+
       - name: Deploy to AWS EC2
         uses: appleboy/ssh-action@master
         with:
@@ -87,19 +81,16 @@ jobs:
           username: ${{ secrets.EC2_SSH_USER }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
+            cd /home/${{ secrets.EC2_SSH_USER }}/dev-malssami
+            sudo docker system prune -a --volumes -f
+            
             if [ "$(sudo docker ps | grep frontend)" ]; then
               sudo docker stop frontend
               sudo docker rm frontend
             fi
 
-            echo "KAKAO_CLIENT_ID=${{ secrets.KAKAO_CLIENT_ID }}" >> .env.production
-            echo "KAKAO_REDIRECT_URI=${{ secrets.KAKAO_REDIRECT_URI }}" >> .env.production
-            echo "KAKAO_SECRET_KEY=${{ secrets.KAKAO_SECRET_KEY }}" >> .env.production
-            echo "NEXT_PUBLIC_BACKEND_BASE_URL=${{ secrets.NEXT_PUBLIC_BACKEND_BASE_URL }}" >> .env.production
-            echo "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}" >> .env.production
-
             sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/devminjeong-eum-frontend:latest
             sudo docker run -p 3000:3000 \
             --name frontend \
-            --env-file ./.env.production \
+            --env-file ./env.fe-production \
             -d ${{ secrets.DOCKER_HUB_USERNAME }}/devminjeong-eum-frontend:latest
