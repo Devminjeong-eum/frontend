@@ -9,7 +9,6 @@ import {
   dehydrate,
 } from '@tanstack/react-query';
 import { Suspense } from 'react';
-import { cookies } from 'next/headers';
 import { getAllPostsServer } from '@/fetcher/server.ts';
 
 export default async function HomePage({
@@ -24,11 +23,9 @@ export default async function HomePage({
     queryKey: [QUERY_KEYS.HOME_KEY, Number(page)],
   });
 
-  const isToken = cookies().has('accessToken');
-
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Header isToken={isToken} />
+      <Header />
       <Suspense fallback={<Spinner />}>
         <HomeClientPage />
       </Suspense>
