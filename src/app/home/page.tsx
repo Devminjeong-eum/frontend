@@ -10,7 +10,10 @@ import {
 } from '@tanstack/react-query';
 import { Suspense } from 'react';
 import { cookies } from 'next/headers';
-import { getAllPostsServer } from '@/fetcher/server.ts';
+import {
+  getAllPostsServer,
+  getCurrentWeekTrendList,
+} from '@/fetcher/server.ts';
 
 export default async function HomePage({
   searchParams: { page },
@@ -19,10 +22,16 @@ export default async function HomePage({
 }) {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery({
-    queryFn: () => getAllPostsServer(Number(page)),
-    queryKey: [QUERY_KEYS.HOME_KEY, Number(page)],
-  });
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryFn: () => getAllPostsServer(Number(page)),
+      queryKey: [QUERY_KEYS.HOME_KEY, Number(page)],
+    }),
+    queryClient.prefetchQuery({
+      queryFn: () => getCurrentWeekTrendList(),
+      queryKey: [QUERY_KEYS.TREND],
+    }),
+  ]);
 
   const isToken = cookies().has('accessToken');
 
