@@ -31,7 +31,7 @@ export default function AutoComplete({
       <div
         className={clsx(
           'pt-[12px] mx-5 text-[14px] text-[#858596] border-t border-[#E3E6F6]',
-          isSearchResultEmpty && 'pb-[6px]',
+          (isSearchResultEmpty || !searchWordResult) && 'pb-[6px]',
         )}
       >
         {searchFeedback}
