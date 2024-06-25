@@ -1,4 +1,4 @@
-export const WORD_LIST_PATH = '/home?view=all&page=1';
+export const WORD_LIST_PATH = '/home?view=trend&page=1';
 export const LOGIN_PATH = '/';
 export const QUIZ_PATH = '/quiz';
 export const WORDBOOK_PATH = '/user/wordbook';
