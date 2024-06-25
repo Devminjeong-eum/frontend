@@ -32,7 +32,7 @@ export default function SearchBar() {
 
   const handleSearchBarOutsideClick = () => {
     setIsDropdownOpen(false);
-    
+
     if (!searchInput) {
       setIsInputFocus(false);
       setWordSearchResult(null);
@@ -144,7 +144,7 @@ export default function SearchBar() {
           onFocus={handleInputFocusChange}
           onClick={handleSearchBarClick}
           className={clsx(
-            'w-full h-[48px] rounded-[16px] pl-5 py-4 outline-none',
+            'w-full h-[48px] rounded-[16px] pl-5 pr-12 py-4 outline-none',
             !isInputFocus &&
               'bg-white/20 ring-white/40 text-white placeholder:text-[#C8CAEB]',
             isDropdownOpen ? 'ring-0' : 'ring-1 ring-white/60',
