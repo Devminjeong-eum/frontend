@@ -13,7 +13,7 @@ export default function LogoutModal({ isOpen, handleModalClick }: Props) {
   const handleLogout = () => {
     logout();
     handleModalClick();
-    router.push('/profile/Non-login');
+    router.push('/profile');
     router.refresh();
   };
 
