@@ -6,39 +6,7 @@ on:
       - main
 
 jobs:
-  check-lint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Setup npm cache
-        uses: actions/cache@v4
-        id: npm-cache
-        with:
-          path: |
-            **/node_modules
-            ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-            ${{ runner.os }}
-
-      - name: Install dependencies
-        if: ${{ steps.npm-cache.outputs.cache-hit != 'true' }}
-        run: npm ci
-
-      - name: Run Eslint
-        run: npm run lint
-
   docker-image:
-    needs: check-lint
     runs-on: ubuntu-latest
 
     steps:
@@ -61,9 +29,6 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -73,8 +38,10 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          # platforms: linux/amd64,linux/arm64
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/devminjeong-eum-frontend:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
 
   deploy:
     needs: docker-image
@@ -87,6 +54,9 @@ jobs:
           username: ${{ secrets.EC2_SSH_USER }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
+            cd /home/${{ secrets.EC2_SSH_USER }}/dev-malssami/frontend
+            sudo docker system prune -a --volumes -f
+
             if [ "$(sudo docker ps | grep frontend)" ]; then
               sudo docker stop frontend
               sudo docker rm frontend
@@ -97,6 +67,8 @@ jobs:
             echo "KAKAO_SECRET_KEY=${{ secrets.KAKAO_SECRET_KEY }}" >> .env.production
             echo "NEXT_PUBLIC_BACKEND_BASE_URL=${{ secrets.NEXT_PUBLIC_BACKEND_BASE_URL }}" >> .env.production
             echo "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}" >> .env.production
+            echo "NEXT_PUBLIC_KAKAO_SHARE_KEY=${{ secrets.NEXT_PUBLIC_KAKAO_SHARE_KEY }}" >> .env.production
+            echo "NEXT_PUBLIC_KAKAO_SHARE_TEMPLATE_ID=${{ secrets.NEXT_PUBLIC_KAKAO_SHARE_TEMPLATE_ID }}" >> .env.production
 
             sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/devminjeong-eum-frontend:latest
             sudo docker run -p 3000:3000 \

@@ -60,7 +60,7 @@ export async function middleware(request: NextRequest) {
     try {
       await getUserInfoServer();
       console.log('로그인된 유저입니다. 홈으로 이동합니다');
-      return NextResponse.redirect(`${baseUrl}/home?view=all&page=1`);
+      return NextResponse.redirect(`${baseUrl}/home?view=trend&page=1`);
     } catch (e) {
       console.log('정상적이지 않은 토큰이거나, 서버 에러입니다.', e);
       // pass through

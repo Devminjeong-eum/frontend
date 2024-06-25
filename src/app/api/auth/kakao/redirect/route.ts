@@ -18,7 +18,7 @@ export async function GET(request: Request) {
 
     if (data) {
       const redirectToHome = NextResponse.redirect(
-        `${baseUrl}/home?view=all&page=1`,
+        `${baseUrl}/home?trend=all&page=1`,
       );
       const cookie = headers.get('Set-Cookie');
 
