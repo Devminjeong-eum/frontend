@@ -18,12 +18,6 @@ export const RankChange = ({
   const isSame = !isNew && rankChange === 0;
   const isChanged = !isNew && rankChange !== 0;
 
-  console.log({
-    isNew,
-    isSame,
-    isChanged,
-  });
-
   return (
     <div
       className={clsx(
