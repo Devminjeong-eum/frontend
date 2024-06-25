@@ -62,12 +62,10 @@ export default function SearchBar() {
     const isKeywordTyped = typedKeyword.length > 0;
 
     setSearchInput(typedKeyword);
-    setSelectedIdx(0);
-    setWordSearchResult(null);
 
     if (isKeywordTyped) {
       setIsDropdownOpen(isKeywordTyped);
-      debounce(fetchAutoCompleteWord, 330)();
+      debounce(fetchAutoCompleteWord, 250)();
       return;
     }
   };

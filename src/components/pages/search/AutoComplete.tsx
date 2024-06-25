@@ -16,25 +16,20 @@ export default function AutoComplete({
   searchInput,
   handleSearch,
 }: Props) {
-  const isSearchResultEmpty =
-    searchInput && Array.isArray(searchWordResult) && !searchWordResult.length;
-
-  const getSearchFeedbackMessage = () => {
-    if (isSearchResultEmpty) return '검색 결과가 없습니다.';
-    if (!searchWordResult) return '검색 중입니다...';
-  };
-
-  const searchFeedback = getSearchFeedbackMessage();
-
   return (
-    <ul className="relative w-full pb-[10px] overflow-y-auto bg-[#ffffff] rounded-b-[16px]">
+    <ul
+      className={clsx(
+        'relative w-full overflow-y-auto bg-[#ffffff] rounded-b-[16px]',
+        searchWordResult && 'pb-[10px]',
+      )}
+    >
       <div
         className={clsx(
-          'pt-[12px] mx-5 text-[14px] text-[#858596] border-t border-[#E3E6F6]',
-          (isSearchResultEmpty || !searchWordResult) && 'pb-[6px]',
+          'mx-5 text-[14px] text-[#858596]',
+          searchWordResult && 'pt-[10px] border-t border-[#E3E6F6]',
         )}
       >
-        {searchFeedback}
+        {/* FIXME: 문구 변경 */}
       </div>
       {searchWordResult?.slice(0, 6).map((word, idx) => (
         <li
