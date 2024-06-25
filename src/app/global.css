@@ -53,7 +53,7 @@
 }
 
 .login-height {
-  min-height: var(--login-height, 100vh);
+  height: var(--login-height, 100dvh);
 }
 
 .login-padding-top {
