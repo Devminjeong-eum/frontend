@@ -31,12 +31,12 @@ export default function SearchBar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleSearchBarOutsideClick = () => {
-    if (searchInput.length) {
-      setIsDropdownOpen(false);
-      return;
+    setIsDropdownOpen(false);
+    
+    if (!searchInput) {
+      setIsInputFocus(false);
+      setWordSearchResult(null);
     }
-    setIsInputFocus(false);
-    setWordSearchResult(null);
   };
 
   const { targetRef: searchBarRef } = useOnClickOutside<HTMLDivElement>({
