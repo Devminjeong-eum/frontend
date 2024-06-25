@@ -115,7 +115,7 @@ export default function QuizPlay() {
             >
               <BlackBackSpaceSVG />
             </button>
-            <div className=" m-auto font-medium pr-6">TEST 중이에요.</div>
+            <div className=" m-auto font-medium pr-6">개발 용어 발음 퀴즈</div>
           </header>
           <div className={`w-full bg-[#ECEFF5] flex`}>
             <div
