@@ -27,6 +27,7 @@ export default function SearchBar() {
   const [isInputFocus, setIsInputFocus] = useState(!!searchInput);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isEng, setIsEng] = useState(false);
+  const [isFirstSearchInput, setIsFirstSearchInput] = useState(false);
   const [searchWordResult, setSearchWordResult] = useState<
     AutoCompleteWordData[] | null
   >(null);
@@ -67,10 +68,15 @@ export default function SearchBar() {
 
     if (isKeywordTyped) {
       setIsDropdownOpen(isKeywordTyped);
-      debounce(fetchAutoCompleteWord, 250)();
-      return;
+      if (typedKeyword.length === 1 && !isFirstSearchInput) {
+        fetchAutoCompleteWord();
+        setIsFirstSearchInput(true);
+      } else {
+        debounce(fetchAutoCompleteWord, 250)();
+      }
     } else {
       setSearchWordResult(null);
+      setIsFirstSearchInput(false);
     }
   };
 
