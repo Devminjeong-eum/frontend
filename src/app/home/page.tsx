@@ -8,12 +8,11 @@ import {
 } from '@tanstack/react-query';
 import { Suspense } from 'react';
 import { cookies } from 'next/headers';
-import { getAllPostsServer } from '@/fetcher/server.ts';
-import HomeSkeleton from '@/components/pages/home/HomeSkeleton';
+import {
   getAllPostsServer,
   getCurrentWeekTrendList,
 } from '@/fetcher/server.ts';
-
+import HomeSkeleton from '@/components/pages/home/HomeSkeleton';
 
 export default async function HomePage({
   searchParams: { page },
