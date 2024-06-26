@@ -1,8 +1,6 @@
-import Spinner from '@/components/common/Spinner';
 import Header from '@/components/layout/Header';
 import HomeClientPage from '@/components/pages/home';
 import QUERY_KEYS from '@/constants/queryKey';
-
 import {
   HydrationBoundary,
   QueryClient,
@@ -10,10 +8,12 @@ import {
 } from '@tanstack/react-query';
 import { Suspense } from 'react';
 import { cookies } from 'next/headers';
-import {
+import { getAllPostsServer } from '@/fetcher/server.ts';
+import HomeSkeleton from '@/components/pages/home/HomeSkeleton';
   getAllPostsServer,
   getCurrentWeekTrendList,
 } from '@/fetcher/server.ts';
+
 
 export default async function HomePage({
   searchParams: { page },
@@ -38,7 +38,7 @@ export default async function HomePage({
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <Header isToken={isToken} />
-      <Suspense fallback={<Spinner />}>
+      <Suspense fallback={<HomeSkeleton />}>
         <HomeClientPage />
       </Suspense>
     </HydrationBoundary>

@@ -137,12 +137,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html lang="ko" className={`${gugi.variable} ${pretendard.variable}`}>
       <GoogleAnalytics gaId="G-JVH2GTHE6P" />
       <body className="font-pretendard antialiased">
         <HeightWrapper>
-          <div className="w-full max-w-[430px] border-1 border-x border-gray-200 shadow-xl ">
+          <div className="w-full max-w-[430px] shadow-xl ">
             <QueryProvider>
               {children}
               <ReactQueryDevtools initialIsOpen={false} />
