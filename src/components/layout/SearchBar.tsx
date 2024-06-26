@@ -69,6 +69,8 @@ export default function SearchBar() {
       setIsDropdownOpen(isKeywordTyped);
       debounce(fetchAutoCompleteWord, 250)();
       return;
+    } else {
+      setSearchWordResult(null);
     }
   };
 
