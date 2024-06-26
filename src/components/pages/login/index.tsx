@@ -11,7 +11,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-between mt-[30vh] h-[70vh] px-5">
+    <div className="flex flex-col items-center justify-between px-5 pt-44 pb-[2.375rem] h-full">
       <div className="flex flex-col items-center">
         <div className="w-[102px] h-[102px]">
           <LogoSvg />
