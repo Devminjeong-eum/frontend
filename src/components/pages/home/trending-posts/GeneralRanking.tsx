@@ -8,7 +8,7 @@ type Props = {
 
 export default function GeneralRanking({ generalRankingList }: Props) {
   return (
-    <div className="w-full mt-[22px] border-[#F2F4F9] border-[1px] rounded-2xl px-4 py-[22px]">
+    <div className="w-full mt-[22px] border-[#F2F4F9] border-[1px] rounded-2xl py-[22px]">
       {generalRankingList.map((trendWord, index) => (
         <div
           key={index}
