@@ -6,7 +6,7 @@ import QuizButton from '@/components/pages/home/QuizButton';
 import { useState } from 'react';
 import useScroll from '@/hooks/useScroll';
 import { useEffect } from 'react';
-import { QUIZ_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
+import { PROFILE_PATH, QUIZ_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import MypageIconSvg from '@/components/svg-component/MypageIconSvg.tsx';
@@ -39,7 +39,7 @@ export default function Header() {
         <Link href={QUIZ_PATH}>
           <QuizButton />
         </Link>
-        <Link href={`/profile`}>
+        <Link href={PROFILE_PATH}>
           <div className="text-[#A8B8FF]">
             <MypageIconSvg />
           </div>
