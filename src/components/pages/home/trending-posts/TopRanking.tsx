@@ -1,17 +1,18 @@
 'use client';
 
 import CrownLinearSvg from '@/components/svg-component/CrownLinearSvg';
-import FillArrowSvg from '@/components/svg-component/FillArrowSvg';
+import type { TrendWord } from '@/fetcher/types';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
+import { RankChange } from './RankChange';
 
 const TopRankingItem = ({
+  trendWord,
   index,
-  item,
   isMount,
 }: {
+  trendWord: TrendWord;
   index: number;
-  item: number;
   isMount: boolean;
 }) => {
   const gradientStyles = [
@@ -19,6 +20,8 @@ const TopRankingItem = ({
     'bg-rank-gradient-two duration-1000 w-[316px] xs:w-[366px]',
     'bg-rank-gradient-three h-[67px] duration-[1300ms] w-[292px] xs:w-[342px]',
   ];
+
+  const { rank, rankChange, name, pronunciation, diacritic } = trendWord;
 
   return (
     <div
@@ -32,7 +35,7 @@ const TopRankingItem = ({
     >
       {/* 크라운, 순위 컨테이너 */}
       <div className="relative">
-        <CrownLinearSvg rank={String(index + 1)} />
+        <CrownLinearSvg rank={String(rank)} />
         <p
           className={clsx(
             'absolute text-[10px] top-3 font-bold left-[10.5px]',
@@ -57,7 +60,7 @@ const TopRankingItem = ({
             index === 2 && 'text-[#334EAF]',
           )}
         >
-          {item}
+          {name}
         </p>
 
         {/* 발음 및 발음 기호 */}
@@ -68,7 +71,7 @@ const TopRankingItem = ({
               index === 2 && 'text-[#5C6892]',
             )}
           >
-            {item}
+            {pronunciation}
           </p>
           <p
             className={clsx(
@@ -76,24 +79,24 @@ const TopRankingItem = ({
               index !== 2 ? 'text-white/50' : 'text-[#5C6892]/50',
             )}
           >
-            {item}
+            {diacritic}
           </p>
         </span>
       </div>
-      <div
-        className={clsx(
-          'mr-[22px] bg-white/20 rounded-xl w-[34px] h-[17px] px-[3px] flex items-center justify-center',
-          index !== 2 ? 'text-white' : 'text-[#495685]',
-        )}
-      >
-        <FillArrowSvg />
-        <p className="text-[11px] font-semibold">{item}</p>
-      </div>
+      <RankChange
+        className="bg-white/20 text-main-blue"
+        innerClassName={clsx(index !== 2 ? 'text-white' : 'text-[#495685]')}
+        rankChange={rankChange}
+      />
     </div>
   );
 };
 
-export default function TopRanking() {
+type Props = {
+  topRankingList: TrendWord[];
+};
+
+export default function TopRanking({ topRankingList }: Props) {
   const [isMount, setIsMount] = useState(false);
 
   useEffect(() => {
@@ -101,16 +104,14 @@ export default function TopRanking() {
     return () => clearTimeout(timer);
   }, []);
 
-  const dummyItems = [1, 2, 3];
-
   return (
     <div className="mt-[28px] w-full">
       <div className="-mx-[20px] min-h-[219px] overflow-x-hidden">
-        {dummyItems.map((item, index) => (
+        {topRankingList.map((trendWord, index) => (
           <TopRankingItem
-            key={index}
+            key={trendWord.id}
             index={index}
-            item={item}
+            trendWord={trendWord}
             isMount={isMount}
           />
         ))}

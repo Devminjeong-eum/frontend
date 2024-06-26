@@ -9,7 +9,7 @@ export default function useSyncURLWithState() {
     Number(searchParams.get('page')) || 1,
   );
   const [isTrending, setIsTrending] = useState<TrendingType>(
-    (searchParams.get('view') as TrendingType) || 'all',
+    (searchParams.get('view') as TrendingType) || 'trend',
   );
 
   useEffect(() => {
