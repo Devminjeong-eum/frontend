@@ -11,6 +11,7 @@ import AutoComplete from '../pages/search/AutoComplete';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useRef } from 'react';
+import EngNotice from '../pages/search/EngOnlyAlert';
 
 export default function SearchBar() {
   const isScrolled = useScroll();
@@ -23,12 +24,12 @@ export default function SearchBar() {
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const [searchInput, setSearchInput] = useState(initialSearchInput);
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
+  const [isInputFocus, setIsInputFocus] = useState(!!searchInput);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isEng, setIsEng] = useState(false);
   const [searchWordResult, setSearchWordResult] = useState<
     AutoCompleteWordData[] | null
   >(null);
-
-  const [isInputFocus, setIsInputFocus] = useState(!!searchInput);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleSearchBarOutsideClick = () => {
     setIsDropdownOpen(false);
@@ -61,6 +62,7 @@ export default function SearchBar() {
     const typedKeyword = event.target.value.trim();
     const isKeywordTyped = typedKeyword.length > 0;
 
+    setIsEng(!/^[a-zA-Z0-9/]*$/.test(typedKeyword));
     setSearchInput(typedKeyword);
 
     if (isKeywordTyped) {
@@ -165,6 +167,7 @@ export default function SearchBar() {
           />
         )}
       </div>
+      {isEng && <EngNotice />}
     </div>
   );
 }

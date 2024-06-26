@@ -19,18 +19,18 @@ export default function AutoComplete({
   return (
     <ul
       className={clsx(
-        'relative w-full overflow-y-auto bg-[#ffffff] rounded-b-[16px]',
-        searchWordResult && 'pb-[10px]',
+        'relative w-full bg-[#ffffff] rounded-b-[16px]',
+        searchWordResult ? 'pb-[10px]' : 'pb-[0px]',
+        searchWordResult && !searchWordResult.length && 'pb-0',
       )}
     >
       <div
         className={clsx(
-          'mx-5 text-[14px] text-[#858596]',
-          searchWordResult && 'pt-[10px] border-t border-[#E3E6F6]',
+          'mx-5',
+          searchWordResult ? 'border-t border-[#E3E6F6]' : 'border-none',
+          searchWordResult && !searchWordResult.length && 'border-none',
         )}
-      >
-        {/* FIXME: 문구 변경 */}
-      </div>
+      ></div>
       {searchWordResult?.slice(0, 6).map((word, idx) => (
         <li
           key={word.id}
