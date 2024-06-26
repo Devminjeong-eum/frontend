@@ -11,7 +11,7 @@ import { responseInterceptor } from '@/fetcher/interceptors.ts';
 export const serverFetch = httpClient({
   baseUrl: process.env.NEXT_PUBLIC_BACKEND_BASE_URL,
   headers: { 'Content-Type': 'application/json' },
-  cache: 'no-cache',
+  cache: 'no-store',
   credentials: 'include',
   interceptors: {
     request: async (url, init) => {

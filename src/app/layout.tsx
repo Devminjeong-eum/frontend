@@ -1,5 +1,6 @@
 import './global.css';
 import localFont from 'next/font/local';
+import HeightWrapper from '@/components/layout/HeightWrapper';
 import QueryProvider from '@/providers/QueryProvider.tsx';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
@@ -136,18 +137,19 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html lang="ko" className={`${gugi.variable} ${pretendard.variable}`}>
       <GoogleAnalytics gaId="G-JVH2GTHE6P" />
       <body className="font-pretendard antialiased">
-        <div className="flex justify-center min-h-screen bg-[#FBFCFE] scrollbar-hide">
-          <div className="w-full max-w-[430px] border-1 border-x border-gray-200 shadow-xl ">
+        <HeightWrapper>
+          <div className="w-full max-w-[430px] shadow-xl ">
             <QueryProvider>
               {children}
               <ReactQueryDevtools initialIsOpen={false} />
             </QueryProvider>
           </div>
-        </div>
+        </HeightWrapper>
         <Script src="https://developers.kakao.com/sdk/js/kakao.js" />
       </body>
     </html>

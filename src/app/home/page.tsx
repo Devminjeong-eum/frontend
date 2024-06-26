@@ -1,8 +1,6 @@
-import Spinner from '@/components/common/Spinner';
 import Header from '@/components/layout/Header';
 import HomeClientPage from '@/components/pages/home';
 import QUERY_KEYS from '@/constants/queryKey';
-
 import {
   HydrationBoundary,
   QueryClient,
@@ -13,6 +11,7 @@ import {
   getAllPostsServer,
   getCurrentWeekTrendList,
 } from '@/fetcher/server.ts';
+import HomeSkeleton from '@/components/pages/home/HomeSkeleton';
 
 export default async function HomePage({
   searchParams: { page },
@@ -35,7 +34,7 @@ export default async function HomePage({
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <Header />
-      <Suspense fallback={<Spinner />}>
+      <Suspense fallback={<HomeSkeleton />}>
         <HomeClientPage />
       </Suspense>
     </HydrationBoundary>
