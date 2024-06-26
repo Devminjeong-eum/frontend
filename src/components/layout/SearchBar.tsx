@@ -23,7 +23,7 @@ export default function SearchBar() {
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const [searchInput, setSearchInput] = useState(initialSearchInput);
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
-  const [searchWordResult, setWordSearchResult] = useState<
+  const [searchWordResult, setSearchWordResult] = useState<
     AutoCompleteWordData[] | null
   >(null);
 
@@ -35,7 +35,7 @@ export default function SearchBar() {
 
     if (!searchInput) {
       setIsInputFocus(false);
-      setWordSearchResult(null);
+      setSearchWordResult(null);
     }
   };
 
@@ -51,10 +51,10 @@ export default function SearchBar() {
         currentSearchInput.toLowerCase(),
       );
       const searchResult = data?.data ?? [];
-      setWordSearchResult(searchResult);
+      setSearchWordResult(searchResult);
       return;
     }
-    setWordSearchResult(null);
+    setSearchWordResult(null);
   };
 
   const handleInputChange = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -76,6 +76,7 @@ export default function SearchBar() {
 
   const handleSearchBarClick = () => {
     if (searchInput) setIsDropdownOpen(true);
+    if (searchInput && !searchWordResult) fetchAutoCompleteWord();
   };
 
   const handleSearchButtonClick = () => {
