@@ -34,7 +34,7 @@ export default function AutoComplete({
       >
         {isSearchWordEmpty
           ? '검색 결과가 없어요.'
-          : '검색은 3글자 이상 가능해요.'}
+          : '검색어는 세 글자 이상 입력해 주세요.'}
       </div>
       {searchWordResult?.slice(0, 6).map((word, idx) => (
         <li
