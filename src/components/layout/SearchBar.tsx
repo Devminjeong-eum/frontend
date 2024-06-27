@@ -23,7 +23,7 @@ export default function SearchBar() {
 
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const [searchInput, setSearchInput] = useState(initialSearchInput);
-  const [selectedIdx, setSelectedIdx] = useState<number>(0);
+  const [selectedIdx, setSelectedIdx] = useState<number>(-1);
   const [isInputFocus, setIsInputFocus] = useState(!!searchInput);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isEng, setIsEng] = useState(false);
@@ -107,22 +107,16 @@ export default function SearchBar() {
 
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
       e.preventDefault();
-      const updatedSelectedIndex = selectedIdx + (e.key === 'ArrowUp' ? -1 : 1);
       const maxAutoCompletions = Math.min(searchWordResult.length - 1, 5);
+      const increment = e.key === 'ArrowDown' ? 1 : -1;
+      const updatedSelectedIndex =
+        (selectedIdx + increment + maxAutoCompletions + 1) %
+        (maxAutoCompletions + 1);
 
-      if (
-        updatedSelectedIndex >= 0 &&
-        updatedSelectedIndex <= maxAutoCompletions
-      ) {
-        const selectedWord = searchWordResult[updatedSelectedIndex];
-        setSelectedIdx(updatedSelectedIndex);
-        setSearchInput(selectedWord.name);
-        return;
-      }
-
-      setSearchInput('');
-      setSelectedIdx(0);
-      setIsDropdownOpen(false);
+      const selectedWord = searchWordResult[updatedSelectedIndex];
+      setSelectedIdx(updatedSelectedIndex);
+      setSearchInput(selectedWord.name);
+      return;
     }
 
     if (e.key === 'Enter') {

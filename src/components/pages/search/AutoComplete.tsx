@@ -16,21 +16,25 @@ export default function AutoComplete({
   searchInput,
   handleSearch,
 }: Props) {
+  const isSearchWordEmpty = searchWordResult && !searchWordResult.length;
+
+  if (!searchWordResult) return null;
+
   return (
     <ul
       className={clsx(
-        'relative w-full bg-[#ffffff] rounded-b-[16px]',
-        searchWordResult ? 'pb-[10px]' : 'pb-[0px]',
-        searchWordResult && !searchWordResult.length && 'pb-0',
+        'relative w-full bg-[#ffffff] rounded-b-[16px] pb-[10px]',
       )}
     >
       <div
         className={clsx(
-          'mx-5',
-          searchWordResult ? 'border-t border-[#E3E6F6]' : 'border-none',
-          searchWordResult && !searchWordResult.length && 'border-none',
+          'pt-[12px] pb-[6px] mx-5 text-[14px] text-[#858596] border-t border-[#E3E6F6]',
         )}
-      ></div>
+      >
+        {isSearchWordEmpty
+          ? '검색 결과가 없어요.'
+          : '검색은 3글자 이상 가능해요.'}
+      </div>
       {searchWordResult?.slice(0, 6).map((word, idx) => (
         <li
           key={word.id}
