@@ -12,6 +12,7 @@ import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useRef } from 'react';
 import EngNotice from '../pages/search/EngOnlyAlert';
+import { getWordDetailPath } from '@/routes/path';
 
 export default function SearchBar() {
   const isScrolled = useScroll();
@@ -100,6 +101,10 @@ export default function SearchBar() {
     setIsDropdownOpen(false);
   };
 
+  const handleNavigateToDetailPage = (name: string) => {
+    router.push(getWordDetailPath(name));
+  };
+
   const handleSearchInputKeyDown = (
     e: React.KeyboardEvent<HTMLInputElement>,
   ) => {
@@ -121,11 +126,17 @@ export default function SearchBar() {
     }
 
     if (e.key === 'Enter') {
-      if (searchInput.length > 2) {
-        handleWordSearch(searchInput);
-        setSelectedIdx(0);
-        setIsDropdownOpen(false);
+      if (selectedIdx >= 0 && searchWordResult && searchWordResult.length > 0) {
+        const selectedWord = searchWordResult[selectedIdx].name;
+        handleNavigateToDetailPage(selectedWord);
       }
+
+      if (selectedIdx < 0 && searchInput.length > 2) {
+        handleWordSearch(searchInput);
+      }
+
+      setSelectedIdx(0);
+      setIsDropdownOpen(false);
     }
   };
 
@@ -168,7 +179,7 @@ export default function SearchBar() {
             setSelectedIndex={setSelectedIdx}
             selectedIndex={selectedIdx}
             searchInput={searchInput}
-            handleSearch={handleWordSearch}
+            handleNavigateToDetailPage={handleNavigateToDetailPage}
           />
         )}
       </div>

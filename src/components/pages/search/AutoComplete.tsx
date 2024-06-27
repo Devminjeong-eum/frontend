@@ -6,7 +6,7 @@ type Props = {
   setSelectedIndex: (data: number) => void;
   selectedIndex: number;
   searchInput: string;
-  handleSearch: (data: string) => void;
+  handleNavigateToDetailPage: (data: string) => void;
 };
 
 export default function AutoComplete({
@@ -14,7 +14,7 @@ export default function AutoComplete({
   setSelectedIndex,
   selectedIndex,
   searchInput,
-  handleSearch,
+  handleNavigateToDetailPage,
 }: Props) {
   const isSearchWordEmpty = searchWordResult && !searchWordResult.length;
 
@@ -29,6 +29,7 @@ export default function AutoComplete({
       <div
         className={clsx(
           'pt-[12px] pb-[6px] mx-5 text-[14px] text-[#858596] border-t border-[#E3E6F6]',
+          isSearchWordEmpty && 'pb-[0px]',
         )}
       >
         {isSearchWordEmpty
@@ -45,7 +46,7 @@ export default function AutoComplete({
           onPointerEnter={() => setSelectedIndex(idx)}
           onPointerLeave={() => setSelectedIndex(-1)}
           onClick={() => {
-            handleSearch(word.name);
+            handleNavigateToDetailPage(word.name);
           }}
         >
           {word.name.split('').map((alphabet, idx) => (
