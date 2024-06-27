@@ -103,26 +103,29 @@ export default function SearchBar() {
   const handleSearchInputKeyDown = (
     e: React.KeyboardEvent<HTMLInputElement>,
   ) => {
-    if (!searchWordResult?.length || !isDropdownOpen) return;
-
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-      e.preventDefault();
+    if (searchWordResult && searchWordResult.length > 0) {
       const maxAutoCompletions = Math.min(searchWordResult.length - 1, 5);
-      const increment = e.key === 'ArrowDown' ? 1 : -1;
-      const updatedSelectedIndex =
-        (selectedIdx + increment + maxAutoCompletions + 1) %
-        (maxAutoCompletions + 1);
 
-      const selectedWord = searchWordResult[updatedSelectedIndex];
-      setSelectedIdx(updatedSelectedIndex);
-      setSearchInput(selectedWord.name);
-      return;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const idxChange = e.key === 'ArrowDown' ? 1 : -1;
+        const updatedSelectedIndex =
+          (selectedIdx + idxChange + maxAutoCompletions + 1) %
+          (maxAutoCompletions + 1);
+
+        const selectedWord = searchWordResult[updatedSelectedIndex];
+        setSelectedIdx(updatedSelectedIndex);
+        setSearchInput(selectedWord.name);
+        return;
+      }
     }
 
     if (e.key === 'Enter') {
-      setSelectedIdx(0);
-      setIsDropdownOpen(false);
-      handleWordSearch(searchInput);
+      if (searchInput.length > 2) {
+        handleWordSearch(searchInput);
+        setSelectedIdx(0);
+        setIsDropdownOpen(false);
+      }
     }
   };
 
