@@ -11,7 +11,7 @@ import AutoComplete from '../pages/search/AutoComplete';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useRef } from 'react';
-import EngNotice from '../pages/search/EngOnlyAlert';
+import EngOnlyAlert from '../pages/search/EngOnlyAlert';
 import { getWordDetailPath } from '@/routes/path';
 
 export default function SearchBar() {
@@ -183,7 +183,7 @@ export default function SearchBar() {
           />
         )}
       </div>
-      {isEng && <EngNotice />}
+      {isEng && <EngOnlyAlert />}
     </div>
   );
 }
