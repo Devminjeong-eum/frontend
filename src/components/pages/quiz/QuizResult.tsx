@@ -33,7 +33,6 @@ export default function QuizResult({
   const isGuest = quizResultId === 'guest';
 
   const handleNeedLogin = () => {
-    // NOTE: 2초간 로그인 toast UI
     setIsOpenModal(true);
     setTimeout(() => {
       setIsOpenModal(false);
@@ -69,7 +68,7 @@ export default function QuizResult({
       />
       <button
         onClick={() => router.replace(QUIZ_PATH)}
-        className="bg-[#4057DB] rounded-[16px] mt-[24px] mb-[48px] h-[50px] font-semibold text-white w-full text-[16px]"
+        className="bg-[#4057DB] rounded-[16px] mt-[24px] mb-[48px] h-[54px] font-semibold text-white w-full text-[16px]"
       >
         {data?.error && !isGuest ? (
           <span>나도 도전하러 가기</span>
