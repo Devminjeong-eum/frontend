@@ -49,12 +49,13 @@ export default function AutoComplete({
             handleNavigateToDetailPage(word.name);
           }}
         >
-          {word.name.split('').map((alphabet, idx) => (
+          {word.name.split('').map((alphabet, charIdx) => (
             <span
-              key={idx}
+              key={`${alphabet}-${charIdx}`}
               className={clsx(
-                idx < searchInput.length &&
-                  alphabet.toLowerCase() === searchInput[idx].toLowerCase() &&
+                charIdx < searchInput.length &&
+                  alphabet.toLowerCase() ===
+                    searchInput[charIdx].toLowerCase() &&
                   'text-[#0C3FC1] font-semibold',
               )}
             >
