@@ -146,7 +146,7 @@ export default function SearchBar() {
         handleWordSearch(searchInput);
       }
 
-      setSelectedIdx(0);
+      setSelectedIdx(-1);
       setIsDropdownOpen(false);
     }
   };
