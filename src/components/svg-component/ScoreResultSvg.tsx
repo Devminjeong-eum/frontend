@@ -2,10 +2,11 @@ export default function ScoreResultSvg() {
   return (
     <svg
       width="390"
-      height="390"
-      viewBox="0 0 321 301"
+      height="350"
+      viewBox="0 0 321 304"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="none"
     >
       <g filter="url(#filter0_d_450_4868)">
         <path
