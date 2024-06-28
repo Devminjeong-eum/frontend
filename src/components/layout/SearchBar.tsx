@@ -64,11 +64,12 @@ export default function SearchBar() {
     const typedKeyword = event.target.value.trim();
     const isKeywordTyped = typedKeyword.length > 0;
 
-    setIsEng(!/^[a-zA-Z0-9/]*$/.test(typedKeyword));
+    const isInputEng = /^[a-zA-Z0-9/]*$/.test(typedKeyword);
+    setIsEng(!isInputEng);
     setSearchInput(typedKeyword);
 
-    if (isKeywordTyped) {
-      setIsDropdownOpen(isKeywordTyped);
+    if (isKeywordTyped && isInputEng) {
+      setIsDropdownOpen(true);
       if (typedKeyword.length === 1 && !isFirstSearchInput) {
         fetchAutoCompleteWord();
         setIsFirstSearchInput(true);
@@ -76,6 +77,7 @@ export default function SearchBar() {
         debounce(fetchAutoCompleteWord, 250)();
       }
     } else {
+      setIsDropdownOpen(false);
       setSearchWordResult(null);
       setIsFirstSearchInput(false);
     }
@@ -86,8 +88,17 @@ export default function SearchBar() {
   };
 
   const handleSearchBarClick = () => {
-    if (searchInput) setIsDropdownOpen(true);
-    if (searchInput && !searchWordResult) fetchAutoCompleteWord();
+    if (searchInput) {
+      if (/^[a-zA-Z0-9/]*$/.test(searchInput)) {
+        setIsDropdownOpen(true);
+
+        if (!searchWordResult) {
+          fetchAutoCompleteWord();
+        }
+      } else {
+        setIsEng(true);
+      }
+    }
   };
 
   const handleSearchButtonClick = () => {
