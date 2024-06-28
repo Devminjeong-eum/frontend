@@ -11,6 +11,8 @@ import AutoComplete from '../pages/search/AutoComplete';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useRef } from 'react';
+import EngOnlyAlert from '../pages/search/EngOnlyAlert';
+import { getWordDetailPath } from '@/routes/path';
 
 export default function SearchBar() {
   const isScrolled = useScroll();
@@ -22,20 +24,21 @@ export default function SearchBar() {
 
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const [searchInput, setSearchInput] = useState(initialSearchInput);
-  const [selectedIdx, setSelectedIdx] = useState<number>(0);
-  const [searchWordResult, setWordSearchResult] = useState<
+  const [selectedIdx, setSelectedIdx] = useState<number>(-1);
+  const [isInputFocus, setIsInputFocus] = useState(!!searchInput);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isEng, setIsEng] = useState(false);
+  const [isFirstSearchInput, setIsFirstSearchInput] = useState(false);
+  const [searchWordResult, setSearchWordResult] = useState<
     AutoCompleteWordData[] | null
   >(null);
 
-  const [isInputFocus, setIsInputFocus] = useState(!!searchInput);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
   const handleSearchBarOutsideClick = () => {
     setIsDropdownOpen(false);
-    
+
     if (!searchInput) {
       setIsInputFocus(false);
-      setWordSearchResult(null);
+      setSearchWordResult(null);
     }
   };
 
@@ -51,24 +54,32 @@ export default function SearchBar() {
         currentSearchInput.toLowerCase(),
       );
       const searchResult = data?.data ?? [];
-      setWordSearchResult(searchResult);
+      setSearchWordResult(searchResult);
       return;
     }
-    setWordSearchResult(null);
+    setSearchWordResult(null);
   };
 
   const handleInputChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const typedKeyword = event.target.value.trim();
     const isKeywordTyped = typedKeyword.length > 0;
 
+    const isInputEng = /^[a-zA-Z0-9/]*$/.test(typedKeyword);
+    setIsEng(!isInputEng);
     setSearchInput(typedKeyword);
-    setSelectedIdx(0);
-    setWordSearchResult(null);
 
-    if (isKeywordTyped) {
-      setIsDropdownOpen(isKeywordTyped);
-      debounce(fetchAutoCompleteWord, 330)();
-      return;
+    if (isKeywordTyped && isInputEng) {
+      setIsDropdownOpen(true);
+      if (typedKeyword.length === 1 && !isFirstSearchInput) {
+        fetchAutoCompleteWord();
+        setIsFirstSearchInput(true);
+      } else {
+        debounce(fetchAutoCompleteWord, 250)();
+      }
+    } else {
+      setIsDropdownOpen(false);
+      setSearchWordResult(null);
+      setIsFirstSearchInput(false);
     }
   };
 
@@ -77,7 +88,17 @@ export default function SearchBar() {
   };
 
   const handleSearchBarClick = () => {
-    if (searchInput) setIsDropdownOpen(true);
+    if (searchInput) {
+      if (/^[a-zA-Z0-9/]*$/.test(searchInput)) {
+        setIsDropdownOpen(true);
+
+        if (!searchWordResult) {
+          fetchAutoCompleteWord();
+        }
+      } else {
+        setIsEng(true);
+      }
+    }
   };
 
   const handleSearchButtonClick = () => {
@@ -91,35 +112,42 @@ export default function SearchBar() {
     setIsDropdownOpen(false);
   };
 
+  const handleNavigateToDetailPage = (name: string) => {
+    router.push(getWordDetailPath(name));
+  };
+
   const handleSearchInputKeyDown = (
     e: React.KeyboardEvent<HTMLInputElement>,
   ) => {
-    if (!searchWordResult?.length || !isDropdownOpen) return;
-
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-      e.preventDefault();
-      const updatedSelectedIndex = selectedIdx + (e.key === 'ArrowUp' ? -1 : 1);
+    if (searchWordResult && searchWordResult.length > 0) {
       const maxAutoCompletions = Math.min(searchWordResult.length - 1, 5);
 
-      if (
-        updatedSelectedIndex >= 0 &&
-        updatedSelectedIndex <= maxAutoCompletions
-      ) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const idxChange = e.key === 'ArrowDown' ? 1 : -1;
+        const updatedSelectedIndex =
+          (selectedIdx + idxChange + maxAutoCompletions + 1) %
+          (maxAutoCompletions + 1);
+
         const selectedWord = searchWordResult[updatedSelectedIndex];
         setSelectedIdx(updatedSelectedIndex);
         setSearchInput(selectedWord.name);
         return;
       }
-
-      setSearchInput('');
-      setSelectedIdx(0);
-      setIsDropdownOpen(false);
     }
 
     if (e.key === 'Enter') {
-      setSelectedIdx(0);
+      if (selectedIdx >= 0 && searchWordResult && searchWordResult.length > 0) {
+        const selectedWord = searchWordResult[selectedIdx].name;
+        handleNavigateToDetailPage(selectedWord);
+      }
+
+      if (selectedIdx < 0 && searchInput.length > 2) {
+        handleWordSearch(searchInput);
+      }
+
+      setSelectedIdx(-1);
       setIsDropdownOpen(false);
-      handleWordSearch(searchInput);
     }
   };
 
@@ -130,7 +158,7 @@ export default function SearchBar() {
       <div
         className={clsx(
           'relative rounded-[16px] z-[60]',
-          isDropdownOpen && 'bg-white ring-[2px] ring-[#4357DB]',
+          isDropdownOpen && 'bg-white ring-[1px] ring-[#4357DB] drop-shadow',
         )}
         ref={searchBarRef}
       >
@@ -144,7 +172,7 @@ export default function SearchBar() {
           onFocus={handleInputFocusChange}
           onClick={handleSearchBarClick}
           className={clsx(
-            'w-full h-[48px] rounded-[16px] pl-5 py-4 outline-none',
+            'w-full h-[48px] rounded-[16px] pl-5 pr-12 py-4 outline-none',
             !isInputFocus &&
               'bg-white/20 ring-white/40 text-white placeholder:text-[#C8CAEB]',
             isDropdownOpen ? 'ring-0' : 'ring-1 ring-white/60',
@@ -162,10 +190,11 @@ export default function SearchBar() {
             setSelectedIndex={setSelectedIdx}
             selectedIndex={selectedIdx}
             searchInput={searchInput}
-            handleSearch={handleWordSearch}
+            handleNavigateToDetailPage={handleNavigateToDetailPage}
           />
         )}
       </div>
+      {isEng && <EngOnlyAlert />}
     </div>
   );
 }

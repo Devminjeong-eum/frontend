@@ -6,7 +6,7 @@ type Props = {
   setSelectedIndex: (data: number) => void;
   selectedIndex: number;
   searchInput: string;
-  handleSearch: (data: string) => void;
+  handleNavigateToDetailPage: (data: string) => void;
 };
 
 export default function AutoComplete({
@@ -14,27 +14,27 @@ export default function AutoComplete({
   setSelectedIndex,
   selectedIndex,
   searchInput,
-  handleSearch,
+  handleNavigateToDetailPage,
 }: Props) {
-  const isSearchResultEmpty =
-    searchInput && Array.isArray(searchWordResult) && !searchWordResult.length;
+  const isSearchWordEmpty = searchWordResult && !searchWordResult.length;
 
-  const getSearchFeedbackMessage = () => {
-    if (isSearchResultEmpty) return '검색 결과가 없습니다.';
-    if (!searchWordResult) return '검색 중입니다...';
-  };
-
-  const searchFeedback = getSearchFeedbackMessage();
+  if (!searchWordResult) return null;
 
   return (
-    <ul className="relative w-full pb-[10px] overflow-y-auto bg-[#ffffff] rounded-b-[16px]">
+    <ul
+      className={clsx(
+        'relative w-full bg-[#ffffff] rounded-b-[16px] pb-[10px]',
+      )}
+    >
       <div
         className={clsx(
-          'pt-[12px] mx-5 text-[14px] text-[#858596] border-t border-[#E3E6F6]',
-          isSearchResultEmpty && 'pb-[6px]',
+          'pt-[12px] pb-[6px] mx-5 text-[14px] text-[#858596] border-t border-[#E3E6F6]',
+          isSearchWordEmpty && 'pb-[0px]',
         )}
       >
-        {searchFeedback}
+        {isSearchWordEmpty
+          ? '검색 결과가 없어요.'
+          : '검색어는 세 글자 이상 입력해 주세요.'}
       </div>
       {searchWordResult?.slice(0, 6).map((word, idx) => (
         <li
@@ -46,15 +46,16 @@ export default function AutoComplete({
           onPointerEnter={() => setSelectedIndex(idx)}
           onPointerLeave={() => setSelectedIndex(-1)}
           onClick={() => {
-            handleSearch(word.name);
+            handleNavigateToDetailPage(word.name);
           }}
         >
-          {word.name.split('').map((alphabet, idx) => (
+          {word.name.split('').map((alphabet, charIdx) => (
             <span
-              key={idx}
+              key={`${alphabet}-${charIdx}`}
               className={clsx(
-                idx < searchInput.length &&
-                  alphabet.toLowerCase() === searchInput[idx].toLowerCase() &&
+                charIdx < searchInput.length &&
+                  alphabet.toLowerCase() ===
+                    searchInput[charIdx].toLowerCase() &&
                   'text-[#0C3FC1] font-semibold',
               )}
             >
