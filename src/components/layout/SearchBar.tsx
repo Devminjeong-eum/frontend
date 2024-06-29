@@ -3,14 +3,13 @@
 import MagnifierSvg from '@/components/svg-component/MagnifierSvg';
 import useScroll from '@/hooks/useScroll';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState, type ChangeEvent } from 'react';
+import { useState, type ChangeEvent, useRef } from 'react';
 import clsx from 'clsx';
 import { getAutoCompleteWord } from '@/fetcher';
 import type { AutoCompleteWordData } from '@/fetcher/types';
 import AutoComplete from '../pages/search/AutoComplete';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import { useDebounce } from '@/hooks/useDebounce';
-import { useRef } from 'react';
 import EngOnlyAlert from '../pages/search/EngOnlyAlert';
 import { getWordDetailPath } from '@/routes/path';
 
@@ -107,7 +106,7 @@ export default function SearchBar() {
   };
 
   const handleWordSearch = (searchKeyword: string) => {
-    router.push(`/word/search?keyword=${searchKeyword}`);
+    router.push(`/word/search?keyword=${encodeURIComponent(searchKeyword)}`);
     setSearchInput(searchKeyword);
     setIsDropdownOpen(false);
   };
