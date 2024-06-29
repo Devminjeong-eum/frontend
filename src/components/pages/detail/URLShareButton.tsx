@@ -7,7 +7,7 @@ export default function URLShareButton() {
 
   return (
     <div>
-      <button onClick={() => onCopyClipboard()}>
+      <button onClick={onCopyClipboard}>
         <ExternalSvg />
       </button>
       {isCopied && <CopiedNotice />}
