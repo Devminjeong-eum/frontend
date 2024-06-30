@@ -33,7 +33,7 @@ export const getUserInfoServer = async () => {
 export const getCurrentWeekTrendList = async () => {
   try {
     return await serverFetch<FetchRes<DefaultRes<TrendWordData>>>(
-      `ranking/week?year=2024&week=25`,
+      `ranking/current`,
     );
   } catch (e) {
     console.log('error', e);
