@@ -6,23 +6,17 @@ import QuizButton from '@/components/pages/home/QuizButton';
 import { useState } from 'react';
 import useScroll from '@/hooks/useScroll';
 import { useEffect } from 'react';
-import { QUIZ_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
+import { PROFILE_PATH, QUIZ_PATH, WORD_LIST_PATH } from '@/routes/path.ts';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { getUserInfo } from '@/fetcher';
 import MypageIconSvg from '@/components/svg-component/MypageIconSvg.tsx';
 
 const DynamicToolTip = dynamic(() => import('@/components/common/ToolTip'), {
   ssr: false,
 });
 
-type Props = {
-  isToken?: boolean;
-};
-
-export default function Header({ isToken }: Props) {
+export default function Header() {
   const isScrolled = useScroll();
-  const [id, setId] = useState('Non-login');
   const [isOpen, setIsOpen] = useState(
     () =>
       typeof window !== 'undefined' &&
@@ -33,21 +27,6 @@ export default function Header({ isToken }: Props) {
     if (sessionStorage.getItem('isOpen')) setIsOpen(false);
     if (!isOpen) sessionStorage.setItem('isOpen', 'false');
   }, [isOpen]);
-
-  useEffect(() => {
-    if (isToken) {
-      fetchUserId();
-    }
-  }, [isToken]);
-
-  const fetchUserId = async () => {
-    const {
-      data: {
-        data: { userId },
-      },
-    } = await getUserInfo();
-    setId(userId);
-  };
 
   return (
     <>
@@ -60,7 +39,7 @@ export default function Header({ isToken }: Props) {
         <Link href={QUIZ_PATH}>
           <QuizButton />
         </Link>
-        <Link href={`/profile/${id}`}>
+        <Link href={PROFILE_PATH}>
           <div className="text-[#A8B8FF]">
             <MypageIconSvg />
           </div>
