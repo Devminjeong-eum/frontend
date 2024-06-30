@@ -79,7 +79,7 @@ export const getAllPostsClient = async (currentPage: number) => {
     >(`/word/list`, {
       params: {
         page: currentPage,
-        limit: 10,
+        limit: 16,
       },
     });
 
