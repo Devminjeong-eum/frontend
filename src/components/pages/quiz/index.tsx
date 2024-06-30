@@ -7,10 +7,13 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSetAtom } from 'jotai/react';
 import { guestQuizAtom } from '@/store';
+import QUERY_KEYS from '@/constants/queryKey.ts';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function Quiz() {
   const [isShow, setIsShow] = useState(false);
   const router = useRouter();
+  const queryClient = useQueryClient();
   const setQuizAtom = useSetAtom(guestQuizAtom);
 
   const handleClickPlayButton = () => {
@@ -20,6 +23,8 @@ export default function Quiz() {
         incorrectWordData: [],
       };
     });
+
+    queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.QUIZ_KEY] });
     setIsShow(true);
   };
 
