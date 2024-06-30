@@ -1,17 +1,21 @@
 import { TrendWord } from '@/fetcher/types';
 import clsx from 'clsx';
 import { RankChange } from './RankChange';
+import { getWordDetailPath } from '@/routes/path';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   generalRankingList: TrendWord[];
 };
 
 export default function GeneralRanking({ generalRankingList }: Props) {
+  const router = useRouter();
+
   return (
     <div className="w-full mt-[22px] border-[#F2F4F9] border-[1px] rounded-2xl py-[22px]">
       {generalRankingList.map((trendWord, index) => (
         <div
-          key={index}
+          key={trendWord.id}
           className={clsx(
             'h-[54px] border-[#ECEEF5] border-b-[1px] w-full flex items-center',
             index === 0 && '-mt-[6px]',
@@ -24,13 +28,18 @@ export default function GeneralRanking({ generalRankingList }: Props) {
           </p>
 
           {/* 영단어 컨테이너 */}
-          <span className="flex ml-[29px] gap-[6px] flex-1 items-end ">
-            <p className="text-[16px] text-main-black">{trendWord.name}</p>
-            <span className="text-[#F2F4F9]">|</span>
+          <button
+            className="flex ml-[29px] gap-[6px] flex-1 items-end group"
+            onClick={() => router.push(getWordDetailPath(trendWord.name))}
+          >
+            <p className="text-[16px] text-main-black group-hover:underline">
+              {trendWord.name}
+            </p>
+            <span className="text-[#F2F4F9] hover:no-underline">|</span>
             <p className="text-[#6F6F80] text-[14px]">
               {trendWord.pronunciation}
             </p>
-          </span>
+          </button>
 
           {/* 순위 등락 컨테이너  */}
           <RankChange
