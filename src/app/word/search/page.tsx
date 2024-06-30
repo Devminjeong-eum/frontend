@@ -7,10 +7,11 @@ import { cookies } from 'next/headers';
 export async function generateMetadata(
   {
     searchParams,
-  }: { searchParams: { [key: string]: string | string[] | undefined } },
+  }: { searchParams: { keyword: string } },
   parent: ResolvingMetadata,
 ) {
   const parentMetadata = (await parent) || [];
+  const decodedKeyword = decodeURI(searchParams.keyword);
 
   const openGraph = parentMetadata?.openGraph ?? {};
   const twitter = parentMetadata?.twitter ?? {};
@@ -18,23 +19,23 @@ export async function generateMetadata(
   return {
     ...parentMetadata,
     title: {
-      absolute: `'${searchParams.keyword}'의 검색결과 | 데브말싸미`,
+      absolute: `'${decodedKeyword}'의 검색결과 | 데브말싸미`,
     },
-    description: `'${searchParams.keyword}'에 대한 검색 결과를 확인해보세요.`,
+    description: `'${decodedKeyword}'에 대한 검색 결과를 확인해보세요.`,
     robots: {
       index: false,
       follow: false,
     },
     openGraph: {
       ...openGraph,
-      title: { absolute: `'${searchParams.keyword}'의 검색결과 | 데브말싸미` },
-      description: `'${searchParams.keyword}'에 대한 검색 결과를 확인해보세요.`,
+      title: { absolute: `'${decodedKeyword}'의 검색결과 | 데브말싸미` },
+      description: `'${decodedKeyword}'에 대한 검색 결과를 확인해보세요.`,
       url: 'https://dev-malssami.site/search',
     },
     twitter: {
       ...twitter,
-      title: { absolute: `'${searchParams.keyword}'의 검색결과 | 데브말싸미` },
-      description: `'${searchParams.keyword}'에 대한 검색 결과를 확인해보세요.`,
+      title: { absolute: `'${decodedKeyword}'의 검색결과 | 데브말싸미` },
+      description: `'${decodedKeyword}'에 대한 검색 결과를 확인해보세요.`,
     },
   };
 }
