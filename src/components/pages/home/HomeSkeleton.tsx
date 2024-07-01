@@ -1,9 +1,9 @@
 import HeartSvg from '@/components/svg-component/HeartSvg';
 
-export default function HomeSkeleton() {
+export default function HomeSkeleton({ limit }: { limit: number }) {
   return (
     <div className="flex flex-col gap-2 mt-4 px-5">
-      {Array.from({ length: 10 }, (_, idx) => (
+      {Array.from({ length: limit }, (_, idx) => (
         <div
           key={idx}
           className="animate-pulse min-h-[98px] p-[18px] pb-[14px] w-full ring-1 bg-white ring-[#F2F4F9] rounded-2xl"

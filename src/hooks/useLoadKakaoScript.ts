@@ -24,7 +24,6 @@ export default function useLoadKakaoScript() {
   const title = `${userName}님의 개발 용어 점수는?`;
   const desc = `${userName}님의 개발 용어 점수는 몇 점일까요? 클릭해서 확인해보고, 함께 도전해보세요!`;
 
-  // FIXME: 나중에 엔드포인트가 quiz/quizID와 같이 바뀔텐데 아직 정해진게 없는것 같아서 추후 수정 예정
   const urlEndPoint = window.location.href.split('/').slice(3).join('/');
   const path = urlEndPoint;
 

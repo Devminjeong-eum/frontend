@@ -1,3 +1,4 @@
+import { MAIN_PAGE_ITEM_LIMIT } from '@/constants/home.constants';
 import { serverFetch } from '@/fetcher/serverFetch.ts';
 import {
   DefaultRes,
@@ -15,7 +16,7 @@ export const getAllPostsServer = async (currentPage: number) => {
     >(`/word/list`, {
       params: {
         page: currentPage,
-        limit: 10,
+        limit: MAIN_PAGE_ITEM_LIMIT,
       },
     });
 

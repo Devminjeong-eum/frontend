@@ -8,6 +8,17 @@ export type MainItemType = {
   likeCount?: number;
 };
 
+export type MainResponse<TData> = {
+  status: number;
+  data: {
+    data: TData[];
+    page: number;
+    limit: number;
+    isLast: boolean;
+    totalCount: number;
+  };
+};
+
 export type PaginationRes<TData> = {
   data: TData;
   page: number;
