@@ -7,7 +7,7 @@ import PowerSvg from '@/components/svg-component/PowerSvg';
 import ProfileHeader from './ProfileHeader';
 import ProfileInfo from './ProfileInfo';
 import Link from 'next/link';
-import { QUIZ_PATH, WORDBOOK_PATH } from '@/routes/path';
+import { PROFILE_DELETE_PATH, QUIZ_PATH, WORDBOOK_PATH } from '@/routes/path';
 import NonLoginProfileInfo from './NonLoginProfileInfo';
 import { useState } from 'react';
 import LogoutModal from './Modal/LogoutModal';
@@ -117,7 +117,7 @@ export default function Profile({
           </button>
           <span className="border border-l mx-[35px] h-[16px]"></span>
 
-          <Link href={'/profile/DeleteAccount'}>
+          <Link href={PROFILE_DELETE_PATH}>
             <button className="text-[#A8AEBC] mr-[20px]">탈퇴하기</button>
           </Link>
         </div>
