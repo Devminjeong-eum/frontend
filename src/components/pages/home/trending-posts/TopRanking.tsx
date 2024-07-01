@@ -5,6 +5,8 @@ import type { TrendWord } from '@/fetcher/types';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { RankChange } from './RankChange';
+import { useRouter } from 'next/navigation';
+import { getWordDetailPath } from '@/routes/path';
 
 const TopRankingItem = ({
   trendWord,
@@ -15,19 +17,23 @@ const TopRankingItem = ({
   index: number;
   isMount: boolean;
 }) => {
+  const router = useRouter();
+  const { rank, rankChange, name, pronunciation, diacritic } = trendWord;
   const gradientStyles = [
     'bg-rank-gradient-one duration-700 w-[340px] xs:w-[390px]',
     'bg-rank-gradient-two duration-1000 w-[316px] xs:w-[366px]',
     'bg-rank-gradient-three h-[67px] duration-[1300ms] w-[292px] xs:w-[342px]',
   ];
 
-  const { rank, rankChange, name, pronunciation, diacritic } = trendWord;
+  const moveToDetailPage = () => {
+    router.push(getWordDetailPath(name));
+  };
 
   return (
     <div
-      key={`item_${index}`}
+      onClick={moveToDetailPage}
       className={clsx(
-        'h-[72px] rounded-r-[100px] flex items-center pl-[34px] transition-transform',
+        'h-[72px] rounded-r-[100px] flex items-center pl-[34px] transition-transform cursor-pointer',
         index !== 0 && 'mt-[4px]',
         gradientStyles[index],
         isMount ? 'translate-x-0' : '-translate-x-full',
