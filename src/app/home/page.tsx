@@ -7,7 +7,6 @@ import {
   dehydrate,
 } from '@tanstack/react-query';
 import { Suspense } from 'react';
-import { cookies } from 'next/headers';
 import {
   getAllPostsServer,
   getCurrentWeekTrendList,
@@ -32,11 +31,9 @@ export default async function HomePage({
     }),
   ]);
 
-  const isToken = cookies().has('accessToken');
-
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Header isToken={isToken} />
+      <Header />
       <Suspense fallback={<HomeSkeleton />}>
         <HomeClientPage />
       </Suspense>

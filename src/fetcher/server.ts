@@ -1,5 +1,10 @@
 import { serverFetch } from '@/fetcher/serverFetch.ts';
-import { DefaultRes, FetchRes, TrendWordData, UserData } from '@/fetcher/types.ts';
+import {
+  DefaultRes,
+  FetchRes,
+  TrendWordData,
+  UserData,
+} from '@/fetcher/types.ts';
 import { MainItemType, PaginationRes } from '@/types/main.ts';
 import { notFound } from 'next/navigation';
 
@@ -28,10 +33,10 @@ export const getUserInfoServer = async () => {
 export const getCurrentWeekTrendList = async () => {
   try {
     return await serverFetch<FetchRes<DefaultRes<TrendWordData>>>(
-      `/ranking/current`,
+      `ranking/current`,
     );
   } catch (e) {
     console.log('error', e);
     notFound();
-  } 
+  }
 };

@@ -16,6 +16,8 @@ const getUserInfo = async () => {
 export default async function ProfilePage() {
   const isToken = cookies().has('accessToken');
 
+  if (!isToken) return <Profile />;
+
   const {
     data: {
       data: { userId, likeCount, name, profileImage },

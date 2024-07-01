@@ -9,7 +9,7 @@ import ProfileInfo from './ProfileInfo';
 import Link from 'next/link';
 import { QUIZ_PATH, WORDBOOK_PATH } from '@/routes/path';
 import NonLoginProfileInfo from './NonLoginProfileInfo';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import LogoutModal from './Modal/LogoutModal';
 import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
@@ -55,12 +55,6 @@ export default function Profile({
   const handleContactModalClick = () => {
     setIsContactOpen(!isContactOpen);
   };
-
-  useEffect(() => {
-    if (userId) {
-      router.push(`/profile/${userId}`);
-    }
-  }, [userId, router]);
 
   return (
     <>

@@ -3,14 +3,15 @@ import useCopyClipboard from '@/hooks/useCopyClipboard.ts';
 import { CopiedNotice } from '@/components/common/CopiedNotice.tsx';
 
 export default function URLShareButton() {
-  const { isCopied, onCopyClipboard } = useCopyClipboard();
+  const { isCopied, onCopyClipboard, onCloseCopyClipboard } =
+    useCopyClipboard();
 
   return (
     <div>
-      <button onClick={() => onCopyClipboard()}>
+      <button onClick={onCopyClipboard}>
         <ExternalSvg />
       </button>
-      {isCopied && <CopiedNotice />}
+      {<CopiedNotice isOpen={isCopied} handleClose={onCloseCopyClipboard} />}
     </div>
   );
 }
