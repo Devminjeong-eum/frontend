@@ -28,7 +28,7 @@ export default function Quiz() {
   }
 
   return (
-    <div className="px-5 h-screen flex flex-col justify-center items-center bg-main-gradient-full relative">
+    <div className="px-5 h-full flex flex-col justify-center items-center bg-main-gradient-full relative">
       <header className="absolute top-6 left-5 cursor-pointer">
         <button onClick={router.back}>
           <BackButtonSvg />
@@ -41,15 +41,15 @@ export default function Quiz() {
         <div className="mb-[18px] font-gugi text-white text-[40px] text-center w-[220px]">
           개발 용어
           <br />
-          발음 테스트
+          발음 퀴즈
         </div>
-        <p className="text-white font-medium">나의 개발 용어 발음 지식은?</p>
+        <p className="text-[#ECEFF5] font-medium">
+          나의 개발 용어 발음 지식은?
+        </p>
       </div>
       <button
         onClick={handleClickPlayButton}
-        className="w-[calc(100%-40px)] flex justify-center items-center absolute bottom-[50px] h-12 rounded-[16px] bg-white/20 ring-1 ring-white/40 focus:ring-white/60 outline-none text-white
-        shadow-quiz
-        hover:cursor-pointer"
+        className="w-[calc(100%-40px)] flex justify-center items-center absolute bottom-[50px] h-12 rounded-[16px] bg-white/20 ring-1 ring-white/40 focus:ring-white/60 outline-none text-white"
       >
         테스트 시작하기
       </button>

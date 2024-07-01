@@ -42,7 +42,7 @@ export default function QuizResultDetail({
           <div className="inline-block space-x-1">
             <span className="inline-block h-2 w-2 rounded-full bg-quiz-blue"></span>
             <span className="text-[11px] pr-2">맞았어요</span>
-            <span className="inline-block h-2 w-2 rounded-full bg-quiz-red"></span>
+            <span className="inline-block h-2 w-2 rounded-full bg-[#A20101]"></span>
             <span className="text-[11px]">틀렸어요</span>
           </div>
         </div>

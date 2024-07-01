@@ -56,7 +56,7 @@ export default function QuizResultDetailWord({ data, correctWords }: Props) {
 
   return (
     <div
-      className="flex flex-col mt-[14px] mx-5 border-b-2 cursor-pointer"
+      className="flex flex-col mt-[14px] mx-5 border-b-[1px] cursor-pointer last:border-b-0"
       onClick={handleClickWordDetail}
     >
       <div className="flex items-center justify-between pb-3">
@@ -64,7 +64,7 @@ export default function QuizResultDetailWord({ data, correctWords }: Props) {
           <div
             className={clsx(
               'text-[17px] font-semibold',
-              correctWords.includes(data) ? 'text-quiz-blue' : 'text-quiz-red',
+              correctWords.includes(data) ? 'text-quiz-blue' : 'text-[#A20101]',
             )}
           >
             {data.name}
