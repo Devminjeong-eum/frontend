@@ -26,7 +26,7 @@ export default function DefaultProfileIconSvg() {
         d="M52.4741 48.1904C51.4265 51.3333 47.9087 53.4285 43.5693 53.4285C39.2299 53.4285 35.7122 51.3333 34.6646 48.1904"
         stroke="white"
         stroke-width="2.09524"
-        stroke-linecap="round"
+        strokeLinecap="round"
       />
       <defs>
         <linearGradient
