@@ -4,7 +4,11 @@ import BlackBackSpaceSVG from '@/components/svg-component/BlackBackSpaceSVG';
 import QuizScore from './QuizScore';
 import QuizResultDetail from './QuizResultDetail';
 import type { QuizResultWordData } from '@/fetcher/types';
-import { getQuizResultSharePath, QUIZ_PATH } from '@/routes/path';
+import {
+  getQuizResultSharePath,
+  QUIZ_PATH,
+  WORD_LIST_PATH,
+} from '@/routes/path';
 import { useRouter } from 'next/navigation';
 import ShareButtonSvg from '@/components/svg-component/ShareButtonSvg.tsx';
 import useAuthQuery from '@/hooks/query/useAuthQuery.ts';
@@ -68,13 +72,19 @@ export default function QuizResult({
       />
       <button
         onClick={() => router.replace(QUIZ_PATH)}
-        className="bg-[#4057DB] rounded-[16px] mt-[24px] mb-[48px] h-[54px] font-semibold text-white w-full text-[16px]"
+        className="bg-[#4057DB] rounded-[16px] mt-[24px] mb-[8px] h-[54px] font-semibold text-white w-full text-[16px]"
       >
         {data?.error && !isGuest ? (
           <span>나도 도전하러 가기</span>
         ) : (
           <span>다시 도전하러 가기</span>
         )}
+      </button>
+      <button
+        className="rounded-[16px] mb-[31px] h-[54px] font-semibold text-[#4057DB] w-full text-[16px] border-[1px] border-[#EAEDFF]"
+        onClick={() => router.push(WORD_LIST_PATH)}
+      >
+        홈으로 가기
       </button>
       <LoginAlertModal isOpen={isOpenModal} />
     </div>
