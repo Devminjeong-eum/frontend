@@ -23,7 +23,7 @@ export default function ProfileHeader({ text, userId }: Props) {
       <button onClick={handleback}>
         <BlackBackSpaceSVG />
       </button>
-      <div className="mx-auto">{text}</div>
+      <div className="mx-auto text-[#181818]">{text}</div>
     </div>
   );
 }

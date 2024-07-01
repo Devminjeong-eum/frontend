@@ -53,12 +53,12 @@ export default function DeleteAccount({ userId }: Props) {
   if (isSubmit) return <SubmitFeedback />;
 
   return (
-    <>
+    <div className="bg-[#ffffff]">
       <ProfileHeader text={'회원탈퇴'} userId={userId} />
 
       <div className="flex flex-col items-center mt-[15px]">
         <BigEmailSvg />
-        <div className="font-semibold text-[22px] mt-[5px] mb-[26px] text-center">
+        <div className="font-semibold text-[22px] mt-[5px] mb-[26px] text-center text-[#181818]">
           왜 떠나시는지 <br /> 이야기를 듣고 싶어요.
         </div>
 
@@ -75,9 +75,9 @@ export default function DeleteAccount({ userId }: Props) {
                     selectedOption === option ||
                     (selectedOption === '' && idx === 0)
                   }
-                  className="w-[19px] h-[19px] accent-[#4057DB] bg-red-500"
+                  className="w-[19px] h-[19px] accent-[#4057DB]"
                 />
-                <span className="ml-[10px] text-[17px] font-medium">
+                <span className="ml-[10px] text-[17px] font-medium text-[#181818]">
                   {option}
                 </span>
               </div>
@@ -85,7 +85,7 @@ export default function DeleteAccount({ userId }: Props) {
           ))}
 
           <div
-            className="text-[17px] font-medium mt-[32px] mb-[10px]"
+            className="text-[17px] font-medium mt-[32px] mb-[10px] text-[#181818]"
             ref={ref}
           >
             (선택) 이외에 하고 싶은 말이 있다면 남겨주세요.
@@ -97,7 +97,7 @@ export default function DeleteAccount({ userId }: Props) {
             placeholder="여러분의 하고 싶은 말이나 불편했던 부분이 있다면 편하게 이야기 해주세요."
           />
 
-          <div className="font-gugi mb-[10px] text-[18px]">
+          <div className="font-gugi mb-[10px] text-[18px] text-[#181818]">
             <span className="text-[#4057DB] text-[18px]">잠깐! </span>
             데브말싸미는요.
           </div>
@@ -142,6 +142,6 @@ export default function DeleteAccount({ userId }: Props) {
           selectedOption={selectedOption}
         />
       )}
-    </>
+    </div>
   );
 }
