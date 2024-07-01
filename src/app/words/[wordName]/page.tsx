@@ -14,13 +14,14 @@ export async function generateMetadata(
   parent: ResolvingMetadata,
 ) {
   const parentMetadata = (await parent) || [];
+  const decodedWordName = decodeURIComponent(params.wordName);
 
   const openGraph = parentMetadata?.openGraph ?? {};
   const twitter = parentMetadata?.twitter ?? {};
 
   const {
     data: { name, pronunciation, wrongPronunciation },
-  } = await getWordDetail('NAME', params.wordName.toLowerCase());
+  } = await getWordDetail('NAME', decodedWordName.toLowerCase());
 
   return {
     ...parentMetadata,
@@ -71,7 +72,7 @@ export default async function WordsPage({
 }: {
   params: { wordName: string };
 }) {
-  const { wordName } = params;
+  const decodedWordName = decodeURIComponent(params.wordName);
   const {
     data: {
       id,
@@ -84,7 +85,7 @@ export default async function WordsPage({
       isLike,
       likeCount,
     },
-  } = await getWordDetail('NAME', wordName.toLowerCase());
+  } = await getWordDetail('NAME', decodedWordName.toLowerCase());
 
   /*
   NOTE: 한글 발음 표기 - 영어 발음 표기  1 : 1로 라고 생각함.

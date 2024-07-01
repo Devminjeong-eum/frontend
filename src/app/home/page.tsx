@@ -1,5 +1,4 @@
 import Header from '@/components/layout/Header';
-import HomeClientPage from '@/components/pages/home';
 import QUERY_KEYS from '@/constants/queryKey';
 import {
   HydrationBoundary,
@@ -7,13 +6,13 @@ import {
   dehydrate,
 } from '@tanstack/react-query';
 import { Suspense } from 'react';
-import { cookies } from 'next/headers';
 import {
   getAllPostsServer,
   getCurrentWeekTrendList,
 } from '@/fetcher/server.ts';
 import HomeSkeleton from '@/components/pages/home/HomeSkeleton';
 import type { MainItemType, MainResponse } from '@/types/main';
+import HomeClientPage from '@/components/pages/home';
 
 export default async function HomePage({
   searchParams: { page },
@@ -36,11 +35,9 @@ export default async function HomePage({
   const postsData: MainResponse<MainItemType> | undefined =
     queryClient.getQueryData([QUERY_KEYS.HOME_KEY, Number(page)]);
 
-  const isToken = cookies().has('accessToken');
-
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Header isToken={isToken} />
+      <Header />
       <Suspense
         fallback={<HomeSkeleton limit={Number(postsData?.data?.limit)} />}
       >

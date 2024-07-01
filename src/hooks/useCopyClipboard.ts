@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 async function copyURL(url?: string) {
   const targetUrl = url ? url : window.document.location.href;
@@ -28,10 +28,14 @@ export default function useCopyClipboard(props?: Props) {
     };
   }, [isCopied, props?.ms]);
 
-  const onCopyClipboard = async () => {
+  const onCopyClipboard = useCallback(async () => {
     await copyURL(props?.url);
     setIsCopied(true);
-  };
+  }, [props?.url]);
 
-  return { isCopied, onCopyClipboard };
+  const onCloseCopyClipboard = useCallback(() => {
+    setIsCopied(false);
+  }, []);
+
+  return { isCopied, setIsCopied, onCopyClipboard, onCloseCopyClipboard };
 }

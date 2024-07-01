@@ -12,7 +12,7 @@ export default function ShareModal() {
   const { handleShare } = useLoadKakaoScript();
   const router = useRouter();
   const shareURL = window.location.href;
-  const { isCopied, onCopyClipboard } = useCopyClipboard({
+  const { isCopied, onCopyClipboard, onCloseCopyClipboard } = useCopyClipboard({
     url: shareURL,
   });
 
@@ -44,7 +44,7 @@ export default function ShareModal() {
           </div>
         </div>
       </div>
-      {isCopied && <CopiedNotice />}
+      <CopiedNotice isOpen={isCopied} handleClose={onCloseCopyClipboard} />
     </div>
   );
 }

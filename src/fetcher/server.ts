@@ -1,3 +1,4 @@
+import { MAIN_PAGE_ITEM_LIMIT } from '@/constants/home.constants';
 import { serverFetch } from '@/fetcher/serverFetch.ts';
 import {
   DefaultRes,
@@ -15,7 +16,7 @@ export const getAllPostsServer = async (currentPage: number) => {
     >(`/word/list`, {
       params: {
         page: currentPage,
-        limit: 16,
+        limit: MAIN_PAGE_ITEM_LIMIT,
       },
     });
 
@@ -33,7 +34,7 @@ export const getUserInfoServer = async () => {
 export const getCurrentWeekTrendList = async () => {
   try {
     return await serverFetch<FetchRes<DefaultRes<TrendWordData>>>(
-      `ranking/week?year=2024&week=25`,
+      `ranking/current`,
     );
   } catch (e) {
     console.log('error', e);
