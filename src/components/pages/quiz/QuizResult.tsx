@@ -14,6 +14,7 @@ import ShareButtonSvg from '@/components/svg-component/ShareButtonSvg.tsx';
 import useAuthQuery from '@/hooks/query/useAuthQuery.ts';
 import { useState } from 'react';
 import LoginAlertModal from '@/components/common/LoginAlertModal.tsx';
+import Link from 'next/link';
 
 type Props = {
   quizResultId: string;
@@ -80,12 +81,11 @@ export default function QuizResult({
           <span>다시 도전하러 가기</span>
         )}
       </button>
-      <button
-        className="rounded-[16px] mb-[31px] h-[54px] font-semibold text-[#4057DB] w-full text-[16px] border-[1px] border-[#EAEDFF]"
-        onClick={() => router.push(WORD_LIST_PATH)}
-      >
-        홈으로 가기
-      </button>
+      <Link href={WORD_LIST_PATH}>
+        <button className="rounded-[16px] mb-[31px] h-[54px] font-semibold text-[#4057DB] w-full text-[16px] border-[1px] border-[#EAEDFF]">
+          홈으로 가기
+        </button>
+      </Link>
       <LoginAlertModal isOpen={isOpenModal} />
     </div>
   );
