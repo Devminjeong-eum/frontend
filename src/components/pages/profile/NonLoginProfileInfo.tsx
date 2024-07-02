@@ -14,7 +14,7 @@ export default function NonLoginProfileInfo() {
       </div>
 
       <Link href={LOGIN_PATH}>
-        <div className="bg-[#4057DB] text-[12px] text-center text-white rounded-[61px] ring-1 px-[14px] ring-[#F2F4F9] py-[8px] w-[86px]">
+        <div className="bg-[#4057DB] text-[12px] text-center text-white rounded-[61px] ring-1 ring-[#F2F4F9] py-[6px] w-[86px]">
           로그인하기
         </div>
       </Link>

@@ -2,6 +2,7 @@ import { deleteAccount } from '@/fetcher';
 import { useRouter } from 'next/navigation';
 import { createPortal } from 'react-dom';
 import { postFeedback } from '@/fetcher';
+import { PROFILE_PATH } from '@/routes/path';
 
 interface Props {
   isOpen: boolean;
@@ -20,11 +21,11 @@ export default function DeleteAccountModal({
 }: Props) {
   const router = useRouter();
 
-  const handleDeleteAccount = () => {
-    postFeedback(selectedOption, text);
-    deleteAccount(userId);
+  const handleDeleteAccount = async () => {
+    await postFeedback(selectedOption, text);
+    await deleteAccount(userId);
     handleModalClick();
-    router.push('/profile');
+    router.push(PROFILE_PATH);
     router.refresh();
   };
 
@@ -33,10 +34,10 @@ export default function DeleteAccountModal({
   return createPortal(
     <div className="fixed inset-0 bg-black/70 flex justify-center items-center max-w-[430px] mx-auto">
       <div className="bg-white rounded-[16px] mx-[34px] w-full flex flex-col items-center justify-center">
-        <div className="text-[18px] font-semibold mt-[34px] mb-[10px]">
+        <div className="text-[18px] font-semibold mt-[34px] mb-[10px] text-[#181818]">
           탈퇴 전 확인
         </div>
-        <div className="text-[16px] font-medium text-[#5E5E5E] text-center mx-[26px] mb-[33px]">
+        <div className="text-[16px] text-[#5E5E5E] text-center mx-[26px] mb-[33px]">
           탈퇴 시 계정 및 이용 기록은 모두 삭제되며, <br />
           삭제된 데이터는 복구가 불가능합니다. <br />
           정말로 탈퇴를 진행하시겠습니까?

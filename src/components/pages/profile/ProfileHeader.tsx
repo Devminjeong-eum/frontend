@@ -19,11 +19,11 @@ export default function ProfileHeader({ text, userId }: Props) {
   };
 
   return (
-    <div className="h-[48px] flex items-center mx-[16px] font-medium">
+    <div className="h-[48px] flex items-center mx-[16px]">
       <button onClick={handleback}>
         <BlackBackSpaceSVG />
       </button>
-      <div className="mx-auto">{text}</div>
+      <div className="mx-auto text-[#181818] font-medium">{text}</div>
     </div>
   );
 }
