@@ -112,7 +112,7 @@ export default function DeleteAccount({ userId }: Props) {
 
           <div className="text-[#858596] mb-[23px] font-medium">
             여러분의 이야기를 듣고 수렴하여 지속적으로 업데이트를 하고 있어요!
-            여러분의 솔직한 의견은 서비스 개선에큰 도움이 될 거에요!
+            여러분의 솔직한 의견은 서비스 개선에 큰 도움이 될 거에요!
           </div>
 
           <div className="text-[#0C3FC1] text-[14px] mb-[36px] font-medium">
