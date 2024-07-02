@@ -139,7 +139,7 @@ export default function QuizPlay() {
                     handleAnswerOptionClick(data[currentQuiz].wordId, option)
                   }
                   className={clsx(
-                    'shadow-quiz-button w-[90%] font-medium h-[54px] rounded-[16px] mb-[8px] border-px border-[#F2F4F9]',
+                    'shadow-quiz-button w-[90%] font-medium h-[56px] rounded-[16px] mb-[8px] border-px border-[#F2F4F9] ring-1 ring-[#F2F4F9]',
                     selectOption === option &&
                       (option === data[currentQuiz].correct
                         ? 'bg-quiz-blue text-white'

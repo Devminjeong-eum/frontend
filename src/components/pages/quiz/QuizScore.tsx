@@ -7,7 +7,8 @@ type Props = {
 
 export default function QuizScore({ score, userName }: Props) {
   return (
-    <div className="w-full max-h-[374px] overflow-hidden relative flex justify-center">
+    <div className="w-full relative flex justify-center">
+      <ScoreResultSvg />
       <div className="absolute top-[30%] text-center">
         <p>
           <span className="font-semibold text-[#313140] text-[18px] mr-1">
@@ -24,7 +25,6 @@ export default function QuizScore({ score, userName }: Props) {
           {score}점
         </div>
       </div>
-      <ScoreResultSvg />
     </div>
   );
 }

@@ -6,5 +6,9 @@ export const useGetQuizData = () => {
   return useSuspenseQuery({
     queryKey: [QUERY_KEYS.QUIZ_KEY],
     queryFn: () => getQuizData(),
+    staleTime: Infinity,
+    gcTime: Infinity,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 };

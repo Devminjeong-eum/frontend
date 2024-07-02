@@ -21,7 +21,6 @@ export default function Search({ word }: Props) {
   } = useGetSearchWord(word.toLowerCase());
 
   return (
-    // FIXME: 트렌딩 단어 오픈 후에는 아래 px-5 제거하기
     <div className="flex flex-col gap-[7px] mt-[17px] px-5">
       {!totalCount && <NotFoundWord />}
       {data.map((item) => (
