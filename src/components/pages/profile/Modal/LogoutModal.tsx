@@ -10,10 +10,9 @@ interface Props {
 export default function LogoutModal({ isOpen, handleModalClick }: Props) {
   const router = useRouter();
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     handleModalClick();
-    router.push('/profile');
     router.refresh();
   };
 
@@ -22,10 +21,10 @@ export default function LogoutModal({ isOpen, handleModalClick }: Props) {
   return createPortal(
     <div className="fixed inset-0 bg-black/70 flex justify-center items-center max-w-[430px] mx-auto">
       <div className="bg-white rounded-[16px] mx-[34px] w-full flex flex-col items-center justify-center">
-        <div className="text-[18px] font-semibold mt-[34px] mb-[10px]">
+        <div className="text-[18px] font-semibold mt-[34px] mb-[10px] text-[#181818]">
           로그아웃
         </div>
-        <div className="text-[16px] font-medium text-[#5E5E5E] text-center mx-[26px] mb-[33px]">
+        <div className="text-[16px] text-[#5E5E5E] text-center mx-[26px] mb-[33px]">
           정말 로그아웃 하시겠습니까?
         </div>
 
