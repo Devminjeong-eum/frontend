@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function SubmitFeedback() {
   return (
-    <div className="flex flex-col items-center justify-center h-[100vh]">
+    <div className="flex flex-col items-center justify-center h-full">
       <div className="flex-grow flex flex-col items-center justify-center">
         <SubmitFeedbackSvg />
         <div className="text-[18px] text-[#313140] font-semibold mt-[27px]">

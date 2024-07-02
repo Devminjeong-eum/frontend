@@ -107,7 +107,7 @@ export default function QuizPlay() {
   return (
     <div className="flex justify-center min-h-screen text-main-black">
       <div className="flex flex-col items-center w-full max-w-[430px] border-1 border-x border-gray-200 shadow-xl">
-        <div className="w-full items-center bg-[#fbfcfe] relative">
+        <div className="w-full h-full items-center bg-[#fbfcfe] relative">
           <header className="flex items-center h-[68px]">
             <button
               onClick={() => setIsShow(!isShow)}
