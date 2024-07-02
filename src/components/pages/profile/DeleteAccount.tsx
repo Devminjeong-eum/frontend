@@ -6,6 +6,7 @@ import BigEmailSvg from '@/components/svg-component/BigEmailSvg';
 import DeleteAccountModal from './Modal/DeleteAccountModal';
 import SubmitFeedback from './SubmitFeedback';
 import { postFeedback } from '@/fetcher';
+import clsx from 'clsx';
 
 type Props = {
   userId: string;
@@ -65,7 +66,7 @@ export default function DeleteAccount({ userId }: Props) {
         <form onSubmit={handleSubmit} className="w-[90%]">
           {options.map((option, idx) => (
             <label key={idx}>
-              <div className="flex items-center h-[38px] mb-[4px] ">
+              <div className="flex items-center h-[38px] mb-[4px]">
                 <input
                   type="radio"
                   name="test"
@@ -75,7 +76,12 @@ export default function DeleteAccount({ userId }: Props) {
                     selectedOption === option ||
                     (selectedOption === '' && idx === 0)
                   }
-                  className="w-[19px] h-[19px] accent-[#4057DB]"
+                  className={clsx(
+                    'w-[19px] h-[19px] accent-[#4057DB]',
+                    selectedOption !== option &&
+                      !(selectedOption === '' && idx === 0) &&
+                      'appearance-none border border-[#e6e6e6] rounded-full',
+                  )}
                 />
                 <span className="ml-[10px] text-[17px] font-medium text-[#181818]">
                   {option}
@@ -93,9 +99,11 @@ export default function DeleteAccount({ userId }: Props) {
           <textarea
             value={text}
             onChange={handleTextChange}
-            className="resize-none focus:outline-none focus:border-2 focus:border-[#616FE8] border border-[#F1F4FA] w-full h-[90px] p-[10px] bg-[#F1F4FA] rounded-[10px] mb-[80px] focus:ring-blue-500"
+            className="resize-none focus:outline-none focus:border-2 focus:border-[#616FE8] border border-[#F1F4FA] w-full h-[90px] p-[10px] bg-[#FBFCFE] rounded-[10px] focus:ring-blue-500"
             placeholder="여러분의 하고 싶은 말이나 불편했던 부분이 있다면 편하게 이야기 해주세요."
           />
+
+          <div className="border-t border-[#E3E5EB] my-[40px]"></div>
 
           <div className="font-gugi mb-[10px] text-[18px] text-[#181818]">
             <span className="text-[#4057DB] text-[18px]">잠깐! </span>
@@ -109,14 +117,14 @@ export default function DeleteAccount({ userId }: Props) {
 
           <div className="text-[#0C3FC1] text-[14px] mb-[36px] font-medium">
             아래
-            <span className="bg-[#E7EBF8] py-[4px] px-[6px] mx-[4px] rounded-[4px] font-semibold">
+            <span className="bg-[#E7EBF8] py-[2px] px-[5px] mx-[4px] rounded-[4px] font-semibold text-[13px]">
               의견 보내기
             </span>
             버튼을 통하여 여러분이 위에 작성하신 의견을 우선 보내보는건
             어떨까요?
           </div>
 
-          <div className="w-full flex space-x-[8px] mb-[36px]">
+          <div className="w-full flex space-x-[8px] mb-[34px]">
             <button
               className="flex-1 bg-[#E7EBF8] text-[#383697] text-[16px] rounded-[16px] font-semibold h-[54px]"
               type="submit"
