@@ -14,16 +14,20 @@ const getScrollbarWidth = () => {
 
 export function CopiedNotice({ isOpen, handleClose }: Props) {
   const [scrollbarWidth, setScrollbarWidth] = useState(0);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
-      setScrollbarWidth(getScrollbarWidth());
+      const width = getScrollbarWidth();
+      setScrollbarWidth(width);
+      setIsReady(true);
     } else {
+      setIsReady(false);
       setScrollbarWidth(0);
     }
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  if (!isOpen || !isReady) return null;
 
   return (
     <div
