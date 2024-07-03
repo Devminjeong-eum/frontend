@@ -6,6 +6,7 @@ import DetailPronunciationCorrectSvg from '@/components/svg-component/DetailPron
 import DetailPronunciationWrongSvg from '@/components/svg-component/DetailPronunciationWrongSvg.tsx';
 import DetailPronunciationShowArrowSvg from '@/components/svg-component/DetailPronunciationShowArrowSvg.tsx';
 import DetailPronunciationCloseArrowSvg from '@/components/svg-component/DetailPronunciationCloseArrowSvg.tsx';
+import { DetailKoreanAlertIconSvg } from '@/components/svg-component/DetailKoreanAlertIconSvg.tsx';
 
 interface Props {
   pronunciation: string[];
@@ -54,6 +55,10 @@ const PronunciationDetail = ({
               </span>
             ))}
           </div>
+        </div>
+        <div className="pl-4 text-[#F4F5FF] text-xs flex gap-[5px]">
+          <DetailKoreanAlertIconSvg />
+          한글 표기가 실제 발음과 차이가 있을 수 있습니다.
         </div>
       </div>
       <div
