@@ -7,6 +7,8 @@ import { serverFetch } from '@/fetcher/serverFetch.ts';
 import { notFound } from 'next/navigation';
 import PronunciationDetail from '@/components/pages/detail/PronunciationDetail.tsx';
 import { ResolvingMetadata } from 'next';
+import { DetailKoreanAlertIconSvg } from '@/components/svg-component/DetailKoreanAlertIconSvg.tsx';
+import React from 'react';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function generateMetadata(
@@ -114,6 +116,10 @@ export default async function WordsPage({
               initialLikeCount={likeCount}
               wordId={id}
             />
+          </div>
+          <div className="text-[#F4F5FF] text-xs flex gap-[5px] pb-2.5">
+            <DetailKoreanAlertIconSvg />
+            한글 표기가 실제 발음과 차이가 있을 수 있습니다.
           </div>
           <PronunciationDetail
             pronunciation={pronunciation}
