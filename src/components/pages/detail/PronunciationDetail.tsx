@@ -23,9 +23,9 @@ const PronunciationDetail = ({
   const correctWordLen = Math.min(pronunciation.length, diacritic.length);
 
   return (
-    <div className="relative pb-4">
+    <div className="relative">
       <div
-        className={`flex flex-col gap-2 transition-all overflow-hidden ${clsx(isShowDetail ? 'max-h-[100vh]' : 'max-h-[0px]')}`}
+        className={`flex flex-col gap-2 transition-all overflow-hidden ${clsx(isShowDetail ? 'max-h-[100vh] pb-4' : 'max-h-[0px]')}`}
       >
         <div className="px-3.5 rounded-[14px] bg-[#D9E6FF] pt-3.5 pb-3">
           <span className="flex gap-1 items-center font-medium text-main-blue text-sm">
@@ -67,6 +67,7 @@ const PronunciationDetail = ({
           <DetailPronunciationShowArrowSvg />
         )}
       </div>
+      {/*{용어 발음 자세히 보기 버튼이 absolute이기 때문에 맞춰 58px 공간 확보}*/}
       <div className="h-[58px]" />
     </div>
   );
