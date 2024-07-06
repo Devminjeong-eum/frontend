@@ -22,7 +22,7 @@ const HomeClientPage = () => {
   );
 
   return (
-    <main className="py-5 rounded-[24px] bg-[#FBFCFE] min-h-screen -mt-[20px] z-50 flex flex-col gap-[8px] px-5">
+    <main className="py-5 rounded-t-[24px] bg-[#FBFCFE] min-h-screen -mt-[20px] z-50 flex flex-col gap-[16px] px-5">
       <HomeToggleZone handleToggle={handleToggle} isTrending={isTrending} />
       {isTrending === 'trend' ? (
         <TrendingPosts />
