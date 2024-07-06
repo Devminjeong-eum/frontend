@@ -2,7 +2,7 @@ import HeartSvg from '@/components/svg-component/HeartSvg';
 
 export default function HomeSkeleton({ limit }: { limit: number }) {
   return (
-    <div className="flex flex-col gap-2 mt-4 px-5">
+    <div className="flex flex-col gap-2 mt-4 px-5 bg-[#FBFCFE]">
       {Array.from({ length: limit }, (_, idx) => (
         <div
           key={idx}
