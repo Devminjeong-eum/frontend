@@ -12,9 +12,11 @@ import {
 import { useRouter } from 'next/navigation';
 import ShareButtonSvg from '@/components/svg-component/ShareButtonSvg.tsx';
 import useAuthQuery from '@/hooks/query/useAuthQuery.ts';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LoginAlertModal from '@/components/common/LoginAlertModal.tsx';
 import Link from 'next/link';
+import QuizShareTooltip from './QuizShareTooltip';
+import useScroll from '@/hooks/useScroll';
 
 type Props = {
   quizResultId: string;
@@ -36,6 +38,17 @@ export default function QuizResult({
   const [isOpenModal, setIsOpenModal] = useState(false);
   const isLoggedIn = !data?.error ?? false;
   const isGuest = quizResultId === 'guest';
+  const isScrolled = useScroll();
+  const [isOpen, setIsOpen] = useState(
+    () =>
+      typeof window !== 'undefined' &&
+      sessionStorage.getItem('isQuizShareOpen') !== 'false',
+  );
+
+  useEffect(() => {
+    if (sessionStorage.getItem('isQuizShareOpen')) setIsOpen(false);
+    if (!isOpen) sessionStorage.setItem('isQuizShareOpen', 'false');
+  }, [isOpen]);
 
   const handleNeedLogin = () => {
     setIsOpenModal(true);
@@ -87,6 +100,9 @@ export default function QuizResult({
         </button>
       </Link>
       <LoginAlertModal isOpen={isOpenModal} />
+      {!isScrolled && (
+        <QuizShareTooltip isOpen={isOpen} setIsOpen={setIsOpen} />
+      )}
     </div>
   );
 }
