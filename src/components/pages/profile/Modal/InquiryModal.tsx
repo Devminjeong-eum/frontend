@@ -30,9 +30,9 @@ export default function InquiryModal({ isOpen, handleModalClick }: Props) {
           원하시는 문의를 선택해주세요.
         </div>
 
-        <div className="w-full mb-[20px] flex flex-col gap-[10px]">
+        <div className="w-full mb-[20px] flex flex-col gap-[8px]">
           <Link href={WORD_INQUIRY_FORM_URL} target="_blank">
-            <div className="p-5 text-[15px] text-[#737374] font-medium mx-[20px] bg-[#E7EBF8] rounded-[17px] hover:cursor-pointer hover:ring-[#435ADF] hover:ring-[1.5px]">
+            <div className="p-5 text-[14px] text-[#737374] font-medium mx-[20px] bg-[#E7EBF8] rounded-[17px] hover:cursor-pointer hover:ring-[#435ADF] hover:ring-[1.5px] h-20">
               <span className="text-[16px] text-[#2D45D1] font-semibold">
                 잘못된 정보 문의하기
               </span>
@@ -41,8 +41,19 @@ export default function InquiryModal({ isOpen, handleModalClick }: Props) {
             </div>
           </Link>
 
+          {/* // TODO: 용어 제보 폼 링크 추가하기 */}
+          <Link href={''} target="blank">
+            <div className="ring-[1px] ring-[#F2F4F9] p-5 text-[14px] text-[#737374] font-medium mx-[20px] bg-[#FBFCFE] rounded-[17px] hover:cursor-pointer hover:ring-[#435ADF] hover:ring-[1.5px] h-20">
+              <span className="text-[16px] text-[#2D45D1] font-semibold">
+                용어 제보하기
+              </span>
+              <br />
+              내가 아는 용어를 제보해 보세요.
+            </div>
+          </Link>
+
           <Link href={OTHER_INQUIRY_FORM_URL} target="blank">
-            <div className="ring-[1px] ring-[#F2F4F9] p-5 text-[15px] text-[#737374] font-medium mx-[20px] bg-[#FBFCFE] rounded-[17px] hover:cursor-pointer hover:ring-[#435ADF] hover:ring-[1.5px]">
+            <div className="ring-[1px] ring-[#F2F4F9] p-5 text-[14px] text-[#737374] font-medium mx-[20px] bg-[#FBFCFE] rounded-[17px] hover:cursor-pointer hover:ring-[#435ADF] hover:ring-[1.5px] h-20">
               <span className="text-[16px] text-[#2D45D1] font-semibold">
                 기타 문의하기
               </span>
