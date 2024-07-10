@@ -1,5 +1,8 @@
+import RightArrowSvg from '@/components/svg-component/RightArrowSvg';
 import { AutoCompleteWordData } from '@/fetcher/types';
+import { WORD_REPORT_FORM_URL } from '@/routes/path';
 import clsx from 'clsx';
+import Link from 'next/link';
 
 type Props = {
   searchWordResult: AutoCompleteWordData[] | null;
@@ -32,9 +35,22 @@ export default function AutoComplete({
           isSearchWordEmpty && 'pb-[0px]',
         )}
       >
-        {isSearchWordEmpty
-          ? '검색 결과가 없어요.'
-          : '검색은 세 글자 이상 입력 후 검색해 주세요.'}
+        {isSearchWordEmpty ? (
+          // TODO: 용어 제보 폼 링크 추가하기
+          <Link href={''}>
+            <p>검색 결과가 없어요.</p>
+            <div className="flex items-center gap-2.5 pt-[10px]">
+              <span className="font-semibold text-[15px] text-main-charcoal flex items-center">
+                이 용어 제보하기
+              </span>
+              <div className="flex items-center">
+                <RightArrowSvg />
+              </div>
+            </div>
+          </Link>
+        ) : (
+          '검색어는 세 글자 이상 입력해 주세요.'
+        )}
       </div>
       {searchWordResult?.slice(0, 6).map((word, idx) => (
         <li
