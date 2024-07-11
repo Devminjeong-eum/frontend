@@ -1,7 +1,11 @@
 import { createPortal } from 'react-dom';
 import InquirySvg from '@/components/svg-component/InquirySvg';
 import CloseSvg from '@/components/svg-component/CloseSvg';
-import { OTHER_INQUIRY_FORM_URL, WORD_INQUIRY_FORM_URL } from '@/routes/path';
+import {
+  OTHER_INQUIRY_FORM_URL,
+  WORD_INQUIRY_FORM_URL,
+  WORD_REPORT_FORM_URL,
+} from '@/routes/path';
 import Link from 'next/link';
 import RightAngleBracketSvg from '@/components/svg-component/RightAngleBracketSvg';
 
@@ -45,8 +49,7 @@ export default function InquiryModal({ isOpen, handleModalClick }: Props) {
             </div>
           </Link>
 
-          {/* // TODO: 용어 제보 폼 링크 추가하기 */}
-          <Link href={''} target="_blank">
+          <Link href={WORD_REPORT_FORM_URL} target="_blank">
             <div className="flex items-center justify-between p-5 text-[14px] ring-[1px] ring-[#F2F4F9] text-[#737374] font-medium mx-[20px] bg-[#FFFFFF] rounded-[17px] hover:ring-[#435ADF] hover:ring-[1.5px] h-20 drop-shadow	">
               <div>
                 <span className="text-[16px] text-[#2D45D1] font-semibold">
