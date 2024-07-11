@@ -36,10 +36,9 @@ export default function AutoComplete({
         )}
       >
         {isSearchWordEmpty ? (
-          // TODO: 용어 제보 폼 링크 추가하기
-          <Link href={''}>
+          <Link href={WORD_REPORT_FORM_URL} target="_blank">
             <p>검색 결과가 없어요.</p>
-            <div className="flex items-center gap-2.5 pt-[10px]">
+            <div className="flex items-center gap-2.5 pt-[15.5px]">
               <span className="font-semibold text-[15px] text-main-charcoal flex items-center">
                 이 용어 제보하기
               </span>
