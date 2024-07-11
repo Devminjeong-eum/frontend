@@ -10,7 +10,7 @@ export default function NotFoundWord() {
         {/* // TODO: 용어 제보 폼 링크 추가하기 */}
         <Link href={''}>
           <div className="rounded-2xl bg-[#E7EBF8] w-[212px] h-14 py-4 mt-7 text-[#383697] text-[16px] font-semibold">
-            단어 제보하러 가기
+            용어 제보하러 가기
           </div>
         </Link>
       </div>
