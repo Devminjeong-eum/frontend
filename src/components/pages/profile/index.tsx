@@ -88,7 +88,7 @@ export default function Profile({
             </span>
             <span className="text-[17px]">개발 용어 발음 퀴즈</span>
             <span className="ml-auto">
-              <RightAngleBracketSvg />
+              <RightAngleBracketSvg color="#888888" />
             </span>
           </div>
         </Link>
@@ -100,7 +100,7 @@ export default function Profile({
             </span>
             <span className=" text-[17px]">문의하기</span>
             <span className="ml-auto">
-              <RightAngleBracketSvg />
+              <RightAngleBracketSvg color="#888888" />
             </span>
           </div>
         </button>
