@@ -6,7 +6,7 @@ const isTrendingType = (value: unknown): value is TrendingType => {
   return value === 'trend' || value === 'all';
 };
 
-export default function useSyncURLWithState() {
+export default function useSyncURLHomeRouteState() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const page = searchParams.get('page');

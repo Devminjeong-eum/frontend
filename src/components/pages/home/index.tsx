@@ -4,14 +4,14 @@ import HomeToggleZone from './HomeToggleZone';
 import AllPosts from './all-posts';
 import useGetAllPosts from '@/hooks/query/useGetAllPosts';
 import TrendingPosts from './trending-posts';
-import useSyncURLWithState from '@/hooks/useSyncURLWithState';
+import useSyncURLHomeRouteState from '@/hooks/useSyncURLHomeRouteState';
 import { useCallback } from 'react';
 
 export type TrendingType = 'trend' | 'all';
 
 const HomeClientPage = () => {
   const { currentPage, setCurrentPage, isTrending, setIsTrending } =
-    useSyncURLWithState();
+    useSyncURLHomeRouteState();
   const { data: allPostsData } = useGetAllPosts(currentPage).data;
 
   const handleToggle = useCallback(
