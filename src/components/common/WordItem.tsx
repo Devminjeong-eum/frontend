@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import { useMutationLike } from '@/hooks/useMutationLike';
 import { Dispatch, SetStateAction } from 'react';
 import SpeakerSvg from '../svg-component/SpeakerSvg';
+import useDeviceType from '@/hooks/useDeviceType';
 
 type Props = MainItemType & {
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
@@ -31,10 +32,16 @@ export default function WordItem({
     isLike ? handleSubLike() : handleAddLike();
   };
 
+  const deviceType = useDeviceType();
+
   return (
     <article
       key={id}
-      className="h-[120px] px-[18px] py-[16px] w-full ring-1 bg-white ring-[#F2F4F9] hover:ring-[#EFF2F7] rounded-2xl hover:bg-[#F1F4FA] hover:ring-2 cursor-pointer"
+      className={clsx(
+        'h-[120px] px-[18px] py-[16px] w-full ring-1 bg-white ring-[#F2F4F9] rounded-2xl  cursor-pointer',
+        deviceType === 'PC' &&
+          'hover:ring-[#EFF2F7] hover:bg-[#F1F4FA] hover:ring-2',
+      )}
       onClick={() => router.push(getWordDetailPath(name))}
     >
       <header className="flex justify-between leading-[16px] mb-[5px]">
