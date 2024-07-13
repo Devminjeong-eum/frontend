@@ -58,7 +58,7 @@ export default function WordItem({
           {pronunciation[0]}
         </p>
 
-        <div className="flex items-center px-[6px] py-[3px] gap-1 bg-[#F6F8FA] h-[19px] text-[#69699C] rounded-3xl">
+        <div className="flex items-center px-[6px] py-[3px] gap-1 bg-[#F6F8FA] hover:bg-[#EFF2F6] h-[19px] text-[#69699C] rounded-3xl">
           <div className="w-[12px] h-[12px]">
             <SpeakerSvg />
           </div>
