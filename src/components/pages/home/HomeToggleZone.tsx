@@ -34,7 +34,7 @@ export default function HomeToggleZone({ handleToggle, isTrending }: Props) {
             : 'text-[#D7DCEB] translate-x-full opacity-0',
         )}
       >
-        트렌딩 용어
+        트렌딩 단어
       </p>
 
       <button
