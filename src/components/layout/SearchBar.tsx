@@ -156,7 +156,7 @@ export default function SearchBar() {
     >
       <div
         className={clsx(
-          'relative rounded-[16px] z-[60]',
+          'relative rounded-[16px] z-[60] overflow-hidden',
           isDropdownOpen && 'bg-white ring-[1px] ring-[#4357DB] drop-shadow',
         )}
         ref={searchBarRef}
