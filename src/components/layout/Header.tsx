@@ -39,7 +39,7 @@ export default function Header() {
             <QuizButton />
           </Link>
           <Link href={PROFILE_PATH}>
-            <div className="text-[#A8B8FF]">
+            <div className="pt-[2px]">
               <MypageIconSvg />
             </div>
           </Link>
