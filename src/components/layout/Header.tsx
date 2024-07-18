@@ -31,19 +31,19 @@ export default function Header() {
   return (
     <>
       <div className="bg-main-gradient-top h-[48px] flex items-center p-6 justify-between border-none">
-        <div className="flex-1">
-          <Link href={WORD_LIST_PATH}>
-            <LogoTextSvg />
+        <Link href={WORD_LIST_PATH}>
+          <LogoTextSvg />
+        </Link>
+        <div className="flex gap-[14px]">
+          <Link href={QUIZ_PATH}>
+            <QuizButton />
+          </Link>
+          <Link href={PROFILE_PATH}>
+            <div className="pt-[2px]">
+              <MypageIconSvg />
+            </div>
           </Link>
         </div>
-        <Link href={QUIZ_PATH}>
-          <QuizButton />
-        </Link>
-        <Link href={PROFILE_PATH}>
-          <div className="text-[#A8B8FF]">
-            <MypageIconSvg />
-          </div>
-        </Link>
       </div>
       <SearchBar />
       {!isScrolled && <DynamicToolTip isOpen={isOpen} setIsOpen={setIsOpen} />}
