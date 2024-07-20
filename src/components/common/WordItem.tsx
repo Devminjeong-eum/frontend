@@ -5,6 +5,8 @@ import HeartSvg from '@/components/svg-component/HeartSvg';
 import clsx from 'clsx';
 import { useMutationLike } from '@/hooks/useMutationLike';
 import { Dispatch, SetStateAction } from 'react';
+import SpeakerSvg from '../svg-component/SpeakerSvg';
+import useDeviceType from '@/hooks/useDeviceType';
 
 type Props = MainItemType & {
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
@@ -30,55 +32,52 @@ export default function WordItem({
     isLike ? handleSubLike() : handleAddLike();
   };
 
+  const deviceType = useDeviceType();
+
   return (
     <article
       key={id}
-      className="min-h-[98px] p-[18px] pb-[14px] w-full ring-1 bg-white ring-[#F2F4F9] hover:ring-[#EFF2F7] rounded-2xl hover:bg-[#F1F4FA] hover:ring-2 cursor-pointer"
+      className={clsx(
+        'h-[120px] px-[18px] py-[16px] w-full ring-1 bg-white ring-[#F2F4F9] rounded-2xl  cursor-pointer',
+        deviceType === 'PC' &&
+          'hover:ring-[#EFF2F7] hover:bg-[#F1F4FA] hover:ring-2',
+      )}
       onClick={() => router.push(getWordDetailPath(name))}
     >
-      <div className="flex flex-col relative gap-1">
-        <div className="flex justify-between items-center ">
-          {/* 영단어, 단어 뜻, 발음 기호 컨테이너 */}
-          <div className="flex flex-wrap items-center gap-2">
-            {/* 영단어 */}
-            <h3 className="text-main-blue font-semibold text-[16px]">{name}</h3>
+      <header className="flex justify-between leading-[16px] mb-[5px]">
+        <h3 className="text-main-blue font-semibold text-[17px]">{name}</h3>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            handleLikeButton();
+          }}
+          className={clsx(
+            isLike ? 'text-main-blue' : 'text-[#DEE3F1]',
+            'ml-[2px] mb-[3px]',
+          )}
+        >
+          <HeartSvg />
+        </button>
+      </header>
 
-            {/* 단어 뜻 */}
-            <div className="text-main-charcoal break-words text-[14px] font-medium">
-              <span className="mr-[2px] text-[#F2F4F9] font-extralight">|</span>{' '}
-              {/* {pronunciation.join(', ')} */}
-              {/* FIXME: 여름과 논의 필요 */}
-              {pronunciation[0]}
-            </div>
-
-            {/* 발음기호 */}
-            <p className="text-[#858596] text-[11px] font-[300] -ml-[1px]">
-              {/* {diacritic.join(', ')} */}
-              {/* FIXME: 여름과 논의 필요 */}
-              {diacritic[0]}
-            </p>
-          </div>
-
-          {/* 좋아요 버튼 */}
-
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              handleLikeButton();
-            }}
-            className={clsx(isLike ? 'text-main-blue' : 'text-[#D3DAED]')}
-          >
-            <HeartSvg />
-          </button>
-        </div>
-
-        {/* 설명 */}
-        <p className="text-main-gray text-[14px] font-[300] leading-[19px] line-clamp-1 xs:line-clamp-2">
-          {description}
+      <section className="flex gap-1 items-center leading-[19px] mb-[6px]">
+        <p className="font-medium text-[14px] text-main-charcoal">
+          {pronunciation[0]}
         </p>
-      </div>
+
+        <div className="flex items-center px-[6px] py-[3px] gap-1 bg-[#F6F8FA] hover:bg-[#EFF2F6] h-[19px] text-[#69699C] rounded-3xl">
+          <div className="w-[12px] h-[12px]">
+            <SpeakerSvg />
+          </div>
+          <p className="leading-[13px] text-[11px]">
+            {diacritic[0].slice(1, -1)}
+          </p>
+        </div>
+      </section>
+
+      <p className="text-[14px] leading-[20px] text-main-gray line-clamp-2 tracking-[-2%] mt-[4px]">
+        {description}
+      </p>
     </article>
   );
 }
-
-
