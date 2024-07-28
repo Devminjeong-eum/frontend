@@ -1,4 +1,5 @@
 import HeartSvg from '@/components/svg-component/HeartSvg';
+import clsx from 'clsx';
 
 export default function HomeSkeleton({ limit }: { limit: number }) {
   return (
@@ -6,25 +7,27 @@ export default function HomeSkeleton({ limit }: { limit: number }) {
       {Array.from({ length: limit }, (_, idx) => (
         <div
           key={idx}
-          className="animate-pulse min-h-[98px] p-[18px] pb-[14px] w-full ring-1 bg-white ring-[#F2F4F9] rounded-2xl"
+          className={clsx(
+            'h-[120px] px-[18px] py-[16px] w-full ring-1 bg-white ring-[#F2F4F9] rounded-2xl animate-pulse',
+          )}
         >
-          <div className="flex justify-between items-center">
-            {/* 영문, 국문, 발음기호 */}
-            <div className="flex flex-wrap items-center gap-2">
-              <div className="w-[53px] h-[17px] bg-gray-200 rounded"></div>
-              <div className="text-[#F2F4F9] font-extralight">|</div>
-              <div className="w-[24px] h-[17px] bg-gray-200 rounded"></div>
-              <div className="w-[42px] h-[17px] bg-gray-200 rounded"></div>
-            </div>
-            {/* 하트 */}
-            <div className="text-[#D3DAED] h-6">
+          <header className="flex justify-between leading-[16px] mb-[5px]">
+            <div className="w-1/3 h-4 bg-[#EAECF3] rounded-[2px]"></div>
+            <div className={clsx('text-[#F5F6FA]', 'ml-[2px] mb-[3px]')}>
               <HeartSvg />
             </div>
-          </div>
+          </header>
 
-          {/* 설명 */}
-          <div className="h-3 mt-3 bg-gray-200 rounded"></div>
-          <div className="h-3 mt-2 bg-gray-200 rounded w-[70%]"></div>
+          <section className="flex gap-1 items-center leading-[19px] mb-[6px]">
+            <div className="w-12 h-4 bg-[#F3F4F9] rounded-[2px]"></div>
+            <div className="flex items-center px-[6px] py-[3px] gap-1 bg-[#F3F4F9] h-[19px] text-gray-300 rounded-[2px]">
+              <div className="w-[12px] h-[12px] bg-[#EAECF3] rounded-full"></div>
+              <div className="w-8 h-3 bg-[#EAECF3] rounded-[2px]"></div>
+            </div>
+          </section>
+
+          <div className="w-full h-4 bg-[#F3F4F9] rounded-[2px] mt-[4px]"></div>
+          <div className="w-3/4 h-4 bg-[#F3F4F9] rounded-[2px] mt-[4px]"></div>
         </div>
       ))}
     </div>

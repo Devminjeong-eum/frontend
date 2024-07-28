@@ -4,9 +4,8 @@ import { useRouter } from 'next/navigation';
 import HeartSvg from '@/components/svg-component/HeartSvg';
 import clsx from 'clsx';
 import { useMutationLike } from '@/hooks/useMutationLike';
-import { Dispatch, SetStateAction } from 'react';
-import SpeakerSvg from '../svg-component/SpeakerSvg';
-import useDeviceType from '@/hooks/useDeviceType';
+import { Dispatch, SetStateAction, useCallback } from 'react';
+import TTSPlayer from './TTSPlayer';
 
 type Props = MainItemType & {
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
@@ -28,29 +27,26 @@ export default function WordItem({
     setIsOpenModal,
   });
 
-  const handleLikeButton = () => {
-    isLike ? handleSubLike() : handleAddLike();
-  };
-
-  const deviceType = useDeviceType();
+  const handleLikeButton = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+      isLike ? handleSubLike() : handleAddLike();
+    },
+    [isLike, handleAddLike, handleSubLike],
+  );
 
   return (
-    <article
+    <div
       key={id}
       className={clsx(
         'h-[120px] px-[18px] py-[16px] w-full ring-1 bg-white ring-[#F2F4F9] rounded-2xl  cursor-pointer',
-        deviceType === 'PC' &&
-          'hover:ring-[#EFF2F7] hover:bg-[#F1F4FA] hover:ring-2',
       )}
       onClick={() => router.push(getWordDetailPath(name))}
     >
       <header className="flex justify-between leading-[16px] mb-[5px]">
         <h3 className="text-main-blue font-semibold text-[17px]">{name}</h3>
         <button
-          onClick={(e) => {
-            e.stopPropagation();
-            handleLikeButton();
-          }}
+          onClick={handleLikeButton}
           className={clsx(
             isLike ? 'text-main-blue' : 'text-[#DEE3F1]',
             'ml-[2px] mb-[3px]',
@@ -65,19 +61,12 @@ export default function WordItem({
           {pronunciation[0]}
         </p>
 
-        <div className="flex items-center px-[6px] py-[3px] gap-1 bg-[#F6F8FA] hover:bg-[#EFF2F6] h-[19px] text-[#69699C] rounded-3xl">
-          <div className="w-[12px] h-[12px]">
-            <SpeakerSvg />
-          </div>
-          <p className="leading-[13px] text-[11px]">
-            {diacritic[0].slice(1, -1)}
-          </p>
-        </div>
+        <TTSPlayer diacritic={diacritic[0].slice(1, -1)} id={id} />
       </section>
 
       <p className="text-[14px] leading-[20px] text-main-gray line-clamp-2 tracking-[-2%] mt-[4px]">
         {description}
       </p>
-    </article>
+    </div>
   );
 }
