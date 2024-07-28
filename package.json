@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "debug": "NODE_OPTIONS='--inspect' next dev",
-    "prepare": "husky && husky install"
+    "prepare": "husky install"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
