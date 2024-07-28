@@ -36,7 +36,11 @@ export default function AutoComplete({
         )}
       >
         {isSearchWordEmpty ? (
-          <Link href={WORD_REPORT_FORM_URL} target="_blank">
+          <Link
+            href={WORD_REPORT_FORM_URL}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <p>검색 결과가 없어요.</p>
             <div className="flex items-center gap-2.5 pt-[15.5px]">
               <span className="font-semibold text-[15px] text-main-charcoal flex items-center">
