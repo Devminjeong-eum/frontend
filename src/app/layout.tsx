@@ -63,6 +63,7 @@ export const metadata: Metadata = {
     title: '데브말싸미',
     statusBarStyle: 'black-translucent',
   },
+
   icons: {
     apple: [{ url: '/apple-touch-icon.png' }],
   },
@@ -72,7 +73,6 @@ const gugi = localFont({
   src: [
     {
       path: './fonts/Gugi-Regular.woff2',
-      //weight: '400',
       style: 'normal',
     },
   ],
@@ -137,9 +137,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-
   return (
     <html lang="ko" className={`${gugi.variable} ${pretendard.variable}`}>
+      <head>
+        <link rel="icon" href="/icon-16x16.ico" />
+        <link rel="icon" href="/icon_48x48.png" />
+        <link rel="icon" href="/icon_96x96.png" />
+        <link rel="icon" href="/icon_144x144.png" />
+      </head>
       <GoogleAnalytics gaId="G-JVH2GTHE6P" />
       <body className="font-pretendard antialiased">
         <HeightWrapper>
