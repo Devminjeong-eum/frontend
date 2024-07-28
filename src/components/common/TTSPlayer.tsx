@@ -4,7 +4,6 @@ import useDeviceType from '@/hooks/useDeviceType';
 import clsx from 'clsx';
 import SpeakerSvg from '../svg-component/SpeakerSvg';
 import useAudioPlayer from '@/hooks/useAudioPlayer';
-import { useEffect } from 'react';
 import useGetTTSUrl from '@/hooks/query/useGetTTSUrl';
 
 type Props = {
@@ -15,7 +14,7 @@ type Props = {
 export default function TTSPlayer({ diacritic, id }: Props) {
   const deviceType = useDeviceType();
   const { data: audioUrl } = useGetTTSUrl(id);
-  const { audioRef, startAudio, isPlaying } = useAudioPlayer();
+  const { audioRef, startAudio, isPlaying } = useAudioPlayer(id);
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -24,15 +23,6 @@ export default function TTSPlayer({ diacritic, id }: Props) {
       startAudio(audioUrl);
     }
   };
-
-  useEffect(() => {
-    const currentAudio = audioRef.current;
-
-    if (currentAudio) {
-      currentAudio.pause();
-      currentAudio.currentTime = 0;
-    }
-  }, [audioRef, id]);
 
   return (
     <div

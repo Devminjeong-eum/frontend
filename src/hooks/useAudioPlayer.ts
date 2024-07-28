@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 
-const useAudioPlayer = () => {
+const useAudioPlayer = (id: string) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -22,6 +22,7 @@ const useAudioPlayer = () => {
 
   useEffect(() => {
     const currentAudioRef = audioRef.current;
+
     const handleEnded = () => {
       setIsPlaying(false);
       if (currentAudioRef) {
@@ -39,7 +40,7 @@ const useAudioPlayer = () => {
         currentAudioRef.removeEventListener('ended', handleEnded);
       }
     };
-  }, [audioRef]);
+  }, [id]);
 
   return {
     audioRef,
