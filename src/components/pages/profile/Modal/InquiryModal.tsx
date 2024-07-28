@@ -36,7 +36,11 @@ export default function InquiryModal({ isOpen, handleModalClick }: Props) {
         </div>
 
         <div className="w-full mb-[20px] flex flex-col gap-2">
-          <Link href={WORD_INQUIRY_FORM_URL} target="_blank">
+          <Link
+            href={WORD_INQUIRY_FORM_URL}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <div className="flex items-center justify-between p-5 text-[14px] ring-[1px] ring-[#DDE3FA] text-[#737374] font-medium mx-[20px] bg-[#E7EBF8] rounded-[17px] hover:ring-[#435ADF] hover:ring-[1.5px] h-20 drop-shadow">
               <div>
                 <span className="text-[16px] text-[#2D45D1] font-semibold">
@@ -49,7 +53,11 @@ export default function InquiryModal({ isOpen, handleModalClick }: Props) {
             </div>
           </Link>
 
-          <Link href={WORD_REPORT_FORM_URL} target="_blank">
+          <Link
+            href={WORD_REPORT_FORM_URL}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <div className="flex items-center justify-between p-5 text-[14px] ring-[1px] ring-[#F2F4F9] text-[#737374] font-medium mx-[20px] bg-[#FFFFFF] rounded-[17px] hover:ring-[#435ADF] hover:ring-[1.5px] h-20 drop-shadow">
               <div>
                 <span className="text-[16px] text-[#2D45D1] font-semibold">
@@ -62,7 +70,11 @@ export default function InquiryModal({ isOpen, handleModalClick }: Props) {
             </div>
           </Link>
 
-          <Link href={OTHER_INQUIRY_FORM_URL} target="_blank">
+          <Link
+            href={OTHER_INQUIRY_FORM_URL}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <div className="flex items-center justify-between ring-[1px] ring-[#F2F4F9] p-5 text-[14px] text-[#737374] font-medium mx-[20px] bg-[#FFFFFF] rounded-[17px] hover:ring-[#435ADF] hover:ring-[1.5px] h-20 drop-shadow">
               <div>
                 <span className="text-[16px] text-[#2D45D1] font-semibold">
