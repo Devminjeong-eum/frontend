@@ -50,7 +50,7 @@ export default function Wordbook() {
             <div className="bg-[#FBFCFE] flex flex-col items-center gap-2.5 pt-[8.438rem] pb-[8.125rem]">
               <NoWordSvg />
               <span className="text-[#A8AEBC] font-medium text-center tracking-[-0.02em]">
-                좋아요를 누른 단어가 없어요.
+                좋아요를 누른 용어가 없어요.
               </span>
             </div>
           ) : (
@@ -78,7 +78,7 @@ export default function Wordbook() {
               href={WORD_LIST_PATH}
               className="flex items-center justify-center w-10/12 h-14 bg-[#E7EBF8] rounded-2xl "
             >
-              <p className="text-[#383697] font-semibold">단어 검색하러 가기</p>
+              <p className="text-[#383697] font-semibold">용어 검색하러 가기</p>
             </Link>
           ) : (
             <div className="flex items-center justify-center w-10/12 h-14">

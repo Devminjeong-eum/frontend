@@ -124,7 +124,7 @@ export default function QuizPlay() {
             ></div>
           </div>
           <div className="text-[14px] flex flex-col items-center mt-[73px]">
-            <p className="text-main-gray">아래 단어의 발음은?</p>
+            <p className="text-main-gray">아래 용어의 발음은?</p>
             <div className={`text-[32px] font-semibold mb-[42px]`}>
               {data?.[currentQuiz].name}
             </div>
