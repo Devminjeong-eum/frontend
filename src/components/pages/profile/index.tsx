@@ -72,7 +72,7 @@ export default function Profile({
             <span className="w-[20px] mr-[20px]">
               <WordBookSvg />
             </span>
-            <span className="text-white text-[17px]">좋아요를 누른 단어</span>
+            <span className="text-white text-[17px]">좋아요를 누른 용어</span>
             <span className="text-white h-[18px] w-[18px] flex items-center ml-auto">
               {likeCount ? likeCount : 0}
             </span>
@@ -88,7 +88,7 @@ export default function Profile({
             </span>
             <span className="text-[17px]">개발 용어 발음 퀴즈</span>
             <span className="ml-auto">
-              <RightAngleBracketSvg />
+              <RightAngleBracketSvg color="#888888" />
             </span>
           </div>
         </Link>
@@ -100,7 +100,7 @@ export default function Profile({
             </span>
             <span className=" text-[17px]">문의하기</span>
             <span className="ml-auto">
-              <RightAngleBracketSvg />
+              <RightAngleBracketSvg color="#888888" />
             </span>
           </div>
         </button>

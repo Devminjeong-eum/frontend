@@ -10,6 +10,7 @@ export const PROFILE_DELETE_PATH = '/profile/delete';
 export const WORD_INQUIRY_FORM_URL = 'https://forms.gle/McGVzfsVT9SQkt1g8';
 export const OTHER_INQUIRY_FORM_URL =
   'https://docs.google.com/forms/d/e/1FAIpQLSd2XQqzR3dDb1aq_ipTmagcZr3f-uSwTqQsLpSB6u_vq9oxBA/viewform';
+export const WORD_REPORT_FORM_URL = 'https://forms.gle/2d64B9JmWSEbVHiN7';
 
 export const getWordDetailPath = (wordName: string) =>
   `/words/${encodeURIComponent(wordName)}`;
