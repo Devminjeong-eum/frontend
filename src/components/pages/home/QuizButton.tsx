@@ -1,7 +1,7 @@
 export default function QuizButton() {
   return (
     <>
-      <button className="relative text-white w-[57px] h-[28px] bg-[#354BD2] ring-1 ring-[#5368EB] flex items-center justify-center rounded-[8px] mr-[14px]">
+      <button className="relative text-white w-[57px] h-[28px] bg-[#354BD2] ring-1 ring-[#5368EB] flex items-center justify-center rounded-[8px]">
         <svg
           width="34"
           height="13"

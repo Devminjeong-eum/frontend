@@ -200,3 +200,13 @@ export const postFeedback = async (question1: string, question2: string) => {
     notFound();
   }
 };
+
+export const getTTSUrl = async (wordId: string) => {
+  try {
+    const res = await backendFetch(`tts/${wordId}`);
+
+    return res.data.data;
+  } catch (e) {
+    console.error('error:', e);
+  }
+};

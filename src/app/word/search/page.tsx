@@ -4,9 +4,7 @@ import Search from '@/components/pages/search';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function generateMetadata(
-  {
-    searchParams,
-  }: { searchParams: { keyword: string } },
+  { searchParams }: { searchParams: { keyword: string } },
   parent: ResolvingMetadata,
 ) {
   const parentMetadata = (await parent) || [];
@@ -47,11 +45,11 @@ export default async function SearchPage({ searchParams }: Props) {
   const word = decodeURI(searchParams.keyword);
 
   return (
-    <>
+    <div className="h-full bg-[#FBFCFE]">
       <Header />
       <main className="rounded-[24px] bg-[#FBFCFE] -mt-[20px] z-50 flex flex-col gap-[8px]">
         <Search word={word} />
       </main>
-    </>
+    </div>
   );
 }
