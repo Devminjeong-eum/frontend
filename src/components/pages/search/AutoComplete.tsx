@@ -36,23 +36,25 @@ export default function AutoComplete({
         )}
       >
         {isSearchWordEmpty ? (
-          <Link
-            href={WORD_REPORT_FORM_URL}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
+          <>
             <p>검색 결과가 없어요.</p>
-            <div className="flex items-center gap-2.5 pt-[15.5px]">
-              <span className="font-semibold text-[15px] text-main-charcoal flex items-center">
-                이 용어 제보하기
-              </span>
-              <div className="flex items-center">
-                <RightArrowSvg />
+            <Link
+              href={WORD_REPORT_FORM_URL}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <div className="flex items-center gap-2.5 pt-[15.5px]">
+                <p className="font-semibold text-[15px] text-main-charcoal flex items-center">
+                  이 용어 제보하기
+                </p>
+                <div className="flex items-center">
+                  <RightArrowSvg />
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </>
         ) : (
-          '검색어는 세 글자 이상 입력해 주세요.'
+          <p>검색어는 세 글자 이상 입력해 주세요.</p>
         )}
       </div>
       {searchWordResult?.slice(0, 6).map((word, idx) => (
