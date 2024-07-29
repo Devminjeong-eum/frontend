@@ -12,6 +12,7 @@ import { getQuizResultPath } from '@/routes/path.ts';
 import useQuizResult from '@/hooks/mutation/useQuizResult.ts';
 import { useSetAtom } from 'jotai/react';
 import { guestQuizAtom } from '@/store';
+import QuizBackModal from './QuizBackModal';
 
 export default function QuizPlay() {
   const router = useRouter();
@@ -24,6 +25,7 @@ export default function QuizPlay() {
   const [isShow, setIsShow] = useState(false);
   const correctWordIdsRef = useRef<string[]>([]);
   const incorrectWordIdsRef = useRef<string[]>([]);
+  const [isBackModalOpen, setIsBackModalOpen] = useState(false);
 
   const {
     data: {
@@ -102,6 +104,14 @@ export default function QuizPlay() {
     } else handleNextQuiz();
   };
 
+  const handleBackModalOpen = () => {
+    setIsBackModalOpen(!isBackModalOpen);
+  };
+
+  const handleBack = () => {
+    setIsShow(!isShow);
+  };
+
   if (isShow) return <Quiz />;
 
   return (
@@ -110,7 +120,7 @@ export default function QuizPlay() {
         <div className="w-full h-full items-center bg-[#fbfcfe] relative">
           <header className="flex items-center h-[68px]">
             <button
-              onClick={() => setIsShow(!isShow)}
+              onClick={handleBackModalOpen}
               className="ml-6 cursor-pointer"
             >
               <BlackBackSpaceSVG />
@@ -166,6 +176,12 @@ export default function QuizPlay() {
           </div>
         </div>
       </div>
+      {isBackModalOpen && (
+        <QuizBackModal
+          handleBackModalOpen={handleBackModalOpen}
+          handleBack={handleBack}
+        />
+      )}
     </div>
   );
 }

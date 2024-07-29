@@ -2,7 +2,7 @@
   "version": 3,
   "file": "sw.js",
   "sources": [
-    "../../../../tmp/a68eaecf5b9ca4863dc0e30d5c142da1/sw.js"
+    "../../../../tmp/f99c36ecfdbb6489e1d05a0569a772ca/sw.js"
   ],
   "sourcesContent": [
     "import {registerRoute as workbox_routing_registerRoute} from '/home/uk/github/frontend/node_modules/workbox-routing/registerRoute.mjs';\nimport {NetworkFirst as workbox_strategies_NetworkFirst} from '/home/uk/github/frontend/node_modules/workbox-strategies/NetworkFirst.mjs';\nimport {NetworkOnly as workbox_strategies_NetworkOnly} from '/home/uk/github/frontend/node_modules/workbox-strategies/NetworkOnly.mjs';\nimport {clientsClaim as workbox_core_clientsClaim} from '/home/uk/github/frontend/node_modules/workbox-core/clientsClaim.mjs';/**\n * Welcome to your Workbox-powered service worker!\n *\n * You'll need to register this file in your web app.\n * See https://goo.gl/nhQhGp\n *\n * The rest of the code is auto-generated. Please don't update this file\n * directly; instead, make changes to your Workbox build configuration\n * and re-run your build process.\n * See https://goo.gl/2aRDsh\n */\n\n\nimportScripts(\n  \n);\n\n\n\n\n\n\n\nself.skipWaiting();\n\nworkbox_core_clientsClaim();\n\n\n\nworkbox_routing_registerRoute(\"/\", new workbox_strategies_NetworkFirst({ \"cacheName\":\"start-url\", plugins: [{ cacheWillUpdate: async ({ request, response, event, state }) => { if (response && response.type === 'opaqueredirect') { return new Response(response.body, { status: 200, statusText: 'OK', headers: response.headers }) } return response } }] }), 'GET');\nworkbox_routing_registerRoute(/.*/i, new workbox_strategies_NetworkOnly({ \"cacheName\":\"dev\", plugins: [] }), 'GET');\n\n\n\n\n"
