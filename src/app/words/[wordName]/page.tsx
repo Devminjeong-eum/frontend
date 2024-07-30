@@ -9,8 +9,7 @@ import PronunciationDetail from '@/components/pages/detail/PronunciationDetail.t
 import { ResolvingMetadata } from 'next';
 import { DetailKoreanAlertIconSvg } from '@/components/svg-component/DetailKoreanAlertIconSvg.tsx';
 import React from 'react';
-import DetailSoundIconSvg from '@/components/svg-component/DetailSoundIconSvg.tsx';
-import clsx from 'clsx';
+import DetailTTSButton from '@/components/pages/detail/DetailTTSButton.tsx';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function generateMetadata(
@@ -90,7 +89,6 @@ export default async function WordsPage({
       likeCount,
     },
   } = await getWordDetail('NAME', decodedWordName.toLowerCase());
-  const isSpeaking = true;
 
   /*
   NOTE: 한글 발음 표기 - 영어 발음 표기  1 : 1로 라고 생각함.
@@ -110,16 +108,7 @@ export default async function WordsPage({
                 <h1 className="text-[30px] align-bottom font-normal text-white">
                   {name}
                 </h1>
-                <div className="ml-2 flex items-center justify-center w-[34px] h-[34px]">
-                  <DetailSoundIconSvg />
-                  {/*TODO: TTS 시 #FFFFFF*/}
-                  <div
-                    className={clsx(
-                      'absolute opacity-25 w-[34px] h-[34px] rounded-full cursor-pointer border bg-[#6C71E2] hover:bg-[#A19AF9]',
-                      isSpeaking ? 'border-[#FFFFFF]' : 'border-[#A19AF9]',
-                    )}
-                  />
-                </div>
+                <DetailTTSButton id={id} />
               </div>
               <span className="text-[#E1E2F8] font-normal">
                 {/*{NOTE: 대표 발음은 스프레드시트의 첫 번째 발음으로 합니다}*/}
