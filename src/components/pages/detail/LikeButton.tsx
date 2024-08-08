@@ -1,11 +1,10 @@
 'use client';
 
-import DetailLikeSvg from '@/components/svg-component/DetailLikeSvg.tsx';
-import DetailLikeActiveSvg from '@/components/svg-component/DetailLikeActiveSvg.tsx';
 import { useOptimisticLike } from '@/hooks/useOptimisticLike.ts';
 import useAuthQuery from '@/hooks/query/useAuthQuery.ts';
 import { useState } from 'react';
 import LoginAlertModal from '@/components/common/LoginAlertModal.tsx';
+import DetailLikeSvg from '@/components/svg-component/DetailLikeSvg.tsx';
 
 interface Props {
   wordId: string;
@@ -47,11 +46,7 @@ export default function LikeButton({
     <>
       <div className="flex flex-col justify-center items-center cursor-pointer">
         <button onClick={() => handleClick(optimisticLikeState.isLike)}>
-          {optimisticLikeState.isLike ? (
-            <DetailLikeActiveSvg />
-          ) : (
-            <DetailLikeSvg />
-          )}
+          <DetailLikeSvg isLike={optimisticLikeState.isLike} />
         </button>
         <span className="text-xs text-[#E1E2F8] pt-1">
           {optimisticLikeState.likeCount}
