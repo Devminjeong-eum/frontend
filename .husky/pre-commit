@@ -1,5 +1,3 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 # 커밋 전 lint 실행
 npx lint-staged --verbose
+
