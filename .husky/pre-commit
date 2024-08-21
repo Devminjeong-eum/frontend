@@ -1,0 +1,3 @@
+# 커밋 전 lint 실행
+npx lint-staged --verbose
+
