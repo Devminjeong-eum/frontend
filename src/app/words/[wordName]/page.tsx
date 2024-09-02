@@ -9,6 +9,7 @@ import PronunciationDetail from '@/components/pages/detail/PronunciationDetail.t
 import { ResolvingMetadata } from 'next';
 import { DetailKoreanAlertIconSvg } from '@/components/svg-component/DetailKoreanAlertIconSvg.tsx';
 import React from 'react';
+import DetailTTSButton from '@/components/pages/detail/DetailTTSButton.tsx';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function generateMetadata(
@@ -103,19 +104,24 @@ export default async function WordsPage({
         <div>
           <div className="flex items-start justify-between pt-[18px] pb-[26px]">
             <div className="flex flex-col">
-              <h1 className="text-[30px] align-bottom font-normal text-white">
-                {name}
-              </h1>
+              <div className="flex items-center">
+                <h1 className="text-[30px] align-bottom font-normal text-white">
+                  {name}
+                </h1>
+                <DetailTTSButton id={id} />
+              </div>
               <span className="text-[#E1E2F8] font-normal">
                 {/*{NOTE: 대표 발음은 스프레드시트의 첫 번째 발음으로 합니다}*/}
                 {pronunciation[0]}
               </span>
             </div>
-            <LikeButton
-              initialLike={isLike}
-              initialLikeCount={likeCount}
-              wordId={id}
-            />
+            <div className="self-center">
+              <LikeButton
+                initialLike={isLike}
+                initialLikeCount={likeCount}
+                wordId={id}
+              />
+            </div>
           </div>
           <div className="text-[#F4F5FF] text-xs flex gap-[5px] pb-2.5">
             <DetailKoreanAlertIconSvg />
