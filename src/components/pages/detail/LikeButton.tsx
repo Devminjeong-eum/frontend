@@ -48,7 +48,7 @@ export default function LikeButton({
         <button onClick={() => handleClick(optimisticLikeState.isLike)}>
           <DetailLikeSvg isLike={optimisticLikeState.isLike} />
         </button>
-        <span className="text-xs text-[#E1E2F8] pt-1">
+        <span className="text-xs font-medium text-[#E1E2F8] pt-1">
           {optimisticLikeState.likeCount}
         </span>
       </div>

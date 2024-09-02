@@ -115,11 +115,13 @@ export default async function WordsPage({
                 {pronunciation[0]}
               </span>
             </div>
-            <LikeButton
-              initialLike={isLike}
-              initialLikeCount={likeCount}
-              wordId={id}
-            />
+            <div className="self-center">
+              <LikeButton
+                initialLike={isLike}
+                initialLikeCount={likeCount}
+                wordId={id}
+              />
+            </div>
           </div>
           <div className="text-[#F4F5FF] text-xs flex gap-[5px] pb-2.5">
             <DetailKoreanAlertIconSvg />
