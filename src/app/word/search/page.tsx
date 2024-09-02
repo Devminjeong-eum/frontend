@@ -27,7 +27,7 @@ export async function generateMetadata(
       ...openGraph,
       title: { absolute: `'${decodedKeyword}'의 검색결과 | 데브말싸미` },
       description: `'${decodedKeyword}'에 대한 검색 결과를 확인해보세요.`,
-      url: 'https://dev-malssami.site/search',
+      url: `https://dev-malssami.site/word/search?keyword=${decodedKeyword}`,
     },
     twitter: {
       ...twitter,
