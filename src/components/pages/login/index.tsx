@@ -11,17 +11,21 @@ export default function Login() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-between px-5 pt-44 pb-[2.375rem] h-full">
-      <div className="flex flex-col items-center">
-        <div className="w-[102px] h-[102px]">
-          <LogoSvg />
+    <div className="flex flex-col items-center justify-between gap-[1.125rem] px-5 pt-[1.375rem] pb-[2.375rem] w-full h-full bg-landing-gradient">
+      <div className="flex flex-col items-center rounded-[30px] w-full h-full bg-landing-first-illust-gradient">
+        <div className="flex flex-col items-center justify-center h-full">
+          <div className="w-[7.25rem] h-[7.25rem]">
+            <LogoSvg />
+          </div>
+          <span className="font-gugi text-[#4B4AC5] text-3xl leading-7 tracking-wide font-normal pt-5">
+            데브말싸미
+          </span>
+          <span className="text-[#46474F] text-[1.063rem] leading-[1.625rem] text-center font-medium pt-3">
+            개발 용어의 발음이 궁금할땐?
+            <br />
+            데브말싸미로 검색해 보세요!
+          </span>
         </div>
-        <span className="font-gugi text-[#4B4AC5] text-2xl font-normal tracking-wide pt-1.5">
-          데브말싸미
-        </span>
-        <span className="text-main-black text-base leading-5 font-normal pt-1">
-          당신의 개발용어 발음을 도와드릴게요!
-        </span>
       </div>
       <div className="w-full flex flex-col gap-2 pb-7">
         <button
