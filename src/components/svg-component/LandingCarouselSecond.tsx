@@ -28,14 +28,14 @@ const LandingCarouselSecond: React.FC<LandingCarouselSecond> = ({
       />
       <mask id="path-3-inside-1_7521_4859" fill="white">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M28 71C21.3726 71 16 76.3726 16 83V105C16 111.627 21.3726 117 28 117H131.382L135.632 128.114C136.287 129.828 138.713 129.828 139.368 128.114L143.618 117H252C258.627 117 264 111.627 264 105V83C264 76.3726 258.627 71 252 71H28Z"
         />
       </mask>
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M28 71C21.3726 71 16 76.3726 16 83V105C16 111.627 21.3726 117 28 117H131.382L135.632 128.114C136.287 129.828 138.713 129.828 139.368 128.114L143.618 117H252C258.627 117 264 111.627 264 105V83C264 76.3726 258.627 71 252 71H28Z"
         fill="white"
       />
@@ -70,8 +70,8 @@ const LandingCarouselSecond: React.FC<LandingCarouselSecond> = ({
         fill="url(#paint3_linear_7521_4859)"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M185.27 161.655C185.346 150.731 176.91 141.489 165.86 140.717C160.922 140.372 156.266 141.774 152.496 144.397C148.902 140.721 143.998 138.298 138.465 137.911C133.133 137.538 128.115 139.12 124.114 142.047C120.805 139.149 116.557 137.269 111.831 136.939C100.782 136.166 91.1418 144.144 89.6961 154.972L89.6543 154.969L87.8376 180.949C86.8228 195.462 97.7649 208.049 112.277 209.064L155.38 212.078C169.893 213.093 182.48 202.151 183.495 187.638L183.764 183.801L183.764 183.801L185.219 162.987C185.222 162.949 185.224 162.912 185.227 162.874L185.312 161.658L185.27 161.655Z"
         fill="url(#paint4_linear_7521_4859)"
       />
@@ -106,13 +106,13 @@ const LandingCarouselSecond: React.FC<LandingCarouselSecond> = ({
       <path
         d="M115.994 174.67L154.965 177.395"
         stroke="#2A2C35"
-        stroke-width="1.3"
+        strokeWidth="1.3"
       />
       <path
         d="M99.7125 179.291L102.642 185.511C103.814 187.998 106.774 189.073 109.269 187.917L121.229 182.372"
         stroke="url(#paint5_linear_7521_4859)"
-        stroke-width="5"
-        stroke-linejoin="round"
+        strokeWidth="5"
+        strokeLinejoin="round"
       />
       <circle
         cx="120.319"
@@ -124,8 +124,8 @@ const LandingCarouselSecond: React.FC<LandingCarouselSecond> = ({
       <path
         d="M181.448 176.773L189.616 183.635C191.107 184.887 191.029 187.205 189.457 188.354L181.004 194.531"
         stroke="url(#paint7_linear_7521_4859)"
-        stroke-width="5"
-        stroke-linejoin="round"
+        strokeWidth="5"
+        strokeLinejoin="round"
       />
       <circle
         cx="3.55153"
@@ -143,8 +143,8 @@ const LandingCarouselSecond: React.FC<LandingCarouselSecond> = ({
           y2="250"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.21" stop-color="#D5DCFF" />
-          <stop offset="1" stop-color="#E9EDFF" stop-opacity="0" />
+          <stop offset="0.21" stopColor="#D5DCFF" />
+          <stop offset="1" stopColor="#E9EDFF" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_7521_4859"
@@ -154,8 +154,8 @@ const LandingCarouselSecond: React.FC<LandingCarouselSecond> = ({
           y2="55.5"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#333BFF" />
-          <stop offset="1" stop-color="#8192FF" />
+          <stop stopColor="#333BFF" />
+          <stop offset="1" stopColor="#8192FF" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_7521_4859"
@@ -165,8 +165,8 @@ const LandingCarouselSecond: React.FC<LandingCarouselSecond> = ({
           y2="235.817"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#6977F7" />
-          <stop offset="1" stop-color="#6D5DE6" />
+          <stop stopColor="#6977F7" />
+          <stop offset="1" stopColor="#6D5DE6" />
         </linearGradient>
         <linearGradient
           id="paint3_linear_7521_4859"
@@ -176,8 +176,8 @@ const LandingCarouselSecond: React.FC<LandingCarouselSecond> = ({
           y2="235.817"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#6977F7" />
-          <stop offset="1" stop-color="#6D5DE6" />
+          <stop stopColor="#6977F7" />
+          <stop offset="1" stopColor="#6D5DE6" />
         </linearGradient>
         <linearGradient
           id="paint4_linear_7521_4859"
@@ -187,9 +187,9 @@ const LandingCarouselSecond: React.FC<LandingCarouselSecond> = ({
           y2="210.571"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#5F81F2" />
-          <stop offset="0.765" stop-color="#7162ED" />
-          <stop offset="1" stop-color="#6050E1" />
+          <stop stopColor="#5F81F2" />
+          <stop offset="0.765" stopColor="#7162ED" />
+          <stop offset="1" stopColor="#6050E1" />
         </linearGradient>
         <linearGradient
           id="paint5_linear_7521_4859"
@@ -199,9 +199,9 @@ const LandingCarouselSecond: React.FC<LandingCarouselSecond> = ({
           y2="177.206"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#809DFF" />
-          <stop offset="0.845851" stop-color="#796EFF" />
-          <stop offset="1" stop-color="#6E68EF" />
+          <stop stopColor="#809DFF" />
+          <stop offset="0.845851" stopColor="#796EFF" />
+          <stop offset="1" stopColor="#6E68EF" />
         </linearGradient>
         <linearGradient
           id="paint6_linear_7521_4859"
@@ -211,8 +211,8 @@ const LandingCarouselSecond: React.FC<LandingCarouselSecond> = ({
           y2="185.786"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#8AA1FF" />
-          <stop offset="1" stop-color="#9EB3FF" />
+          <stop stopColor="#8AA1FF" />
+          <stop offset="1" stopColor="#9EB3FF" />
         </linearGradient>
         <linearGradient
           id="paint7_linear_7521_4859"
@@ -222,9 +222,9 @@ const LandingCarouselSecond: React.FC<LandingCarouselSecond> = ({
           y2="178.127"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#809DFF" />
-          <stop offset="0.781591" stop-color="#7A73FF" />
-          <stop offset="1" stop-color="#6B6DF0" />
+          <stop stopColor="#809DFF" />
+          <stop offset="0.781591" stopColor="#7A73FF" />
+          <stop offset="1" stopColor="#6B6DF0" />
         </linearGradient>
         <linearGradient
           id="paint8_linear_7521_4859"
@@ -234,8 +234,8 @@ const LandingCarouselSecond: React.FC<LandingCarouselSecond> = ({
           y2="7.10305"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#8AA1FF" />
-          <stop offset="1" stop-color="#9EB3FF" />
+          <stop stopColor="#8AA1FF" />
+          <stop offset="1" stopColor="#9EB3FF" />
         </linearGradient>
       </defs>
     </svg>

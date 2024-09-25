@@ -60,7 +60,7 @@ const LandingCarouselThird: React.FC<LandingCarouselThird> = ({
           <path
             d="M248.781 46.5886L245.416 48.7665L248.449 51.3872"
             stroke="#2A2C35"
-            stroke-width="1.5"
+            strokeWidth="1.5"
           />
           <circle
             cx="5.37809"
@@ -72,19 +72,19 @@ const LandingCarouselThird: React.FC<LandingCarouselThird> = ({
           <path
             d="M235.985 45.7025L239.018 48.3231L235.653 50.5011"
             stroke="#2A2C35"
-            stroke-width="1.5"
+            strokeWidth="1.5"
           />
         </g>
         <mask id="path-9-inside-1_7523_4943" fill="white">
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M225 0C229.971 0 234 4.02944 234 9V25C234 29.9706 229.971 34 225 34H224.097L224.986 38.9745C225.229 40.3377 223.653 41.2748 222.572 40.4098L214.559 34H147C142.029 34 138 29.9706 138 25V9C138 4.02944 142.029 0 147 0H225Z"
           />
         </mask>
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M225 0C229.971 0 234 4.02944 234 9V25C234 29.9706 229.971 34 225 34H224.097L224.986 38.9745C225.229 40.3377 223.653 41.2748 222.572 40.4098L214.559 34H147C142.029 34 138 29.9706 138 25V9C138 4.02944 142.029 0 147 0H225Z"
           fill="white"
         />
@@ -101,14 +101,14 @@ const LandingCarouselThird: React.FC<LandingCarouselThird> = ({
       </g>
       <mask id="path-12-inside-2_7523_4943" fill="white">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M27 93C20.3726 93 15 98.3726 15 105V127C15 133.627 20.3726 139 27 139H190.862L189.791 146.765C189.531 148.647 191.796 149.797 193.162 148.476L202.966 139H260C266.627 139 272 133.627 272 127V105C272 98.3726 266.627 93 260 93H27Z"
         />
       </mask>
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M27 93C20.3726 93 15 98.3726 15 105V127C15 133.627 20.3726 139 27 139H190.862L189.791 146.765C189.531 148.647 191.796 149.797 193.162 148.476L202.966 139H260C266.627 139 272 133.627 272 127V105C272 98.3726 266.627 93 260 93H27Z"
         fill="white"
       />
@@ -183,14 +183,14 @@ const LandingCarouselThird: React.FC<LandingCarouselThird> = ({
         </g>
         <mask id="path-22-inside-3_7523_4943" fill="white">
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M129 35C133.971 35 138 39.0294 138 44V60C138 64.9706 133.971 69 129 69H71C66.4435 69 62.6779 65.6139 62.0821 61.2208L56.9785 61.7837C55.5046 61.9463 54.7137 60.0997 55.8483 59.145L62 53.9686V44C62 39.0294 66.0294 35 71 35H129Z"
           />
         </mask>
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M129 35C133.971 35 138 39.0294 138 44V60C138 64.9706 133.971 69 129 69H71C66.4435 69 62.6779 65.6139 62.0821 61.2208L56.9785 61.7837C55.5046 61.9463 54.7137 60.0997 55.8483 59.145L62 53.9686V44C62 39.0294 66.0294 35 71 35H129Z"
           fill="white"
         />
@@ -210,8 +210,8 @@ const LandingCarouselThird: React.FC<LandingCarouselThird> = ({
         fill="#DAE1FE"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M92.0427 172.803H92V199.826C92 214.374 103.793 226.168 118.341 226.168H163.342C177.89 226.168 189.684 214.374 189.684 199.826V195.415H189.684V174.16C189.684 174.118 189.684 174.077 189.684 174.035V172.803H189.642C188.942 161.696 179.712 152.904 168.429 152.904C163.386 152.904 158.754 154.661 155.109 157.594C151.195 154.114 146.04 152 140.39 152C134.945 152 129.958 153.964 126.1 157.223C122.532 154.513 118.081 152.905 113.255 152.905C101.972 152.905 92.7423 161.696 92.0427 172.803Z"
         fill="url(#paint3_linear_7523_4943)"
       />
@@ -222,7 +222,7 @@ const LandingCarouselThird: React.FC<LandingCarouselThird> = ({
       <path
         d="M119.017 188.611C119.017 188.611 120.532 192.54 134.032 192C147.532 191.46 158.666 185.185 158.666 185.185"
         stroke="#2A2C35"
-        stroke-width="1.3"
+        strokeWidth="1.3"
       />
       <path
         d="M120.483 197.268C120.371 196.655 120.843 196.09 121.467 196.09H133.685C134.174 196.09 134.591 196.443 134.671 196.925L137.338 212.925C137.44 213.535 136.969 214.09 136.352 214.09H124.367C123.884 214.09 123.469 213.744 123.383 213.268L120.483 197.268Z"
@@ -235,8 +235,8 @@ const LandingCarouselThird: React.FC<LandingCarouselThird> = ({
       <path
         d="M111 195L111.879 203.793C111.953 204.535 112.434 205.174 113.127 205.451L119.5 208"
         stroke="url(#paint4_linear_7523_4943)"
-        stroke-width="5"
-        stroke-linejoin="round"
+        strokeWidth="5"
+        strokeLinejoin="round"
       />
       <circle
         cx="120.645"
@@ -248,8 +248,8 @@ const LandingCarouselThird: React.FC<LandingCarouselThird> = ({
       <path
         d="M167 197.5L152.216 206.74C151.422 207.237 150.503 207.5 149.566 207.5L138.5 207.5"
         stroke="url(#paint6_linear_7523_4943)"
-        stroke-width="5"
-        stroke-linejoin="round"
+        strokeWidth="5"
+        strokeLinejoin="round"
       />
       <circle
         cx="3.61792"
