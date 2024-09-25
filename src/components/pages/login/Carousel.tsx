@@ -2,12 +2,22 @@ import FirstSlide from './FirstSlide';
 import SecondSlide from './SecondSlide';
 import ThirdSlide from './ThirdSlide';
 
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 const slides = [<FirstSlide />, <SecondSlide />, <ThirdSlide />];
 
 const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const slideInterval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+    }, 4000);
+
+    return () => {
+      clearInterval(slideInterval);
+    };
+  }, []);
 
   return (
     <div className="relative overflow-hidden w-full h-full">
