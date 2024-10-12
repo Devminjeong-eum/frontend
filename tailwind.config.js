@@ -51,6 +51,11 @@ export default {
         'detail-gradient-close': 'linear-gradient(to bottom, #1B41BD, #5146C3)',
         'detail-gradient-open':
           'linear-gradient(to bottom, #1B41BD 0%, #3D44C1 35%, #4C4EC9 70%,  #5257D0 100%)',
+
+        // Landing
+        'landing-gradient': 'linear-gradient(360deg, #EFF2FF 0%, #E9EEFF 100%)',
+        'landing-first-illust-gradient':
+          'linear-gradient(180deg, #F9FBFF 0%, rgba(249, 251, 255, 0) 100%)',
       },
       boxShadow: {
         base: '3px 3px 4px 0px rgba(26, 29, 37, 0.01)',
