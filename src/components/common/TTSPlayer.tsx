@@ -26,6 +26,8 @@ export default function TTSPlayer({ diacritic, id }: Props) {
       const audioUrl = await queryClient.fetchQuery({
         queryKey: [QUERY_KEYS.TTS_KEY, id],
         queryFn: () => getTTSUrl(id),
+        gcTime: Infinity,
+        staleTime: Infinity,
       });
       if (audioUrl) {
         startAudio(audioUrl);

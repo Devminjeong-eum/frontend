@@ -6,6 +6,8 @@ const useGetTTSUrl = (id: string) => {
   return useQuery({
     queryKey: [QUERY_KEYS.TTS_KEY, id],
     queryFn: () => getTTSUrl(id),
+    gcTime: Infinity,
+    staleTime: Infinity,
   });
 };
 
