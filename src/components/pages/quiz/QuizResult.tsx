@@ -36,7 +36,7 @@ export default function QuizResult({
   const router = useRouter();
   const { data } = useAuthQuery();
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const isLoggedIn = !data?.error ?? false;
+  const isLoggedIn = data?.error ?? false;
   const isGuest = quizResultId === 'guest';
   const isScrolled = useScroll();
   const [isOpen, setIsOpen] = useState(
