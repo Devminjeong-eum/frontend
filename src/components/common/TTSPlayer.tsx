@@ -4,7 +4,9 @@ import useDeviceType from '@/hooks/useDeviceType';
 import clsx from 'clsx';
 import SpeakerSvg from '../svg-component/SpeakerSvg';
 import useAudioPlayer from '@/hooks/useAudioPlayer';
-import useGetTTSUrl from '@/hooks/query/useGetTTSUrl';
+import { getTTSUrl } from '@/fetcher';
+import { useQueryClient } from '@tanstack/react-query';
+import QUERY_KEYS from '@/constants/queryKey';
 
 type Props = {
   id: string;
@@ -13,14 +15,25 @@ type Props = {
 
 export default function TTSPlayer({ diacritic, id }: Props) {
   const deviceType = useDeviceType();
-  const { data: audioUrl } = useGetTTSUrl(id);
+  const queryClient = useQueryClient();
   const { audioRef, startAudio, isPlaying } = useAudioPlayer(id);
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleClick = async (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
 
-    if (audioUrl) {
-      startAudio(audioUrl);
+    try {
+      // Fixme: 타입 추론되도록 만들고 싶어요
+      const audioUrl = await queryClient.fetchQuery({
+        queryKey: [QUERY_KEYS.TTS_KEY, id],
+        queryFn: () => getTTSUrl(id),
+      });
+      if (audioUrl) {
+        startAudio(audioUrl);
+      }
+    } catch {
+      // Note: 오디오 에러는 서비스에 큰 지장을 주지 않기 때문에 에러 전파 X
+      // Todo: 추후 여러번 발생할 때 리포팅 할 수 있는 Sentry를 연동하면 좋겠다.
+      console.error('오디오 url 생성 중 에러');
     }
   };
 
