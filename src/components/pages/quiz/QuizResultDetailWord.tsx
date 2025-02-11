@@ -19,7 +19,7 @@ export default function QuizResultDetailWord({ data, correctWords }: Props) {
 
   const { data: authData } = useAuthQuery();
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const isLoggedIn = !authData?.error ?? false;
+  const isLoggedIn = authData?.error ?? false;
   const { optimisticLikeState, handleSubLike, handleAddLike } =
     useOptimisticLike({
       wordId: data.wordId,

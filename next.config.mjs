@@ -7,6 +7,7 @@ const withPWA = nextPWA({
 
 const nextConfig = {
   reactStrictMode: true,
+  productionBrowserSourceMaps: false,
   output: 'standalone',
   images: {
     remotePatterns: [
